@@ -1,0 +1,46 @@
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+
+.carousel .owl-item img{
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+//content inside the carousel
+::ng-deep .owl-carousel .owl-stage-outer .owl-stage div h1{
+    font-size:50px;
+    position:absolute;
+    padding-left: 600px;
+    padding-top: 550px;
+    color:#fff;
+}
+
+
+//change the dots positions
+::ng-deep .owl-theme .owl-dots {
+   position: absolute;
+    top:10px;
+    left:2%;
+    right:88%;
+ 
+
+ }
+ //add custom color and size to all dots
+::ng-deep .owl-theme .owl-dots .owl-dot span{
+    background: #fff!important; /* dots color*/
+    border: 2px solid #0D47A1;
+    width:15px;
+    height:15px;
+ }
+
+//add color to active dot
+::ng-deep .owl-theme .owl-dots .owl-dot.active span,
+ .owl-theme .owl-dots .owl-dot:hover span {
+   background: #DD2C00!important; /*active and on hover color*/
+ 
+ }
