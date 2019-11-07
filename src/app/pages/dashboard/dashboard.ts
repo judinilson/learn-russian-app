@@ -1,7 +1,12 @@
 import { CommonModule} from '@angular/common';
 import { Component, OnInit,NgModule  } from '@angular/core';
-import { CarouselModule } from 'ngx-owl-carousel-o';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+
+import{
+  MatSidenavModule,
+  MatButtonModule,
+  MatIconModule
+}from '@angular/material'
+
 
 
 @Component({
@@ -25,27 +30,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  customOptions: OwlOptions = {
-    loop: true,
-    autoplay:false,
-    autoplayTimeout :3000,
-    autoHeight:true,
-    margin:10,
-    animateOut: 'fadeOut',
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: false,
-    dots:true,
-    navSpeed: 700,
-    stagePadding:0,
-    responsive: {
-      0: {
-        items: 1
-      }
-    },
-    nav: false
-  }
-
+  
 }
 
 
@@ -54,7 +39,9 @@ export class DashboardComponent implements OnInit {
 @NgModule({
   imports: [
     CommonModule,
-    CarouselModule
+    MatSidenavModule,
+      MatButtonModule,
+      MatIconModule
   ],
   exports: [DashboardComponent],
   declarations: [DashboardComponent],

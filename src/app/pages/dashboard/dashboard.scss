@@ -1,46 +1,108 @@
-@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+// @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+// @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
 
-.carousel .owl-item img{
-  display: block;
-  width: 100%;
-  height: auto;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+// .carousel .owl-item img{
+//   display: block;
+//   width: 100%;
+//   height: auto;
+//   -webkit-border-radius: 3px;
+//   -moz-border-radius: 3px;
+//   border-radius: 3px;
+// }
+
+// //content inside the carousel
+// ::ng-deep .owl-carousel .owl-stage-outer .owl-stage div h1{
+//     font-size:50px;
+//     position:absolute;
+//     padding-left: 600px;
+//     padding-top: 550px;
+//     color:#fff;
+// }
+
+
+// //change the dots positions
+// ::ng-deep .owl-theme .owl-dots {
+//    position: absolute;
+//     top:10px;
+//     left:2%;
+//     right:88%;
+ 
+
+//  }
+//  //add custom color and size to all dots
+// ::ng-deep .owl-theme .owl-dots .owl-dot span{
+//     background: #fff!important; /* dots color*/
+//     border: 2px solid #0D47A1;
+//     width:15px;
+//     height:15px;
+//  }
+
+// //add color to active dot
+// ::ng-deep .owl-theme .owl-dots .owl-dot.active span,
+//  .owl-theme .owl-dots .owl-dot:hover span {
+//    background: #DD2C00!important; /*active and on hover color*/
+ 
+//  }
+
+ html, body {
+  height: 100%;
 }
 
-//content inside the carousel
-::ng-deep .owl-carousel .owl-stage-outer .owl-stage div h1{
+
+// .bg-img{
+//  display:block;
+//  position:absolute;
+//   width:100%;
+//   height:100%;
+//   background-image: url('../../../assets/Images/carousel/russiaFlag.jpg');
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+// }
+
+#bg-img{
+  animation: bgfade 18s infinite ;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display:block;
+  position:absolute;
+  width:100%;
+  height:100%;
+}
+
+@keyframes bgfade{
+  0%{
+    background-image: url('../../../assets/Images/carousel/russiaFlag.jpg');
+  }
+
+  25%{
+    background-image: url('../../../assets/Images/carousel/moscow_city.jpg');
+  }
+
+  50%{
+    background-image: url('../../../assets/Images/carousel/Astrakhan-K.jpg');
+  }
+  100%{
+    background-image: url('../../../assets/Images/carousel/moscow_city.jpg');
+  }
+}
+
+.mat-icon-button{
+  position: fixed;
+    bottom: 40px;
+    left: 10%;
+    //margin-left: -104.5px; /*104.5px is half of the button's width*/
+  color:#fff;
+  z-index: 100;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  background:bottom;
+  .mat-icon{
     font-size:50px;
-    position:absolute;
-    padding-left: 600px;
-    padding-top: 550px;
-    color:#fff;
+    font-weight: bold;
+    border-radius: 20px;
 }
-
-
-//change the dots positions
-::ng-deep .owl-theme .owl-dots {
-   position: absolute;
-    top:10px;
-    left:2%;
-    right:88%;
- 
-
- }
- //add custom color and size to all dots
-::ng-deep .owl-theme .owl-dots .owl-dot span{
-    background: #fff!important; /* dots color*/
-    border: 2px solid #0D47A1;
-    width:15px;
-    height:15px;
- }
-
-//add color to active dot
-::ng-deep .owl-theme .owl-dots .owl-dot.active span,
- .owl-theme .owl-dots .owl-dot:hover span {
-   background: #DD2C00!important; /*active and on hover color*/
- 
- }
+}
