@@ -1,10 +1,12 @@
 import { CommonModule} from '@angular/common';
 import { Component, OnInit,NgModule  } from '@angular/core';
-
+import { RouterModule } from '@angular/router';
 import{
   MatSidenavModule,
   MatButtonModule,
-  MatIconModule
+  MatIconModule,
+  MatListModule,
+
 }from '@angular/material'
 
 
@@ -16,7 +18,7 @@ import{
 })
 export class DashboardComponent implements OnInit {
 
-
+  showSidenav=false;
   images = [
     '../../../assets/Images/carousel/russiaFlag.jpg', 
     '../../../assets/Images/carousel/moscow_city.jpg',
@@ -41,7 +43,9 @@ export class DashboardComponent implements OnInit {
     CommonModule,
     MatSidenavModule,
       MatButtonModule,
-      MatIconModule
+      MatIconModule,
+      MatListModule,
+      RouterModule
   ],
   exports: [DashboardComponent],
   declarations: [DashboardComponent],
