@@ -32,7 +32,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  
+  showSnav(){
+    this.showSidenav = !this.showSidenav;
+  }
 }
 
 
