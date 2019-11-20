@@ -1,13 +1,15 @@
 import { CommonModule} from '@angular/common';
-import { Component, OnInit,NgModule  } from '@angular/core';
+import { Component, OnInit, NgModule  } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import{
+import {
   MatSidenavModule,
   MatButtonModule,
   MatIconModule,
   MatListModule,
+  MatTreeModule,
+  MatExpansionModule
 
-}from '@angular/material'
+} from '@angular/material';
 
 
 
@@ -18,9 +20,10 @@ import{
 })
 export class DashboardComponent implements OnInit {
 
-  showSidenav=false;
+  menuShowMore = false;
+   arrowIcon = 'arrow_drop_down';
   images = [
-    '../../../assets/Images/carousel/russiaFlag.jpg', 
+    '../../../assets/Images/carousel/russiaFlag.jpg',
     '../../../assets/Images/carousel/moscow_city.jpg',
     '../../../assets/Images/carousel/Astrakhan-K.jpg'
   ];
@@ -32,9 +35,23 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  showSnav(){
-    this.showSidenav = !this.showSidenav;
+  showMore() {
+    this.menuShowMore = !this.menuShowMore;
+    this.arrowIcon = this.changeArrowIcon();
   }
+
+  changeArrowIcon(): string {
+    if (!this.menuShowMore) {
+      return 'arrow_drop_down';
+    } else {
+      return 'arrow_drop_up ';
+    }
+    // this.arrowIcon = !this.arrowIcon;
+  }
+
+  // tslint:disable-next-line:member-ordering
+  // arrowIcon = this.changeArrowIcon();
+
 }
 
 
@@ -47,7 +64,9 @@ export class DashboardComponent implements OnInit {
       MatButtonModule,
       MatIconModule,
       MatListModule,
-      RouterModule
+      RouterModule,
+      MatTreeModule,
+      MatExpansionModule
   ],
   exports: [DashboardComponent],
   declarations: [DashboardComponent],

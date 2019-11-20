@@ -113,19 +113,45 @@ mat-sidenav{
   }
 }
 
+.welcome-title{
+  position: absolute;
+  right: 8%;
+  top: 65%;
+  //font-size: 40px;
+  color: #ffffff;
+  //background-color: black;
+  font-weight: bolder;
+  font-family: Roboto, Arial, sans-serif;
+  align-content: flex-start;
+}
+
+.mat-mini-fab{
+  background-color: #343a40;;
+}
+
+.hymplay-btn{
+  position: absolute;
+  bottom: 5%;
+  right: 8%;
+  z-index: 100;
+  display: block;
+  .mat-icon{
+    //font-size:30px;
+    font-weight: bolder;
+    color: #fff;
+}
+}
+
 .menu-btn{
   position: fixed;
     bottom: 40px;
-    left: 10%;
-  color:#fff;
+    left: 17%;
    z-index: 100;
-   display: flex;
-   background:bottom;
-   border-radius: 30px;
+   //display: block;
   .mat-icon{
-    font-size:35px;
+    color:#fff;
+    //font-size:35px;
     font-weight: 500;
-    
 }
 
 }
@@ -148,5 +174,5 @@ button:focus{
   text-align: center;
   margin-left: 40px;
   font-size: 12px;
-
 }
+
