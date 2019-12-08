@@ -1,0 +1,54 @@
+.layout__row{
+
+    //z-index: 100;
+    //display: flex;
+    .menu-btn{
+      //position: relative;
+      bottom: -800px !important;
+      //top: 20%;
+      left: 25%;
+    }
+  
+  
+     .mdc-fab{
+        background-color: #343a40;
+     }
+  
+     .mdc-icon{
+      color:#fff;
+      //font-size:35px;
+      font-weight: 500;
+     }
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  // .navegations{
+    
+  // }
+
+//   .mdc-sub-list{
+//     display:none;
+//   }
+
+.mdc-list-item__graphic{
+  margin-right:0px;
+}
+  .mdc-sub-list .mdc-list-item{
+    padding: 0 40px;
+
+}
+
+.mdc-drawer{
+  width: 265px;
+}
+  .footer{
+    position: fixed;
+    bottom: 1%;
+    height: 20px;
+    text-align: center;
+    margin-left: 40px;
+    font-size: 12px;
+  }

@@ -1,3 +1,4 @@
+import { SideNavComponent, SideNavPageModule } from './../../shared/side-nav/side-nav.component';
 import { CommonModule} from '@angular/common';
 import { Component, OnInit, NgModule  } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -10,6 +11,17 @@ import {
   MatExpansionModule
 
 } from '@angular/material';
+
+import {
+  MdcButtonModule,
+  MdcFabModule,
+  MdcIconModule,
+  MdcDrawerModule,
+  MdcMenuModule,
+  MdcListModule
+} from '@angular-mdc/web';
+import {FlexLayoutModule} from '@angular/flex-layout';
+
 
 
 
@@ -27,6 +39,8 @@ export class DashboardComponent implements OnInit {
     '../../../assets/Images/carousel/moscow_city.jpg',
     '../../../assets/Images/carousel/Astrakhan-K.jpg'
   ];
+
+
 
   constructor() {
 
@@ -66,7 +80,17 @@ export class DashboardComponent implements OnInit {
       MatListModule,
       RouterModule,
       MatTreeModule,
-      MatExpansionModule
+      MatExpansionModule,
+
+      MdcButtonModule,
+      MdcFabModule,
+      MdcIconModule,
+      MdcDrawerModule,
+      MdcMenuModule,
+      MdcListModule,
+
+      FlexLayoutModule,
+      SideNavPageModule
   ],
   exports: [DashboardComponent],
   declarations: [DashboardComponent],

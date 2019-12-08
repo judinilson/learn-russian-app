@@ -1,47 +1,6 @@
 
 
-// .carousel .owl-item img{
-//   display: block;
-//   width: 100%;
-//   height: auto;
-//   -webkit-border-radius: 3px;
-//   -moz-border-radius: 3px;
-//   border-radius: 3px;
-// }
 
-// //content inside the carousel
-// ::ng-deep .owl-carousel .owl-stage-outer .owl-stage div h1{
-//     font-size:50px;
-//     position:absolute;
-//     padding-left: 600px;
-//     padding-top: 550px;
-//     color:#fff;
-// }
-
-
-// //change the dots positions
-// ::ng-deep .owl-theme .owl-dots {
-//    position: absolute;
-//     top:10px;
-//     left:2%;
-//     right:88%;
- 
-
-//  }
-//  //add custom color and size to all dots
-// ::ng-deep .owl-theme .owl-dots .owl-dot span{
-//     background: #fff!important; /* dots color*/
-//     border: 2px solid #0D47A1;
-//     width:15px;
-//     height:15px;
-//  }
-
-// //add color to active dot
-// ::ng-deep .owl-theme .owl-dots .owl-dot.active span,
-//  .owl-theme .owl-dots .owl-dot:hover span {
-//    background: #DD2C00!important; /*active and on hover color*/
- 
-//  }
 
 .sidenav-container {
   position: absolute;
@@ -73,19 +32,8 @@ mat-sidenav{
 }
 
 
-// .bg-img{
-//  display:block;
-//  position:absolute;
-//   width:100%;
-//   height:100%;
-//   background-image: url('../../../assets/Images/carousel/russiaFlag.jpg');
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-// }
-
 .bg-img{
-  // animation:18s bgfade infinite;
+  //animation:18s bgfade infinite;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -93,6 +41,7 @@ mat-sidenav{
   position:absolute;
   width:100%;
   height:100%;
+  animation: bgfade 18s infinite;
   -webkit-animation: bgfade 18s infinite;
 }
 
@@ -125,54 +74,53 @@ mat-sidenav{
   align-content: flex-start;
 }
 
-.mat-mini-fab{
-  background-color: #343a40;;
-}
 
-.hymplay-btn{
-  position: absolute;
-  bottom: 5%;
-  right: 8%;
-  z-index: 100;
-  display: block;
-  .mat-icon{
-    //font-size:30px;
-    font-weight: bolder;
-    color: #fff;
-}
-}
 
-.menu-btn{
-  position: fixed;
-    bottom: 40px;
-    left: 17%;
-   z-index: 100;
-   //display: block;
-  .mat-icon{
+// .hymplay-btn{
+//   position: absolute;
+//   bottom: 5%;
+//   right: 8%;
+//   z-index: 100;
+//   display: block;
+//   .mat-icon{
+//     //font-size:30px;
+//     font-weight: bolder;
+//     color: #fff;
+// }
+// }
+
+.layout__row{
+
+  .play-btn{
+    position: fixed;
+    bottom: 5%;
+    right: 8%;
+  }
+
+  
+   .mdc-fab{
+      background-color: #343a40;
+   }
+
+   .mdc-icon{
     color:#fff;
     //font-size:35px;
     font-weight: 500;
-}
-
-}
-
-
-button:focus{
-  outline: none !important;
+   }
 }
 
 
-.mat-nav-list{
-  top: 30%;
-  position: absolute;
-}
 
-.footer{
-  position: fixed;
-  bottom: 1%;
-  height: 20px;
-  text-align: center;
-  margin-left: 40px;
-  font-size: 12px;
-}
+
+// button:focus{
+//   outline: none !important;
+// }
+
+
+// .mat-nav-list{
+//   top: 30%;
+//   position: absolute;
+// }
+
+
 
