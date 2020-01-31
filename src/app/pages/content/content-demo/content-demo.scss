@@ -1,0 +1,43 @@
+.top-bar{
+  background-color:black ;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  //bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 8px 16px;
+}
+
+.demo-card {
+    width: 350px;
+    margin: 28px;
+    position: relative;
+    float: left;
+   margin-top: 15%;
+  }
+  
+  .demo-card__primary {
+    padding: 1rem;
+  }
+  
+  .demo-card__title {
+    margin: 0;
+  }
+  
+  .demo-card__subtitle {
+    //@include mdc-theme-prop(color, text-secondary-on-background);
+  
+    margin: 0;
+  }
+  
+  .demo-card__secondary {
+    //@include mdc-theme-prop(color, text-secondary-on-background);
+  
+    padding: 0 1rem 6px 1rem;
+  }
+  
+  .demo-card__media--16-9 {
+    background-image: url(./src/russiaInMap.jpg);
+}

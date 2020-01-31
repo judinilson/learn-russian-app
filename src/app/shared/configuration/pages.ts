@@ -30,7 +30,7 @@ export const NAV_LINKS: { [key: string]: NavLinkInfo } = {
 
     },
     [PAGE_CONTENT_DEMO]: {
-      name: 'Россия', icon: 'class', location: '',
+      name: 'Россия', icon: 'class', location: null,
       subPages: [
           {
             name: 'Демонстрация', icon: 'video_label', location: '/content-demo'

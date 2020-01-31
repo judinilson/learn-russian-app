@@ -1,11 +1,8 @@
 .layout__row{
-
-    //z-index: 100;
-    //display: flex;
     .menu-btn{
-      //position: relative;
-      bottom: -800px !important;
-      //top: 20%;
+      position: relative;
+      bottom: 80% !important;
+      top: 50%;
       left: 25%;
     }
   
@@ -23,11 +20,12 @@
 
   a{
     text-decoration: none;
+    //color: #6610f2;
   }
 
-  // .navegations{
-    
-  // }
+  .navegations{
+    font-family: Roboto, Arial, sans-serif;
+  }
 
 //   .mdc-sub-list{
 //     display:none;

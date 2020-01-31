@@ -7,7 +7,7 @@
             <ul class="mdc-list" >
               <div *ngFor="let key of navSection">
                   <li class="mdc-list-item " >
-                      <a [routerLink]="navLinks[key].location" (click)="navLinks[key].name == 'Россия' ? _isDroped() : ''">
+                      <a [routerLink]="navLinks[key].location " (click)="navLinks[key].name == 'Россия' ? _isDroped() : ''">
           
                         <mdc-icon mdcListItemGraphic *ngIf="navLinks[key].icon">{{navLinks[key].icon}}</mdc-icon>
                         {{navLinks[key].name}}
@@ -19,10 +19,10 @@
                   </li> 
     
                     <ul class="mdc-list mdc-sub-list" *ngIf="isDroped == true" >
-                        <li class="mdc-list-item" *ngFor="let k of navLinks[key].subPages">
-                          <a [routerLink]="k.location">
-                            <mdc-icon mdcListItemGraphic *ngIf="k.icon">{{k.icon}}</mdc-icon>
-                            {{k.name}}
+                        <li class="mdc-list-item" *ngFor="let subPage of navLinks[key].subPages">
+                          <a [routerLink]="subPage.location">
+                            <mdc-icon mdcListItemGraphic *ngIf="subPage.icon">{{subPage.icon}}</mdc-icon>
+                            {{subPage.name}}
                           </a>
                         </li> 
                     </ul> 
