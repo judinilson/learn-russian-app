@@ -1,9 +1,20 @@
-<div>
-    <div class="top-bar">
-        <app-side-nav style="top: 5%;"></app-side-nav>
-    </div> 
-    
-    <mdc-card class="demo-card" *ngFor="let item of dataSource" >
+<!-- <div class="top-bar" >
+        <app-side-nav ></app-side-nav>
+    </div>  -->
+<mdc-top-app-bar short  >
+    <mdc-top-app-bar-row>
+        <mdc-top-app-bar-section align="start" title="App">
+            <button mdcTopAppBarNavIcon>
+                <mdc-icon>menu</mdc-icon>
+            </button>
+        </mdc-top-app-bar-section>
+        <mdc-top-app-bar-section align="end">
+            <mdc-icon mdcTopAppBarActionItem>file_download</mdc-icon>
+        </mdc-top-app-bar-section>
+    </mdc-top-app-bar-row>
+</mdc-top-app-bar>
+<div #mainContent>
+    <mdc-card class="demo-card" *ngFor="let item of dataSource">
         <mdc-card-primary-action>
             <mdc-card-media [ngStyle]="{'background-image': 'url('+ item.coverImg +')'}" wide>...</mdc-card-media>
             <div class="demo-card__primary">
@@ -15,23 +26,18 @@
             </div>
         </mdc-card-primary-action>
         <!-- <mdc-card-actions>
-                    <mdc-card-action-buttons>
-                        <button mdc-button mdcCardAction="button">Read</button>
-                        <button mdc-button mdcCardAction="button">Bookmark</button>
-                    </mdc-card-action-buttons>
-                    <mdc-card-action-icons>
-                        <button mdcIconButton mdcCardAction="icon">
-                        <mdc-icon mdcIconOn>favorite</mdc-icon>
-                        <mdc-icon>favorite_border</mdc-icon>
-                        </button>
-                        <button mdcIconButton mdcCardAction="icon" icon="share"></button> 
-                        <button mdcIconButton mdcCardAction="icon" icon="more_vert"></button> 
-                    </mdc-card-action-icons>
-                    </mdc-card-actions> -->
+                        <mdc-card-action-buttons>
+                            <button mdc-button mdcCardAction="button">Read</button>
+                            <button mdc-button mdcCardAction="button">Bookmark</button>
+                        </mdc-card-action-buttons>
+                        <mdc-card-action-icons>
+                            <button mdcIconButton mdcCardAction="icon">
+                            <mdc-icon mdcIconOn>favorite</mdc-icon>
+                            <mdc-icon>favorite_border</mdc-icon>
+                            </button>
+                            <button mdcIconButton mdcCardAction="icon" icon="share"></button> 
+                            <button mdcIconButton mdcCardAction="icon" icon="more_vert"></button> 
+                        </mdc-card-action-icons>
+                        </mdc-card-actions> -->
     </mdc-card>
-
 </div>
-
-  
-
-   

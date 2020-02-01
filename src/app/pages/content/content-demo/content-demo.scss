@@ -8,6 +8,7 @@
   right: 0;
   left: 0;
   padding: 8px 16px;
+  z-index: 2;
 }
 
 .demo-card {
@@ -15,7 +16,8 @@
     margin: 28px;
     position: relative;
     float: left;
-   margin-top: 15%;
+    top: 56px;
+   //margin-top: 15%;
   }
   
   .demo-card__primary {

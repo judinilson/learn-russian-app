@@ -41,6 +41,9 @@
 
 .mdc-drawer{
   width: 265px;
+  top: 0;
+  bottom: 0;
+  position: absolute;
 }
   .footer{
     position: fixed;

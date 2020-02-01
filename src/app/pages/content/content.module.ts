@@ -28,7 +28,8 @@ import {
         MdcDrawerModule,
         MdcMenuModule,
         MdcListModule,
-        MdcCardModule
+        MdcCardModule,
+        MdcTopAppBarModule
     } from '@angular-mdc/web';
 import { VideoDemoComponent } from './content-demo/video-demo/video-demo.component';
 
@@ -58,7 +59,8 @@ import { VideoDemoComponent } from './content-demo/video-demo/video-demo.compone
         MdcIconModule,
         MdcMenuModule,
         MdcListModule,
-        MdcCardModule
+        MdcCardModule,
+        MdcTopAppBarModule
     ],
     exports: [ContentDemoComponent, ContentTextsComponent],
     // tslint:disable-next-line:max-line-length
