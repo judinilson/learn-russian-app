@@ -5,21 +5,21 @@
       <mdc-drawer-content>
         <nav class="navegations ">
             <ul class="mdc-list" >
-              <div *ngFor="let key of navSection">
+              <div *ngFor="let key of route.navSection">
                   <li class="mdc-list-item " >
-                      <a [routerLink]="navLinks[key].location " (click)="navLinks[key].name == 'Россия' ? _isDroped() : ''">
+                      <a [routerLink]="route.navLinks[key].location " (click)="route.navLinks[key].name == 'Россия' ? route._isDroped() : ''">
           
-                        <mdc-icon mdcListItemGraphic *ngIf="navLinks[key].icon">{{navLinks[key].icon}}</mdc-icon>
-                        {{navLinks[key].name}}
-                        <mdc-icon  mdcListItemGraphic  mdcSuffix *ngIf="navLinks[key].name == 'Россия'" >
-                          {{icon}}
+                        <mdc-icon mdcListItemGraphic *ngIf="route.navLinks[key].icon">{{route.navLinks[key].icon}}</mdc-icon>
+                        {{route.navLinks[key].name}}
+                        <mdc-icon  mdcListItemGraphic  mdcSuffix *ngIf="route.navLinks[key].name == 'Россия'" >
+                          {{route.icon}}
                         </mdc-icon>
                       </a>
     
                   </li> 
     
-                    <ul class="mdc-list mdc-sub-list" *ngIf="isDroped == true" >
-                        <li class="mdc-list-item" *ngFor="let subPage of navLinks[key].subPages">
+                    <ul class="mdc-list mdc-sub-list" *ngIf="route.isDroped == true" >
+                        <li class="mdc-list-item" *ngFor="let subPage of route.navLinks[key].subPages">
                           <a [routerLink]="subPage.location">
                             <mdc-icon mdcListItemGraphic *ngIf="subPage.icon">{{subPage.icon}}</mdc-icon>
                             {{subPage.name}}
@@ -47,6 +47,5 @@
       <button class="menu-btn" mdc-fab mini (click)="demoDismissible.open = !demoDismissible.open">
         <mdc-icon>menu</mdc-icon>
       </button>
-
     </div>
   </div>

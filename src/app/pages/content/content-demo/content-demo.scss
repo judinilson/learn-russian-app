@@ -1,17 +1,65 @@
-.top-bar{
-  background-color:black ;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  top: 0;
-  //bottom: 0;
-  right: 0;
-  left: 0;
-  padding: 8px 16px;
-  z-index: 2;
+@import "~@angular-mdc/theme/material";
+//top-bar
+
+.mdc-top-app-bar{
+  @include mdc-top-app-bar-fill-color(#018786);
+  color: #000;
 }
 
-.demo-card {
+.custom-select-outline-shape-radius {
+  @include mdc-select-outline-shape-radius(50%);
+}
+
+.mdc-select{
+  max-width: 40%;
+  max-height: 99%; 
+  @include mdc-select-outline-color(green);
+ 
+  
+}
+
+.mdc-select--focused .mdc-select__selected-text{
+  color: white;
+}
+
+mdc-icon{
+  font-size: 30px;
+  color: #000;
+}
+
+
+
+  //side nav 
+ 
+  .mdc-list-item__graphic{
+    margin-right:0px;
+  }
+    .mdc-sub-list .mdc-list-item{
+      padding: 0 40px;
+  
+  }
+  
+  .mdc-drawer{
+    width: 265px;
+    top: 7%;
+    bottom: 0;
+    position: fixed;
+    a{
+      text-decoration: none;
+      color: #000;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+  }
+    .footer{
+      position: fixed;
+      bottom: 1%;
+      height: 20px;
+      text-align: center;
+      margin-left: 40px;
+      font-size: 12px;
+    }
+.card {
     width: 350px;
     margin: 28px;
     position: relative;
@@ -20,26 +68,24 @@
    //margin-top: 15%;
   }
   
-  .demo-card__primary {
+  .card__primary {
     padding: 1rem;
   }
   
-  .demo-card__title {
+  .card__title {
     margin: 0;
   }
   
-  .demo-card__subtitle {
-    //@include mdc-theme-prop(color, text-secondary-on-background);
+  .card__subtitle {
+    @include mdc-theme-prop(color, text-secondary-on-background);
   
     margin: 0;
   }
   
-  .demo-card__secondary {
-    //@include mdc-theme-prop(color, text-secondary-on-background);
+  .card__secondary {
+    @include mdc-theme-prop(color, text-secondary-on-background);
   
     padding: 0 1rem 6px 1rem;
   }
   
-  .demo-card__media--16-9 {
-    background-image: url(./src/russiaInMap.jpg);
-}
+

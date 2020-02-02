@@ -1,5 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-
+import { RouterService } from 'src/app/shared/service/router-service';
 @Component({
   selector: 'app-content-demo',
   templateUrl: './content-demo.html',
@@ -7,10 +7,23 @@ import { Component, OnInit, NgModule } from '@angular/core';
 })
 export class ContentDemoComponent implements OnInit {
   dataSource = ELEMENT_DATA;
-  constructor() { }
+  constructor(private routerService: RouterService) { }
+
+  selectedCategory: any;
+  route = this.routerService;
 
   ngOnInit() {
   }
+
+  categories(){
+    return  this.dataSource.filter(
+      (items, i,arr) => arr.findIndex(x => x.category === items.category) === i);
+  }
+
+  filteredCategory(){
+    return this.dataSource.filter(x => x.category == this.selectedCategory);
+  }
+  
 
 }
 

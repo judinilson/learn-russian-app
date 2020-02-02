@@ -12,16 +12,9 @@ import {
   MdcMenuModule,
   MdcListModule
 } from '@angular-mdc/web';
-import {
-  MatSidenavModule,
-  MatButtonModule,
-  MatIconModule,
-  MatListModule,
-  MatTreeModule,
-  MatExpansionModule
 
-} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { RouterService } from '../service/router-service';
 
 @Component({
   selector: 'app-side-nav',
@@ -30,44 +23,14 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 })
 export class SideNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private routerService: RouterService) { }
 
-  isDroped = false;
-  icon = 'arrow_drop_down';
-
-
-  get navSection() {
-    return NAV_SECTIONS[this.currentSection];
-  }
-  get navLinks() {
-    return NAV_LINKS;
-  }
-
-  get currentSection() {
-    return ROLE_ADMIN;
-  }
-
-  // destinations = [
-  //   { label: 'Inbox', icon: 'inbox', activated: true },
-  //   { label: 'Star', icon: 'star', activated: false },
-  //   { label: 'Sent Mail', icon: 'send', activated: false },
-  //   { label: 'Drafts', icon: 'drafts', activated: false }
-  // ];
+ 
+  route = this.routerService;
+ 
 
 
   ngOnInit() {
-  }
-
-
-
-  _isDroped() {
-    this.isDroped = !this.isDroped;
-    // tslint:disable-next-line:no-non-null-assertion
-    if ( this.isDroped! ) {
-      this.icon = 'arrow_drop_up';
-    } else {
-      this.icon = 'arrow_drop_down';
-    }
   }
 
 }

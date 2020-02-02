@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
+import{ReactiveFormsModule, FormsModule} from '@angular/forms'
 import { SideNavPageModule } from './../../shared/side-nav/side-nav.component';
 import { ContentTextsComponent } from './content-texts/content-texts';
 import { ContentDemoComponent } from './content-demo/content-demo';
 import { NgModule } from '@angular/core';
 import { MatVideoModule } from 'mat-video';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { RouterModule } from '@angular/router';
 // tslint:disable-next-line:max-line-length
 import {
     MatIconModule,
@@ -29,7 +31,8 @@ import {
         MdcMenuModule,
         MdcListModule,
         MdcCardModule,
-        MdcTopAppBarModule
+        MdcTopAppBarModule,
+        MdcSelectModule
     } from '@angular-mdc/web';
 import { VideoDemoComponent } from './content-demo/video-demo/video-demo.component';
 
@@ -53,6 +56,9 @@ import { VideoDemoComponent } from './content-demo/video-demo/video-demo.compone
 
         CommonModule,
         FlexLayoutModule,
+        RouterModule,
+        ReactiveFormsModule, 
+        FormsModule,
 //mdc
         MdcButtonModule,
         MdcFabModule,
@@ -60,7 +66,9 @@ import { VideoDemoComponent } from './content-demo/video-demo/video-demo.compone
         MdcMenuModule,
         MdcListModule,
         MdcCardModule,
-        MdcTopAppBarModule
+        MdcTopAppBarModule,
+        MdcDrawerModule,
+        MdcSelectModule,
     ],
     exports: [ContentDemoComponent, ContentTextsComponent],
     // tslint:disable-next-line:max-line-length
