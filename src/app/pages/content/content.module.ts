@@ -9,6 +9,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 // tslint:disable-next-line:max-line-length
 import {
+    MatSelectModule,
     MatIconModule,
     MatListModule,
     MatFormFieldModule,
@@ -35,6 +36,7 @@ import {
         MdcSelectModule
     } from '@angular-mdc/web';
 import { VideoDemoComponent } from './content-demo/video-demo/video-demo.component';
+import { DemoDataService } from 'src/app/shared/service/content-demo-service';
 
 @NgModule({
     imports: [
@@ -53,6 +55,7 @@ import { VideoDemoComponent } from './content-demo/video-demo/video-demo.compone
         MatDialogModule,
         SideNavPageModule,
         MatVideoModule,
+        MatSelectModule,
 
         CommonModule,
         FlexLayoutModule,
@@ -71,6 +74,7 @@ import { VideoDemoComponent } from './content-demo/video-demo/video-demo.compone
         MdcSelectModule,
     ],
     exports: [ContentDemoComponent, ContentTextsComponent],
+    providers: [DemoDataService],
     // tslint:disable-next-line:max-line-length
     declarations: [ContentDemoComponent, ContentTextsComponent, VideoDemoComponent],
 })

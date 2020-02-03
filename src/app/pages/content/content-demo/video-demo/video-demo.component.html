@@ -1,1 +1,68 @@
-<p>video-demo works!</p>
+
+<mdc-top-app-bar fixed  >
+    <mdc-top-app-bar-row>
+        <mdc-top-app-bar-section align="start" title="App">
+            <button mdcTopAppBarNavIcon (click)="drawer.open = !drawer.open">
+                <mdc-icon>menu</mdc-icon>
+            </button>
+        </mdc-top-app-bar-section>
+    </mdc-top-app-bar-row>
+</mdc-top-app-bar>
+
+<!-- drawer -->
+<div class="drawer-app-content">
+    <mdc-drawer drawer="dismissible" #drawer>
+        <mdc-drawer-header title="Drawer Title" subtitle="Subtitle"></mdc-drawer-header>
+        <mdc-drawer-content>
+          <nav class="navegations ">
+              <ul class="mdc-list" >
+                <div *ngFor="let key of route.navSection">
+                    <li class="mdc-list-item " >
+                        <a [routerLink]="route.navLinks[key].location " (click)="route.navLinks[key].name == 'Россия' ? route._isDroped() : ''">
+            
+                          <mdc-icon mdcListItemGraphic *ngIf="route.navLinks[key].icon">{{route.navLinks[key].icon}}</mdc-icon>
+                          {{route.navLinks[key].name}}
+                          <mdc-icon  mdcListItemGraphic  mdcSuffix *ngIf="route.navLinks[key].name == 'Россия'" >
+                            {{route.icon}}
+                          </mdc-icon>
+                        </a>
+      
+                    </li> 
+      
+                      <ul class="mdc-list mdc-sub-list" *ngIf="route.isDroped == true" >
+                          <li class="mdc-list-item" *ngFor="let subPage of route.navLinks[key].subPages">
+                            <a [routerLink]="subPage.location">
+                              <mdc-icon mdcListItemGraphic *ngIf="subPage.icon">{{subPage.icon}}</mdc-icon>
+                              {{subPage.name}}
+                            </a>
+                          </li> 
+                      </ul> 
+      
+                </div>
+                 
+                </ul> <!-- </mdc-list> -->
+    
+          </nav>
+    
+          <p class="footer">
+              Copy@right АСОИУ
+          </p>
+         
+        </mdc-drawer-content>
+      </mdc-drawer>
+      <div mdcDrawerAppContent >
+    
+       <!-- content -->
+       <mat-video title="My Tutorial Title" [autoplay]="true" [preload]="true" [fullscreen]="true" [download]="false" color="accent" spinner="spin" poster="{{demoContent?.coverImg}}">
+        <source matVideoSource src="{{demoContent?.src}}" type="video/mp4">
+        <!-- <source src="tutorial.webm" type="video/webm"> -->
+        <track matVideoTrack src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English">
+        <track src="subtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian">
+      </mat-video>
+      
+
+      </div>
+</div>
+
+
+

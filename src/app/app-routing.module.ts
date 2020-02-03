@@ -6,12 +6,14 @@ import { TestComponent } from './pages/test/test.component';
 import { DashboardComponent } from './pages/dashboard/dashboard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { VideoDemoComponent } from './pages/content/content-demo/video-demo/video-demo.component';
 
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'content-demo', component: ContentDemoComponent },
+  {path: 'visual-demo',component: VideoDemoComponent},
   { path: 'content-text', component: ContentTextsComponent },
   { path: 'test', component: TestComponent },
   {path: 'statistic', component: StatisticComponent },

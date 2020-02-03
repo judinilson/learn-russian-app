@@ -2,29 +2,45 @@
 //top-bar
 
 .mdc-top-app-bar{
-  @include mdc-top-app-bar-fill-color(#018786);
-  color: #000;
+  @include mdc-top-app-bar-fill-color(#363640);
+  min-width: 280px;
 }
 
-.custom-select-outline-shape-radius {
-  @include mdc-select-outline-shape-radius(50%);
+.mat-form-field{
+  font-size: 18px;
+}
+//select category
+::ng-deep .mat-form-field-label {
+  /*change color of label*/
+  color: #fff !important;
+ }
+
+::ng-deep .mat-select-value-text {
+  /*change color of selected value*/
+  color: #fff !important;
+ }
+
+::ng-deep .mat-select-arrow{
+    /*change color of  arrow*/
+  color: #fff !important;
+ }
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color:#fff !important;
+} 
+
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color:  #fff !important;;
 }
 
-.mdc-select{
-  max-width: 40%;
-  max-height: 99%; 
-  @include mdc-select-outline-color(green);
- 
-  
-}
 
-.mdc-select--focused .mdc-select__selected-text{
-  color: white;
-}
+
+
 
 mdc-icon{
   font-size: 30px;
-  color: #000;
 }
 
 
@@ -50,6 +66,7 @@ mdc-icon{
       font-weight: 500;
       font-size: 1rem;
     }
+   
   }
     .footer{
       position: fixed;
@@ -59,6 +76,8 @@ mdc-icon{
       margin-left: 40px;
       font-size: 12px;
     }
+
+  //content
 .card {
     width: 350px;
     margin: 28px;
