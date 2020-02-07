@@ -3,6 +3,8 @@ $mdc-theme-secondary: #388e3c; // secondary color
 
 @import "~@angular-mdc/theme/material";
 
+@import "@material/elevation/mdc-elevation";
+
 
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';

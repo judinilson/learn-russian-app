@@ -1,4 +1,3 @@
-
 <mdc-top-app-bar fixed  >
     <mdc-top-app-bar-row>
         <mdc-top-app-bar-section align="start" title="App">
@@ -50,42 +49,28 @@
          
         </mdc-drawer-content>
       </mdc-drawer>
-      <div mdcDrawerAppContent fxLayout="row" fxLayoutAlign="space-around center">
+      <div mdcDrawerAppContent>
     
        <!-- content -->
-       <div class="content-video">
-        <mat-video
-        [@inOutAnimation] 
-        title="My Tutorial Title" 
-        [autoplay]="true" 
-        [preload]="true" 
-        [fullscreen]="true"
-        [download]="false"
-        showFrameByFrame="true" 
-        color="accent" 
-        spinner="spin" 
-        poster="{{demoContent?.coverImg}}">
-         <source matVideoSource src="{{currentVideo}}" type="video/mp4">
-         <!-- <source src="tutorial.webm" type="video/webm"> -->
-         <!-- <track matVideoTrack src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English"> -->
-         <!-- <track src="subtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian"> -->
-       </mat-video>
-             
+        <section>
+            <div class="article-cover-image">
+                <img [src]="articleContent?.coverImg" alt="cover image">
+            </div>
+        </section>
 
-      </div>
-     <div class="content-video-list" *ngIf="demoContent?.src.length > 1" fxFlex>
-      <ul>
-        <li matRipple [matRippleColor]="accent" [matRippleCentered]="centered" 
-           *ngFor="let video of demoContent?.src">
-            <img 
-            [src]="demoContent?.coverImg" 
-            [alt]="demoContent.name"
-             (click)="onVideoClick(video)">
-        
-        </li>
-      </ul>
-     </div>
-       
+        <div class="article-container">
+           <mdc-card class="card mdc-elevation--z16">
+            <div class="card-primary">
+                <h2 class="card__title" mdcHeadline6>{{articleContent?.title}}</h2>
+                <h3 class="card__subtitle" mdcSubtitle2>{{articleContent?.subTitle}}</h3>
+              </div>
+              <div class="card__secondary" mdcBody2>
+                  <p >{{ articleContent?.article}}</p>
+               
+              </div>
+           </mdc-card>
+        </div>
+       </div>
 
 </div>
 

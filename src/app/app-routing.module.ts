@@ -7,6 +7,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { VideoDemoComponent } from './pages/content/content-demo/video-demo/video-demo.component';
+import { ArticleContentComponent } from './pages/content/content-texts/article-content/article-content.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'content-demo', component: ContentDemoComponent },
   {path: 'visual-demo',component: VideoDemoComponent},
   { path: 'content-text', component: ContentTextsComponent },
+  {path: 'visual-article',component: ArticleContentComponent},
   { path: 'test', component: TestComponent },
   {path: 'statistic', component: StatisticComponent },
   {path: 'help', component: HelpComponent }

@@ -1,13 +1,19 @@
 @import "~@angular-mdc/theme/material";
-//top-bar
 
+::ng-deep body{
+  background-color: #eee;
+}
+
+
+//top-bar
 .mdc-top-app-bar{
   @include mdc-top-app-bar-fill-color(#363640);
   min-width: 280px;
 }
 
 .mat-form-field{
-  font-size: 18px;
+  font-size: 16px;
+  height: 70px;
 }
 //select category
 ::ng-deep .mat-form-field-label {

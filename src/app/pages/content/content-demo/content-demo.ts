@@ -19,6 +19,7 @@ export class ContentDemoComponent implements OnInit {
   route = this.routerService;
 
   ngOnInit() {
+    
   }
 
   categories(){
@@ -42,7 +43,7 @@ export class ContentDemoComponent implements OnInit {
 export interface ContentDemo {
   id:number;
   name: string;
-  src: string;
+  src: string[];
   coverImg: string;
   category: string;
   subTitle: string;
@@ -53,7 +54,11 @@ const ELEMENT_DATA: ContentDemo[] =
   {
     id: 1,
     name: 'Russia cart',
-    src: 'https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4',
+    src: ['https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4',
+          'https://raw.githubusercontent.com/mjstest/orgb4/3955934066406b872448aef9d03679ce/mov_bbb.mp4',
+            'https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4',
+            'https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4'
+          ],
     coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
     category: 'geography',
     subTitle: 'Visit ten places on our planet that are undergoing the biggest changes today.'
@@ -63,7 +68,7 @@ const ELEMENT_DATA: ContentDemo[] =
   {
     id:2,
     name: 'Russia cart',
-    src: './src/DemoGeo.mp4',
+    src: ['https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4'],
     coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
     category: 'culture',
     subTitle: 'Visit ten places on our planet that are undergoing the biggest changes today.'
@@ -73,7 +78,7 @@ const ELEMENT_DATA: ContentDemo[] =
   {
     id:3,
     name: 'Russia cart',
-    src: './src/DemoGeo.mp4',
+    src: ['https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4'],
     coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
     category: 'culture',
     subTitle: 'Visit ten places on our planet that are undergoing the biggest changes today.'
@@ -83,7 +88,7 @@ const ELEMENT_DATA: ContentDemo[] =
   {
     id:4,
     name: 'Russia cart',
-    src: './src/DemoGeo.mp4',
+    src: ['https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4'],
     coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
     category: 'culture',
     subTitle: 'Visit ten places on our planet that are undergoing the biggest changes today.'
@@ -93,7 +98,7 @@ const ELEMENT_DATA: ContentDemo[] =
   {
     id: 5,
     name: 'Russia cart',
-    src: './src/DemoGeo.mp4',
+    src: ['https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4'],
     coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
     category: 'culture',
     subTitle: 'Visit ten places on our planet that are undergoing the biggest changes today.'
@@ -103,7 +108,7 @@ const ELEMENT_DATA: ContentDemo[] =
   {
     id:6,
     name: 'Russia cart',
-    src: './src/DemoGeo.mp4',
+    src: ['https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4'],
     coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
     category: 'geography',
     subTitle: 'Visit ten places on our planet that are undergoing the biggest changes today.'
@@ -113,7 +118,7 @@ const ELEMENT_DATA: ContentDemo[] =
   {
     id: 7,
     name: 'Russia cart',
-    src: './src/DemoGeo.mp4',
+    src: ['https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4'],
     coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
     category: 'geography',
     subTitle: 'Visit ten places on our planet that are undergoing the biggest changes today.'
@@ -123,7 +128,7 @@ const ELEMENT_DATA: ContentDemo[] =
   {
     id:8,
     name: 'Russia cart',
-    src: './src/DemoGeo.mp4',
+    src: ['https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4'],
     coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
     category: 'geography',
     subTitle: 'Visit ten places on our planet that are undergoing the biggest changes today.'
@@ -132,7 +137,7 @@ const ELEMENT_DATA: ContentDemo[] =
   {
     id:9,
     name: 'Russia cart',
-    src: './src/DemoGeo.mp4',
+    src: ['https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4'],
     coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
     category: 'geography',
     subTitle: 'Visit ten places on our planet that are undergoing the biggest changes today.'

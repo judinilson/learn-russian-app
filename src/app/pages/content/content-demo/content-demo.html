@@ -1,22 +1,12 @@
 
-<mdc-top-app-bar short  >
-    <mdc-top-app-bar-row>
+<mdc-top-app-bar short  > 
+    <mdc-top-app-bar-row> 
         <mdc-top-app-bar-section align="start" title="App">
             <button mdcTopAppBarNavIcon (click)="drawer.open = !drawer.open">
                 <mdc-icon>menu</mdc-icon>
             </button>
         </mdc-top-app-bar-section>
         <mdc-top-app-bar-section align="end" >
-                <!-- <mdc-select   placeholder="Categories" [(ngModel)]="selectedCategory" outlined class="custom-select-outline-shape-radius" >
-                    <mdc-menu >
-                      <mdc-list>
-                        <mdc-list-item *ngFor="let item of categories(); let i = index" [value]="item.category" >
-                            {{item.category}}
-                        </mdc-list-item>
-                      </mdc-list>
-                    </mdc-menu>
-                </mdc-select> -->
-
                 <mat-form-field  mdcTopAppBarTitle>
                     <mat-label>Categories</mat-label>
                     <mat-select [(ngModel)]="selectedCategory">

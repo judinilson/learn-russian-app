@@ -1,0 +1,102 @@
+@import "~@angular-mdc/theme/material";
+
+// ::ng-deep body{
+//     background-color: #eee;
+//   }
+  
+//top-bar
+
+.mdc-top-app-bar{
+  @include mdc-top-app-bar-fill-color(#363640);
+  min-width: 280px;
+}
+
+
+
+mdc-icon{
+  font-size: 30px;
+}
+
+
+
+  //side nav 
+ 
+  .mdc-list-item__graphic{
+    margin-right:0px;
+  }
+    .mdc-sub-list .mdc-list-item{
+      padding: 0 40px;
+  
+  }
+  
+  .mdc-drawer{
+    width: 265px;
+    top: 7%;
+    bottom: 0;
+    position: fixed;
+    a{
+      text-decoration: none;
+      color: #000;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+   
+  }
+    .footer{
+      position: fixed;
+      bottom: 1%;
+      height: 20px;
+      text-align: center;
+      margin-left: 40px;
+      font-size: 12px;
+    }
+
+    //content
+
+.article-cover-image{
+
+    img{
+        vertical-align: middle;
+        border-style: none;
+        width: 100%;
+    }
+}
+
+.article-container{
+    flex: 1 1 auto;
+    padding: 0 3.25rem;
+    margin-top: -30%;
+}
+
+.card-primary{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card__secondary{
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.card__title{
+    font-weight: 400;
+    font-weight: bolder;
+    padding-top: 1.5rem!important;
+    margin-bottom: 1rem!important;
+    font-size: 2.5rem;
+}
+
+.card__subtitle{
+    font-size: 1.4rem;
+    line-height: 1.8;
+    font-weight: bolder;
+}
+
+.card{
+    padding-right: 18px;
+    padding-left: 18px;
+    margin-right: auto;
+    margin-left: auto;
+}

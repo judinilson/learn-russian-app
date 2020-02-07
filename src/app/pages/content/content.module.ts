@@ -37,6 +37,7 @@ import {
     } from '@angular-mdc/web';
 import { VideoDemoComponent } from './content-demo/video-demo/video-demo.component';
 import { DemoDataService } from 'src/app/shared/service/content-demo-service';
+import { ArticleContentComponent } from './content-texts/article-content/article-content.component';
 
 @NgModule({
     imports: [
@@ -76,6 +77,6 @@ import { DemoDataService } from 'src/app/shared/service/content-demo-service';
     exports: [ContentDemoComponent, ContentTextsComponent],
     providers: [DemoDataService],
     // tslint:disable-next-line:max-line-length
-    declarations: [ContentDemoComponent, ContentTextsComponent, VideoDemoComponent],
+    declarations: [ContentDemoComponent, ContentTextsComponent, VideoDemoComponent, ArticleContentComponent],
 })
 export class ContentModule { }
