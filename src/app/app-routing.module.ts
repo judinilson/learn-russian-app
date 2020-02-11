@@ -12,11 +12,11 @@ import { ArticleContentComponent } from './pages/content/content-texts/article-c
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
-  //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'content-demo', component: ContentDemoComponent },
-  {path: 'visual-demo',component: VideoDemoComponent},
+  {path: 'visual-demo', component: VideoDemoComponent},
   { path: 'content-text', component: ContentTextsComponent },
-  {path: 'visual-article',component: ArticleContentComponent},
+  {path: 'visual-article', component: ArticleContentComponent},
   { path: 'test', component: TestComponent },
   {path: 'statistic', component: StatisticComponent },
   {path: 'help', component: HelpComponent }
