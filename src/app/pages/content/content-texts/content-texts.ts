@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterService } from 'src/app/shared/service/router-service';
 import { Router } from '@angular/router';
 import { DemoDataService } from 'src/app/shared/service/content-demo-service';
+import { LoremIpsum } from "lorem-ipsum";
 
 @Component({
   selector: 'app-content-texts',
@@ -21,13 +22,25 @@ export class ContentTextsComponent implements OnInit {
   route = this.routerService;
   dataSource = ELEMENT_DATA;
 
+   lorem = new LoremIpsum({
+    sentencesPerParagraph: {
+      max: 8,
+      min: 4
+    },
+    wordsPerSentence: {
+      max: 16,
+      min: 4
+    }
+  });
+  
+
     article = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus, incidunt. Debitis,'
     +'repudiandae dignissimos et quam velit autem mollitia tenetur,'
     +'eligendi rerum repellendus, explicabo ad aperiam vel ipsam! Exercitationem, voluptates molestiae.'
     +'Iusto reiciendis mollitia ab commodi. Animi maiores nesciunt officia enim corrupti officiis consequuntur vel,'
     +'consectetur eveniet ad dolorum reprehenderit similique qui deleniti ut sed explicabo id error at. Laudantium,'
     +'excepturi!';
-    lorems = Array(5).fill(this.article);
+   // lorems = Array(5).fill(this.article);
 
     categories(){
       return  this.dataSource.filter(
@@ -39,8 +52,12 @@ export class ContentTextsComponent implements OnInit {
     }
 
   ngOnInit() {
+ 
+    this.lorem.generateWords(1);
+    this.lorem.generateSentences(5);
+    this.lorem.generateParagraphs(7);
     this.dataSource.forEach((el,i) => {
-      el.article = this.lorems[i];
+      el.article = this.lorem.getLineEnding()
     });
 
   }

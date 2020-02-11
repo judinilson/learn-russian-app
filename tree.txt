@@ -1,0 +1,103 @@
+
+
+\---src
+    |   favicon.ico
+    |   index.html
+    |   main.ts
+    |   polyfills.ts
+    |   styles.scss
+    |   test.ts
+    |   
+    +---app
+    |   |   app-routing.module.ts
+    |   |   app.component.html
+    |   |   app.component.scss
+    |   |   app.component.spec.ts
+    |   |   app.component.ts
+    |   |   app.module.ts
+    |   |   
+    |   +---pages
+    |   |   +---content
+    |   |   |   |   content.module.ts
+    |   |   |   |   
+    |   |   |   +---content-demo
+    |   |   |   |   |   content-demo.html
+    |   |   |   |   |   content-demo.scss
+    |   |   |   |   |   content-demo.spec.ts
+    |   |   |   |   |   content-demo.ts
+    |   |   |   |   |   
+    |   |   |   |   +---src
+    |   |   |   |   |       DemoGeo.mp4
+    |   |   |   |   |       russiaInMap.jpg
+    |   |   |   |   |       
+    |   |   |   |   \---video-demo
+    |   |   |   |           video-demo.component.html
+    |   |   |   |           video-demo.component.scss
+    |   |   |   |           video-demo.component.spec.ts
+    |   |   |   |           video-demo.component.ts
+    |   |   |   |           
+    |   |   |   \---content-texts
+    |   |   |       |   content-texts.html
+    |   |   |       |   content-texts.scss
+    |   |   |       |   content-texts.spec.ts
+    |   |   |       |   content-texts.ts
+    |   |   |       |   
+    |   |   |       \---article-content
+    |   |   |               article-content.component.html
+    |   |   |               article-content.component.scss
+    |   |   |               article-content.component.spec.ts
+    |   |   |               article-content.component.ts
+    |   |   |               
+    |   |   +---dashboard
+    |   |   |       dashboard.html
+    |   |   |       dashboard.scss
+    |   |   |       dashboard.spec.ts
+    |   |   |       dashboard.ts
+    |   |   |       
+    |   |   +---help
+    |   |   |       help.html
+    |   |   |       help.scss
+    |   |   |       help.spec.ts
+    |   |   |       help.ts
+    |   |   |       
+    |   |   +---statistic
+    |   |   |       statistic.component.html
+    |   |   |       statistic.component.scss
+    |   |   |       statistic.component.spec.ts
+    |   |   |       statistic.component.ts
+    |   |   |       
+    |   |   \---test
+    |   |           test.component.html
+    |   |           test.component.scss
+    |   |           test.component.spec.ts
+    |   |           test.component.ts
+    |   |           
+    |   \---shared
+    |       +---configuration
+    |       |       pages.ts
+    |       |       
+    |       +---service
+    |       |       content-demo-service.ts
+    |       |       identity-service.ts
+    |       |       router-service.ts
+    |       |       
+    |       \---side-nav
+    |               side-nav.component.html
+    |               side-nav.component.scss
+    |               side-nav.component.spec.ts
+    |               side-nav.component.ts
+    |               
+    +---assets
+    |   |   .gitkeep
+    |   |   
+    |   \---Images
+    |       \---carousel
+    |               Astrakhan-K.jpg
+    |               astrakhan.jpg
+    |               moscow_city.jpg
+    |               russiaFlag.jpg
+    |               
+    \---environments
+            environment.prod.ts
+            environment.ts
+            
