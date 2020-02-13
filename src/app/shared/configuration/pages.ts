@@ -36,7 +36,7 @@ export const NAV_LINKS: { [key: string]: NavLinkInfo } = {
             name: 'Демонстрация', icon: 'video_label', location: '/content-demo'
           },
           {
-            name: 'Тексты', icon: 'receipt', location: '/content-text'
+            name: 'Статья', icon: 'receipt', location: '/content-text'
           }
       ]
 
@@ -54,9 +54,9 @@ export const NAV_LINKS: { [key: string]: NavLinkInfo } = {
   };
 
 export const NAV_SECTIONS: { [key: string]: Array<string> } = {
-    [ROLE_ADMIN]: [PAGE_DASHBOARD, PAGE_CONTENT_DEMO, PAGE_STATISTIC, PAGE_TEST, PAGE_HELP],
-    [ROLE_TEACHER]: [PAGE_DASHBOARD, PAGE_CONTENT_DEMO, PAGE_STATISTIC, PAGE_TEST, PAGE_HELP],
-    [ROLE_STUDENT]: [PAGE_DASHBOARD, PAGE_CONTENT_DEMO, PAGE_STATISTIC, PAGE_TEST, PAGE_HELP],
-    [ROLE_UNAUTHORIZED]: []
+    [ROLE_ADMIN]: [PAGE_DASHBOARD, PAGE_CONTENT_DEMO,PAGE_TEST, PAGE_STATISTIC, PAGE_HELP],
+    [ROLE_TEACHER]: [PAGE_DASHBOARD, PAGE_CONTENT_DEMO,PAGE_TEST, PAGE_STATISTIC, PAGE_HELP],
+    [ROLE_STUDENT]: [PAGE_DASHBOARD, PAGE_CONTENT_DEMO, PAGE_TEST,PAGE_STATISTIC, PAGE_HELP],
+    [ROLE_UNAUTHORIZED]: [PAGE_DASHBOARD, PAGE_CONTENT_DEMO,PAGE_HELP]
   };
 

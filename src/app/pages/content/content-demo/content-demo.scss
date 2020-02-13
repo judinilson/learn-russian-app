@@ -66,11 +66,15 @@ mdc-icon{
     top: 7%;
     bottom: 0;
     position: fixed;
+    background-color: #f9f9f9;
     a{
       text-decoration: none;
       color: #000;
       font-weight: 500;
       font-size: 1rem;
+    }
+    mdc-icon{
+      font-size: 18px;
     }
    
   }

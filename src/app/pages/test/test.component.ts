@@ -13,3 +13,28 @@ export class TestComponent implements OnInit {
   }
 
 }
+
+export interface Trainig
+{
+  id: number;
+  questions: string;
+  answer: string[];
+  coverImg: string;
+  title: string;
+}
+
+const ELEMENT_DATA: Trainig[] = 
+[
+  {
+    id: 1, 
+    questions: '',
+    answer: [
+      'A',
+      'B',
+      'C',
+      'D'
+    ],
+    coverImg: '',
+    title: ''
+  }
+]

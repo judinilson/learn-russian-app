@@ -65,7 +65,8 @@
                 <h3 class="card__subtitle" mdcSubtitle2>{{articleContent?.subTitle}}</h3>
               </div>
               <div class="card__secondary" mdcBody2>
-                  <p >{{ articleContent?.article}}</p>
+                  <!-- <p >{{ articleContent?.article}}</p> -->
+                  <p *ngFor="let lorem of lorems">{{lorem}}</p>
                
               </div>
            </mdc-card>
