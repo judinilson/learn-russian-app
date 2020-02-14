@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
-export class DemoDataService {
+export class DemoService {
 
   private contentDemoData = new BehaviorSubject<any>(null);
   private contentArticleData = new BehaviorSubject<any>(null);

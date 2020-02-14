@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterService } from 'src/app/shared/service/router-service';
-import { DemoDataService } from 'src/app/shared/service/content-demo-service';
+import { DemoService } from 'src/app/shared/service/content-demo-service';
 import { trigger, transition, style, animate } from '@angular/animations';
 
 
@@ -25,7 +25,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class VideoDemoComponent implements OnInit {
 
-   constructor(private routerService: RouterService, private demoService:DemoDataService) { }
+   constructor(private routerService: RouterService, private demoService:DemoService) { }
 
   route = this.routerService;
   demoContent:any;

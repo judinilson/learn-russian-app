@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardPageModule } from './pages/dashboard/dashboard';
 import { ContentDemoComponent } from './pages/content/content-demo/content-demo';
-import { TestComponent } from './pages/test/test.component';
+import { TestComponent, TestModule } from './pages/test/test.component';
 import { StatisticComponent } from './pages/statistic/statistic.component';
 import { ContentTextsComponent } from './pages/content/content-texts/content-texts';
 import { HelpComponent } from './pages/help/help';
@@ -16,7 +16,6 @@ import { HelpComponent } from './pages/help/help';
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
     StatisticComponent,
     HelpComponent,
   ],
@@ -25,7 +24,8 @@ import { HelpComponent } from './pages/help/help';
     AppRoutingModule,
     DashboardPageModule,
     BrowserAnimationsModule,
-    ContentModule
+    ContentModule,
+    TestModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterService } from 'src/app/shared/service/router-service';
-import { DemoDataService } from 'src/app/shared/service/content-demo-service';
+import { DemoService } from 'src/app/shared/service/content-demo-service';
 
 @Component({
   selector: 'app-article-content',
@@ -9,7 +9,7 @@ import { DemoDataService } from 'src/app/shared/service/content-demo-service';
 })
 export class ArticleContentComponent implements OnInit {
 
-  constructor(private routerService: RouterService, private demoService:DemoDataService) { }
+  constructor(private routerService: RouterService, private demoService:DemoService) { }
 
   route = this.routerService;
   articleContent:any;

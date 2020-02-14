@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterService } from 'src/app/shared/service/router-service';
 import { Router } from '@angular/router';
-import { DemoDataService } from 'src/app/shared/service/content-demo-service';
+import { DemoService } from 'src/app/shared/service/content-demo-service';
+import { DataService } from 'src/app/shared/service/dataService';
 
 @Component({
   selector: 'app-content-texts',
@@ -13,14 +14,15 @@ export class ContentTextsComponent implements OnInit {
   constructor(
     private routerService: RouterService,
     private router: Router,
-    private demoService: DemoDataService
+    private demoService: DemoService,
+    private dataService: DataService
     ) { }
 
   selectedCategory: any;
 
 
   route = this.routerService;
-  dataSource = ELEMENT_DATA;
+  dataSource = this.dataService.articleDataService;
 
   
 
@@ -47,66 +49,4 @@ export class ContentTextsComponent implements OnInit {
 
   }
 }
-
-export interface ArticleContent {
-  id: number;
-  title: string;
-  subTitle: string;
-  coverImg: string;
-  article: string;
-  category: string;
-}
-
-const ELEMENT_DATA: ArticleContent[] =
-[
-  {
-    id: 1,
-    title: 'Что такое Lorem Ipsum' ,
-    subTitle: 'Lorem Ipsum - это текст-, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной  для текстов на латинице с начала XVI века.' ,
-    coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
-    article: '',
-    category: 'culture'
-  },
-  {
-    id: 2,
-    title: 'Что такое Lorem Ipsum' ,
-    subTitle: 'Lorem Ipsum - это текст-, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной  для текстов на латинице с начала XVI века.' ,
-    coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
-    article: '',
-    category: 'culture'
-  },
-  {
-    id: 3,
-    title: 'Что такое Lorem Ipsum' ,
-    subTitle: 'Lorem Ipsum - это текст-, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной  для текстов на латинице с начала XVI века.' ,
-    coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
-    article: '',
-    category: 'geography'
-  },
-  {
-    id: 4,
-    title: 'Что такое Lorem Ipsum' ,
-    subTitle: 'Lorem Ipsum - это текст-, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной  для текстов на латинице с начала XVI века.' ,
-    coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
-    article: '',
-    category: 'science'
-  },
-  {
-    id: 6,
-    title: 'Что такое Lorem Ipsum' ,
-    subTitle: 'Lorem Ipsum - это текст-, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной  для текстов на латинице с начала XVI века.' ,
-    coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
-    article: '',
-    category: 'geography'
-  },
-  {
-    id: 7,
-    title: 'Что такое Lorem Ipsum' ,
-    subTitle: 'Lorem Ipsum - это текст-, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной  для текстов на латинице с начала XVI века.' ,
-    coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
-    article: '',
-    category: 'culture'
-  },
-
-];
 
