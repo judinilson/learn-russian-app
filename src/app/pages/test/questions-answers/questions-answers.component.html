@@ -1,0 +1,47 @@
+<div fxLayout="row" style="overflow: hidden;">
+    <app-side-nav fxFlex></app-side-nav>
+    <div fxLayout="column">
+        <div class="questions-container">
+            <span>
+                {{currentQuestion}}
+            </span>
+        </div>
+        <section class="answer-container" >
+            <div class="column-dv" *ngFor="let item of currentAnswers; index as i" >
+                <mdc-card class="mdc-elevation--z10" [ngStyle]="confirm && {'box-shadow' : item.state ? '0px 0px 10px 2px green;': '0px 0px 10px 2px red;'}" >
+                    <mdc-card-primary-action *ngIf="!confirm" class="card-primary">
+                        <p class="index-answer">{{i}}</p>
+                        <p class="answer"> {{item.answer}}</p>
+                    </mdc-card-primary-action>
+                    <div *ngIf="confirm" class="card-primary">
+                        <p class="index-answer">{{i}}</p>
+                        <p class="answer"> {{item.answer}}</p>
+                    </div>
+                </mdc-card>
+            </div>
+           
+           
+        </section>
+        
+        <section class="progres-container">
+            <button mat-stroked-button color="primary" class="confirm-btn" (click)="onConfirm()">
+                confirm
+                <mdc-icon>
+                    done_all
+                </mdc-icon>
+            </button>
+            <button mat-fab color="accent" class="next-btn" (click)="onNext()">
+                <mdc-icon>
+                    keyboard_arrow_right
+                </mdc-icon>
+            </button>
+            <mat-progress-bar mode="determinate" [value]="countPercent" color="accent" class="progress-bar">
+                    <span>{{countPercent}} + %</span>
+            </mat-progress-bar>
+           <p>
+               1/20
+           </p>
+        </section>
+    </div>
+    
+</div>

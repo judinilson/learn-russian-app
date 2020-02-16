@@ -3,6 +3,7 @@ import { ContentTextsComponent } from './pages/content/content-texts/content-tex
 import { ContentDemoComponent } from './pages/content/content-demo/content-demo';
 import { StatisticComponent } from './pages/statistic/statistic.component';
 import { TestComponent } from './pages/test/test.component';
+import {QuestionsAnswersComponent} from './pages/test/questions-answers/questions-answers.component'
 import { DashboardComponent } from './pages/dashboard/dashboard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'content-text', component: ContentTextsComponent },
   {path: 'visual-article', component: ArticleContentComponent},
   { path: 'test', component: TestComponent },
+  { path: 'training', component: QuestionsAnswersComponent },
   {path: 'statistic', component: StatisticComponent },
   {path: 'help', component: HelpComponent }
 ];

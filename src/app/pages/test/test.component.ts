@@ -2,37 +2,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { RouterService } from 'src/app/shared/service/router-service';
 import { Router, RouterModule } from '@angular/router';
 import { DataService } from 'src/app/shared/service/dataService';
-import {
-  MdcSelectModule,
-  MdcTopAppBarModule,
-  MdcDrawerModule,
-  MdcCardModule,
-  MdcButtonModule,
-  MdcFabModule,
-  MdcIconModule,
-  MdcMenuModule,
-  MdcListModule,
-} from '@angular-mdc/web';
-import {
-  MatIconModule,
-  MatListModule,
-  MatFormFieldModule,
-  MatPaginatorModule,
-  MatRippleModule,
-  MatInputModule,
-  MatButtonModule,
-  MatCardModule,
-  MatMenuModule,
-  MatAutocompleteModule,
-  MatProgressBarModule,
-  MatOptionModule,
-  MatDialogModule,
-  MatSelectModule,
-
-} from '@angular/material';
-import { CommonModule } from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { TrainingTestService } from 'src/app/shared/service/training-test-service';
 
 
 @Component({
@@ -46,7 +16,8 @@ export class TestComponent implements OnInit {
   constructor(
     private routerService: RouterService,
     private router: Router,
-    private dataService: DataService
+    private dataService: DataService,
+    private trainingService: TrainingTestService
   ) { }
 
   dataSource = this.dataService.trainingDataService;
@@ -65,46 +36,14 @@ export class TestComponent implements OnInit {
     return this.dataSource.filter(x => x.category == this.selectedCategory);
   }
 
+  onSelectedCard(content:any){
+    this.router.navigateByUrl('/training');
+    this.trainingService.newTraining(content);
+    console.log(content);
+    
+  };
+
 }
 
 
 
-@NgModule({
-  imports: [
-    MatIconModule,
-    MatListModule,
-    MatFormFieldModule,
-    MatPaginatorModule,
-    MatRippleModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
-    MatMenuModule,
-    MatAutocompleteModule,
-    MatProgressBarModule,
-    MatOptionModule,
-    MatDialogModule,
-    MatSelectModule,
-
-    CommonModule,
-    FlexLayoutModule,
-    RouterModule,
-    ReactiveFormsModule,
-    FormsModule,
-    //mdc
-    MdcButtonModule,
-    MdcFabModule,
-    MdcIconModule,
-    MdcMenuModule,
-    MdcListModule,
-    MdcCardModule,
-    MdcTopAppBarModule,
-    MdcDrawerModule,
-    MdcSelectModule,
-  ],
-  exports: [TestComponent],
-  providers: [DataService],
-  // tslint:disable-next-line:max-line-length
-  declarations: [TestComponent],
-})
-export class TestModule { }

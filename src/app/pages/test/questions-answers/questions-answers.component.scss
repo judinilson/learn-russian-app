@@ -1,0 +1,104 @@
+@import "~@angular-mdc/theme/material";
+
+.questions-container{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    font-size: 25px;
+    border: 2px solid #828282;
+    background-color: #3399ff70;
+    margin: 5%;
+    line-height: 1.8;
+    text-align: left;
+    text-indent: 4%;
+
+    span{
+        margin: 2%;
+    }
+}
+
+.answer-container{
+   // flex-direction: column;
+   // display: flex;
+    //max-width:50%;
+   // left: 30%;
+   margin: 0 20px;
+   position: relative;
+   .column-dv{
+        
+        float: left;
+        max-width:60%;
+        min-width: 40%;
+        padding: 0 10px;
+         margin: 4% 10% 0 0;
+        .card-primary{
+       
+            display: flex;
+            flex-direction: row;
+    
+            .index-answer{
+                text-align: center;
+                background: #27ADC4;
+                border-radius: 50%;
+                min-width: 7%;
+                max-width: fit-content;
+                font-weight: bold;
+                margin: 3%;
+                font-size: 25px;
+            }
+    
+            .answer{
+                font-size: 20px;
+                margin: 3%;
+            }
+        }
+    }
+   
+}
+
+.answer-container:after {
+   // content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* Responsive columns */
+@media screen and (max-width: 600px) {
+    .column-dv {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+
+.progres-container{
+    position: relative;
+    margin-top: 5%; 
+    .confirm-btn{
+        margin-top: 18px;
+        font-size: 16px;
+        font-weight: bolder;
+    }
+
+    .next-btn{
+        float: right;
+        margin-right: 25px;
+    }
+    .progress-bar{
+        margin: 2%;
+        float: right;
+        height: 10px;
+        border-radius: 10px;
+        
+    }
+    p{
+        font-size: 18px;
+        font-weight: bolder;
+        position: absolute;
+        margin-top: 3%;
+    }
+}
+
+::ng-deep .mat-progress-bar.mat-accent .mat-progress-bar-buffer {
+    background-color: #f7f0f0;
+}

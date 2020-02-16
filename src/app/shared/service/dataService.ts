@@ -219,7 +219,79 @@ export interface ContentDemo {
     training:[
       {
         id: 1, 
+        questions: 'Dolor sit amet consectetur adipisicing elit. Necessitatibus, incidunt. Debitis,repudiandae dignissimos et quam velit autem mollitia tenetur,eligendi rerum repellendus, explicabo ad aperiam vel ipsam! Exercitationem, voluptates molestiae.',
+        answer: [
+          {
+            state:false,
+            answer: 'Laudantium'
+          },
+          {
+            state:true,
+            answer: 'Laudantium,excepturi!'
+          },
+          {
+            state:false,
+            answer: 'Laudantium,excepturi!'
+          },
+          {
+            state:false,
+            answer: 'Laudantium,sit amet!'
+          },
+    
+        ],
+       
+      },
+      {
+        id: 2, 
         questions: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus, incidunt. Debitis,repudiandae dignissimos et quam velit autem mollitia tenetur,eligendi rerum repellendus, explicabo ad aperiam vel ipsam! Exercitationem, voluptates molestiae.',
+        answer: [
+          {
+            state:true,
+            answer: 'Laudantium,excepturi sit amet!'
+          },
+          {
+            state:false,
+            answer: 'Laudantium,excepturi!'
+          },
+          {
+            state:false,
+            answer: 'Laudantium,excepturi!'
+          },
+          {
+            state:true,
+            answer: 'Laudantium,excepturi sit amet!'
+          },
+    
+        ],
+       
+      },
+      {
+        id: 3, 
+        questions: 'Lorem ipsum, consectetur adipisicing elit. Necessitatibus, incidunt. Debitis,repudiandae dignissimos et quam velit autem mollitia tenetur,eligendi rerum repellendus, explicabo ad aperiam vel ipsam! Exercitationem, voluptates molestiae.',
+        answer: [
+          {
+            state:false,
+            answer: 'Laudantium,excepturi '
+          },
+          {
+            state:true,
+            answer: 'Laudantium,excepturi!'
+          },
+          {
+            state:false,
+            answer: 'Laudantium'
+          },
+          {
+            state:false,
+            answer: 'Laudantium,excepturi sit amet!'
+          },
+    
+        ],
+       
+      },
+      {
+        id: 4, 
+        questions: 'Lorem ipsum, dolor sit  adipisicing elit. Necessitatibus, incidunt. Debitis,repudiandae dignissimos et quam velit autem mollitia tenetur,eligendi rerum repellendus, explicabo ad aperiam vel ipsam! Exercitationem, voluptates molestiae.',
         answer: [
           {
             state:false,
@@ -240,7 +312,32 @@ export interface ContentDemo {
     
         ],
        
-      }
+      },
+      {
+        id: 5, 
+        questions: 'Lorem ipsum, dolor sit amet consectetur at. Necessitatibus, incidunt. Debitis,repudiandae dignissimos et quam velit autem mollitia tenetur,eligendi rerum repellendus, explicabo ad aperiam vel ipsam! Exercitationem, voluptates molestiae.',
+        answer: [
+          {
+            state:false,
+            answer: 'Laudantium,excepturi sit amet!'
+          },
+          {
+            state:true,
+            answer: 'Laudantium,excepturi!'
+          },
+          {
+            state:false,
+            answer: 'Laudantium,excepturi!'
+          },
+          {
+            state:false,
+            answer: 'Laudantium,excepturi sit amet!'
+          },
+    
+        ],
+       
+      },
+
     ]
   },
   {

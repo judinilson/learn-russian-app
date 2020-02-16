@@ -1,7 +1,7 @@
 @import "~@angular-mdc/theme/material";
 
 ::ng-deep body{
-  background-color: #eee;
+  background-color: #B0D0EA;
 }
 
 
@@ -117,4 +117,12 @@ mdc-icon{
     padding: 0 1rem 6px 1rem;
   }
   
+.play-icon{
+  font-size: 70px;
+  display: flex;
+  justify-content: center;
+  color: #007bff;
+  position: relative;
+  bottom: 70px;
 
+}

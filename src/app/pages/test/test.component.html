@@ -64,7 +64,7 @@
     
         <!-- content -->
         <div #mainContent *ngIf="!selectedCategory">
-            <mdc-card class="card" *ngFor="let item of dataSource">
+            <mdc-card class="card  mdc-elevation--z10" *ngFor="let item of dataSource">
                 <mdc-card-primary-action (click)="onSelectedCard(item)">
                     <mdc-card-media [ngStyle]="{'background-image': 'url('+ item.coverImg +')'}" wide>...</mdc-card-media>
                     <div class="card__primary">
@@ -80,7 +80,7 @@
 
         <!-- content with selected category -->
         <div #mainContent *ngIf="selectedCategory">
-          <mdc-card class="card" *ngFor="let item of filteredCategory()" >
+          <mdc-card class="card mdc-elevation--z10" *ngFor="let item of filteredCategory()" >
               <mdc-card-primary-action (click)="onSelectedCard(item)">
                   <mdc-card-media [ngStyle]="{'background-image': 'url('+ item.coverImg +')'}" wide>...</mdc-card-media>
                   <div class="card__primary">
