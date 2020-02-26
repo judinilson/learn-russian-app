@@ -59,8 +59,8 @@ export interface ContentDemo {
       id: 1,
       name: 'Russia cart',
       src: ['https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4',
-            'https://raw.githubusercontent.com/mjstest/orgb4/3955934066406b872448aef9d03679ce/mov_bbb.mp4',
-              'https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4',
+            'https://raw.githubusercontent.com/mjstest/orgb5/86ddf338a9f20896fcff907874b72bb8/videoplayback.mp4',
+              'https://raw.githubusercontent.com/mjstest/orgb5/86ddf338a9f20896fcff907874b72bb8/videoplayback.mp4',
               'https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4'
             ],
       coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
@@ -73,7 +73,7 @@ export interface ContentDemo {
       id:2,
       name: 'Russia cart',
       src: ['https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4'],
-      coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
+      coverImg: 'https://raw.githubusercontent.com/mjstest/orgb5/57fc1a3e82717417ff0d960ff3ae6d4b/Sochi.jpg',
       category: 'culture',
       subTitle: 'Visit ten places on our planet that are undergoing the biggest changes today.'
   
@@ -83,7 +83,7 @@ export interface ContentDemo {
       id:3,
       name: 'Russia cart',
       src: ['https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4'],
-      coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',
+      coverImg: 'https://raw.githubusercontent.com/mjstest/orgb5/905d5f953fc3570fe48c562d2cde4113/MoscowVladivostok.jpg',
       category: 'culture',
       subTitle: 'Visit ten places on our planet that are undergoing the biggest changes today.'
   

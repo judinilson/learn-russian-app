@@ -1,0 +1,41 @@
+::ng-deep body{
+    background-color: #B0D0EA;
+  }
+
+
+  .result-container{
+    width: 100%;
+    margin: 8% 6% 4% 6%;
+    .progress-container{
+      position: relative;
+      .progress-bar{
+          margin: 2%;
+          float: right;
+          height: 15px;
+          border-radius: 10px;
+          width: 100%;
+          
+      }
+      
+  }
+  }
+  
+
+.first{
+  
+}
+::ng-deep .first .mat-progress-bar-buffer{
+    background-color: #f1f0f0;
+}
+
+::ng-deep .first .mat-progress-bar-fill::after{
+  background-color: #dc3545;
+}
+
+::ng-deep .second .mat-progress-bar-buffer{
+  background-color: #ebf3ee;
+}
+
+::ng-deep .second .mat-progress-bar-fill::after{
+background-color: #28a745;
+}

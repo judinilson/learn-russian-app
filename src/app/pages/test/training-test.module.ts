@@ -36,6 +36,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { TrainingTestService } from 'src/app/shared/service/training-test-service';
 import { SideNavPageModule } from 'src/app/shared/side-nav/side-nav.component';
+import { Congratulation } from './congratulation-page/congratulation';
   
 
 @NgModule({
@@ -72,9 +73,9 @@ import { SideNavPageModule } from 'src/app/shared/side-nav/side-nav.component';
       MdcDrawerModule,
       MdcSelectModule,
     ],
-    exports: [TestComponent,QuestionsAnswersComponent],
+    exports: [TestComponent,QuestionsAnswersComponent,Congratulation],
     providers: [DataService,TrainingTestService],
     // tslint:disable-next-line:max-line-length
-    declarations: [TestComponent,QuestionsAnswersComponent],
+    declarations: [TestComponent,QuestionsAnswersComponent,Congratulation],
   })
   export class TrainingTestModule { }

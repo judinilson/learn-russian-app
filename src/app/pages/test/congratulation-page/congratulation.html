@@ -1,0 +1,40 @@
+<div>
+    <app-side-nav fxFlex></app-side-nav>
+    <div fxLayout="column">
+        <mdc-card class="mdc-elevation--z8">
+            <div class="rate-container" fxLayout="column" fxLayoutAlign="space-evenly center">
+                <span>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo ad, 
+                    distinctio consectetur officia voluptas sunt cum voluptatibus praesentium laborum.
+                     Culpa ratione rerum iusto dicta commodi? Ipsa distinctio enim non et!
+                </span>
+
+                <div class="row">
+                    <div>
+                       <ul class="list-inline rating-list" *ngFor="let star of stars">
+                           <li (click)="countStar(star)"
+                                [ngClass]="{'selected': (star <= selectedValue)}">
+                                   <mdc-icon>star</mdc-icon>
+                           </li> 
+                       </ul>
+                       <p>How was your exprience?</p>
+                    </div>
+                </div>
+             </div>
+
+            
+        </mdc-card>
+        
+
+        <div class="progress-container">
+            <mat-progress-bar mode="determinate" [value]="100"
+                color="accent" class="progress-bar">
+                <span>{{countPercent}} + %</span>
+            </mat-progress-bar>
+            <p>
+                {{totalCorrectAnswer}}/{{totalQuestions}}
+            </p>
+        </div>
+    </div>
+   
+</div>

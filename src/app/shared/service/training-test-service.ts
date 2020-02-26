@@ -7,11 +7,15 @@ export class TrainingTestService {
   private trainingTestData = new BehaviorSubject<any>(null);
   currrentest = this.trainingTestData.asObservable();
 
+  totalCorectAnswer = null;
+  totalQestions = null;
+
   constructor() { }
 
     newTraining(test:any){
         this.trainingTestData.next(test);
     }
+
 
 
 }

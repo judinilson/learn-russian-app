@@ -44,8 +44,8 @@
     </div>
 
     <div class="layout__row" fxFlex="40%">
-      <button class="menu-btn" mdc-fab mini (click)="demoDismissible.open = !demoDismissible.open">
-        <mdc-icon>menu</mdc-icon>
+      <button class="menu-btn" mdc-fab mini (click)="demoDismissible.open = !demoDismissible.open; _isOpen()">
+        <mdc-icon>{{icon}}</mdc-icon>
       </button>
     </div>
   </div>

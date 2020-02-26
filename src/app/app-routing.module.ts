@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { VideoDemoComponent } from './pages/content/content-demo/video-demo/video-demo.component';
 import { ArticleContentComponent } from './pages/content/content-texts/article-content/article-content.component';
+import { Congratulation } from './pages/test/congratulation-page/congratulation';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'visual-article', component: ArticleContentComponent},
   { path: 'test', component: TestComponent },
   { path: 'training', component: QuestionsAnswersComponent },
+  { path: 'rate-test', component: Congratulation },
   {path: 'statistic', component: StatisticComponent },
   {path: 'help', component: HelpComponent }
 ];

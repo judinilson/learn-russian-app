@@ -1,1 +1,21 @@
-<p>statistic works!</p>
+<div>
+    <app-side-nav fxFlex></app-side-nav>
+
+    <div class="result-container"  >
+       
+        <div class="progress-container" fxLayout="column" fxFlexAlign="space-around center">
+            <p>Result</p>
+            <mat-progress-bar mode="determinate" [value]="30"
+                 class="progress-bar first">
+                <div>30%</div>
+            </mat-progress-bar>
+            <div>
+                
+            </div>
+            <mat-progress-bar mode="determinate" [value]="70"
+                 class="progress-bar second">
+                <div>70%</div>
+            </mat-progress-bar>
+        </div>
+    </div>
+</div>

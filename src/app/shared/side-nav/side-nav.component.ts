@@ -23,6 +23,8 @@ import { RouterService } from '../service/router-service';
 })
 export class SideNavComponent implements OnInit {
 
+  isOpen = false;
+  icon = "menu";
   constructor(private routerService: RouterService) { }
 
  
@@ -31,6 +33,15 @@ export class SideNavComponent implements OnInit {
 
 
   ngOnInit() {
+  }
+
+  _isOpen(){
+    this.isOpen = !this.isOpen;
+    if(this.isOpen){
+      this.icon = "close";
+    }else{
+      this.icon = "menu";
+    }
   }
 
 }
