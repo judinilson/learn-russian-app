@@ -16,26 +16,31 @@
           <nav class="navegations ">
               <ul class="mdc-list" >
                 <div *ngFor="let key of route.navSection">
-                    <li class="mdc-list-item " >
-                        <a [routerLink]="route.navLinks[key].location " (click)="route.navLinks[key].name == 'Россия' ? route._isDroped() : ''">
-            
-                          <mdc-icon mdcListItemGraphic *ngIf="route.navLinks[key].icon">{{route.navLinks[key].icon}}</mdc-icon>
-                          {{route.navLinks[key].name}}
-                          <mdc-icon  mdcListItemGraphic  mdcSuffix *ngIf="route.navLinks[key].name == 'Россия'" >
-                            {{route.icon}}
-                          </mdc-icon>
+                  <li class="mdc-list-item " >
+                    <a [routerLink]="route.navLinks[key].location " (click)="route.navLinks[key].name == 'Россия' ? route._isDroped() : ''">
+        
+                      <!-- <mdc-icon mdcListItemGraphic *ngIf="route.navLinks[key].icon">{{route.navLinks[key].icon}}</mdc-icon>
+                      {{route.navLinks[key].name}} -->
+                      <span  *ngIf="route.navLinks[key].icon">
+                        <img class="icon-img" src={{route.navLinks[key].icon}} >
+                        {{route.navLinks[key].name}}
+                      </span>
+                      <mdc-icon  mdcListItemGraphic  mdcSuffix *ngIf="route.navLinks[key].name == 'Россия'" >
+                        {{route.icon}}
+                      </mdc-icon>
+                    </a>
+  
+                </li> 
+  
+                  <ul class="mdc-list mdc-sub-list" *ngIf="route.isDroped == true" >
+                      <li class="mdc-list-item" *ngFor="let subPage of route.navLinks[key].subPages">
+                        <a [routerLink]="subPage.location">
+                          <!-- <mdc-icon mdcListItemGraphic *ngIf="subPage.icon">{{subPage.icon}}</mdc-icon> -->
+                          <img style="width: 30px;" *ngIf="subPage.icon" src={{subPage.icon}} >
+                          {{subPage.name}}
                         </a>
-      
-                    </li> 
-      
-                      <ul class="mdc-list mdc-sub-list" *ngIf="route.isDroped == true" >
-                          <li class="mdc-list-item" *ngFor="let subPage of route.navLinks[key].subPages">
-                            <a [routerLink]="subPage.location">
-                              <mdc-icon mdcListItemGraphic *ngIf="subPage.icon">{{subPage.icon}}</mdc-icon>
-                              {{subPage.name}}
-                            </a>
-                          </li> 
-                      </ul> 
+                      </li> 
+                  </ul>  
       
                 </div>
                  

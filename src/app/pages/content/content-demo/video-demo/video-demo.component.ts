@@ -31,6 +31,9 @@ export class VideoDemoComponent implements OnInit {
   demoContent:any;
   currentVideo:any;
 
+  matRiplecolor = "#e91e63";
+  matRipleCentered = true;
+
   
  
 

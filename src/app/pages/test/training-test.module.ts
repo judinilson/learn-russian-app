@@ -9,23 +9,19 @@ import {
     MdcMenuModule,
     MdcListModule,
   } from '@angular-mdc/web';
-  import {
-    MatIconModule,
-    MatListModule,
-    MatFormFieldModule,
-    MatPaginatorModule,
-    MatRippleModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
-    MatMenuModule,
-    MatAutocompleteModule,
-    MatProgressBarModule,
-    MatOptionModule,
-    MatDialogModule,
-    MatSelectModule,
-  
-  } from '@angular/material';
+  import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatRippleModule, MatOptionModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';

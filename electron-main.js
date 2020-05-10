@@ -9,12 +9,17 @@ const path = require("path")
 let mainWindow
 
 // Enable live reload for all the files inside your project directory
-require('electron-reload')(__dirname);
+// require('electron-reload')(__dirname);
 
-// Enable live reload for Electron too
+// Enable live reload for Electron to0
+// require('electron-reload')(__dirname, {
+//     // Note that the path to electron may vary according to the main file
+//     electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+//     hardResetMethod: 'exit'
+// });
+
 require('electron-reload')(__dirname, {
-    // Note that the path to electron may vary according to the main file
-    electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+    electron: require("${__dirname}/node_modules/electron")
 });
 
 function createWindow() {

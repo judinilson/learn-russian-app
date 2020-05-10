@@ -4,8 +4,14 @@
 
 
   .result-container{
-    width: 100%;
+    //width: 100%;
     margin: 8% 6% 4% 6%;
+    p{
+      display: flex;
+      justify-content: center;
+      font-size: x-large;
+      font-weight: 500;
+    }
     .progress-container{
       position: relative;
       .progress-bar{
@@ -21,9 +27,7 @@
   }
   
 
-.first{
-  
-}
+
 ::ng-deep .first .mat-progress-bar-buffer{
     background-color: #f1f0f0;
 }
@@ -38,4 +42,78 @@
 
 ::ng-deep .second .mat-progress-bar-fill::after{
 background-color: #28a745;
+}
+
+//percentages
+
+.percentages{
+  justify-content: center;
+  margin: 5%;
+  .correct-answers {
+    margin-right: 10%;
+    text{
+      font-weight: bold;
+    }
+    span{
+      margin-top: 15%;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    p{
+      font-size: 40px;
+      font-weight: bold;
+    }
+  }
+  .incorrect-answers{
+    margin-left: 10%;
+    text{
+      font-weight: bold;
+    }
+    span{
+     margin-top: 15%;
+     font-size: 20px;
+     font-weight: 500;
+    }
+    p{
+      font-size: 40px;
+      font-weight: bold;
+    }
+  }
+}
+
+.chart-container{
+  margin-top: 2%;
+    margin-left: 5%;
+  .chart{
+    canvas{
+      height: 220px !important;
+    width: 370px !important;
+    }
+  }
+}
+
+.rating-container{
+  width: 100%;
+  padding: 0 10px;
+    text-align: center;
+    align-self: center;
+    font-size: 18px;
+    font-weight: 500;
+    justify-content: space-around;
+    .each-time-back-content{
+      margin-right: 5%;
+      align-self: center;
+      p{
+        font-size: 50px;
+        font-weight: bold;
+      }
+    }
+    .rating{
+      margin-right: 5%;
+      p{
+        font-size: 50px;
+        font-weight: bold;
+      };
+    }
+    
 }

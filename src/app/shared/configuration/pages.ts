@@ -1,3 +1,5 @@
+
+
 export interface NavLinkInfo {
     name: string;
     icon: string;
@@ -26,29 +28,29 @@ export const PAGE_HELP = 'HELP';
 
 export const NAV_LINKS: { [key: string]: NavLinkInfo } = {
     [PAGE_DASHBOARD]: {
-      name: 'Главный', icon: 'home', location: '/dashboard'
+      name: 'Главный', icon: "../../../assets/icons/home.png", location: '/dashboard'
 
     },
     [PAGE_CONTENT_DEMO]: {
-      name: 'Россия', icon: 'class', location: null,
+      name: 'Россия', icon:"../../../assets/icons/russia.png", location: null,
       subPages: [
           {
-            name: 'Демонстрация', icon: 'video_label', location: '/content-demo'
+            name: 'Демонстрация', icon: "../../../assets/icons/demo.png", location: '/content-demo'
           },
           {
-            name: 'Статья', icon: 'receipt', location: '/content-text'
+            name: 'Статья', icon: "../../../assets/icons/article.png", location: '/content-text'
           }
       ]
 
     },
     [PAGE_TEST]: {
-      name: 'Тестирование', icon: 'event_available', location: '/test'
+      name: 'Тестирование', icon: "../../../assets/icons/test.png", location: '/test'
     },
     [PAGE_STATISTIC]: {
-        name: 'Статистика', icon: 'assessment', location: '/statistic'
+        name: 'Статистика', icon: "../../../assets/icons/statistic.png", location: '/statistic'
       },
     [PAGE_HELP]: {
-      name: 'Помощь ', icon: 'help', location: '/help'
+      name: 'Помощь ', icon: "../../../assets/icons/help.png", location: '/help'
     },
 
   };

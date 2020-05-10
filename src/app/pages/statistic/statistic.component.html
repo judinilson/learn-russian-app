@@ -1,21 +1,88 @@
-<div>
-    <app-side-nav fxFlex></app-side-nav>
-
-    <div class="result-container"  >
+<app-side-nav fxFlex></app-side-nav>
+<div fxLayout="column" style="width: 100%;" >
+  
+    <div class="result-container" >
        
         <div class="progress-container" fxLayout="column" fxFlexAlign="space-around center">
-            <p>Result</p>
+            <p>ОТВЕТОВ</p>
             <mat-progress-bar mode="determinate" [value]="30"
                  class="progress-bar first">
-                <div>30%</div>
             </mat-progress-bar>
-            <div>
-                
-            </div>
+          
             <mat-progress-bar mode="determinate" [value]="70"
                  class="progress-bar second">
-                <div>70%</div>
             </mat-progress-bar>
+        </div>
+        <div class="percentages" fxLayout="row"  fxFlexAlign="space-around center">
+            <div class="correct-answers" fxLayout="column">
+                <div fxLayout="row">
+                    <svg height="100" width="100">
+                        <circle cx="50" cy="50" r="18" stroke="white" stroke-width="2px" fill="green" />
+                        <text x="50%" y="50%" text-anchor="middle" class="medium"  dy=".3em">30%</text>
+                    </svg> 
+                    <span>Правильный</span>
+                </div>
+               
+                <div>
+                    <p>16</p>
+                </div>
+                
+            </div>
+            <div class="incorrect-answers" fxLayout="column">
+                <div fxLayout="row">
+                    <svg height="100" width="100">
+                        <circle cx="50" cy="50" r="18" stroke="white" stroke-width="2px" fill="red" />
+                        <text x="50%" y="50%" text-anchor="middle" class="medium"  dy=".3em">70%</text>
+                    </svg> 
+                    <span>Неправильный</span>
+                </div>
+                <div>
+                    <p>4</p>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <div fxLayout="row">
+        <div class="chart-container" fxLayout="column">
+            <span style="    text-align: center;
+            font-size: 18px;
+            font-weight: 500;">На прошлой неделе</span>
+            <div>
+                <div class="chart"  style="display: inline-block;">
+                   
+                    <canvas baseChart 
+                    [datasets]="barChartData" 
+                    [labels]="barChartLabels"
+                    [options]="barCharOptions" 
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType" 
+                    [colors]="chartColors" 
+                    (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+
+                    </canvas>
+                </div>
+            </div>
+            <button mdc-button (click)="randomize()">Обнавить</button>
+        </div>
+        <div fxLayout="row" class="rating-container">
+            <div class="each-time-back-content" fxLayout="column">
+                <span>Обращений к тесту</span>
+                <p>2</p>
+            </div>
+            <div class="rating" fxLayout="column">
+                <div class="emoji" >
+                    <img src={{emoji}}>
+                </div>
+                <p>4</p>
+                <span>Оценка</span>
+            </div>
+            <div class="date" fxLayout="column">
+                <img src="https://img.icons8.com/clouds/100/000000/date-time.png">
+                <p>27.09.2019</p>
+            </div>
         </div>
     </div>
 </div>

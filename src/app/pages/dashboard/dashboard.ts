@@ -2,15 +2,12 @@ import { SideNavComponent, SideNavPageModule } from './../../shared/side-nav/sid
 import { CommonModule} from '@angular/common';
 import { Component, OnInit, NgModule  } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {
-  MatSidenavModule,
-  MatButtonModule,
-  MatIconModule,
-  MatListModule,
-  MatTreeModule,
-  MatExpansionModule
-
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTreeModule } from '@angular/material/tree';
 
 import {
   MdcButtonModule,
