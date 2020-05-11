@@ -1,0 +1,59 @@
+
+.nav-link-c{
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+
+    mdc-icon{
+        position: relative;
+        top: 2px;
+        font-size: 15px;
+    }
+
+    span{
+        margin-left: .25rem;
+    }
+}
+
+.card-mdc{
+    background-color: #f7fafc !important;
+}
+
+.card-header-mdc{
+    text-align: center; 
+    padding-top: 15%; 
+    padding-bottom: 5%;
+}
+
+.remember-me-check{
+    text-align: left; 
+    color: #525f7f; 
+    font-family: Open Sans,sans-serif;
+}
+
+.sign-in-btn{
+    text-align: center; 
+    margin-top: 5%; 
+    margin-bottom: 20%;
+
+    .sign-button{
+        line-height: 1.5;
+        display: inline-block;
+        padding: .625rem 1.25rem;
+        font-weight: 600;
+        border-radius: 20px;
+        
+    }
+}
+
+form{
+    padding: 0% 10%;
+
+
+    
+
+}
+
+::ng-deep body{
+     background: #172b4d;
+     
+  }
