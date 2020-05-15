@@ -36,7 +36,7 @@
     "@types/jquery": "^3.3.31",
     "angular-bootstrap-md": "^8.8.2",
     "animate.css": "^3.7.2",
-    "bootstrap": "^4.4.1",
+    "bootstrap": "^4.5.0",
     "chart.js": "^2.9.3",
     "electron-reload": "^1.5.0",
     "hammerjs": "^2.0.8",

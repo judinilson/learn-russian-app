@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterService } from 'src/app/shared/service/router-service';
 import { DemoService } from 'src/app/shared/service/content-demo-service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { AuthenticationService } from 'src/app/shared/service/authentication.service';
 
 
 
@@ -25,7 +26,16 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class VideoDemoComponent implements OnInit {
 
-   constructor(private routerService: RouterService, private demoService:DemoService) { }
+   constructor(private routerService: RouterService, 
+    private demoService:DemoService,
+    private authservice: AuthenticationService
+
+    ) { }
+
+
+  login = false;
+  user = null;
+  username = 'none';
 
   route = this.routerService;
   demoContent:any;
@@ -49,6 +59,13 @@ export class VideoDemoComponent implements OnInit {
       localStorage.setItem('demoContent', JSON.stringify(this.demoContent));
       this.currentVideo = this.demoContent.src[0];
     }
+
+    if(localStorage.getItem('currentUser') !== null){
+      this.login = true;
+      this.user = JSON.parse(window.localStorage.getItem('currentUser')); 
+      this.username = this.user.username;
+     console.log(this.username);
+    }
     
   }
 
@@ -60,7 +77,10 @@ export class VideoDemoComponent implements OnInit {
   }
 
    
-  
+  public logOut(){
+    this.authservice.logout();
+    this.login = false ;
+  }
 
 
 }

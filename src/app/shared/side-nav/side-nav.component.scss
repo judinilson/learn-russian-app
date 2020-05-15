@@ -1,3 +1,6 @@
+
+
+
 .layout__row{
     .menu-btn{
       position: relative;
@@ -43,6 +46,12 @@
   .mdc-sub-list .mdc-list-item{
     padding: 0 40px;
 
+}
+
+
+
+.dropdown-toggle::after {
+  display:none;
 }
 
 

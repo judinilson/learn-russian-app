@@ -3,6 +3,7 @@ import { RouterService } from 'src/app/shared/service/router-service';
 import { Router } from '@angular/router';
 import { DemoService } from 'src/app/shared/service/content-demo-service';
 import { DataService } from 'src/app/shared/service/dataService';
+import { AuthenticationService } from 'src/app/shared/service/authentication.service';
 
 @Component({
   selector: 'app-content-texts',
@@ -11,14 +12,19 @@ import { DataService } from 'src/app/shared/service/dataService';
 })
 export class ContentTextsComponent implements OnInit {
 
+  selectedCategory: any;
+  login = false;
+  user = null;
+  username = 'none';
   constructor(
     private routerService: RouterService,
     private router: Router,
     private demoService: DemoService,
-    private dataService: DataService
+    private dataService: DataService,
+    private authservice: AuthenticationService
     ) { }
 
-  selectedCategory: any;
+ 
 
 
   route = this.routerService;
@@ -40,6 +46,13 @@ export class ContentTextsComponent implements OnInit {
     //   el.article = this.lorem.getLineEnding()
     // });
 
+    if(localStorage.getItem('currentUser') !== null){
+      this.login = true;
+      this.user = JSON.parse(window.localStorage.getItem('currentUser')); 
+      this.username = this.user.username;
+     console.log(this.username);
+    }
+
   }
 
   onSelectedCardArticle(content: any) {
@@ -47,6 +60,11 @@ export class ContentTextsComponent implements OnInit {
     this.demoService.newContentArticle(content);
     console.log(content);
 
+  }
+
+  public logOut(){
+    this.authservice.logout();
+    this.login = false ;
   }
 }
 

@@ -1,4 +1,6 @@
 
+
+
 .nav-link-c{
     padding-right: 1rem !important;
     padding-left: 1rem !important;
@@ -14,7 +16,11 @@
     }
 }
 
+
+
+
 .card-mdc{
+  
     background-color: #f7fafc !important;
 }
 
@@ -26,7 +32,7 @@
 
 .remember-me-check{
     text-align: left; 
-    color: #525f7f; 
+    color: #525f7f;
     font-family: Open Sans,sans-serif;
 }
 
@@ -46,14 +52,17 @@
 }
 
 form{
-    padding: 0% 10%;
+    padding: 0% 5%;
 
-
-    
+    i{
+       color: #82898f;
+    }
 
 }
 
-::ng-deep body{
-     background: #172b4d;
-     
+
+.body-bg{
+     background-color: #f5474d;
+    background-image: linear-gradient(180deg, #f5474d 10%, #ff0000 50%, #172b4d 69%);
+    
   }

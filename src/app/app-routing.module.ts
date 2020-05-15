@@ -10,8 +10,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { VideoDemoComponent } from './pages/content/content-demo/video-demo/video-demo.component';
 import { ArticleContentComponent } from './pages/content/content-texts/article-content/article-content.component';
 import { Congratulation } from './pages/test/congratulation-page/congratulation';
-import { OauthComponent } from './shared/Auth/oauth.component';
-import { AuthGuard } from './shared/Auth/helper/auth.guard';
+import { OauthComponent } from './shared/Aouth/Auth/oauth.component';
+import { AuthGuard } from './shared/helper/auth.guard';
+import { UserRegisterComponent } from './shared/Aouth/user-register/user-register.component';
+import { UserProfilComponent } from './shared/Aouth/user-profil/user-profil.component';
 
 
 const routes: Routes = [
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: 'content-text', component: ContentTextsComponent },
   {path: 'visual-article', component: ArticleContentComponent},
   { path: 'login', component: OauthComponent},
+  { path: 'subscribe', component: UserRegisterComponent},
+  { path: 'user-profile', component: UserProfilComponent},
   { path: 'test', component: TestComponent, canActivate: [AuthGuard]},
   { path: 'training', component: QuestionsAnswersComponent, canActivate: [AuthGuard] },
   { path: 'rate-test', component: Congratulation,canActivate: [AuthGuard] },

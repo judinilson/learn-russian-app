@@ -1,7 +1,39 @@
 <div fxLayout="row" fxLayoutAlign="start">
   <div fxFlex="30%">
     <mdc-drawer drawer="dismissible" #demoDismissible>
-      <mdc-drawer-header title="Drawer Title" subtitle="Subtitle"></mdc-drawer-header>
+      <mdc-drawer-header >
+        <div class="row mt-2" *ngIf="login">
+          <div class="col align-items-center d-none d-md-flex">
+            <div class="mb-5"  placement="bottom-right">
+
+              <a role="button"  routerLinkActive="active" [routerLink]="['/user-profile']">
+                <div class="media align-items-center">
+                  <span class="avatar avatar-sm rounded-circle">
+                    <img alt="Image placeholder" src="https://img.icons8.com/cotton/64/000000/user-male-circle.png" style="width: 50px;"/>
+                  </span>
+                  <div class="media-body ml-2 d-lg-block">
+                    <span class="mb-0 text-sm  font-weight-bold">
+                      {{username}}
+                    </span>
+                  </div>
+                  
+                
+                </div>
+              </a>
+
+              <div class="p-2">
+                <button  class="btn btn-light"  (click)="logOut()" >
+                  <i class=" pr-1 fas fa-running"></i>
+                  <span>Выйти</span>
+                </button>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+
+      </mdc-drawer-header>
+
       <mdc-drawer-content>
         <nav class="navegations ">
             <ul class="mdc-list" >

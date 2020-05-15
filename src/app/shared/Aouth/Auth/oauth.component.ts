@@ -1,21 +1,11 @@
-import { Component, OnInit, NgModule } from '@angular/core';
-import { Router, ActivatedRoute, RouterModule } from '@angular/router';
-import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit, Inject, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { AuthenticationService } from '../service/authentication.service';
-import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor } from './helper/jwt.interceptor';
-import { ErrorInterceptor, } from './helper/error.interceptor';
-import { CommonModule } from '@angular/common';
-import { MdcButtonModule, 
-  MdcFabModule, 
-  MdcIconModule,
-   MdcCardModule, 
-   MdcTopAppBarModule, 
-   MdcSelectModule, 
-   MdcCheckboxModule, 
-   MdcFormFieldModule} from '@angular-mdc/web';
-   import {NgbCollapseModule} from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService } from '../../service/authentication.service';
+import { Observable, BehaviorSubject } from 'rxjs';
+
+
 
 
 @Component({
@@ -23,20 +13,28 @@ import { MdcButtonModule,
   templateUrl: './oauth.component.html',
   styleUrls: ['./oauth.component.scss']
 })
+
 export class OauthComponent implements OnInit {
+
+    @ViewChild('alertbtn',{static: false}) alertbtn: ElementRef;
 
   loginForm: FormGroup;
   loading = false;
   submitted = false;
   returnUrl: string;
   error = '';
+  unknowneror = false;
   lock_user_icon:string;
   footer_td: Date = new Date();
+  alert = new Observable<boolean>();
+  alerts = null;
+
+
   constructor(
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
       private router: Router,
-      private authenticationService: AuthenticationService
+      private authenticationService: AuthenticationService,
   ) { 
       // redirect to home if already logged in
       if (this.authenticationService.currentUserValue) { 
@@ -47,9 +45,11 @@ export class OauthComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
       this.loginForm = this.formBuilder.group({
-          username: ['', Validators.required],
-          password: ['', Validators.required]
+          username: ['', [Validators.required]],
+          password: ['', [Validators.required,Validators.minLength(8)]]
       });
 
       // get return url from route parameters or default to '/'
@@ -83,39 +83,31 @@ export class OauthComponent implements OnInit {
               error => {
                   this.error = error;
                   this.loading = false;
-              });
+                  this.alert = new BehaviorSubject<boolean>(true);
+                  if(this.error.substr(0,7) ==='Unknown') this.unknowneror = true;
+                  console.log(this.error.substr(1,7));
+                 });
+
+
+    if(this.alert){
+        setTimeout(() => {
+            this.alertClose();  
+       }, 6000);
+    }
+  
   }
+
+
+ 
+
+  alertClose() {
+    this.alert = new BehaviorSubject<boolean>(false);;
+      
+  }
+
 
 }
 
 
-@NgModule({
-  imports: [
-    HttpClientModule,
-    ReactiveFormsModule,
-    CommonModule,
-    RouterModule,
-    NgbCollapseModule,
-    
-
-    //mdc
-    MdcButtonModule,
-    MdcFabModule,
-    MdcIconModule,
-    MdcCardModule,
-    MdcTopAppBarModule,
-    MdcSelectModule,
-    MdcCheckboxModule,
-    MdcFormFieldModule
-  ],
-  exports: [OauthComponent],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    AuthenticationService
-  ],
-  declarations: [OauthComponent],
-})
-export class OauthModule { }
 
 

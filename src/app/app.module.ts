@@ -10,7 +10,7 @@ import { DashboardPageModule } from './pages/dashboard/dashboard';
 import { HelpComponent } from './pages/help/help';
 import { TrainingTestModule } from './pages/test/training-test.module';
 import {StatisticModule} from './pages/statistic/statistic.component';
-import {  OauthModule } from './shared/Auth/oauth.component'
+import {  OAuthModule } from './shared/Aouth/Aouth.module'
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import {  OauthModule } from './shared/Auth/oauth.component'
     HelpComponent,
   ],
   imports: [
-    OauthModule,
+    OAuthModule,
     BrowserModule,
     AppRoutingModule,
     DashboardPageModule,

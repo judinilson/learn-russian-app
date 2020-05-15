@@ -3,6 +3,8 @@ import { RouterService } from 'src/app/shared/service/router-service';
 import { Router, RouterModule } from '@angular/router';
 import { DataService } from 'src/app/shared/service/dataService';
 import { TrainingTestService } from 'src/app/shared/service/training-test-service';
+import { AuthenticationService } from 'src/app/shared/service/authentication.service';
+
 
 
 @Component({
@@ -13,18 +15,32 @@ import { TrainingTestService } from 'src/app/shared/service/training-test-servic
 export class TestComponent implements OnInit {
 
 
+  login = false;
+  user = null;
+  username = 'none';
+
   constructor(
     private routerService: RouterService,
     private router: Router,
     private dataService: DataService,
-    private trainingService: TrainingTestService
+    private trainingService: TrainingTestService,
+    private authservice: AuthenticationService
   ) { }
 
   dataSource = this.dataService.trainingDataService;
   demoDataSource = this.dataService.demoDataService;
   route = this.routerService;
   selectedCategory: any;
+
+
   ngOnInit() {
+
+    if(localStorage.getItem('currentUser') !== null){
+      this.login = true;
+      this.user = JSON.parse(window.localStorage.getItem('currentUser')); 
+      this.username = this.user.username;
+     console.log(this.username);
+    }
   }
 
   categories(){
@@ -42,6 +58,12 @@ export class TestComponent implements OnInit {
     console.log(content);
     
   };
+
+
+  public logOut(){
+    this.authservice.logout();
+    this.login = false ;
+  }
 
 }
 

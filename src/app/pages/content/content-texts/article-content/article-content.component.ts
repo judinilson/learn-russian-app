@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterService } from 'src/app/shared/service/router-service';
 import { DemoService } from 'src/app/shared/service/content-demo-service';
+import { AuthenticationService } from 'src/app/shared/service/authentication.service';
 
 @Component({
   selector: 'app-article-content',
@@ -9,11 +10,18 @@ import { DemoService } from 'src/app/shared/service/content-demo-service';
 })
 export class ArticleContentComponent implements OnInit {
 
-  constructor(private routerService: RouterService, private demoService:DemoService) { }
+  constructor(
+    private routerService: RouterService, 
+    private demoService:DemoService,
+    private authservice: AuthenticationService) { }
 
   route = this.routerService;
   articleContent:any;
   currentArticle:any;
+
+  login = false;
+  user = null;
+  username = 'none';
 
   article = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus, incidunt. Debitis,'
   + 'repudiandae dignissimos et quam velit autem mollitia tenetur,'
@@ -37,6 +45,14 @@ export class ArticleContentComponent implements OnInit {
       localStorage.setItem('demoContent', JSON.stringify(this.articleContent));
       this.currentArticle = this.articleContent;
     }
+
+
+    if(localStorage.getItem('currentUser') !== null){
+      this.login = true;
+      this.user = JSON.parse(window.localStorage.getItem('currentUser')); 
+      this.username = this.user.username;
+     console.log(this.username);
+    }
     
   }
 
@@ -45,6 +61,11 @@ export class ArticleContentComponent implements OnInit {
       localStorage.removeItem('currentVideo');
       localStorage.setItem('currentVideo', JSON.stringify(this.currentArticle));
 
+  }
+
+  public logOut(){
+    this.authservice.logout();
+    this.login = false ;
   }
 
 }
