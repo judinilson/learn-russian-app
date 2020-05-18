@@ -1,7 +1,7 @@
 import { Injectable, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {UserCreate} from '../Model/User-create';
+import {UserCreate,UserUpdate} from '../Model/User-create';
 import {Country} from '../Model/Country-create';
 import {TeacherGroup,UserGroup} from '../Model/Teacher-Group';
 import {environment} from '../environment'
@@ -20,6 +20,13 @@ export class IdentityService {
         return this.http.post<UserCreate>(environment.userCreate,data);
     }
 
+    userUpdate(id,data: any){
+        return this.http.put<UserUpdate>(environment.userUpdate + id,data);
+    }
+
+    userGetById(id){
+        return this.http.get<UserUpdate>(environment.getUserById + id);
+    }
 
     countryCreate(data: any){
         return this.http.post<Country>(environment.countryCreate,data);

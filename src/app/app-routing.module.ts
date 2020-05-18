@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'visual-article', component: ArticleContentComponent},
   { path: 'login', component: OauthComponent},
   { path: 'subscribe', component: UserRegisterComponent},
-  { path: 'user-profile', component: UserProfilComponent},
+  { path: 'user-profile', component: UserProfilComponent,canActivate: [AuthGuard]},
   { path: 'test', component: TestComponent, canActivate: [AuthGuard]},
   { path: 'training', component: QuestionsAnswersComponent, canActivate: [AuthGuard] },
   { path: 'rate-test', component: Congratulation,canActivate: [AuthGuard] },

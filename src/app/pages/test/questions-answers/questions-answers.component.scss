@@ -22,15 +22,15 @@
    // display: flex;
     //max-width:50%;
    // left: 30%;
-   margin: 0 20px;
-   position: relative;
+//    margin: 0 20px;
+//    position: relative;
    .column-dv{
         
-        float: left;
-        max-width:60%;
-        min-width: 40%;
-        padding: 0 10px;
-         margin: 4% 10% 0 0;
+        // float: left;
+        // max-width:60%;
+        // min-width: 40%;
+        // padding: 0 10px;
+        //  margin: 4% 10% 0 0;
         .card-primary{
        
             display: flex;
@@ -40,8 +40,9 @@
                 text-align: center;
                 background: #27ADC4;
                 border-radius: 50%;
-                min-width: 7%;
-                max-width: fit-content;
+                width: 10%;
+                height: 10%;
+                //max-width: fit-content;
                 font-weight: bold;
                 margin: 3%;
                 font-size: 25px;

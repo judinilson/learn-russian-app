@@ -12,3 +12,11 @@ export interface UserCreate{
     role: Role;
   
 }
+
+export interface UserUpdate{
+    id: number;
+    firstName: string;
+    lastName: string;
+    username: string;
+    password: string;
+}

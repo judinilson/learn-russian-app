@@ -6,9 +6,9 @@
                 {{currentQuestion}}
             </span>
         </div>
-        <section class="answer-container" >
-            <div class="column-dv" *ngFor="let ans of currentAnswers; index as i" >
-                <mdc-card class="mdc-elevation--z10" [ngStyle]="confirm && {'box-shadow' : ans.state ? '0px 0px 10px 2px green;': '0px 0px 10px 2px red;'}" >
+        <section class="row justify-content-center answer-container">
+            <div class="col-md-4 mb-4 mr-4 column-dv" *ngFor="let ans of currentAnswers; index as i" >
+                <mdc-card class="mdc-elevation--z10 " [ngStyle]="confirm && {'box-shadow' : ans.state ? '0px 0px 10px 2px green;': '0px 0px 10px 2px red;'}" >
                     <mdc-card-primary-action *ngIf="!confirm" class="card-primary" (click)="getUserAnswers(ans.state)">
                         <p class="index-answer">{{i+1}}</p>
                         <p class="answer"> {{ans.answer}}</p>
