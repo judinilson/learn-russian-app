@@ -1,128 +1,247 @@
-
-<mdc-top-app-bar fixed  >
+<div style="overflow: hidden;">
+  
+<div class="mb-3">
+  <mdc-top-app-bar dense>
     <mdc-top-app-bar-row>
-        <mdc-top-app-bar-section align="start" title="App">
-            <button mdcTopAppBarNavIcon (click)="drawer.open = !drawer.open">
-                <mdc-icon>menu</mdc-icon>
-            </button>
-        </mdc-top-app-bar-section>
+      <mdc-top-app-bar-section align="start" title="App">
+        <button mdcTopAppBarNavIcon (click)="drawer.open = !drawer.open; showDemoItems = false">
+          <i class="fas fa-bars" style="color: #fff; display: flex;"></i>
+        </button>
+      </mdc-top-app-bar-section>
     </mdc-top-app-bar-row>
-</mdc-top-app-bar>
+  </mdc-top-app-bar>
+</div>
 
 <!-- drawer -->
 <div class="drawer-app-content">
-    <mdc-drawer drawer="dismissible" #drawer>
-        <mdc-drawer-header >
-          <div class="row mt-2" *ngIf="login">
-            <div class="col align-items-center d-none d-md-flex">
-              <div class="mb-5"  placement="bottom-right">
-  
-                <a role="button"  routerLinkActive="active" [routerLink]="['/user-profile']">
-                  <div class="media align-items-center">
-                    <span class="avatar avatar-sm rounded-circle">
-                      <img alt="Image placeholder" src="https://img.icons8.com/cotton/64/000000/user-male-circle.png" style="width: 50px;"/>
-                    </span>
-                    <div class="media-body ml-2 d-lg-block">
-                      <span class="mb-0 text-sm  font-weight-bold">
-                        {{username}}
-                      </span>
-                    </div>
-                    
-                  
-                  </div>
-                </a>
-  
-                <div class="p-2">
-                  <button  class="btn btn-light"  (click)="logOut()" >
-                    <i class=" pr-1 fas fa-running"></i>
-                    <span>Выйти</span>
-                  </button>
+  <mdc-drawer drawer="dismissible" #drawer>
+    <mdc-drawer-header>
+      <div class="row mt-2" *ngIf="login">
+        <div class="col align-items-center d-none d-md-flex">
+          <div class="mb-5" placement="bottom-right">
+
+            <a role="button" routerLinkActive="active"
+              [routerLink]="['/user-profile']">
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder"
+                    src="https://img.icons8.com/cotton/64/000000/user-male-circle.png"
+                    style="width: 50px;" />
+                </span>
+                <div class="media-body ml-2 d-lg-block">
+                  <span class="mb-0 text-sm font-weight-bold">
+                    {{username}}
+                  </span>
                 </div>
+
+
               </div>
-            
+            </a>
+
+            <div class="p-2">
+              <button class="btn btn-light" (click)="logOut()">
+                <i class="pr-1 fas fa-running"></i>
+                <span>Выйти</span>
+              </button>
             </div>
           </div>
-        </mdc-drawer-header>
-        <mdc-drawer-content>
-          <nav class="navegations ">
-            <ul class="mdc-list" >
-              <div *ngFor="let key of route.navSection">
-                <li class="mdc-list-item " >
-                  <a [routerLink]="route.navLinks[key].location " (click)="route.navLinks[key].name == 'Россия' ? route._isDroped() : ''">
-      
-                    <!-- <mdc-icon mdcListItemGraphic *ngIf="route.navLinks[key].icon">{{route.navLinks[key].icon}}</mdc-icon>
+
+        </div>
+      </div>
+    </mdc-drawer-header>
+    <mdc-drawer-content>
+      <nav class="navegations">
+        <ul class="mdc-list">
+          <div *ngFor="let key of route.navSection">
+            <li class="mdc-list-item">
+              <a [routerLink]="route.navLinks[key].location"
+                (click)="route.navLinks[key].name
+                == 'Россия' ? route._isDroped() : ''">
+
+                <!-- <mdc-icon mdcListItemGraphic *ngIf="route.navLinks[key].icon">{{route.navLinks[key].icon}}</mdc-icon>
                     {{route.navLinks[key].name}} -->
-                    <span  *ngIf="route.navLinks[key].icon">
-                      <img class="icon-img" src={{route.navLinks[key].icon}} >
-                      {{route.navLinks[key].name}}
-                    </span>
-                    <mdc-icon  mdcListItemGraphic  mdcSuffix *ngIf="route.navLinks[key].name == 'Россия'" >
-                      {{route.icon}}
-                    </mdc-icon>
-                  </a>
+                <span *ngIf="route.navLinks[key].icon">
+                  <img class="icon-img" src={{route.navLinks[key].icon}}>
+                  {{route.navLinks[key].name}}
+                </span>
+                <mdc-icon mdcListItemGraphic mdcSuffix
+                  *ngIf="route.navLinks[key].name == 'Россия'">
+                  {{route.icon}}
+                </mdc-icon>
+              </a>
 
-              </li> 
+            </li>
 
-                <ul class="mdc-list mdc-sub-list" *ngIf="route.isDroped == true" >
-                    <li class="mdc-list-item" *ngFor="let subPage of route.navLinks[key].subPages">
-                      <a [routerLink]="subPage.location">
-                        <!-- <mdc-icon mdcListItemGraphic *ngIf="subPage.icon">{{subPage.icon}}</mdc-icon> -->
-                        <img  style="width: 30px;" *ngIf="subPage.icon" src={{subPage.icon}} >
-                        {{subPage.name}}
-                      </a>
-                    </li> 
-                </ul>  
-    
-              </div>
-               
-              </ul> <!-- </mdc-list> -->
-    
-          </nav>
-    
-          <p class="footer">
-              Copy@right АСОИУ
-          </p>
-         
-        </mdc-drawer-content>
-      </mdc-drawer>
-      <div mdcDrawerAppContent fxLayout="row" fxLayoutAlign="space-around center">
-    
-       <!-- content -->
-       <div class="content-video">
-        <mat-video
-        [@inOutAnimation] 
-        title="My Tutorial Title" 
-        [autoplay]="true" 
-        [preload]="true" 
-        [fullscreen]="true"
-        [download]="false"
-        showFrameByFrame="true" 
-        color="accent" 
-        spinner="spin" 
-        poster="{{demoContent?.coverImg}}">
-         <source matVideoSource src="{{currentVideo}}" type="video/mp4">
-         <!-- <source src="tutorial.webm" type="video/webm"> -->
-         <!-- <track matVideoTrack src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English"> -->
-         <!-- <track src="subtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian"> -->
-       </mat-video>
-             
+            <ul class="mdc-list mdc-sub-list" *ngIf="route.isDroped == true">
+              <li class="mdc-list-item" *ngFor="let subPage of
+                route.navLinks[key].subPages">
+                <a [routerLink]="subPage.location">
+                  <!-- <mdc-icon mdcListItemGraphic *ngIf="subPage.icon">{{subPage.icon}}</mdc-icon> -->
+                  <img style="width: 30px;" *ngIf="subPage.icon"
+                    src={{subPage.icon}}>
+                  {{subPage.name}}
+                </a>
+              </li>
+            </ul>
+
+          </div>
+
+        </ul> <!-- </mdc-list> -->
+
+      </nav>
+
+      <p class="footer">
+        Copy@right АСОИУ
+      </p>
+
+    </mdc-drawer-content>
+  </mdc-drawer>
+
+
+
+  <div mdcDrawerAppContent class="mt-md-5 p-0">
+    <div class="row">
+      <!-- content -->
+      <div class="order-md-1 mb-md-0 pr-0"
+        [ngClass]="(showDemoItems)?'col-md-8 ':'col-md-12'">
+        <!--<mat-video class="embed-responsive-item"
+          [@inOutAnimation]
+          title="My Tutorial Title"
+          [autoplay]="true"
+          [preload]="true"
+          [fullscreen]="true"
+          [download]="false"
+          showFrameByFrame="true"
+          color="accent"
+          spinner="spin"
+          poster="{{demoContent?.coverImg}}">
+          <source matVideoSource src="{{currentVideo}}" type="video/mp4">
+          <!-- <source src="tutorial.webm" type="video/webm"> -->
+        <!-- <track matVideoTrack src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English"> -->
+        <!-- <track src="subtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian"> --
+        </mat-video>-->
+        
+        <button *ngIf="!showDemoItems" class="btn-mouse" mat-icon-button aria-label="close button"
+          (click)="showDemoItems= !showDemoItems">
+          <mat-icon>arrow_back</mat-icon>
+          <span class="content-toglle-label">
+            Contents
+          </span>
+        </button>
+
+        <vg-player>
+
+          <video [vgMedia]="media" #media id="singleVideo" preload="auto"
+            controls>
+            <source src="{{currentVideo}}" type="video/mp4">
+          </video>
+        </vg-player>
+
 
       </div>
-     <div class="content-video-list" *ngIf="demoContent?.src.length > 1" fxFlex>
+
+
+      <div class="col-md-4 order-md-2 pl-md-0 " *ngIf="showDemoItems">
+
+        <div class="card "  style="height: 100%;">
+          <div class="card-header row justify-content-between">
+            <span class="mt-1" style="font-weight: 700;">Demonstration Content</span>
+            <button mat-icon-button aria-label="close button"
+              (click)="showDemoItems= !showDemoItems">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+          <mat-selection-list #shoes  [ngClass]="(demoContent?.src.length > 10)?'scrolbar':'none'">
+            <mat-list-option  *ngFor="let video of demoContent?.src" (click)="onVideoClick(video)">
+
+              <h3  style="font-size: 14px; font-weight: 400; line-height:
+                1.43em;">
+                Iam new content
+              </h3>
+              <div class="row" style="display: flex;
+                justify-content: flex-start;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 1.33em;
+                opacity: .7;
+                padding-top: 4px;">
+                <i class="fa fa-play-circle" style="padding-right: .2rem;"> </i>
+                <p>10min</p>
+              </div>
+
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+
+        <!-- <mdc-card outlined>
+          <div mdcSubtitle2>Headline</div>
+          <mdc-list-divider></mdc-list-divider>
+          <ul class=" scrolbar">
+            <li matRipple [matRippleColor]="matRiplecolor"
+              [matRippleCentered]="matRipleCentered"
+              *ngFor="let video of demoContent?.src">
+              <img class="img-cover"
+                [src]="demoContent?.coverImg"
+                [alt]="demoContent.name"
+                (click)="onVideoClick(video)">
+            </li>
+            
+          </ul>
+        </mdc-card> -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <div mdcDrawerAppContent fxLayout="row" fxLayoutAlign="space-around center">
+    <!-- content --
+    <div class="content-video">
+      <mat-video
+        [@inOutAnimation]
+        title="My Tutorial Title"
+        [autoplay]="true"
+        [preload]="true"
+        [fullscreen]="true"
+        [download]="false"
+        showFrameByFrame="true"
+        color="accent"
+        spinner="spin"
+        poster="{{demoContent?.coverImg}}">
+        <source matVideoSource src="{{currentVideo}}" type="video/mp4">
+        <!-- <source src="tutorial.webm" type="video/webm"> -->
+  <!-- <track matVideoTrack src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English"> -->
+  <!-- <track src="subtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian"> --
+      </mat-video>
+
+
+    </div>
+
+    <div class="content-video-list" *ngIf="demoContent?.src.length> 1" fxFlex>
       <ul>
-        <li matRipple [matRippleColor]="matRiplecolor" [matRippleCentered]="matRipleCentered" 
-           *ngFor="let video of demoContent?.src">
-            <img class="img-cover"
-            [src]="demoContent?.coverImg" 
+        <li matRipple [matRippleColor]="matRiplecolor"
+          [matRippleCentered]="matRipleCentered"
+          *ngFor="let video of demoContent?.src">
+          <img class="img-cover"
+            [src]="demoContent?.coverImg"
             [alt]="demoContent.name"
-             (click)="onVideoClick(video)">
-        
+            (click)="onVideoClick(video)">
+
         </li>
       </ul>
-     </div>
-       
-
+    </div>-->
 </div>
 
+<footer class="d-lg-none"  [ngClass]="(showDemoItems)?'footer-p ':'pt-5'">
+  <div class="container">
+    <div class="row align-items-center justify-content-xl-between">
+      <div class="col-xl-6">
+        <div class="copyright text-center text-xl-left text-muted">
+          &copy; {{ footer_td | date: "yyyy" }} <a href="#"
+            class="font-weight-bold ml-1" target="_blank">АСОИУ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 
-
+</div>

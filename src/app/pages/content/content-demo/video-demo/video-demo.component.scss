@@ -1,59 +1,9 @@
-//navegations
-@import "~@angular-mdc/theme/material";
-//top-bar
 
-.mdc-top-app-bar{
-  @include mdc-top-app-bar-fill-color(#363640);
-  min-width: 280px;
-}
+//navegation 
+// top bar side bar
+@import '../../../../shared/custom/topbar-side-navbar';
 
 
-
-mdc-icon{
-  font-size: 30px;
-}
-
-.icon-img{
-  width: 40px;
-}
-
-  //side nav 
- 
-  .mdc-list-item__graphic{
-    margin-right:0px;
-  }
-    .mdc-sub-list .mdc-list-item{
-      padding: 0 40px;
-  
-  }
-  
-  .mdc-drawer{
-    width: 265px;
-    top: 7%;
-    bottom: 0;
-    position: fixed;
-    background-color: #f9f9f9;
-    ul{
-      float: left;
-    }
-    a{
-      text-decoration: none;
-      color: #000;
-      font-weight: 500;
-      font-size: 1rem;
-    }
-   mdc-icon{
-     font-size: 18px;
-   }
-  }
-    .footer{
-      position: fixed;
-      bottom: 1%;
-      height: 20px;
-      text-align: center;
-      margin-left: 40px;
-      font-size: 12px;
-    }
 
     //content
     ::ng-deep .progress {
@@ -85,8 +35,8 @@ mdc-icon{
         display: flex;
         margin-bottom: 15px;
         .img-cover{
-          box-shadow: 0 0 30px rgba(0,0,0,0.6);
-          width: 150px;
+          //box-shadow: 0 0 30px rgba(0,0,0,0.6);
+          width: 100%;
           height: 100px;
           margin-right: 10px;
           cursor: pointer;
@@ -101,4 +51,92 @@ mdc-icon{
         border: 4px solid #ff1d5e !important;
       }
      
+    }
+
+
+
+    .scrolbar{
+      max-height: 450px; 
+      overflow: auto;
+    }
+
+    .scrolbar::-webkit-scrollbar{
+      width: 8px;
+      height: 8px;
+      background-color: #f5f5f5;
+      border-radius: 8px;
+    }
+
+    .scrolbar::-webkit-scrollbar-thumb{
+      border-radius: 8px;
+      box-shadow: inset 0 0 6px rgba(46,46,46,0.3);
+      -webkit-box-shadow: inset 0 0 6px rgba(46,46,46,0.3);
+      background-color: rgba(80,79,79);;
+    }
+
+
+    .btn-mouse{
+
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+
+    position: absolute;
+    background-color: rgba(41,48,59,.7)!important;
+    border: none;
+    border-radius: 0;
+    pointer-events: auto;
+    padding: 8px 16px;
+    margin-top: 16px;
+    height: 50px;
+    max-width: 46px;
+    width: auto;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    transition: all 1s ease-in-out;
+    color: white;
+
+
+     
+
+      .mat-icon-button{
+        line-height: unset;
+      }
+
+      
+    }
+
+    button.btn-mouse:not(:hover) .content-toglle-label{
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+    
+    button.btn-mouse:hover {
+      max-width: 400px;
+      background-color: #29303b!important;
+      
+      .content-toglle-label{
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5em;
+        padding-left: 8px;
+        display: inline;
+      }
+    }
+
+
+
+    .footer-p{
+      padding-top: 9rem;
+      padding-bottom: 1rem;;
     }

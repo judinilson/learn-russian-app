@@ -16,6 +16,8 @@ export class ContentTextsComponent implements OnInit {
   login = false;
   user = null;
   username = 'none';
+  currentTrainingTestIndex: boolean;
+  continueTestAlert: boolean;
   constructor(
     private routerService: RouterService,
     private router: Router,
@@ -52,6 +54,11 @@ export class ContentTextsComponent implements OnInit {
       this.username = this.user.username;
      console.log(this.username);
     }
+
+
+    if( 
+      this.currentTrainingTestIndex = JSON.parse(localStorage.getItem('currentTestIndex')) !== null
+      )this.continueTestAlert = true;
 
   }
 

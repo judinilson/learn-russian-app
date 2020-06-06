@@ -7,61 +7,15 @@
 
   
 //top-bar
+// sidenav 
 
-.mdc-top-app-bar{
-  @include mdc-top-app-bar-fill-color(#363640);
-  min-width: 280px;
-}
+@import '../../../../shared/custom/topbar-side-navbar';
+    //content
 
-
-
-mdc-icon{
-  font-size: 30px;
-}
-
-.icon-img{
-  width: 40px;
-}
-
-
-  //side nav 
- 
-  .mdc-list-item__graphic{
-    margin-right:0px;
-  }
-    .mdc-sub-list .mdc-list-item{
-      padding: 0 40px;
-  
-  }
-  
-  .mdc-drawer{
-    width: 265px;
-    top: 7%;
-    bottom: 0;
-    position: fixed;
-    background-color: #f9f9f9;
-    a{
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      color: #000;
-      mdc-icon{
-        font-size: 18px;
-      }
+    .mdc-drawer{
+      top: 4rem !important;
     }
     
-   
-  }
-    .footer{
-      position: fixed;
-      bottom: 1%;
-      height: 20px;
-      text-align: center;
-      margin-left: 40px;
-      font-size: 12px;
-    }
-
-    //content
 
 .article-cover-image{
 
@@ -75,7 +29,7 @@ mdc-icon{
 .article-container{
     flex: 1 1 auto;
     padding: 0 3.25rem;
-    margin-top: -30%;
+    margin-top: -35%;
 }
 
 .card-primary{

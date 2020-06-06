@@ -14,16 +14,10 @@ export class Congratulation implements OnInit
     totalQuestions = 0;
     stars = [1,2,3,4,5]
     selectedValue: number;
-    countPercent = 0;
+    countPercent = 100;
     constructor(private trainingTest: TrainingTestService){}
 
     ngOnInit(){
-        if(this.trainingTest.totalCorectAnswer != null){
-            this.totalCorrectAnswer = this.trainingTest.totalCorectAnswer;
-            this.totalQuestions = this.trainingTest.totalQestions;
-        }
-        console.log(this.totalQuestions);
-       
     }
 
     countStar(star) {

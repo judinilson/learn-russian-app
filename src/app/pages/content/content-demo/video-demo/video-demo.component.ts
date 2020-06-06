@@ -3,6 +3,7 @@ import { RouterService } from 'src/app/shared/service/router-service';
 import { DemoService } from 'src/app/shared/service/content-demo-service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { AuthenticationService } from 'src/app/shared/service/authentication.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 
 
@@ -26,16 +27,20 @@ import { AuthenticationService } from 'src/app/shared/service/authentication.ser
 })
 export class VideoDemoComponent implements OnInit {
 
+  typesOfShoe:string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+
    constructor(private routerService: RouterService, 
     private demoService:DemoService,
-    private authservice: AuthenticationService
+    private authservice: AuthenticationService,
 
     ) { }
 
 
+  showDemoItems = true;
   login = false;
   user = null;
   username = 'none';
+  footer_td: Date = new Date();
 
   route = this.routerService;
   demoContent:any;
@@ -44,6 +49,7 @@ export class VideoDemoComponent implements OnInit {
   matRiplecolor = "#e91e63";
   matRipleCentered = true;
 
+  currentTrainingTestIndex: boolean;
   
  
 
@@ -66,14 +72,20 @@ export class VideoDemoComponent implements OnInit {
       this.username = this.user.username;
      console.log(this.username);
     }
+
+
     
+    if( this.currentTrainingTestIndex = JSON.parse(localStorage.getItem('currentTestIndex')) !== null)
+    {
+      this.countTimesUservisitContentPage()
+    }
   }
 
-  onVideoClick(video){
+  onVideoClick(video){  
     this.currentVideo = video;
       localStorage.removeItem('currentVideo');
       localStorage.setItem('currentVideo', JSON.stringify(this.currentVideo));
-
+    console.log(this.currentVideo);
   }
 
    
@@ -82,5 +94,17 @@ export class VideoDemoComponent implements OnInit {
     this.login = false ;
   }
 
+  countTimesUservisitContentPage(){
+    var visited = JSON.parse(localStorage.getItem('userVisited'))
+    console.log(visited)
+    if(visited !== null){
+      var userVisited = {
+        'user_visited_content': visited.user_visited_content + 1,
+      }
+      localStorage.removeItem('userVisited');
+      localStorage.setItem('userVisited', JSON.stringify(userVisited));
+    }
+    
+  }
 
 }

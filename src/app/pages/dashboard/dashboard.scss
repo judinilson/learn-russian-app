@@ -62,16 +62,17 @@ mat-sidenav{
 
 .welcome-title{
   position: absolute;
-  right: 8%;
-  top: 65%;
-  //font-size: 40px;
-  color: #ffffff;
-  //background-color: black;
-  font-weight: bolder;
-  font-family: Roboto, Arial, sans-serif;
-  align-content: flex-start;
-  text-shadow: 2px 2px 5px #018786;
-  font-size: 25px
+    right: 4%;
+    top: 5%;
+    /* bottom: 25%; */
+    color: #000;
+    font-weight: bolder;
+    font-family: Roboto, Arial, sans-serif;
+    align-content: flex-start;
+    /* text-shadow: 1px 1px 1px #000; */
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+    font-size: 25px;
 }
 
 
@@ -102,10 +103,10 @@ mat-sidenav{
       background-color: #343a40;
    }
 
-   .mdc-icon{
+   .play-icon{
     color:#fff;
     //font-size:35px;
-    font-weight: 500;
+    //font-weight: 500;
    }
 }
 

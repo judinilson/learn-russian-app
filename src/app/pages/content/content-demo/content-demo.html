@@ -1,140 +1,173 @@
 
-<mdc-top-app-bar short  > 
-    <mdc-top-app-bar-row> 
-        <mdc-top-app-bar-section align="start" title="App">
-            <button mdcTopAppBarNavIcon (click)="drawer.open = !drawer.open">
-                <mdc-icon>menu</mdc-icon>
-            </button>
-        </mdc-top-app-bar-section>
-        <mdc-top-app-bar-section align="end" >
-                <mat-form-field  mdcTopAppBarTitle>
-                    <mat-label>Categories</mat-label>
-                    <mat-select [(ngModel)]="selectedCategory">
-                      <mat-option *ngFor="let item of categories()" [value]="item.category">
-                        {{item.category}}
-                      </mat-option>
-                    </mat-select>
-                </mat-form-field>
-        </mdc-top-app-bar-section>
-    </mdc-top-app-bar-row>
+<mdc-top-app-bar short>
+  <mdc-top-app-bar-row>
+    <mdc-top-app-bar-section align="start" title="App">
+      <button mdcTopAppBarNavIcon (click)="drawer.open= !drawer.open">
+        <i class="fas fa-bars" style="color: #fff; display: flex;"></i>
+      </button>
+    </mdc-top-app-bar-section>
+    <mdc-top-app-bar-section align="end">
+      <mat-form-field mdcTopAppBarTitle>
+        <mat-label>Categories</mat-label>
+        <mat-select [(ngModel)]="selectedCategory">
+          <mat-option *ngFor="let item of categories()" [value]="item.category">
+            {{item.category}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mdc-top-app-bar-section>
+  </mdc-top-app-bar-row>
 </mdc-top-app-bar>
 
 <!-- drawer -->
 <div class="drawer-app-content">
-    <mdc-drawer drawer="dismissible" #drawer>
-        <mdc-drawer-header >
-          <div class="row mt-2" *ngIf="login">
-            <div class="col align-items-center d-none d-md-flex">
-              <div class="mb-5"  placement="bottom-right">
-  
-                <a role="button"  routerLinkActive="active" [routerLink]="['/user-profile']">
-                  <div class="media align-items-center">
-                    <span class="avatar avatar-sm rounded-circle">
-                      <img alt="Image placeholder" src="https://img.icons8.com/cotton/64/000000/user-male-circle.png" style="width: 50px;"/>
-                    </span>
-                    <div class="media-body ml-2 d-lg-block">
-                      <span class="mb-0 text-sm  font-weight-bold">
-                        {{username}}
-                      </span>
-                    </div>
-                    
-                  
-                  </div>
-                </a>
-  
-                <div class="p-2">
-                  <button  class="btn btn-light"  (click)="logOut()" >
-                    <i class=" pr-1 fas fa-running"></i>
-                    <span>Выйти</span>
-                  </button>
+  <mdc-drawer drawer="dismissible" #drawer>
+    <mdc-drawer-header>
+      <div class="row mt-2" *ngIf="login">
+        <div class="col align-items-center d-none d-md-flex">
+          <div class="mb-5" placement="bottom-right">
+
+            <a role="button" routerLinkActive="active"
+              [routerLink]="['/user-profile']">
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder"
+                    src="https://img.icons8.com/cotton/64/000000/user-male-circle.png"
+                    style="width: 50px;" />
+                </span>
+                <div class="media-body ml-2 d-lg-block">
+                  <span class="mb-0 text-sm font-weight-bold">
+                    {{username}}
+                  </span>
                 </div>
+
+
               </div>
-            
+            </a>
+
+            <div class="p-2">
+              <button class="btn btn-light" (click)="logOut()">
+                <i class="pr-1 fas fa-running"></i>
+                <span>Выйти</span>
+              </button>
             </div>
           </div>
-  
-        </mdc-drawer-header>
-        <mdc-drawer-content>
-          <nav class="navegations ">
-              <ul class="mdc-list" >
-                <div *ngFor="let key of route.navSection">
-                  <li class="mdc-list-item " >
-                    <a [routerLink]="route.navLinks[key].location " (click)="route.navLinks[key].name == 'Россия' ? route._isDroped() : ''">
-        
-                      <!-- <mdc-icon mdcListItemGraphic *ngIf="route.navLinks[key].icon">{{route.navLinks[key].icon}}</mdc-icon>
-                      {{route.navLinks[key].name}} -->
-                      <span  *ngIf="route.navLinks[key].icon">
-                        <img class="icon-img" src={{route.navLinks[key].icon}} >
-                        {{route.navLinks[key].name}}
-                      </span>
-                      <mdc-icon  mdcListItemGraphic  mdcSuffix *ngIf="route.navLinks[key].name == 'Россия'" >
-                        {{route.icon}}
-                      </mdc-icon>
-                    </a>
-  
-                </li> 
-  
-                  <ul class="mdc-list mdc-sub-list" *ngIf="route.isDroped == true" >
-                      <li class="mdc-list-item" *ngFor="let subPage of route.navLinks[key].subPages">
-                        <a [routerLink]="subPage.location">
-                          <!-- <mdc-icon mdcListItemGraphic *ngIf="subPage.icon">{{subPage.icon}}</mdc-icon> -->
-                          <img style="width: 30px;"  *ngIf="subPage.icon" src={{subPage.icon}} >
-                          {{subPage.name}}
-                        </a>
-                      </li> 
-                  </ul> 
-      
-                </div>
-                 
-                </ul> <!-- </mdc-list> -->
-    
-          </nav>
-    
-          <p class="footer">
-              Copy@right АСОИУ
-          </p>
-         
-        </mdc-drawer-content>
-      </mdc-drawer>
-      <div mdcDrawerAppContent>
-    
-        <!-- content -->
-        <div #mainContent *ngIf="!selectedCategory">
-            <mdc-card class="card  mdc-elevation--z10" *ngFor="let item of dataSource">
-                <mdc-card-primary-action (click)="onSelectedCard(item)">
-                    <mdc-card-media [ngStyle]="{'background-image': 'url('+ item.coverImg +')'}" wide>
-                        <mdc-icon class="play-icon">play_circle_outline</mdc-icon>
-                    </mdc-card-media>
-                    <div class="card__primary">
-                        <h2  class="card__title" mdcHeadline6>{{item.name}}</h2>
-                        <!-- <h3 class="demo-card__subtitle" mdcSubtitle2>by Kurt Wagner</h3> -->
-                    </div>
-                    <div class="card__secondary" mdcBody2>
-                        {{item.subTitle}}
-                    </div>
-                </mdc-card-primary-action>
-            </mdc-card>
+
         </div>
-
-        <!-- content with selected category -->
-        <div #mainContent *ngIf="selectedCategory">
-          <mdc-card class="card  mdc-elevation--z10" *ngFor="let item of filteredCategory()" >
-              <mdc-card-primary-action (click)="onSelectedCard(item)">
-                  <mdc-card-media [ngStyle]="{'background-image': 'url('+ item.coverImg +')'}" wide>
-                    <mdc-icon class="play-icon">play_circle_outline</mdc-icon>
-                  </mdc-card-media>
-                  <div class="card__primary">
-                      <h2 class="card__title" mdcHeadline6>{{item.name}}</h2>
-                      <!-- <h3 class="demo-card__subtitle" mdcSubtitle2>by Kurt Wagner</h3> -->
-                  </div>
-                  <div class="card__secondary" mdcBody2>
-                      {{item.subTitle}}
-                  </div>
-              </mdc-card-primary-action>
-          </mdc-card>
       </div>
 
+    </mdc-drawer-header>
+    <mdc-drawer-content>
+      <nav class="navegations">
+        <ul class="mdc-list">
+          <div *ngFor="let key of route.navSection">
+            <li class="mdc-list-item">
+              <a [routerLink]="route.navLinks[key].location"(click)="route.navLinks[key].name
+                == 'Россия' ? route._isDroped() : ''">
+
+                <!-- <mdc-icon mdcListItemGraphic *ngIf="route.navLinks[key].icon">{{route.navLinks[key].icon}}</mdc-icon>
+                      {{route.navLinks[key].name}} -->
+                <span *ngIf="route.navLinks[key].icon">
+                  <img class="icon-img" src={{route.navLinks[key].icon}}>
+                  {{route.navLinks[key].name}}
+                </span>
+                <mdc-icon mdcListItemGraphic mdcSuffix
+                  *ngIf="route.navLinks[key].name == 'Россия'">
+                  {{route.icon}}
+                </mdc-icon>
+              </a>
+
+            </li>
+
+            <ul class="mdc-list mdc-sub-list" *ngIf="route.isDroped == true">
+              <li class="mdc-list-item" *ngFor="let subPage of
+                route.navLinks[key].subPages">
+                <a [routerLink]="subPage.location">
+                  <!-- <mdc-icon mdcListItemGraphic *ngIf="subPage.icon">{{subPage.icon}}</mdc-icon> -->
+                  <img style="width: 30px;" *ngIf="subPage.icon"
+                    src={{subPage.icon}}>
+                  {{subPage.name}}
+                </a>
+              </li>
+            </ul>
+
+          </div>
+
+        </ul> <!-- </mdc-list> -->
+
+      </nav>
+
+      <p class="footer">
+        Copy@right АСОИУ
+      </p>
+
+    </mdc-drawer-content>
+  </mdc-drawer>
+  <div mdcDrawerAppContent>
+
+    <!-- content -->
+    <div #mainContent *ngIf="!selectedCategory" class=" justify-content-center">
+      <!-- alert -->
+      <div class="alert alert-warning" role="alert" *ngIf="continueTestAlert"
+        style="margin-top: 5rem;
+        margin-right: 1rem;
+        margin-left: 1rem;">
+        Please continue the current starting test at
+        <a routerLinkActive="active" [routerLink]="['/test']"
+          class="alert-link">
+          test page
+        </a>
+        . Give it a click to continue.
       </div>
+
+      <mdc-card class="card mdc-elevation--z10" *ngFor="let item of dataSource" [ngStyle]="{'top' : continueTestAlert ? 'unset;': '56px;'}">
+        <mdc-card-primary-action (click)="onSelectedCard(item)">
+          <mdc-card-media [ngStyle]="{'background-image': 'url('+ item.coverImg
+            +')'}" wide>
+            <mdc-icon class="play-icon">play_circle_outline</mdc-icon>
+          </mdc-card-media>
+          <div class="card__primary">
+            <h2 class="card__title" mdcHeadline6>{{item.name}}</h2>
+            <!-- <h3 class="demo-card__subtitle" mdcSubtitle2>by Kurt Wagner</h3> -->
+          </div>
+          <div class="card__secondary" mdcBody2>
+            {{item.subTitle}}
+          </div>
+        </mdc-card-primary-action>
+      </mdc-card>
+    </div>
+
+    <!-- content with selected category -->
+    <div #mainContent *ngIf="selectedCategory">
+      <!-- alert -->
+      <div class="alert alert-warning" role="alert" *ngIf="continueTestAlert"
+        style="margin-top: 5rem;
+        margin-right: 1rem;
+        margin-left: 1rem;">
+        Please continue the current starting test at
+        <a routerLinkActive="active" [routerLink]="['/test']"
+          class="alert-link">
+          test page
+        </a>
+        . Give it a click to continue.
+      </div>
+      <mdc-card class="card mdc-elevation--z10" *ngFor="let item of
+        filteredCategory()" [ngStyle]="{'top' : continueTestAlert ? 'unset;': '56px;'}">
+        <mdc-card-primary-action (click)="onSelectedCard(item)">
+          <mdc-card-media [ngStyle]="{'background-image': 'url('+ item.coverImg
+            +')'}" wide>
+            <mdc-icon class="play-icon">play_circle_outline</mdc-icon>
+          </mdc-card-media>
+          <div class="card__primary">
+            <h2 class="card__title" mdcHeadline6>{{item.name}}</h2>
+            <!-- <h3 class="demo-card__subtitle" mdcSubtitle2>by Kurt Wagner</h3> -->
+          </div>
+          <div class="card__secondary" mdcBody2>
+            {{item.subTitle}}
+          </div>
+        </mdc-card-primary-action>
+      </mdc-card>
+    </div>
+
+  </div>
 </div>
-
-

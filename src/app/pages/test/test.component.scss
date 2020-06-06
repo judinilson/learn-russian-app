@@ -1,98 +1,23 @@
 @import "~@angular-mdc/theme/material";
 
+
+.mdc-drawer{
+  top: 3.5rem !important;
+}
+
+
 ::ng-deep body{
   background-color: #B0D0EA;
 }
 
 
 //top-bar
-.mdc-top-app-bar{
-  @include mdc-top-app-bar-fill-color(#363640);
-  min-width: 280px;
-}
-
-.mat-form-field{
-  font-size: 16px;
-  height: 70px;
-}
-//select category
-::ng-deep .mat-form-field-label {
-  /*change color of label*/
-  color: #fff !important;
- }
-
-::ng-deep .mat-select-value-text {
-  /*change color of selected value*/
-  color: #fff !important;
- }
-
-::ng-deep .mat-select-arrow{
-    /*change color of  arrow*/
-  color: #fff !important;
- }
-
-::ng-deep.mat-form-field-underline {
-  /*change color of underline*/
-  background-color:#fff !important;
-} 
-
-::ng-deep.mat-form-field-ripple {
- /*change color of underline when focused*/
- background-color:  #fff !important;;
-}
-
-
-
-
-
-mdc-icon{
-  font-size: 30px;
-}
-
-
-.icon-img{
-  width: 40px;
-}
-  //side nav 
- 
-  .mdc-list-item__graphic{
-    margin-right:0px;
-  }
-    .mdc-sub-list .mdc-list-item{
-      padding: 0 40px;
-  
-  }
-  
-  .mdc-drawer{
-    width: 265px;
-    top: 7%;
-    bottom: 0;
-    position: fixed;
-    background-color: #f9f9f9;
-    a{
-      text-decoration: none;
-      color: #000;
-      font-weight: 500;
-      font-size: 1rem;
-    }
-    mdc-icon{
-      font-size: 18px;
-    }
-   
-  }
-    .footer{
-      position: fixed;
-      bottom: 1%;
-      height: 20px;
-      text-align: center;
-      margin-left: 40px;
-      font-size: 12px;
-    }
-
+//side nav 
+@import '../../shared/custom/topbar-side-navbar';
 
     //content
 .card {
-    width: 350px;
+    width: 300px;
     margin: 28px;
     position: relative;
     float: left;
@@ -106,6 +31,7 @@ mdc-icon{
   
   .card__title {
     margin: 0;
+    font-size: 1.5rem;
   }
   
 //   .card__subtitle {

@@ -61,6 +61,9 @@ export interface ContentDemo {
       src: ['https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4',
             'https://raw.githubusercontent.com/mjstest/orgb5/86ddf338a9f20896fcff907874b72bb8/videoplayback.mp4',
               'https://raw.githubusercontent.com/mjstest/orgb5/86ddf338a9f20896fcff907874b72bb8/videoplayback.mp4',
+              'https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4',
+              'https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4',
+              'https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4',
               'https://raw.githubusercontent.com/mjstest/orgb4/bdf90d1e1151dc8be00640c73f48884f/DemoGeo.mp4'
             ],
       coverImg: 'https://raw.githubusercontent.com/mjstest/orgb4/c076f0264a6acd4ad7e5e5d93bb3ead5/russiaInMap.jpg',

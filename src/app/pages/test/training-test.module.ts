@@ -8,23 +8,33 @@ import {
     MdcIconModule,
     MdcMenuModule,
     MdcListModule,
+    MdcSnackbar,
   } from '@angular-mdc/web';
-  import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatRippleModule, MatOptionModule } from '@angular/material/core';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatSelectModule } from '@angular/material/select';
+
+import { MatAutocompleteModule, 
+         MatButtonModule,
+         MatCardModule,
+         MatRippleModule, 
+         MatOptionModule,
+         MatDialogModule,
+         MatFormFieldModule,
+         MatIconModule,
+         MatInputModule,
+         MatListModule,
+         MatMenuModule,
+         MatPaginatorModule,
+         MatProgressBarModule,
+         MatSelectModule,
+         MatSnackBar,
+         MatSnackBarModule,
+         MatCheckboxModule,
+         MatBottomSheetModule
+} from '@angular/material';
+
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {DragDropModule} from '@angular/cdk/drag-drop'; 
 import { DataService } from 'src/app/shared/service/dataService';
 import { TestComponent } from './test.component';
 import {QuestionsAnswersComponent} from './questions-answers/questions-answers.component'
@@ -33,6 +43,8 @@ import { NgModule } from '@angular/core';
 import { TrainingTestService } from 'src/app/shared/service/training-test-service';
 import { SideNavPageModule } from 'src/app/shared/side-nav/side-nav.component';
 import { Congratulation } from './congratulation-page/congratulation';
+import { SnackbarAlertComponent } from './snackbar-alert/snackbar-alert';
+
   
 
 @NgModule({
@@ -51,13 +63,18 @@ import { Congratulation } from './congratulation-page/congratulation';
       MatOptionModule,
       MatDialogModule,
       MatSelectModule,
+      MatSnackBarModule ,
+      MatCheckboxModule,
+      MatBottomSheetModule,
   
       CommonModule,
       FlexLayoutModule,
       RouterModule,
       ReactiveFormsModule,
       FormsModule,
+      DragDropModule,
       SideNavPageModule,
+
       //mdc
       MdcButtonModule,
       MdcFabModule,
@@ -70,8 +87,8 @@ import { Congratulation } from './congratulation-page/congratulation';
       MdcSelectModule,
     ],
     exports: [TestComponent,QuestionsAnswersComponent,Congratulation],
-    providers: [DataService,TrainingTestService],
-    // tslint:disable-next-line:max-line-length
-    declarations: [TestComponent,QuestionsAnswersComponent,Congratulation],
+    providers: [DataService,TrainingTestService,MatSnackBar],
+    declarations: [TestComponent,QuestionsAnswersComponent,Congratulation,SnackbarAlertComponent],
+    entryComponents:[QuestionsAnswersComponent,SnackbarAlertComponent]
   })
   export class TrainingTestModule { }

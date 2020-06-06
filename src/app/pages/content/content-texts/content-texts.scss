@@ -7,95 +7,19 @@
 }
 
 //top-bar
+//side nav 
+@import '../../../shared/custom/topbar-side-navbar';
 
-.mdc-top-app-bar{
-  @include mdc-top-app-bar-fill-color(#363640);
-  min-width: 280px;
+.mdc-drawer{
+  top: 3.5rem !important;
 }
 
-.mat-form-field{
-  font-size: 16px;
-  height: 70px;
-}
-//select category
-::ng-deep .mat-form-field-label {
-  /*change color of label*/
-  color: #fff !important;
- }
-
-::ng-deep .mat-select-value-text {
-  /*change color of selected value*/
-  color: #fff !important;
- }
-
-::ng-deep .mat-select-arrow{
-    /*change color of  arrow*/
-  color: #fff !important;
- }
-
-::ng-deep.mat-form-field-underline {
-  /*change color of underline*/
-  background-color:#fff !important;
-} 
-
-::ng-deep.mat-form-field-ripple {
- /*change color of underline when focused*/
- background-color:  #fff !important;;
-}
-
-
-
-
-
-mdc-icon{
-  font-size: 30px;
-}
-
-.icon-img{
-  width: 40px;
-}
-
-  //side nav 
- 
-  .mdc-list-item__graphic{
-    margin-right:0px;
-  }
-    .mdc-sub-list .mdc-list-item{
-      padding: 0 40px;
-  
-  }
-  
-  .mdc-drawer{
-    width: 265px;
-    top: 7%;
-    bottom: 0;
-    position: fixed;
-    background-color: #f9f9f9;
-
-    a{
-      text-decoration: none;
-      color: #000;
-      font-weight: 500;
-      font-size: 1rem;
-      mdc-icon{
-        font-size: 18px;
-      }
-    }
-   
-  }
-    .footer{
-      position: fixed;
-      bottom: 1%;
-      height: 20px;
-      text-align: center;
-      margin-left: 40px;
-      font-size: 12px;
-    }
 
   //content
 .card {
-    width: 590px;
-    margin: 28px;
+    width: 450px;
+    margin-top: 2rem;
+    margin-left: 3rem;
     position: relative;
     float: left;
     top: 56px;
@@ -107,7 +31,7 @@ mdc-icon{
   }
   .card-cover-image{
     width: 550px;
-    height: 200px;
+    height: auto;
   }
 
   .card-info{
@@ -122,6 +46,7 @@ mdc-icon{
   
   .card__title {
     margin: 0;
+    font-size: 1.5rem;
   }
   
   .card__subtitle {

@@ -29,7 +29,6 @@ import { Observable, BehaviorSubject } from 'rxjs';
 export class SideNavComponent implements OnInit {
 
   isOpen = false;
-  icon = "menu";
   login = false;
   user = null;
   username = 'none';
@@ -51,13 +50,8 @@ export class SideNavComponent implements OnInit {
   }
 
   _isOpen(){
-   
     this.isOpen = !this.isOpen;
-    if(this.isOpen){
-      this.icon = "close";
-    }else{
-      this.icon = "menu";
-    }
+   
   }
 
 

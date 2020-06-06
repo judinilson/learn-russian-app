@@ -22,6 +22,7 @@ export class ArticleContentComponent implements OnInit {
   login = false;
   user = null;
   username = 'none';
+  currentTrainingTestIndex: boolean;
 
   article = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus, incidunt. Debitis,'
   + 'repudiandae dignissimos et quam velit autem mollitia tenetur,'
@@ -53,6 +54,12 @@ export class ArticleContentComponent implements OnInit {
       this.username = this.user.username;
      console.log(this.username);
     }
+
+
+    if( this.currentTrainingTestIndex = JSON.parse(localStorage.getItem('currentTestIndex')) !== null)
+    {
+      this.countTimesUservisitContentPage()
+    }
     
   }
 
@@ -66,6 +73,18 @@ export class ArticleContentComponent implements OnInit {
   public logOut(){
     this.authservice.logout();
     this.login = false ;
+  }
+
+  countTimesUservisitContentPage(){
+    var visited = JSON.parse(localStorage.getItem('userVisited'))
+    if(visited !== null){
+      var userVisited = {
+        'user_visited_content': visited.user_visited_content + 1,
+      }
+      localStorage.removeItem('userVisited');
+      localStorage.setItem('userVisited', JSON.stringify(userVisited));
+    }
+    
   }
 
 }

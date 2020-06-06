@@ -3,7 +3,7 @@
     <mdc-top-app-bar-row> 
         <mdc-top-app-bar-section align="start" title="App">
             <button mdcTopAppBarNavIcon (click)="drawer.open = !drawer.open">
-                <mdc-icon>menu</mdc-icon>
+              <i class="fas fa-bars" style="color: #fff; display: flex;"></i>
             </button>
         </mdc-top-app-bar-section>
         <mdc-top-app-bar-section align="end" >
@@ -101,8 +101,8 @@
     
         <!-- content -->
         <div #mainContent *ngIf="!selectedCategory">
-            <mdc-card class="card  mdc-elevation--z10" *ngFor="let item of dataSource">
-                <mdc-card-primary-action (click)="onSelectedCard(item)">
+            <mdc-card class="card  mdc-elevation--z10" *ngFor="let item of dataSource,let i = index">
+                <mdc-card-primary-action (click)="onSelectedCard(item,i)">
                     <mdc-card-media [ngStyle]="{'background-image': 'url('+ item.coverImg +')'}" wide>...</mdc-card-media>
                     <div class="card__primary">
                         <h2  class="card__title" mdcHeadline6>{{item.title}}</h2>

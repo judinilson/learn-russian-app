@@ -5,7 +5,7 @@
 
   .result-container{
     //width: 100%;
-    margin: 8% 6% 4% 6%;
+    //margin: 4% 2% 4% 2%;
     p{
       display: flex;
       justify-content: center;
@@ -48,34 +48,33 @@ background-color: #28a745;
 
 .percentages{
   justify-content: center;
-  margin: 5%;
   .correct-answers {
-    margin-right: 10%;
+    //margin-right: 10%;
     text{
-      font-weight: bold;
+      font-weight: 500;
     }
     span{
-      margin-top: 15%;
+      margin-top: 2.2rem;
       font-size: 20px;
       font-weight: 500;
     }
     p{
-      font-size: 40px;
+      font-size: 2.5em;
       font-weight: bold;
     }
   }
   .incorrect-answers{
-    margin-left: 10%;
+    //margin-left: 10%;
     text{
-      font-weight: bold;
+      font-weight: 500;
     }
     span{
-     margin-top: 15%;
+     margin-top: 2.2rem;
      font-size: 20px;
      font-weight: 500;
     }
     p{
-      font-size: 40px;
+      font-size: 2.5em;
       font-weight: bold;
     }
   }
@@ -83,7 +82,7 @@ background-color: #28a745;
 
 .chart-container{
   margin-top: 2%;
-    margin-left: 5%;
+  margin-left: 2%;
   .chart{
     canvas{
       height: 220px !important;
@@ -93,27 +92,41 @@ background-color: #28a745;
 }
 
 .rating-container{
-  width: 100%;
-  padding: 0 10px;
+ // width: 100%;
+    margin-right: 40px;
+    padding: 0 10px;
     text-align: center;
     align-self: center;
-    font-size: 18px;
+    font-size: 1rem;
     font-weight: 500;
     justify-content: space-around;
     .each-time-back-content{
-      margin-right: 5%;
+      //margin-right: 5%;
       align-self: center;
       p{
-        font-size: 50px;
+        font-size: 2em;
         font-weight: bold;
       }
     }
     .rating{
-      margin-right: 5%;
+     // margin-right: 5%;
       p{
-        font-size: 50px;
+        font-size: 2em;
         font-weight: bold;
+        margin-bottom: unset;
       };
     }
     
+}
+
+
+.no-statistics{
+  width: 100%;
+  margin: 5rem;
+  border-left-color: #f0ad4e;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid #eee;
+  border-left-width: .25rem;
+  border-radius: .25rem;
 }

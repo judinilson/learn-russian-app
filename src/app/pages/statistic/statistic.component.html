@@ -1,88 +1,166 @@
 <app-side-nav fxFlex></app-side-nav>
-<div fxLayout="column" style="width: 100%;" >
+<div class="container" style="width: 100%;  display: contents;" *ngIf="statistics">
+    <div class="row" style="width: 100%;">
+        <div class="col-12"  >
   
-    <div class="result-container" >
-       
-        <div class="progress-container" fxLayout="column" fxFlexAlign="space-around center">
-            <p>ОТВЕТОВ</p>
-            <mat-progress-bar mode="determinate" [value]="30"
-                 class="progress-bar first">
-            </mat-progress-bar>
-          
-            <mat-progress-bar mode="determinate" [value]="70"
-                 class="progress-bar second">
-            </mat-progress-bar>
-        </div>
-        <div class="percentages" fxLayout="row"  fxFlexAlign="space-around center">
-            <div class="correct-answers" fxLayout="column">
-                <div fxLayout="row">
-                    <svg height="100" width="100">
-                        <circle cx="50" cy="50" r="18" stroke="white" stroke-width="2px" fill="green" />
-                        <text x="50%" y="50%" text-anchor="middle" class="medium"  dy=".3em">30%</text>
-                    </svg> 
-                    <span>Правильный</span>
-                </div>
+            <div class="alert alert-warning" role="alert" *ngIf="continueTestAlert" style="margin: 2rem;">
+                Please continue the current starting test at 
+                <a routerLinkActive="active" [routerLink]="['/test']" class="alert-link">
+                    test page
+                </a>
+                . Give it a click to continue.
+              </div>
+            <div class="card shadow  rounded" style="margin: 4% 2% 4% 2%; background-color: #98b9d4;">
+                <div class="card-body">
+                    <div class="result-container col" >
                
-                <div>
-                    <p>16</p>
-                </div>
+                        <div class="progress-container col justify-content-center" >
+                            <p>ОТВЕТОВ</p>
+                                              
+                            <mat-progress-bar mode="determinate" [value]="correctAnswerPercentage"
+                                 class="progress-bar second">
+                            </mat-progress-bar>
+                            <mat-progress-bar mode="determinate" [value]="incorrectAnswerPercentage"
+                                 class="progress-bar first">
+                            </mat-progress-bar>
+        
+                        </div>
+                        <div class="percentages row justify-content-center" >
+                            <div class="correct-answers col-5" >
+                                <div fxLayout="row" style="height: 75px;">
+                                    <svg height="100" width="100">
+                                        <circle cx="50" cy="50" r="18" stroke="white" stroke-width="2px" fill="green" />
+                                        <text x="50%" y="50%" text-anchor="middle" class="medium"  dy=".3em">{{correctAnswerPercentage}}%</text>
+                                    </svg> 
+                                    <span>Правильный</span>
+                                </div>
+                               
+                                <div>
+                                    <p>{{totalCorrectAnswers}}</p>
+                                </div>
+                                
+                            </div>
+                            <div class="incorrect-answers col-5" >
+                                <div fxLayout="row" style="height: 75px;">
+                                    <svg height="100" width="100">
+                                        <circle cx="50" cy="50" r="18" stroke="white" stroke-width="2px" fill="red" />
+                                        <text x="50%" y="50%" text-anchor="middle" class="medium"  dy=".3em">{{incorrectAnswerPercentage}}%</text>
+                                    </svg> 
+                                    <span>Неправильный</span>
+                                </div>
+                                <div>
+                                    <p>{{totalIncorrectAnswers}}</p>
+                                </div>
+                                
+                            </div>
+                        </div>
                 
+                    </div>
+                </div>
             </div>
-            <div class="incorrect-answers" fxLayout="column">
-                <div fxLayout="row">
-                    <svg height="100" width="100">
-                        <circle cx="50" cy="50" r="18" stroke="white" stroke-width="2px" fill="red" />
-                        <text x="50%" y="50%" text-anchor="middle" class="medium"  dy=".3em">70%</text>
-                    </svg> 
-                    <span>Неправильный</span>
+            <!-- <div class="result-container col" >
+               
+                <div class="progress-container col justify-content-center" >
+                    <p>ОТВЕТОВ</p>
+                                      
+                    <mat-progress-bar mode="determinate" [value]="correctAnswerPercentage"
+                         class="progress-bar second">
+                    </mat-progress-bar>
+                    <mat-progress-bar mode="determinate" [value]="incorrectAnswerPercentage"
+                         class="progress-bar first">
+                    </mat-progress-bar>
+
                 </div>
-                <div>
-                    <p>4</p>
+                <div class="percentages row justify-content-center mb-5" >
+                    <div class="correct-answers col-4" >
+                        <div fxLayout="row" style="height: 75px;">
+                            <svg height="100" width="100">
+                                <circle cx="50" cy="50" r="18" stroke="white" stroke-width="2px" fill="green" />
+                                <text x="50%" y="50%" text-anchor="middle" class="medium"  dy=".3em">{{correctAnswerPercentage}}%</text>
+                            </svg> 
+                            <span>Правильный</span>
+                        </div>
+                       
+                        <div>
+                            <p>{{totalCorrectAnswers}}</p>
+                        </div>
+                        
+                    </div>
+                    <div class="incorrect-answers col-4" >
+                        <div fxLayout="row" style="height: 75px;">
+                            <svg height="100" width="100">
+                                <circle cx="50" cy="50" r="18" stroke="white" stroke-width="2px" fill="red" />
+                                <text x="50%" y="50%" text-anchor="middle" class="medium"  dy=".3em">{{incorrectAnswerPercentage}}%</text>
+                            </svg> 
+                            <span>Неправильный</span>
+                        </div>
+                        <div>
+                            <p>{{totalIncorrectAnswers}}</p>
+                        </div>
+                        
+                    </div>
                 </div>
-                
+        
+            </div> -->
+        
+            <div class="row d-flex justify-content-around">
+                <div class="chart-container col-md-6" style="text-align: center;">
+                    <span style="
+                        font-size: 18px;
+                        font-weight: 500;">
+                        На прошлой неделе
+                    </span>
+                    <div>
+                        <div class="chart"  style="display: inline-block;">
+                           
+                            <canvas baseChart 
+                            [datasets]="barChartData" 
+                            [labels]="barChartLabels"
+                            [options]="barCharOptions" 
+                            [legend]="barChartLegend"
+                            [chartType]="barChartType" 
+                            [colors]="chartColors" 
+                            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+        
+                            </canvas>
+                        </div>
+                    </div>
+                    <button mdc-button outlined (click)="randomize()">Обнавить</button>
+                </div>
+                <div  class="rating-container row ">
+                    <div class="each-time-back-content" fxLayout="column">
+                        <span>Обращений к тесту</span>
+                        <p>{{visitedContentPage}}</p>
+                    </div>
+                    <div class="rating col" >
+                        <div class="emoji">
+                            <img src={{emoji}} style="width: 50px;">
+                        </div>
+                        <p>{{rating}}</p>
+                        <span>Оценка</span>
+                    </div>
+                    <div class="date col" >
+                        <img src="https://img.icons8.com/clouds/100/000000/date-time.png">
+                        <p>{{tDate}}</p>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
+</div>
 
-    <div fxLayout="row">
-        <div class="chart-container" fxLayout="column">
-            <span style="    text-align: center;
-            font-size: 18px;
-            font-weight: 500;">На прошлой неделе</span>
-            <div>
-                <div class="chart"  style="display: inline-block;">
-                   
-                    <canvas baseChart 
-                    [datasets]="barChartData" 
-                    [labels]="barChartLabels"
-                    [options]="barCharOptions" 
-                    [legend]="barChartLegend"
-                    [chartType]="barChartType" 
-                    [colors]="chartColors" 
-                    (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-
-                    </canvas>
-                </div>
-            </div>
-            <button mdc-button (click)="randomize()">Обнавить</button>
-        </div>
-        <div fxLayout="row" class="rating-container">
-            <div class="each-time-back-content" fxLayout="column">
-                <span>Обращений к тесту</span>
-                <p>2</p>
-            </div>
-            <div class="rating" fxLayout="column">
-                <div class="emoji" >
-                    <img src={{emoji}}>
-                </div>
-                <p>4</p>
-                <span>Оценка</span>
-            </div>
-            <div class="date" fxLayout="column">
-                <img src="https://img.icons8.com/clouds/100/000000/date-time.png">
-                <p>27.09.2019</p>
-            </div>
-        </div>
+<div *ngIf="!statistics" class="no-statistics">
+    <div class="alert alert-warning" role="alert" *ngIf="continueTestAlert" style="margin: 2rem;">
+        Please continue the current starting test at 
+        <a routerLinkActive="active" [routerLink]="['/test']" class="alert-link">
+            test page
+        </a>
+        . Give it a click to continue.
+      </div>
+    <div>
+        <span>
+            <h2>There are no statistics at the moment. </h2>
+            <p> Please start training tests.</p>
+        </span>
     </div>
 </div>

@@ -8,19 +8,31 @@ import { MatVideoModule } from 'mat-video';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 // tslint:disable-next-line:max-line-length
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatRippleModule, MatOptionModule } from '@angular/material/core';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatSelectModule } from '@angular/material/select';
+import { 
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatCardModule,
+    MatRippleModule, 
+    MatOptionModule ,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatSidenavModule
+
+} from '@angular/material';
+
+
+// videogular
+import {VgCoreModule} from 'videogular2/compiled/core';
+import {VgControlsModule} from 'videogular2/compiled/controls';
+import {VgOverlayPlayModule} from 'videogular2/compiled/overlay-play';
+import {VgBufferingModule} from 'videogular2/compiled/buffering';
 
 import {
         MdcButtonModule,
@@ -31,7 +43,7 @@ import {
         MdcListModule,
         MdcCardModule,
         MdcTopAppBarModule,
-        MdcSelectModule
+        MdcSelectModule,
     } from '@angular-mdc/web';
 import { VideoDemoComponent } from './content-demo/video-demo/video-demo.component';
 import { DemoService } from 'src/app/shared/service/content-demo-service';
@@ -56,12 +68,17 @@ import { DataService } from 'src/app/shared/service/dataService';
         SideNavPageModule,
         MatVideoModule,
         MatSelectModule,
+        MatSidenavModule,
 
         CommonModule,
         FlexLayoutModule,
         RouterModule,
         ReactiveFormsModule, 
         FormsModule,
+        VgCoreModule,
+        VgControlsModule,
+        VgOverlayPlayModule,
+        VgBufferingModule,
 //mdc
         MdcButtonModule,
         MdcFabModule,

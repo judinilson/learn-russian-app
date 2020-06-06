@@ -28,6 +28,7 @@ import {  OAuthModule } from './shared/Aouth/Aouth.module'
     StatisticModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

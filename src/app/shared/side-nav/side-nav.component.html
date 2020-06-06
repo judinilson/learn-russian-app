@@ -83,7 +83,9 @@
 
     <div class="layout__row" fxFlex="40%">
       <button class="menu-btn" mdc-fab mini (click)="demoDismissible.open = !demoDismissible.open; _isOpen()">
-        <mdc-icon>{{icon}}</mdc-icon>
+        <i class="fas fa-bars" *ngIf="!isOpen" style="color: #fff;"></i>
+        <i class="fas fa-times"  *ngIf="isOpen" style="color: #fff;"></i>
+        <!-- <mdc-icon>{{icon}}</mdc-icon> -->
       </button>
     </div>
   </div>
