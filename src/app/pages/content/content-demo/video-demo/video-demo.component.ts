@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { RouterService } from 'src/app/shared/service/router-service';
-import { DemoService } from 'src/app/shared/service/content-demo-service';
+import { RouterService } from 'src/app/shared/service/router.service';
+import { ContentService } from 'src/app/shared/service/content.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { AuthenticationService } from 'src/app/shared/service/authentication.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -30,7 +30,7 @@ export class VideoDemoComponent implements OnInit {
   typesOfShoe:string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
 
    constructor(private routerService: RouterService, 
-    private demoService:DemoService,
+    private contentService:ContentService,
     private authservice: AuthenticationService,
 
     ) { }
@@ -44,6 +44,7 @@ export class VideoDemoComponent implements OnInit {
 
   route = this.routerService;
   demoContent:any;
+  currentDemontrationsContentses:any;
   currentVideo:any;
 
   matRiplecolor = "#e91e63";
@@ -54,7 +55,7 @@ export class VideoDemoComponent implements OnInit {
  
 
   ngOnInit() {
-    this.demoService.currentcontentDemo.subscribe(data => this.demoContent = data)
+    this.contentService.currentcontentDemo.subscribe(data => this.demoContent = data)
     if(this.demoContent === null)
     {
       this.demoContent = JSON.parse(localStorage.getItem('demoContent'));
@@ -63,9 +64,11 @@ export class VideoDemoComponent implements OnInit {
     }else{
       localStorage.removeItem('demoContent');
       localStorage.setItem('demoContent', JSON.stringify(this.demoContent));
-      this.currentVideo = this.demoContent.src[0];
+      this.currentDemontrationsContentses = this.demoContent.demostrationContentses;
+      this.currentVideo = this.currentDemontrationsContentses[0].src
     }
 
+    //current user 
     if(localStorage.getItem('currentUser') !== null){
       this.login = true;
       this.user = JSON.parse(window.localStorage.getItem('currentUser')); 
@@ -74,7 +77,7 @@ export class VideoDemoComponent implements OnInit {
     }
 
 
-    
+    //continue training alert
     if( this.currentTrainingTestIndex = JSON.parse(localStorage.getItem('currentTestIndex')) !== null)
     {
       this.countTimesUservisitContentPage()

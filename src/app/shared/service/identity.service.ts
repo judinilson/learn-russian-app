@@ -17,27 +17,27 @@ export class IdentityService {
     constructor(private http: HttpClient){}
 
     userCreate(data: any){
-        return this.http.post<UserCreate>(environment.userCreate,data);
+        return this.http.post<UserCreate>(environment.userCreateUrl,data);
     }
 
     userUpdate(id,data: any){
-        return this.http.put<UserUpdate>(environment.userUpdate + id,data);
+        return this.http.put<UserUpdate>(environment.userUpdateUrl + id,data);
     }
 
     userGetById(id){
-        return this.http.get<UserUpdate>(environment.getUserById + id);
+        return this.http.get<UserUpdate>(environment.getUserByIdUrl + id);
     }
 
     countryCreate(data: any){
-        return this.http.post<Country>(environment.countryCreate,data);
+        return this.http.post<Country>(environment.countryCreateUrl,data);
     }
 
     teacherGroupGet(){
-        return this.http.get<TeacherGroup>(environment.teacherGroupGet);
+        return this.http.get<TeacherGroup>(environment.teacherGroupGetUrl);
     }
 
     UserGroupGet(){
-        return this.http.get<UserGroup>(environment.userGroupGet);
+        return this.http.get<UserGroup>(environment.userGroupGetUrl);
     }
 
     geCountries(){

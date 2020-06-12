@@ -18,7 +18,7 @@ import {
 } from '@angular-mdc/web';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { RouterService } from '../service/router-service';
+import { RouterService } from '../service/router.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Component({

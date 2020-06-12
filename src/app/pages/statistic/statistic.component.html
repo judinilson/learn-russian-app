@@ -2,7 +2,7 @@
 <div class="container" style="width: 100%;  display: contents;" *ngIf="statistics">
     <div class="row" style="width: 100%;">
         <div class="col-12"  >
-  
+            <mat-progress-bar *ngIf="querryProgressBar" mode="query" style="margin-top: 5px;"></mat-progress-bar>
             <div class="alert alert-warning" role="alert" *ngIf="continueTestAlert" style="margin: 2rem;">
                 Please continue the current starting test at 
                 <a routerLinkActive="active" [routerLink]="['/test']" class="alert-link">
@@ -108,7 +108,7 @@
                     <span style="
                         font-size: 18px;
                         font-weight: 500;">
-                        На прошлой неделе
+                        Последние шесть дней
                     </span>
                     <div>
                         <div class="chart"  style="display: inline-block;">

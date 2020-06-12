@@ -46,7 +46,7 @@ import {
         MdcSelectModule,
     } from '@angular-mdc/web';
 import { VideoDemoComponent } from './content-demo/video-demo/video-demo.component';
-import { DemoService } from 'src/app/shared/service/content-demo-service';
+import { ContentService } from 'src/app/shared/service/content.service';
 import { ArticleContentComponent } from './content-texts/article-content/article-content.component';
 import { DataService } from 'src/app/shared/service/dataService';
 
@@ -91,7 +91,7 @@ import { DataService } from 'src/app/shared/service/dataService';
         MdcSelectModule,
     ],
     exports: [ContentDemoComponent, ContentTextsComponent],
-    providers: [DemoService,DataService],
+    providers: [ContentService,DataService],
     // tslint:disable-next-line:max-line-length
     declarations: [ContentDemoComponent, ContentTextsComponent, VideoDemoComponent, ArticleContentComponent],
 })

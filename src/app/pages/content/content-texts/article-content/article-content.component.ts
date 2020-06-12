@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterService } from 'src/app/shared/service/router-service';
-import { DemoService } from 'src/app/shared/service/content-demo-service';
+import { RouterService } from 'src/app/shared/service/router.service';
+import { ContentService } from 'src/app/shared/service/content.service';
 import { AuthenticationService } from 'src/app/shared/service/authentication.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class ArticleContentComponent implements OnInit {
 
   constructor(
     private routerService: RouterService, 
-    private demoService:DemoService,
+    private contentService:ContentService,
     private authservice: AuthenticationService) { }
 
   route = this.routerService;
@@ -35,12 +35,11 @@ export class ArticleContentComponent implements OnInit {
  
 
   ngOnInit() {
-    this.demoService.currrentContentArticle.subscribe(data => this.articleContent = data)
+    this.contentService.currrentContentArticle.subscribe(data => this.articleContent = data)
     if(this.articleContent === null)
     {
       this.articleContent = JSON.parse(localStorage.getItem('demoContent'));
-      this.currentArticle = JSON.parse(localStorage.getItem('currentVideo'));
-     // localStorage.removeItem('demoContent'); // to clear it again.
+      this.currentArticle = JSON.parse(localStorage.getItem('currentArticle'));
     }else{
       localStorage.removeItem('demoContent');
       localStorage.setItem('demoContent', JSON.stringify(this.articleContent));
@@ -48,6 +47,7 @@ export class ArticleContentComponent implements OnInit {
     }
 
 
+    //current user storage 
     if(localStorage.getItem('currentUser') !== null){
       this.login = true;
       this.user = JSON.parse(window.localStorage.getItem('currentUser')); 
@@ -56,6 +56,7 @@ export class ArticleContentComponent implements OnInit {
     }
 
 
+    //continue training test alert 
     if( this.currentTrainingTestIndex = JSON.parse(localStorage.getItem('currentTestIndex')) !== null)
     {
       this.countTimesUservisitContentPage()
@@ -63,10 +64,10 @@ export class ArticleContentComponent implements OnInit {
     
   }
 
-  onVideoClick(article){
+  onArticleClick(article){
     this.currentArticle = article;
-      localStorage.removeItem('currentVideo');
-      localStorage.setItem('currentVideo', JSON.stringify(this.currentArticle));
+      localStorage.removeItem('currentArticle');
+      localStorage.setItem('currentArticle', JSON.stringify(this.currentArticle));
 
   }
 

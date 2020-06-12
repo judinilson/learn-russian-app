@@ -16,15 +16,22 @@
   //content
 .card {
     width: 260px;
-    margin: 28px;
+    margin: 20px 10px 20px 25px;
+    height: 300px;
     position: relative;
     float: left;
-    top: 56px;
+    //top: 56px;
    //margin-top: 15%;
+
+
+   mdc-card-media{
+     max-height: 200px;
+   }
   }
   
   .card__primary {
-    padding: 1rem;
+    padding: 0.3rem;
+    padding-bottom: unset;
   }
   
   .card__title {
@@ -40,7 +47,13 @@
   .card__secondary {
     @include mdc-theme-prop(color, text-secondary-on-background);
   
-    padding: 0 1rem 6px 1rem;
+    padding: 0 .5rem 6px .5rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
   
 .play-icon{

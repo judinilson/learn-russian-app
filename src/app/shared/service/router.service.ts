@@ -1,6 +1,6 @@
 import { Injectable, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { NAV_SECTIONS, NAV_LINKS, ROLE_ADMIN } from '../../shared/configuration/pages';
+import { NAV_SECTIONS, NAV_LINKS, ROLE_ADMIN } from '../configuration/pages';
 
 
 

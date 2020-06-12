@@ -40,7 +40,7 @@ import { TestComponent } from './test.component';
 import {QuestionsAnswersComponent} from './questions-answers/questions-answers.component'
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { TrainingTestService } from 'src/app/shared/service/training-test-service';
+import { TrainingTestService } from 'src/app/shared/service/training-test.service';
 import { SideNavPageModule } from 'src/app/shared/side-nav/side-nav.component';
 import { Congratulation } from './congratulation-page/congratulation';
 import { SnackbarAlertComponent } from './snackbar-alert/snackbar-alert';

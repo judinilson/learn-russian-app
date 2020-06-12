@@ -22,8 +22,14 @@
     margin-left: 3rem;
     position: relative;
     float: left;
-    top: 56px;
+    max-height: 160px;
+    //top: 56px;
    //margin-top: 15%;
+
+   mdc-card-media{
+    max-width: 200px;
+  }
+  
   }
 
   .card-row{
@@ -37,11 +43,11 @@
   .card-info{
     display: flex;
     flex-direction: column;
-    padding: 8px 16px;
+    padding: 8px 10px;
   }
   
   .card__primary {
-    padding: 0.8rem;
+    padding: .5rem;
   }
   
   .card__title {
@@ -58,7 +64,13 @@
   .card__secondary {
     @include mdc-theme-prop(color, text-secondary-on-background);
   
-    padding: 0 1rem 6px 1rem;
+    padding: 0 .3rem 6px .3rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
   
 

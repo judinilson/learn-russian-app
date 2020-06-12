@@ -1,9 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import {HttpClient} from '@angular/common/http'
 import { BehaviorSubject } from 'rxjs';
 import { DragDropQuestion } from 'src/app/pages/test/questions-answers/questions-answers.component';
+import { environment } from '../environment';
+import { TrainingContent } from '../Model/Training-Content';
+import { Statistic } from '../Model/Statistic';
+
 
 @Injectable()
 export class TrainingTestService {
+
+  constructor(private http: HttpClient){}
 
   private trainingTestData = new BehaviorSubject<any>(null);
   currrentest = this.trainingTestData.asObservable();
@@ -52,8 +60,21 @@ export class TrainingTestService {
   //   { key: "гостей", value: "Принимать" },
   // )
 
-  constructor() { }
+  getTrainingContent(){
+    return this.http.get<TrainingContent>(environment.trainingDataUrl)
+  }
 
+  // statistic http client 
+  getStatistic(){
+    return this.http.get<Statistic>(environment.statisticUrl)
+  }
+
+  createStatistic(data){
+    return this.http.post<Statistic>(environment.statisticPostUrl,data)
+  }
+
+
+  //new training test 
     newTraining(test:any){
         this.trainingTestData.next(test);
     }

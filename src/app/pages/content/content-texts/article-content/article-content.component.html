@@ -91,7 +91,7 @@
        <!-- content -->
         <section>
             <div class="article-cover-image">
-                <img [src]="articleContent?.coverImg" alt="cover image">
+                <img [src]="articleContent?.coverImage" alt="cover image">
             </div>
         </section>
 
@@ -99,11 +99,11 @@
            <mdc-card class="card mdc-elevation--z16">
             <div class="card-primary">
                 <h2 class="card__title" mdcHeadline6>{{articleContent?.title}}</h2>
-                <h3 class="card__subtitle" mdcSubtitle2>{{articleContent?.subTitle}}</h3>
+                <h3 class="card__subtitle" mdcSubtitle2>{{articleContent?.subtitle}}</h3>
               </div>
               <div class="card__secondary" mdcBody2>
                   <!-- <p >{{ articleContent?.article}}</p> -->
-                  <p *ngFor="let lorem of lorems">{{lorem}}</p>
+                  <p >{{articleContent?.article}}</p>
                
               </div>
            </mdc-card>

@@ -1,9 +1,10 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { RouterService } from 'src/app/shared/service/router-service';
+import { RouterService } from 'src/app/shared/service/router.service';
 import { Router } from '@angular/router';
-import { DemoService } from 'src/app/shared/service/content-demo-service';
-import {DataService} from 'src/app/shared/service/dataService';
+import { ContentService } from 'src/app/shared/service/content.service';
+import { DataService } from 'src/app/shared/service/dataService';
 import { AuthenticationService } from 'src/app/shared/service/authentication.service';
+import { Category } from 'src/app/shared/Model/Content';
 
 @Component({
   selector: 'app-content-demo',
@@ -17,55 +18,111 @@ export class ContentDemoComponent implements OnInit {
   username = 'none';
   currentTrainingTestIndex: boolean;
   continueTestAlert: boolean;
- 
+  demoData: any;
+  _categories: any;
+  allDemoCategory: Category[] = [];
+
+  querryProgressBar = true
+
+
   constructor(
-    private routerService: RouterService, 
+    private routerService: RouterService,
     private router: Router,
-    private demoService:DemoService,
+    private contentService: ContentService,
     private dataService: DataService,
     private authservice: AuthenticationService
-    ) { }
+  ) { }
 
-    dataSource = this.dataService.demoDataService;
+  dataSource = this.dataService.demoDataService;
 
   selectedCategory: any;
   route = this.routerService;
 
   ngOnInit() {
-    if(localStorage.getItem('currentUser') !== null){
+
+    //current user storage 
+    if (localStorage.getItem('currentUser') !== null) {
       this.login = true;
-      this.user = JSON.parse(window.localStorage.getItem('currentUser')); 
+      this.user = JSON.parse(window.localStorage.getItem('currentUser'));
       this.username = this.user.username;
-     console.log(this.username);
+      console.log(this.username);
     }
 
 
-    if( 
+    //continue training alert 
+    if (
       this.currentTrainingTestIndex = JSON.parse(localStorage.getItem('currentTestIndex')) !== null
-      )this.continueTestAlert = true;
+    ) this.continueTestAlert = true;
+
+
+    this.categories() //get all categories
+    this.getDemostrationContent(); //get demonstration content
+
   }
 
-  categories(){
-    return  this.dataSource.filter(
-      (items, i,arr) => arr.findIndex(x => x.category === items.category) === i);
+  categories() {
+    this.contentService.getCategory().subscribe(
+      data => {
+        localStorage.removeItem('Democategories');
+        localStorage.setItem('Democategories', JSON.stringify(data));
+        this.querryProgressBar  = false;
+      },
+      error => {
+        console.log(" error trying get categories: ", error);
+      }
+    )
+
+
   }
 
-  filteredCategory(){
-    return this.dataSource.filter(x => x.category == this.selectedCategory);
+  filteredCategory() {
+    return this.demoData.filter(x => x.categoryID == this.selectedCategory.id)
   }
-  
 
-  onSelectedCard(content:any){
+  getDemostrationContent() {
+    this.querryProgressBar  = true;
+    this.contentService.getDemoContent().subscribe(
+      data => {
+        this.demoData = data
+        this.demonCategory(data)
+        this.querryProgressBar  = false;
+      },
+      error => {
+        console.log("error getting demo data: ", error);
+      }
+    )
+  }
+
+  //map demostration content categories
+  demonCategory(data) {
+
+    this._categories = JSON.parse(localStorage.getItem('Democategories'))
+    var category = new Array()
+    if (this._categories != null) {
+      data.forEach((el, i) => {
+        var dt = (this._categories.filter(x => x.id === el.categoryID))
+
+        //check if already exist
+        if (category.every(x => x.id !== dt[0].id)) {
+          category[i] = dt[0]
+        }
+      });
+
+      this.allDemoCategory = category.filter(v => v !== null)//get just non null value 
+    }
+  }
+
+  onSelectedCard(content: any) {
     this.router.navigateByUrl('/visual-demo');
-    this.demoService.newContentDemo(content);
+    this.contentService.newContentDemo(content);
     console.log(content);
-    
+
   };
 
 
-   public logOut(){
+  public logOut() {
     this.authservice.logout();
-    this.login = false ;
+    this.login = false;
   }
 }
 

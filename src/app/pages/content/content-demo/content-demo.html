@@ -10,8 +10,8 @@
       <mat-form-field mdcTopAppBarTitle>
         <mat-label>Categories</mat-label>
         <mat-select [(ngModel)]="selectedCategory">
-          <mat-option *ngFor="let item of categories()" [value]="item.category">
-            {{item.category}}
+          <mat-option *ngFor="let item of allDemoCategory" [value]="item">
+            {{item.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -106,7 +106,9 @@
   <div mdcDrawerAppContent>
 
     <!-- content -->
-    <div #mainContent *ngIf="!selectedCategory" class=" justify-content-center">
+    <div #mainContent *ngIf="!selectedCategory" class=" justify-content-center" [ngStyle]="{'margin-top' : continueTestAlert ? 'unset;': '60px;'}">
+      <mat-progress-bar *ngIf="querryProgressBar" mode="query" ></mat-progress-bar>
+
       <!-- alert -->
       <div class="alert alert-warning" role="alert" *ngIf="continueTestAlert"
         style="margin-top: 5rem;
@@ -120,25 +122,27 @@
         . Give it a click to continue.
       </div>
 
-      <mdc-card class="card mdc-elevation--z10" *ngFor="let item of dataSource" [ngStyle]="{'top' : continueTestAlert ? 'unset;': '56px;'}">
+      <mdc-card class="card mdc-elevation--z10" *ngFor="let item of demoData" >
         <mdc-card-primary-action (click)="onSelectedCard(item)">
-          <mdc-card-media [ngStyle]="{'background-image': 'url('+ item.coverImg
+          <mdc-card-media [ngStyle]="{'background-image': 'url('+ item.coverImage
             +')'}" wide>
             <mdc-icon class="play-icon">play_circle_outline</mdc-icon>
           </mdc-card-media>
           <div class="card__primary">
-            <h2 class="card__title" mdcHeadline6>{{item.name}}</h2>
+            <h4 class="card__title" mdcHeadline6>{{item.title}}</h4>
             <!-- <h3 class="demo-card__subtitle" mdcSubtitle2>by Kurt Wagner</h3> -->
           </div>
           <div class="card__secondary" mdcBody2>
-            {{item.subTitle}}
+            {{item.subtitle}}
           </div>
         </mdc-card-primary-action>
       </mdc-card>
     </div>
 
     <!-- content with selected category -->
-    <div #mainContent *ngIf="selectedCategory">
+    <div #mainContent *ngIf="selectedCategory" [ngStyle]="{'margin-top' : continueTestAlert ? 'unset;': '60px;'}">
+      <mat-progress-bar *ngIf="querryProgressBar" mode="query" ></mat-progress-bar>
+
       <!-- alert -->
       <div class="alert alert-warning" role="alert" *ngIf="continueTestAlert"
         style="margin-top: 5rem;
@@ -152,18 +156,18 @@
         . Give it a click to continue.
       </div>
       <mdc-card class="card mdc-elevation--z10" *ngFor="let item of
-        filteredCategory()" [ngStyle]="{'top' : continueTestAlert ? 'unset;': '56px;'}">
+        filteredCategory()" >
         <mdc-card-primary-action (click)="onSelectedCard(item)">
-          <mdc-card-media [ngStyle]="{'background-image': 'url('+ item.coverImg
+          <mdc-card-media [ngStyle]="{'background-image': 'url('+ item.coverImage
             +')'}" wide>
             <mdc-icon class="play-icon">play_circle_outline</mdc-icon>
           </mdc-card-media>
           <div class="card__primary">
-            <h2 class="card__title" mdcHeadline6>{{item.name}}</h2>
+            <h4 class="card__title" mdcHeadline6>{{item.title}}</h4>
             <!-- <h3 class="demo-card__subtitle" mdcSubtitle2>by Kurt Wagner</h3> -->
           </div>
           <div class="card__secondary" mdcBody2>
-            {{item.subTitle}}
+            {{item.subtitle}}
           </div>
         </mdc-card-primary-action>
       </mdc-card>

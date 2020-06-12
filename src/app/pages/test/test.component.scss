@@ -17,11 +17,12 @@
 
     //content
 .card {
-    width: 300px;
-    margin: 28px;
+    width: 250px;
+    margin: 20px;
     position: relative;
     float: left;
-    top: 56px;
+    //top: 56px;
+    height: 260px;
    //margin-top: 15%;
   }
   
@@ -32,6 +33,12 @@
   .card__title {
     margin: 0;
     font-size: 1.5rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
   
 //   .card__subtitle {

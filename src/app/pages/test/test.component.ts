@@ -1,12 +1,14 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { RouterService } from 'src/app/shared/service/router-service';
+import { RouterService } from 'src/app/shared/service/router.service';
 import { Router, RouterModule } from '@angular/router';
 import { DataService } from 'src/app/shared/service/dataService';
-import { TrainingTestService } from 'src/app/shared/service/training-test-service';
+import { TrainingTestService } from 'src/app/shared/service/training-test.service';
 import { AuthenticationService } from 'src/app/shared/service/authentication.service';
 import { MatSnackBar, MatBottomSheet, MatDialog } from '@angular/material';
 import { SnackbarAlertComponent } from './snackbar-alert/snackbar-alert';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { ContentService } from 'src/app/shared/service/content.service';
+import { Category } from 'src/app/shared/Model/Content';
 
 
 
@@ -24,6 +26,11 @@ export class TestComponent implements OnInit {
   startTest: boolean;
   testIndex = 0
   getIndex: any;
+  private _categories: any;
+  allTrainingCategory: Category[] = [];
+
+  querryProgressBar = true;
+
 
   constructor(
     private routerService: RouterService,
@@ -31,6 +38,7 @@ export class TestComponent implements OnInit {
     private dataService: DataService,
     private trainingService: TrainingTestService,
     private authservice: AuthenticationService,
+    private contentService: ContentService,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog
   ) { }
@@ -39,6 +47,7 @@ export class TestComponent implements OnInit {
   demoDataSource = this.dataService.demoDataService;
   route = this.routerService;
   selectedCategory: any;
+  trainingData: any;
 
 
   ngOnInit() {
@@ -51,16 +60,70 @@ export class TestComponent implements OnInit {
     }
     this.getTestIndex()
 
-    console.log(Math.round(0.6))
+
+    this.getCategories();
+    this.getTrainingData()
   }
 
-  categories(){
-    return  this.dataSource.filter(
-      (items, i,arr) => arr.findIndex(x => x.category === items.category) === i);
+  //subscribe categories from db
+  getCategories() {
+    this.contentService.getCategory().subscribe(
+      data => {
+        //this._categories = data
+
+        //store category in localstorage
+        localStorage.removeItem('Trainingcategories');
+        localStorage.setItem('Trainingcategories', JSON.stringify(data));
+        // console.log(this._categories);
+        this.querryProgressBar = false;
+      },
+      error => {
+        console.log(" error trying get categories: ", error);
+      }
+    )
+
+
   }
 
-  filteredCategory(){
-    return this.dataSource.filter(x => x.category == this.selectedCategory);
+  //filter categories when user chose one category
+  filteredCategory() {
+    return this.trainingData.filter(x => x.categoryID == this.selectedCategory.id)
+  }
+
+
+  getTrainingData(){
+    this.querryProgressBar  = true;
+    this.trainingService.getTrainingContent()
+    .pipe(debounceTime(500))
+    .pipe(distinctUntilChanged())
+    .subscribe(
+      data => {
+        this.trainingData = data;
+        this.trainingCategory(data)
+        this.querryProgressBar = false;
+      },
+      error => {
+        console.log("error trying to get training Data: ",error);
+      })
+  }
+
+  //map article categories
+  trainingCategory(data) {
+    this._categories = JSON.parse(localStorage.getItem('Trainingcategories'))
+    var cat = new Array()
+    if (this._categories != null) {
+      data.forEach((el, i) => {
+        var dt = (this._categories.filter(x => x.id === el.categoryId))
+
+        //check if already exist
+        if (cat.every(x => x.id !== dt[0].id)) {
+          cat[i] = dt[0]
+        }
+      });
+
+      this.allTrainingCategory = cat.filter(v => v !== null)//get just non null value 
+    }
+    console.log("Categories: ", this.allTrainingCategory);
   }
 
   onSelectedCard(content:any,index){

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterService } from 'src/app/shared/service/router-service';
+import { RouterService } from 'src/app/shared/service/router.service';
 import { Router } from '@angular/router';
-import { DemoService } from 'src/app/shared/service/content-demo-service';
+import { ContentService } from 'src/app/shared/service/content.service';
 import { DataService } from 'src/app/shared/service/dataService';
 import { AuthenticationService } from 'src/app/shared/service/authentication.service';
+import { Category } from 'src/app/shared/Model/Content';
 
 @Component({
   selector: 'app-content-texts',
@@ -18,29 +19,25 @@ export class ContentTextsComponent implements OnInit {
   username = 'none';
   currentTrainingTestIndex: boolean;
   continueTestAlert: boolean;
+  ArticleData: any;
+  allArticleCategory: Category[] = []
+  _categories: any;
   constructor(
     private routerService: RouterService,
     private router: Router,
-    private demoService: DemoService,
+    private contentService: ContentService,
     private dataService: DataService,
     private authservice: AuthenticationService
-    ) { }
+  ) { }
 
- 
+  querryProgressBar = true
 
 
   route = this.routerService;
   dataSource = this.dataService.articleDataService;
 
-  
 
-    categories() {
-      return  this.dataSource.filter(
-        (items, i, arr) => arr.findIndex(x => x.category === items.category) === i);
-    }
-    filteredCategory() {
-      return this.dataSource.filter(x => x.category === this.selectedCategory);
-    }
+
 
   ngOnInit() {
 
@@ -48,30 +45,99 @@ export class ContentTextsComponent implements OnInit {
     //   el.article = this.lorem.getLineEnding()
     // });
 
-    if(localStorage.getItem('currentUser') !== null){
+    //current user storage
+    if (localStorage.getItem('currentUser') !== null) {
       this.login = true;
-      this.user = JSON.parse(window.localStorage.getItem('currentUser')); 
+      this.user = JSON.parse(window.localStorage.getItem('currentUser'));
       this.username = this.user.username;
-     console.log(this.username);
+      console.log(this.username);
     }
 
 
-    if( 
+    //continue training alert 
+    if (
       this.currentTrainingTestIndex = JSON.parse(localStorage.getItem('currentTestIndex')) !== null
-      )this.continueTestAlert = true;
+    ) this.continueTestAlert = true;
+
+    this.categories();
+    this.getArticleContent() // get article 
 
   }
 
+  //subscribe categories from db
+  categories() {
+    this.contentService.getCategory().subscribe(
+      data => {
+        //this._categories = data
+
+        //store category in localstorage
+        localStorage.removeItem('Articlecategories');
+        localStorage.setItem('Articlecategories', JSON.stringify(data));
+        // console.log(this._categories);
+        this.querryProgressBar  = false;
+      },
+      error => {
+        console.log(" error trying get categories: ", error);
+      }
+    )
+
+
+  }
+
+  //filter categories when user chose one category
+  filteredCategory() {
+    return this.ArticleData.filter(x => x.categoryID == this.selectedCategory.id)
+  }
+
+  //subscribe article data from db 
+  getArticleContent() {
+    this.querryProgressBar  = true;
+    this.contentService.getArticleContent().subscribe(
+      data => {
+        this.ArticleData = data
+        // filter just article categories 
+        this.articleCategory(data)
+        this.querryProgressBar  = false;
+      },
+      error => {
+        console.log("error getting demo data: ", error);
+      }
+    )
+
+  }
+
+  //map article categories
+  articleCategory(data) {
+    this._categories = JSON.parse(localStorage.getItem('Articlecategories'))
+    var category = new Array()
+    if (this._categories != null) {
+      data.forEach((el, i) => {
+        var dt = (this._categories.filter(x => x.id === el.categoryID))
+
+        //check if already exist
+        if (category.every(x => x.id !== dt[0].id)) {
+          category[i] = dt[0]
+        }
+      });
+
+      this.allArticleCategory = category.filter(v => v !== null)//get just non null value 
+    }
+  }
+
+
+
   onSelectedCardArticle(content: any) {
+    this.querryProgressBar  = true;
     this.router.navigateByUrl('/visual-article');
-    this.demoService.newContentArticle(content);
+    this.contentService.newContentArticle(content);
+    this.querryProgressBar  = false;
     console.log(content);
 
   }
 
-  public logOut(){
+  public logOut() {
     this.authservice.logout();
-    this.login = false ;
+    this.login = false;
   }
 }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TrainingTestService } from 'src/app/shared/service/training-test-service';
+import { TrainingTestService } from 'src/app/shared/service/training-test.service';
 import { Router } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -58,6 +58,8 @@ export class QuestionsAnswersComponent implements OnInit {
   _getRandomIndex: any;
   _start = false;
   _continue = false;
+  currentUser: any;
+  visitedContentPage = 0; //times user visited content page getted in localstorage
 
   constructor(
     private trainingTestService: TrainingTestService,
@@ -71,13 +73,15 @@ export class QuestionsAnswersComponent implements OnInit {
 
 
   ngOnInit() {
+
+    //current user 
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
+    
     //get the training type 
     if(this.trainingTestService._continue !=null)
       this._continue = !this._continue;
     else
       this._start = !this._start
-    console.log("user wanna continue: ",this._continue);
-    console.log("user wanna start: ",this._start);
 
   
     this.trainingTestService.currrentest.subscribe(data => this.testData = data);
@@ -90,7 +94,7 @@ export class QuestionsAnswersComponent implements OnInit {
 
       this.choseQuetions(0)
     }
-    this.totalQestions = this.testData.training.length +1
+    this.totalQestions = this.testData.trainings.length +1
    
 
 
@@ -114,7 +118,7 @@ export class QuestionsAnswersComponent implements OnInit {
     this._start = false;
     if (this.confirm) {
       this.confirmCount = 1
-      if (this.index <= this.testData.training.length) {
+      if (this.index <= this.testData.trainings.length) {
         this.choseQuetions(0)
         this.confirm = false
         this._countbarPercent(this.index)
@@ -298,7 +302,7 @@ export class QuestionsAnswersComponent implements OnInit {
     if (this._start === true) {
       //when starting new test index need to remove user visited content page from storage
       localStorage.removeItem('userVisited');
-      var data = new Array(this.testData.training.length + 1)
+      var data = new Array(this.testData.trainings.length + 1)
       this.randomIndexs = this.randomExerciceIndex(data)
       this.setCurrentTDataLocalstorage(this.randomIndexs)
       console.log('first random []: ', this.randomIndexs);
@@ -310,7 +314,7 @@ export class QuestionsAnswersComponent implements OnInit {
     }
 
 
-    if (this.randomIndexs[changeQuetionindex] === this.testData.training.length) 
+    if (this.randomIndexs[changeQuetionindex] === this.testData.trainings.length) 
     {
       //this.isDragDropQuestionsecond = !this.isDragDropQuestionsecond
       this._correctincorrectDragDropAns = []
@@ -329,8 +333,8 @@ export class QuestionsAnswersComponent implements OnInit {
     
 
     if (!this.isDragDropQuestionfirst && !this.isDragDropQuestionsecond) {
-      this.currentQuestion = this.testData.training[this.randomIndexs[changeQuetionindex]].questions;
-      this.currentAnswers = this.testData.training[this.randomIndexs[changeQuetionindex]].answer;
+      this.currentQuestion = this.testData.trainings[this.randomIndexs[changeQuetionindex]].questions;
+      this.currentAnswers = this.testData.trainings[this.randomIndexs[changeQuetionindex]].answers;
       this.totalAnswers += this.currentAnswers.length
     }
 
@@ -376,13 +380,14 @@ export class QuestionsAnswersComponent implements OnInit {
     var rest = (this.totalAnswers - (this.totalCorrectAnswer + this.totalIncorrectAnswer));
     var total = (this.totalAnswers - rest)
     this.storeResult(total)
-
+    this.createStatistic(total)//http request
 
     this.router.navigateByUrl('/rate-test');
     this.index = 0;
   }
 
 
+  //store result in localstorage
   storeResult(totalAnswers){
     var _trainingDataResult = {
       'totalCorrectAnswers': this.totalCorrectAnswer,
@@ -404,6 +409,33 @@ export class QuestionsAnswersComponent implements OnInit {
       localStorage.removeItem('userVisited');
       localStorage.setItem('userVisited', JSON.stringify(userVisited));
     }
+    
+  }
+
+
+  //http request 
+  createStatistic(totalAnswers){
+    var correctAnswerPercentage = Math.round( this.totalCorrectAnswer * 100 /totalAnswers)
+    var incorrectAnswerPercentage = Math.round(this.totalIncorrectAnswer * 100 /totalAnswers)
+
+    //times user visited content page during the test 
+    var visited = JSON.parse(localStorage.getItem('userVisited'))
+    if (visited !== null) {
+      this.visitedContentPage = visited.user_visited_content
+    }
+    if(this.currentUser !== null){
+      var userId = this.currentUser.id;
+      this.trainingTestService.createStatistic({
+        userId:userId, 
+        percentageCorrectAnswers: correctAnswerPercentage,
+        percentageIncorrectAnswers: incorrectAnswerPercentage,
+        trainingDate: new Date(),
+        backToArticleCount:this.visitedContentPage
+      }).subscribe(res => {
+        console.log("response: ",res);
+      })
+    }
+   
     
   }
   
