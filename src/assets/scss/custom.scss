@@ -2,9 +2,10 @@
 
 // Core
 
-//@import "custom/functions";
+@import "custom/functions";
 @import "custom/variables";
-//@import "custom/mixins";
+@import "custom/mixins";
+
 
 
 
@@ -12,3 +13,15 @@
 
 @import "~bootstrap/dist/css/bootstrap.css";
 //
+
+
+
+//utilities and components
+
+@import "custom/reboot";
+@import "custom/utilities";
+@import "custom/components";
+
+
+// Angular Differences
+@import "angular-differences/angular-differences"

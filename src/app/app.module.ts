@@ -30,7 +30,7 @@ import { AdminDashboardModule } from './pages/Admin-dashboard/admin-dashboard.Mo
     TrainingTestModule,
     StatisticModule,
     AdminDashboardModule
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent],
   

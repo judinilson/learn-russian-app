@@ -14,26 +14,34 @@ import { OauthComponent } from './shared/Aouth/Auth/oauth.component';
 import { AuthGuard } from './shared/helper/auth.guard';
 import { UserRegisterComponent } from './shared/Aouth/user-register/user-register.component';
 import { UserProfilComponent } from './shared/Aouth/user-profil/user-profil.component';
-import { AdminDashboardComponent } from './pages/Admin-dashboard/admin-dashboard/admin-dashboard.component';
+import { AdminLayoutComponent } from './pages/Admin-dashboard/components/layouts/admin-layout.component';
 
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
    { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'content-demo', component: ContentDemoComponent },
-  {path: 'visual-demo', component: VideoDemoComponent},
+  { path: 'visual-demo', component: VideoDemoComponent},
   { path: 'content-text', component: ContentTextsComponent },
-  {path: 'visual-article', component: ArticleContentComponent},
+  { path: 'visual-article', component: ArticleContentComponent},
   { path: 'login', component: OauthComponent},
   { path: 'subscribe', component: UserRegisterComponent},
   { path: 'user-profile', component: UserProfilComponent,canActivate: [AuthGuard]},
   { path: 'test', component: TestComponent, canActivate: [AuthGuard]},
   { path: 'training', component: QuestionsAnswersComponent, canActivate: [AuthGuard] },
   { path: 'rate-test', component: Congratulation,canActivate: [AuthGuard] },
-  {path: 'statistic', component: StatisticComponent,canActivate: [AuthGuard] },
-  {path: 'help', component: HelpComponent,canActivate: [AuthGuard] },
-  { path: 'admin-dashboard', component: AdminDashboardComponent,canActivate: [AuthGuard]},
-
+  { path: 'statistic', component: StatisticComponent,canActivate: [AuthGuard] },
+  { path: 'help', component: HelpComponent,canActivate: [AuthGuard] },
+  {
+    path: '',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './pages/Admin-dashboard/admin-dashboard.Module#AdminDashboardModule'
+      }
+    ]
+  }
 ];
 
 @NgModule({

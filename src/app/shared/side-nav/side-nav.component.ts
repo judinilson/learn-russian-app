@@ -50,7 +50,6 @@ export class SideNavComponent implements OnInit {
       this.login = true;
       this.user = JSON.parse(window.localStorage.getItem('currentUser')); 
       this.username = this.user.username;
-     console.log(this.username);
     }
     
   }
@@ -67,12 +66,7 @@ export class SideNavComponent implements OnInit {
   }
 
 
-  onChange(value: MatSlideToggleChange) {
-    const { checked } = value;
-
-    console.log("is checked: ",this.isChecked);
-  }
-
+  
 }
 
 

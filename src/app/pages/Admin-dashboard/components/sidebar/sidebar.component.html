@@ -1,0 +1,92 @@
+<nav class="navbar navbar-vertical navbar-expand-md navbar-light bg-white"
+  id="sidenav-main">
+  <div class="container-fluid">
+
+    <!-- User -->
+    <div class="row mt-2" *ngIf="login">
+      <div class="col align-items-center d-none d-md-flex">
+        <div class="mb-5" placement="bottom-right">
+
+          <a role="button" routerLinkActive="active"
+            [routerLink]="['/user-profile']">
+            <div class="media align-items-center">
+              <span class="avatar avatar-sm rounded-circle">
+                <img alt="Image placeholder"
+                  src="https://img.icons8.com/cotton/64/000000/user-male-circle.png"
+                  style="width: 50px;" />
+              </span>
+              <div class="media-body ml-2 d-lg-block">
+                <span class="mb-0 text-sm font-weight-bold">
+                  {{username}}
+                </span>
+              </div>
+
+
+            </div>
+          </a>
+
+          <div class="p-2">
+            <button class="btn btn-light" (click)="logOut()">
+              <i class="pr-1 fas fa-running"></i>
+              <span>Выйти</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Collapse -->
+    <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+
+      <!-- Navigation -->
+      <ul class="navbar-nav">
+
+        <li *ngFor="let menuItem of menuItems" class="nav-item">
+          <a *ngIf="menuItem.path"
+            routerLinkActive="active"
+            [routerLink]="[menuItem.path]"
+            class="nav-link">
+            <i class="{{menuItem.icon}}"></i>
+            {{menuItem.title}}
+
+
+          </a>
+
+          <a *ngIf="!menuItem.path"
+            routerLinkActive="active"
+            class="nav-link dropdowns"
+            (click)="menuItem.title == 'Contents' ? isDropDown(): ''"
+            >
+            <i class="{{menuItem.icon}}"></i>
+            {{menuItem.title}}
+
+            <mdc-icon mdcSuffix *ngIf="menuItem.title== 'Contents'" >
+              <i *ngIf="!isDroped" class="fas fa-angle-down"></i>
+              <i *ngIf="isDroped" class="fas fa-angle-up"></i>
+            </mdc-icon>
+          </a>
+          
+<!-- sublinks -->
+          <ul *ngIf="isDroped" class="navbar-nav sub-links" >
+            <li *ngFor="let sublink of menuItem.sublinks" class="nav-item">
+              <a
+                routerLinkActive="active"
+                [routerLink]="[sublink.path]"
+                class="nav-link">
+                <i class="{{sublink.icon}}"></i>
+                {{sublink.title}}
+              </a>
+
+            </li>
+
+          </ul>
+
+
+
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
