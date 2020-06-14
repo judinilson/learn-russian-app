@@ -28,11 +28,11 @@ export class RouterService {
 
     _isDroped() {
         this.isDroped = !this.isDroped;
-        // tslint:disable-next-line:no-non-null-assertion
-        if ( this.isDroped! ) {
-          this.icon = 'arrow_drop_up';
-        } else {
-          this.icon = 'arrow_drop_down';
-        }
+        // // tslint:disable-next-line:no-non-null-assertion
+        // if ( this.isDroped! ) {
+        //   this.icon = 'arrow_drop_up';
+        // } else {
+        //   this.icon = 'arrow_drop_down';
+        // }
       }
 }

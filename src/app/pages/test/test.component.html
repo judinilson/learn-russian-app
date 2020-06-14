@@ -99,6 +99,9 @@
       </mdc-drawer>
       <div mdcDrawerAppContent>
         
+        <!-- not network alert -->
+        <not-network *ngIf="notnework" style="margin-top: 60px;"></not-network>
+
         <!-- content -->
         <div #mainContent *ngIf="!selectedCategory" style="margin-top: 60px;">
           <mat-progress-bar *ngIf="querryProgressBar" mode="query" ></mat-progress-bar>

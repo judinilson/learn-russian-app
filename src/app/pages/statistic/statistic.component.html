@@ -104,7 +104,7 @@
             </div> -->
         
             <div class="row d-flex justify-content-around">
-                <div class="chart-container col-md-6" style="text-align: center;">
+                <div *ngIf="!notnetwork" class="chart-container col-md-6" style="text-align: center;">
                     <span style="
                         font-size: 18px;
                         font-weight: 500;">
@@ -148,6 +148,7 @@
         </div>
     </div>
 </div>
+
 
 <div *ngIf="!statistics" class="no-statistics">
     <div class="alert alert-warning" role="alert" *ngIf="continueTestAlert" style="margin: 2rem;">

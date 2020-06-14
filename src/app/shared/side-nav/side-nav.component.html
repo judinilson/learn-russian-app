@@ -48,8 +48,11 @@
                         </span>
                         
                         <mdc-icon  mdcListItemGraphic  mdcSuffix *ngIf="route.navLinks[key].name == 'Россия'" >
-                          {{route.icon}}
+                          <!-- {{route.icon}} -->
+                          <i *ngIf="!route.isDroped" class="fa fa-sort-down"></i>
+                          <i *ngIf="route.isDroped" class="fa fa-sort-up"></i>
                         </mdc-icon>
+
                        
                       </a>
     
@@ -71,6 +74,7 @@
 
         </nav>
 
+      
         <p class="footer">
             Copy@right АСОИУ
         </p>

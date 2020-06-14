@@ -66,7 +66,8 @@
                 </span>
                 <mdc-icon mdcListItemGraphic mdcSuffix
                   *ngIf="route.navLinks[key].name == 'Россия'">
-                  {{route.icon}}
+                  <i *ngIf="!route.isDroped" class="fa fa-sort-down"></i>
+                  <i *ngIf="route.isDroped" class="fa fa-sort-up"></i>
                 </mdc-icon>
               </a>
 
@@ -97,7 +98,7 @@
     </mdc-drawer-content>
   </mdc-drawer>
 
-
+ 
 
   <div mdcDrawerAppContent class="mt-md-5 p-0">
     <div class="row">

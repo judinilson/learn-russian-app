@@ -35,8 +35,6 @@ import { ChartsModule, Color } from 'ng2-charts';
 import { Label } from 'ng2-charts';
 import { TrainingTestService } from 'src/app/shared/service/training-test.service';
 import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
-import { Statistic } from 'src/app/shared/Model/Statistic';
-//import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 
 
 @Component({
@@ -62,10 +60,18 @@ export class StatisticComponent implements OnInit {
   statisticData: any;
 
   querryProgressBar = true;
+  notnetwork = false
 
   rating = 4;
   emoji = ""
   enum = '../../../assets/icons/russia.png'
+
+  currentTrainingTestIndex: boolean;
+  continueTestAlert: boolean;
+  visitedContentPage = 0;
+  currentUser: any;
+
+  //char
   barCharOptions: ChartOptions = {
     responsive: true,
     scales: {
@@ -102,10 +108,10 @@ export class StatisticComponent implements OnInit {
     }
 
   ]
-  currentTrainingTestIndex: boolean;
-  continueTestAlert: boolean;
-  visitedContentPage = 0;
-  currentUser: any;
+
+ 
+
+//
   constructor(
     private trainingTestService: TrainingTestService,
   ) { }
@@ -157,6 +163,8 @@ export class StatisticComponent implements OnInit {
         },
         error => {
           console.log("Error while getting statistic data!!", error);
+          this.notnetwork = true;
+
         }
       )
   }
@@ -319,6 +327,8 @@ export class StatisticComponent implements OnInit {
     MdcTopAppBarModule,
     MdcDrawerModule,
     MdcSelectModule,
+
+              
   ],
   exports: [StatisticComponent],
   providers: [DataService],

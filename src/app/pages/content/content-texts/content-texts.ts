@@ -22,6 +22,8 @@ export class ContentTextsComponent implements OnInit {
   ArticleData: any;
   allArticleCategory: Category[] = []
   _categories: any;
+  notnework = false;
+
   constructor(
     private routerService: RouterService,
     private router: Router,
@@ -78,6 +80,7 @@ export class ContentTextsComponent implements OnInit {
       },
       error => {
         console.log(" error trying get categories: ", error);
+        this.notnework = true;
       }
     )
 
@@ -101,6 +104,7 @@ export class ContentTextsComponent implements OnInit {
       },
       error => {
         console.log("error getting demo data: ", error);
+        this.notnework = true;
       }
     )
 

@@ -1,3 +1,4 @@
+@import '../../shared/side-nav/side-nav.component';
 
 .sidenav-container {
   position: absolute;
@@ -28,6 +29,9 @@ mat-sidenav{
   height: 100%;
 }
 
+:host ::ng-deep .mdc-drawer{
+  top: 78px !important;
+}
 
 .bg-img{
   overflow: hidden;
@@ -41,6 +45,9 @@ mat-sidenav{
   height:100%;
   animation: bgfade 70s infinite;
   -webkit-animation: bgfade 70s infinite;
+
+
+ 
 }
 
 @keyframes bgfade{

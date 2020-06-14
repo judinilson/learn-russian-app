@@ -10,12 +10,15 @@ import { DashboardPageModule } from './pages/dashboard/dashboard';
 import { HelpComponent } from './pages/help/help';
 import { TrainingTestModule } from './pages/test/training-test.module';
 import {StatisticModule} from './pages/statistic/statistic.component';
-import {  OAuthModule } from './shared/Aouth/Aouth.module'
+import {  OAuthModule } from './shared/Aouth/Aouth.module';
+import { AdminDashboardModule } from './pages/Admin-dashboard/admin-dashboard.Module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HelpComponent,
+    
   ],
   imports: [
     OAuthModule,
@@ -25,10 +28,12 @@ import {  OAuthModule } from './shared/Aouth/Aouth.module'
     BrowserAnimationsModule,
     ContentModule,
     TrainingTestModule,
-    StatisticModule
+    StatisticModule,
+    AdminDashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent],
+  
   
 })
 export class AppModule { }

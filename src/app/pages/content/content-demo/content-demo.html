@@ -73,7 +73,8 @@
                 </span>
                 <mdc-icon mdcListItemGraphic mdcSuffix
                   *ngIf="route.navLinks[key].name == 'Россия'">
-                  {{route.icon}}
+                  <i *ngIf="!route.isDroped" class="fa fa-sort-down"></i>
+                  <i *ngIf="route.isDroped" class="fa fa-sort-up"></i>
                 </mdc-icon>
               </a>
 
@@ -105,6 +106,9 @@
   </mdc-drawer>
   <div mdcDrawerAppContent>
 
+    <!-- not network alert -->
+    <not-network *ngIf="notnework" style="margin-top: 60px;"></not-network>
+    
     <!-- content -->
     <div #mainContent *ngIf="!selectedCategory" class=" justify-content-center" [ngStyle]="{'margin-top' : continueTestAlert ? 'unset;': '60px;'}">
       <mat-progress-bar *ngIf="querryProgressBar" mode="query" ></mat-progress-bar>

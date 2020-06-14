@@ -20,6 +20,9 @@ import {
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { RouterService } from '../service/router.service';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { MatSlideToggleChange } from '@angular/material';
+import {MatSlideToggleModule} from '@angular/material';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-side-nav',
@@ -37,6 +40,9 @@ export class SideNavComponent implements OnInit {
  
   route = this.routerService;
  
+
+  //admin toggle
+  isChecked = false;
 
 
   ngOnInit() {
@@ -60,6 +66,13 @@ export class SideNavComponent implements OnInit {
     this.login = false ;
   }
 
+
+  onChange(value: MatSlideToggleChange) {
+    const { checked } = value;
+
+    console.log("is checked: ",this.isChecked);
+  }
+
 }
 
 
@@ -75,7 +88,8 @@ export class SideNavComponent implements OnInit {
     CommonModule,
     RouterModule,
     NgbCollapseModule,
-
+    MatSlideToggleModule,
+    FormsModule
   ],
   exports: [SideNavComponent],
   declarations: [SideNavComponent],

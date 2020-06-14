@@ -30,7 +30,7 @@ export class TestComponent implements OnInit {
   allTrainingCategory: Category[] = [];
 
   querryProgressBar = true;
-
+  notnework = false;
 
   constructor(
     private routerService: RouterService,
@@ -79,6 +79,7 @@ export class TestComponent implements OnInit {
       },
       error => {
         console.log(" error trying get categories: ", error);
+        this.notnework = true;
       }
     )
 
@@ -104,6 +105,7 @@ export class TestComponent implements OnInit {
       },
       error => {
         console.log("error trying to get training Data: ",error);
+        this.notnework = true;
       })
   }
 

@@ -14,6 +14,7 @@ import { OauthComponent } from './shared/Aouth/Auth/oauth.component';
 import { AuthGuard } from './shared/helper/auth.guard';
 import { UserRegisterComponent } from './shared/Aouth/user-register/user-register.component';
 import { UserProfilComponent } from './shared/Aouth/user-profil/user-profil.component';
+import { AdminDashboardComponent } from './pages/Admin-dashboard/admin-dashboard/admin-dashboard.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,9 @@ const routes: Routes = [
   { path: 'training', component: QuestionsAnswersComponent, canActivate: [AuthGuard] },
   { path: 'rate-test', component: Congratulation,canActivate: [AuthGuard] },
   {path: 'statistic', component: StatisticComponent,canActivate: [AuthGuard] },
-  {path: 'help', component: HelpComponent,canActivate: [AuthGuard] }
+  {path: 'help', component: HelpComponent,canActivate: [AuthGuard] },
+  { path: 'admin-dashboard', component: AdminDashboardComponent,canActivate: [AuthGuard]},
+
 ];
 
 @NgModule({

@@ -49,6 +49,7 @@ import { VideoDemoComponent } from './content-demo/video-demo/video-demo.compone
 import { ContentService } from 'src/app/shared/service/content.service';
 import { ArticleContentComponent } from './content-texts/article-content/article-content.component';
 import { DataService } from 'src/app/shared/service/dataService';
+import { NotNetwork, NotNetworkModule } from 'src/app/shared/not-network/not-network';
 
 @NgModule({
     imports: [
@@ -89,10 +90,18 @@ import { DataService } from 'src/app/shared/service/dataService';
         MdcTopAppBarModule,
         MdcDrawerModule,
         MdcSelectModule,
+        
+//alertmodule
+        NotNetworkModule
     ],
     exports: [ContentDemoComponent, ContentTextsComponent],
     providers: [ContentService,DataService],
     // tslint:disable-next-line:max-line-length
-    declarations: [ContentDemoComponent, ContentTextsComponent, VideoDemoComponent, ArticleContentComponent],
+    declarations: [
+        ContentDemoComponent, 
+        ContentTextsComponent, 
+        VideoDemoComponent, 
+        ArticleContentComponent,
+        ],
 })
 export class ContentModule { }

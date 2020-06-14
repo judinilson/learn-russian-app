@@ -44,6 +44,8 @@ import { TrainingTestService } from 'src/app/shared/service/training-test.servic
 import { SideNavPageModule } from 'src/app/shared/side-nav/side-nav.component';
 import { Congratulation } from './congratulation-page/congratulation';
 import { SnackbarAlertComponent } from './snackbar-alert/snackbar-alert';
+import { NotNetworkModule } from 'src/app/shared/not-network/not-network';
+
 
   
 
@@ -85,6 +87,9 @@ import { SnackbarAlertComponent } from './snackbar-alert/snackbar-alert';
       MdcTopAppBarModule,
       MdcDrawerModule,
       MdcSelectModule,
+
+      //alertmodule
+      NotNetworkModule
     ],
     exports: [TestComponent,QuestionsAnswersComponent,Congratulation],
     providers: [DataService,TrainingTestService,MatSnackBar],

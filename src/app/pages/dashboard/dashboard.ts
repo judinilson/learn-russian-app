@@ -18,6 +18,7 @@ import {
   MdcListModule
 } from '@angular-mdc/web';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { AdminSwitchUserModule } from 'src/app/shared/admin-switch-user/admin-switch-user';
 
 
 
@@ -87,7 +88,9 @@ export class DashboardComponent implements OnInit {
       MdcListModule,
 
       FlexLayoutModule,
-      SideNavPageModule
+      SideNavPageModule,
+
+      AdminSwitchUserModule
   ],
   exports: [DashboardComponent],
   declarations: [DashboardComponent],

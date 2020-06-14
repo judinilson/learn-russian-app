@@ -23,7 +23,7 @@ export class ContentDemoComponent implements OnInit {
   allDemoCategory: Category[] = [];
 
   querryProgressBar = true
-
+  notnework = false;
 
   constructor(
     private routerService: RouterService,
@@ -69,6 +69,7 @@ export class ContentDemoComponent implements OnInit {
       },
       error => {
         console.log(" error trying get categories: ", error);
+        this.notnework = true;
       }
     )
 
@@ -89,6 +90,7 @@ export class ContentDemoComponent implements OnInit {
       },
       error => {
         console.log("error getting demo data: ", error);
+        this.notnework = true;
       }
     )
   }
