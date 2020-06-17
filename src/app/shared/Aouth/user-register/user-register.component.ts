@@ -21,6 +21,7 @@ export class UserRegisterComponent implements OnInit {
   groups:any;
   allCountries: any;
   countries:CountryApi[];
+  country:any;
   countryId = 0;
   role: Role.Student;
   loading = false;
@@ -127,8 +128,12 @@ export class UserRegisterComponent implements OnInit {
         })
     .pipe(debounceTime(500))
     .pipe(distinctUntilChanged())
-    .subscribe((res: any) =>
-        this.countryId = res.Id,
+    .subscribe(
+        res => {
+            this.country = res
+            this.countryId = this.country.id
+
+        },
         error =>{
             this.error = error;
             this.loading = false;
@@ -136,7 +141,7 @@ export class UserRegisterComponent implements OnInit {
           
         }
     );
-    console.log(this.countryId);
+  
 
   }
 
@@ -154,7 +159,7 @@ export class UserRegisterComponent implements OnInit {
 
     if(idgroup != null && this.countryId != 0){
 
-        
+        console.log("country ID:",this.countryId)
         this.identityService.userCreate(
             {
                 firstname: this.f.firstname.value, 
@@ -163,7 +168,8 @@ export class UserRegisterComponent implements OnInit {
                 countryId: this.countryId,
                 teacherGroupId: idgroup,
                 password: this.f.password.value,
-                role: this.role
+                role: this.role,
+                created: new Date(),
             })
             .pipe(delay(800))
             .subscribe(
@@ -175,7 +181,7 @@ export class UserRegisterComponent implements OnInit {
                     this.error = error;
                     this.loading = false;
                     this.alert = new BehaviorSubject<boolean>(true);
-
+                    console.log("error trying to subscribe user: ",error)
                     });   
       
     }else{

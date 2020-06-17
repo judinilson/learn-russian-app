@@ -62,18 +62,18 @@ declare interface RouteInfo {
     sublinks?: Sublinks[];
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/admin-dashboard', title: 'Dashboard',  icon: 'fa fa-desktop text-primary',  },
-    { path: '/admin-users', title: 'Users',  icon: 'fa fa-users text-primary',  },
+    { path: '/admin-dashboard', title: 'Главный',  icon: 'fa fa-desktop text-primary',  },
+    { path: '/admin-users', title: 'Пользователи',  icon: 'fa fa-users text-primary',  },
     
     { 
       title: 'Contents',  
       icon:'fa fa-window-restore text-blue',  
       sublinks:[
-         { path: '/admin-demonstrations', title: 'Demonstrations',  icon:'fas fa-chalkboard text-orange',  },
-        { path: '/admin-articles', title: 'Articles',  icon:'far fa-newspaper text-yellow',  },
+         { path: '/admin-demonstrations', title: 'Демонстрации',  icon:'fas fa-chalkboard text-orange',  },
+        { path: '/admin-articles', title: 'Статьи',  icon:'far fa-newspaper text-yellow',  },
       ]
     },
-    
-    
-    { path: '/', title: 'Exit Admin mode',  icon:'fas fa-external-link-alt text-red',  },
+     
+    { path: '/admin-training', title: 'Тесты',  icon:'fas fa-chalkboard-teacher text-blue',  },
+    { path: '/', title: 'Выход из режима администратора',  icon:'fas fa-external-link-alt text-red',  },
 ];

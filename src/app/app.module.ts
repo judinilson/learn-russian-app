@@ -13,11 +13,11 @@ import {StatisticModule} from './pages/statistic/statistic.component';
 import {  OAuthModule } from './shared/Aouth/Aouth.module';
 import { AdminDashboardModule } from './pages/Admin-dashboard/admin-dashboard.Module';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     HelpComponent,
+
     
   ],
   imports: [

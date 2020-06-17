@@ -6,9 +6,10 @@ export const environment = {
     allCountries: 'https://restcountries.eu/rest/v2/all',
     apiUrl: 'http://localhost:5000/api',
 
+    usersUrl: `${apiUrl.url}/User`,
     userCreateUrl: `${apiUrl.url}/User/register-Student`,
-    userUpdateUrl: `${apiUrl.url}/User/`,
-    getUserByIdUrl: `${apiUrl.url}/User/`,
+    //userUpdateUrl: `${apiUrl.url}/User/`,
+    //getUserByIdUrl: `${apiUrl.url}/User/`,
 
     countryCreateUrl: `${apiUrl.url}/Country`,
     
