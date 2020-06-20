@@ -1,0 +1,25 @@
+@import "../../components/layouts/admin-layout.component.scss";
+
+h3{
+    font-size: 1.25rem;
+}
+
+.card{
+    max-height: 450px;
+}
+
+
+//click effect 
+/* Ripple effect */
+.ripple {
+    background-position: center;
+    transition: background 0.8s;
+  }
+  .ripple:hover {
+    background: #e9ecef radial-gradient(circle, transparent 2%, #47a7f5 1%) center/15000%;
+  }
+  .ripple:active {
+    background-color: #6eb9f7;
+    background-size: 100%;
+    transition: background 0s;
+  }

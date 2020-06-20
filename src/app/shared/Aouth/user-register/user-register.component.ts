@@ -150,9 +150,9 @@ export class UserRegisterComponent implements OnInit {
     let idgroup = null;
     let tgroup = null;
     if(this.teacherGroups != undefined){
-        let tgroupId = this.f.groupteacher.value.id;
-        tgroup = this.teacherGroups.filter(tg => tg.groupId == tgroupId);
-        idgroup = tgroup[0].id;
+        let tgroupId = this.f.groupteacher.value.id; //get id of group
+        tgroup = this.teacherGroups.filter(tg => tg.groupId == tgroupId); //filter the groups tha have teachers with the id
+        idgroup = tgroup[0].id; //id selected teacher group
     } else{
         console.log('group is unselected');
     }

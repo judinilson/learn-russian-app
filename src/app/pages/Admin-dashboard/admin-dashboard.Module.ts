@@ -19,7 +19,8 @@ import {
     MatProgressBarModule,
     MatOptionModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
 } from '@angular/material';
 import { ChartsModule } from 'ng2-charts';
 import {
@@ -43,6 +44,7 @@ import { UsersManagementComponent } from './pages/users-management/users-managem
 import { DemonstrationsManagementComponent } from './pages/demonstrations-management/demonstrations-management.component';
 import { ArticlesManagementComponent } from './pages/articles-management/articles-management.component';
 import { TrainingManagementComponent } from './pages/training-management/training-management.component';
+import { DialogUserStudentComponent } from './pages/users-management/user-student-dialog/dialog-user-student';
 
 @NgModule({
     imports: [
@@ -78,6 +80,7 @@ import { TrainingManagementComponent } from './pages/training-management/trainin
         MatOptionModule,
         MatDialogModule,
         MatSelectModule,
+        MatCheckboxModule
     ],
     exports: [],
     declarations: [
@@ -87,7 +90,10 @@ import { TrainingManagementComponent } from './pages/training-management/trainin
         ArticlesManagementComponent,
         TrainingManagementComponent,
         SideBarComponent,
-        AdminLayoutComponent
+        AdminLayoutComponent,
+
+        //dialogs
+        DialogUserStudentComponent,
     ],
     providers: [
         AdminDashboardService,
@@ -95,6 +101,9 @@ import { TrainingManagementComponent } from './pages/training-management/trainin
          ContentService,
          TrainingTestService
     ],
+    entryComponents: [
+        DialogUserStudentComponent,
+    ]
 
 })
 export class AdminDashboardModule { } 

@@ -33,7 +33,11 @@ export class IdentityService {
     }
 
     countryCreate(data: any){
-        return this.http.post<Country>(environment.countryCreateUrl,data);
+        return this.http.post<Country>(environment.countryUrl,data);
+    }
+
+    countryGetAll(){
+        return this.http.get<Country>(environment.countryUrl)
     }
 
     teacherGroupGet(){

@@ -11,7 +11,7 @@ export const environment = {
     //userUpdateUrl: `${apiUrl.url}/User/`,
     //getUserByIdUrl: `${apiUrl.url}/User/`,
 
-    countryCreateUrl: `${apiUrl.url}/Country`,
+    countryUrl: `${apiUrl.url}/Country`,
     
     teacherGroupGetUrl: `${apiUrl.url}/TeacherGroup`,
     userGroupGetUrl: `${apiUrl.url}/Group`,
