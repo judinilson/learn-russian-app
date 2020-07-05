@@ -23,6 +23,9 @@ export class IdentityService {
     userUpdate(id,data: any){
         return this.http.put<UserUpdate>(environment.usersUrl + id,data);
     }
+    userDelete(id){
+        return this.http.delete<UserUpdate>(environment.usersUrl + id);
+    }
 
     userGet(){
         return this.http.get<User>(environment.usersUrl)

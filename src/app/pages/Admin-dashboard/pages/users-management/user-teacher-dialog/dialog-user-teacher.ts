@@ -4,11 +4,11 @@ import {FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: 'app-dialog-user-student',
-  templateUrl: './dialog-user-student.html',
-  styleUrls: ['./dialog-user-student.scss']
+  selector: 'app-dialog-user-teacher',
+  templateUrl: './dialog-user-teacher.html',
+  styleUrls: ['./dialog-user-teacher.scss']
 })
-export class DialogUserStudentComponent implements OnInit {
+export class DialogUserTeacherComponent implements OnInit {
 
     userdata: any;
     createUserForm:  FormGroup;
@@ -19,7 +19,7 @@ export class DialogUserStudentComponent implements OnInit {
     wrongPassword = false;
     constructor(
       private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<DialogUserStudentComponent>,
+        public dialogRef: MatDialogRef<DialogUserTeacherComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any
         ) {}
     

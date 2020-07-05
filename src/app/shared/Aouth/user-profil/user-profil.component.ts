@@ -123,7 +123,8 @@ export class UserProfilComponent implements OnInit {
         firstname: this.firstname,
         lastname: this.lastname,
         username: this.username,
-        password: this.password
+        password: this.password,
+        teacherGroupId:null
       }
     )
     .pipe(debounceTime(500))

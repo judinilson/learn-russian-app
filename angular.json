@@ -41,6 +41,7 @@
                             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
                             "node_modules/animate.css/animate.min.css",
                             "node_modules/videogular2/fonts/videogular.css",
+                            "node_modules/sweetalert2/src/sweetalert2.scss",
                             "src/styles.scss",
                             "src/assets/scss/custom.scss"
                             

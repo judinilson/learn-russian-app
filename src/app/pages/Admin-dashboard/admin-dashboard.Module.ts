@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
     MatSlideToggleModule,
     MatIconModule,
@@ -31,7 +31,10 @@ import {
     MdcMenuModule,
     MdcListModule
 } from '@angular-mdc/web';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { SideBarComponent } from './components/sidebar/sidebar.component';
+//import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard';
 import { AdminLayoutRoutes } from './components/layouts/admin-layout.routing';
@@ -45,6 +48,8 @@ import { DemonstrationsManagementComponent } from './pages/demonstrations-manage
 import { ArticlesManagementComponent } from './pages/articles-management/articles-management.component';
 import { TrainingManagementComponent } from './pages/training-management/training-management.component';
 import { DialogUserStudentComponent } from './pages/users-management/user-student-dialog/dialog-user-student';
+import { DialogUserTeacherComponent } from './pages/users-management/user-teacher-dialog/dialog-user-teacher';
+
 
 @NgModule({
     imports: [
@@ -64,7 +69,12 @@ import { DialogUserStudentComponent } from './pages/users-management/user-studen
         MatSlideToggleModule,
         FormsModule,
         ChartsModule,
-
+        ReactiveFormsModule,
+        FormsModule,
+        ScrollingModule,
+        NgSelectModule,
+ 
+        
         //mat
         MatIconModule,
         MatListModule,
@@ -80,7 +90,8 @@ import { DialogUserStudentComponent } from './pages/users-management/user-studen
         MatOptionModule,
         MatDialogModule,
         MatSelectModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatDialogModule
     ],
     exports: [],
     declarations: [
@@ -94,6 +105,7 @@ import { DialogUserStudentComponent } from './pages/users-management/user-studen
 
         //dialogs
         DialogUserStudentComponent,
+        DialogUserTeacherComponent
     ],
     providers: [
         AdminDashboardService,
@@ -103,6 +115,7 @@ import { DialogUserStudentComponent } from './pages/users-management/user-studen
     ],
     entryComponents: [
         DialogUserStudentComponent,
+        DialogUserTeacherComponent
     ]
 
 })

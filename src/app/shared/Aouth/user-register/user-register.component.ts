@@ -106,13 +106,13 @@ export class UserRegisterComponent implements OnInit {
         }, 6000)
       });
 
-        console.log('just before subscribe');
+        //console.log('just before subscribe');
         observable.subscribe({
             next: x => console.log('got value ' + x),
             error: err => console.error('something wrong occurred: ' + err),
             complete: () => console.log('done'),
         });
-        console.log('just after subscribe');
+        //console.log('just after subscribe');
 
 
 
@@ -151,7 +151,7 @@ export class UserRegisterComponent implements OnInit {
     let tgroup = null;
     if(this.teacherGroups != undefined){
         let tgroupId = this.f.groupteacher.value.id; //get id of group
-        tgroup = this.teacherGroups.filter(tg => tg.groupId == tgroupId); //filter the groups tha have teachers with the id
+        tgroup = this.teacherGroups.filter(tg => tg.groupId == tgroupId); //filter the groups tha have teachers releted to that group id
         idgroup = tgroup[0].id; //id selected teacher group
     } else{
         console.log('group is unselected');

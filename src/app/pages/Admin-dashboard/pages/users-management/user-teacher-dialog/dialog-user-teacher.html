@@ -7,21 +7,21 @@
                         <div class="card-body">
                             <div class="col">
                                 <h5 class="card-title text-uppercase
-                                    text-muted mb-0 text-center">User</h5>
+                                    text-muted mb-0 text-center">Teacher</h5>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
                                     <div class="row">
                                         <span class="text-muted text-sm">
                                             Username:</span>
-                                        <span class="ml-2 font-weight-normal">{{userdata.user.username}}</span>
+                                        <span class="ml-2 font-weight-normal">{{data.user.username}}</span>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
                                     <div class="row">
                                         <span class="text-muted text-sm"> First
                                             Name: </span>
-                                        <span class="ml-2 font-weight-normal">{{userdata.user.firstName}}</span>
+                                        <span class="ml-2 font-weight-normal">{{data.user.firstName}}</span>
                                     </div>
 
                                 </li>
@@ -29,32 +29,24 @@
                                     <div class="row">
                                         <span class="text-muted text-sm"> Last
                                             Name: </span>
-                                        <span class="ml-2 font-weight-normal">{{userdata.user.lastName}}</span>
+                                        <span class="ml-2 font-weight-normal">{{data.user.lastName}}</span>
                                     </div>
 
                                 </li>
-                                <li class="list-group-item">
+                                <li *ngIf="data.group" class="list-group-item">
                                     <div class="row">
                                         <span class="text-muted text-sm"> Group:
                                         </span>
-                                        <span class="ml-2 font-weight-normal">{{userdata.group.name}}</span>
+                                        <span class="ml-2 font-weight-normal">{{data.group.name}}</span>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <span class="text-muted text-sm">
-                                            Teacher: </span>
-                                        <span class="ml-2 font-weight-normal">{{userdata.teacher.firstName}}</span>
-                                        <span class="ml-2 font-weight-normal">{{userdata.teacher.lastName}}</span>
-                                    </div>
-                                </li>
+                              
                                 <li class="list-group-item">
                                     <div class="row">
                                         <span class="text-muted text-sm">
                                             Password: </span>
-                                        <span class="ml-2 font-weight-normal">{{userdata.user.password}}</span>
+                                        <span class="ml-2 font-weight-normal">{{data.user.password}}</span>
                                     </div>
-
                                 </li>
                             </ul>
                         </div>
@@ -64,127 +56,11 @@
                     </div>
                 </div>
 
-                <div class="col-xl-3">
-                    <div class="card card-stats mb-4">
-
-                        <div class="card-body">
-                            <div class="col">
-                                <h5 class="card-title text-uppercase
-                                    text-muted text-center mb-0">Country</h5>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <span class="text-muted text-sm">
-                                                Name: </span>
-                                            <span class="ml-2
-                                                font-weight-normal">{{userdata.country.name}}</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <span class="text-muted text-sm">
-                                                Native Language: </span>
-                                            <span class="ml-2
-                                                font-weight-normal">{{userdata.country.language}}</span>
-                                        </div>
-                                    </li>
-                                </ul>
-
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                </div>
+                
             </div>
         </div>
 
     </div>
-
-    <div *ngIf="userdata.statistic">
-        <h5 class="card-title text-uppercase
-            text-muted text-center mt-2 mb-3">Statistics</h5>
-
-        <div class="table-responsive">
-            <!-- Projects table -->
-            <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Correct Answers</th>
-                        <th scope="col">Incorrect Answers</th>
-                        <th scope="col">Back to articles</th>
-                        <th scope="col">Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of userdata.statistic; let i= index">
-                        <th scope="row">
-                            {{i+1}}
-                        </th>
-                        <td>
-
-
-                            <div class="d-flex align-items-center"
-                                *ngIf="item">
-                                <span class="mr-2">{{item.percentageCorrectAnswers}}%</span>
-                                <div>
-                                    <div class="progress">
-                                        <div class="progress-bar
-                                            bg-gradient-success"
-                                            role="progressbar"
-                                            [attr.aria-valuenow]="item.percentageCorrectAnswers"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                            [style.width.%]="item.percentageCorrectAnswers"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </td>
-                        <td>
-
-
-                            <div class="d-flex align-items-center"
-                                *ngIf="item">
-                                <span class="mr-2">{{item.percentageIncorrectAnswers}}%</span>
-                                <div>
-                                    <div class="progress">
-                                        <div class="progress-bar
-                                            bg-gradient-danger"
-                                            role="progressbar"
-                                            [attr.aria-valuenow]="item.percentageIncorrectAnswers"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                            [style.width.%]="item.percentageIncorrectAnswers"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </td>
-
-                        <td style="text-align: center;">
-                            <span *ngIf="item">
-                                {{item.backToArticleCount}}
-                            </span>
-
-                        </td>
-                        <td style="text-align: center;">
-                            <span *ngIf="item">
-                                {{item.trainingDate | date : format : timezone}}
-                            </span>
-
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-
 
 
 </div>
