@@ -34,7 +34,6 @@ import {
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SideBarComponent } from './components/sidebar/sidebar.component';
-//import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard';
 import { AdminLayoutRoutes } from './components/layouts/admin-layout.routing';
@@ -49,6 +48,8 @@ import { ArticlesManagementComponent } from './pages/articles-management/article
 import { TrainingManagementComponent } from './pages/training-management/training-management.component';
 import { DialogUserStudentComponent } from './pages/users-management/user-student-dialog/dialog-user-student';
 import { DialogUserTeacherComponent } from './pages/users-management/user-teacher-dialog/dialog-user-teacher';
+import { DialogUserGroupComponent } from './pages/users-management/user-group-dialog/user-group-dialog';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { DialogUserTeacherComponent } from './pages/users-management/user-teache
         FormsModule,
         ScrollingModule,
         NgSelectModule,
+        NgxMaterialTimepickerModule,
  
         
         //mat
@@ -105,7 +107,8 @@ import { DialogUserTeacherComponent } from './pages/users-management/user-teache
 
         //dialogs
         DialogUserStudentComponent,
-        DialogUserTeacherComponent
+        DialogUserTeacherComponent,
+        DialogUserGroupComponent
     ],
     providers: [
         AdminDashboardService,
@@ -115,7 +118,8 @@ import { DialogUserTeacherComponent } from './pages/users-management/user-teache
     ],
     entryComponents: [
         DialogUserStudentComponent,
-        DialogUserTeacherComponent
+        DialogUserTeacherComponent,
+        DialogUserGroupComponent
     ]
 
 })

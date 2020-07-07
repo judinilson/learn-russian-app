@@ -10,6 +10,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable, PipeTransform } from '@angular/core';
 import Swal from 'sweetalert2/dist/sweetalert2.all'
 import { DialogUserTeacherComponent } from './user-teacher-dialog/dialog-user-teacher';
+import { DialogUserGroupComponent } from './user-group-dialog/user-group-dialog';
 
 @Component({
   selector: 'app-users-management',
@@ -34,6 +35,7 @@ export class UsersManagementComponent implements OnInit {
   postCountryId: any;
   error: any;
   studentRole: Role.Student;
+  teacherRole: Role.Teacher;
   selectedUserIndex = 0;
   selectedUserData = [];
   confirmDelete = false;
@@ -43,6 +45,7 @@ export class UsersManagementComponent implements OnInit {
   groupAndTeacher = [];
   collapsetableTeacher: boolean;
   collapsetablegroups: boolean;
+  createdGroupId: Number;
 
   constructor(
     private identityService: IdentityService,
@@ -158,51 +161,55 @@ export class UsersManagementComponent implements OnInit {
 
   // filter student user 
   filterStudentUser() {
+    this.usersRoleStudent = [];
     setTimeout(() => {
-      this.studentUsers.forEach(x => {
-        var ct = this.countries !== undefined ? this.countries.filter(c => c.id == x.countryId) : [] //country  
-        var tg = this.teacherGroups !== undefined ? this.teacherGroups.filter(t => t.id == x.teacherGroupId) : [] //teacher group(the relation between teacher and group)
-        var teacher = this.Users !== undefined ? this.Users.filter(u => u.id == tg[0].teacherId) : [] // teacher
-        var g = this.groups !== undefined ? this.groups.filter(g => g.id == tg[0].groupId) : [] //group
-        var st = this.statistics !== undefined ? this.statistics.filter(s => s.userId == x.id) : []//statistic
+      if (this.studentUsers !== undefined) {
+        this.studentUsers.forEach(x => {
+          var ct = this.countries !== undefined ? this.countries.filter(c => c.id == x.countryId) : [] //country  
+          var tg = this.teacherGroups !== undefined ? this.teacherGroups.filter(t => t.id == x.teacherGroupId) : [] //teacher group(the relation between teacher and group)
+          var teacher = this.Users !== undefined ? this.Users.filter(u => u.id == tg[0].teacherId) : [] // teacher
+          var g = this.groups !== undefined ? this.groups.filter(g => g.id == tg[0].groupId) : [] //group
+          var st = this.statistics !== undefined ? this.statistics.filter(s => s.userId == x.id) : []//statistic
 
 
 
-        if (st.length !== 0) {
-          var _statistic = []
-          st.forEach(x => {
-            _statistic.push({
-              id: x.id,
-              backToArticleCount: x.backToArticleCount,
-              percentageCorrectAnswers: x.percentageCorrectAnswers,
-              percentageIncorrectAnswers: x.percentageIncorrectAnswers,
-              trainingDate: new Date(x.trainingDate),
-              userId: x.userId
+          if (st.length !== 0) {
+            var _statistic = []
+            st.forEach(x => {
+              _statistic.push({
+                id: x.id,
+                backToArticleCount: x.backToArticleCount,
+                percentageCorrectAnswers: x.percentageCorrectAnswers,
+                percentageIncorrectAnswers: x.percentageIncorrectAnswers,
+                trainingDate: new Date(x.trainingDate),
+                userId: x.userId
+              })
             })
-          })
-          this.usersRoleStudent.push({
-            user: x,
-            country: ct[0], //push just the first elements because array have just one element
-            group: g[0],
-            teacher: teacher[0],
-            statistic: st,
-            laststatistic: st.length - 1
-          })
-        } else {
-          this.usersRoleStudent.push({
-            user: x,
-            country: ct[0], //push just the first elements because array have just one element
-            teacher: teacher[0],
-            group: g[0],
-          })
+            this.usersRoleStudent.push({
+              user: x,
+              country: ct[0], //push just the first elements because array have just one element
+              group: g[0],
+              teacher: teacher[0],
+              statistic: st,
+              laststatistic: st.length - 1
+            })
+          } else {
+            this.usersRoleStudent.push({
+              user: x,
+              country: ct[0], //push just the first elements because array have just one element
+              teacher: teacher[0],
+              group: g[0],
+            })
 
-        }
-
+          }
 
 
-      })
 
-      console.log('the student: ', this.usersRoleStudent);
+        })
+
+        console.log('the student: ', this.usersRoleStudent);
+      }
+
 
 
     }, 1000);
@@ -210,28 +217,36 @@ export class UsersManagementComponent implements OnInit {
 
   // filter group and join with teacher user name
   filterGroupAndTeacher() {
+    this.groupAndTeacher = []
 
-    this.teacherGroups.forEach(item => {
+    if(this.teacherGroups !== undefined){
+      this.teacherGroups.forEach(item => {
 
-      var tg = this.teacherUsers.filter(x => x.id === item.teacherId)
-      var gt = this.groups.filter(x => x.id === item.groupId)
+        var tg = this.teacherUsers.filter(x => x.id === item.teacherId)
+        var gt = this.groups.filter(x => x.id === item.groupId)
+  
+        if (tg != null && gt != null) {
+          this.groupAndTeacher.push({
+            teacherGroupId: item.id,
+            teacher: tg[0],
+            group: gt[0],
+            teachingTime: item.teaching_time
+          })
+        }
+  
+      })
+    }
+    
 
-      if (tg != null && gt != null) {
-        this.groupAndTeacher.push({
-          teacher: tg[0],
-          group: gt[0],
-          teachingTime: item.teaching_time
-        })
-      }
+    console.log(this.groupAndTeacher);
 
-    })
   }
 
-  // get student user info 
+  // get user info 
   userinfo(data) {
 
-    console.log("info: ",data)
-    if(data.country){
+    console.log("info: ", data)
+    if (data.country) {
       const dialogRef = this.dialog.open(DialogUserStudentComponent, {
         width: '750px',
         data: {
@@ -241,20 +256,20 @@ export class UsersManagementComponent implements OnInit {
       })
 
       dialogRef.afterClosed()
-      .pipe(debounceTime(300))
-      .pipe(distinctUntilChanged())
-      .subscribe(result => {
+        .pipe(debounceTime(300))
+        .pipe(distinctUntilChanged())
+        .subscribe(result => {
 
-      })
+        })
     }
-    else{
+    else {
       var teachergroup = null;
       this.teacherGroups.forEach(item => {
-        if(data.id === item.teacherId) {
+        if (data.id === item.teacherId) {
           var tg = this.groups.filter(x => x.id === item.groupId)
           teachergroup = tg[0]
         }
-        
+
       })
 
       const dialogRef = this.dialog.open(DialogUserTeacherComponent, {
@@ -262,26 +277,31 @@ export class UsersManagementComponent implements OnInit {
         data: {
           user: data,
           userInfo: true,
-          group: teachergroup 
+          group: teachergroup
         }
       })
 
       dialogRef.afterClosed()
-      .pipe(debounceTime(300))
-      .pipe(distinctUntilChanged())
-      .subscribe(result => {
+        .pipe(debounceTime(300))
+        .pipe(distinctUntilChanged())
+        .subscribe(result => {
 
-      })
+        })
 
     }
 
-    
-    
 
-    
+
+
+
 
 
   }
+
+
+  /*
+    STUDENT: (CREATE,UPDATE,DELETE)
+  */
 
   //create new student dialog
   userStudentCreateDialog() {
@@ -380,9 +400,8 @@ export class UsersManagementComponent implements OnInit {
             .pipe(distinctUntilChanged())
             .subscribe(
               data => {
-                this.usersRoleStudent = [];
-                this.getAllUsers();
                 this.openSweetAlertToast('success', 'updated sucessfully');
+                this.getAllUsers();
 
               },
               error => {
@@ -403,13 +422,11 @@ export class UsersManagementComponent implements OnInit {
   }
 
   // delete student user 
-  deleteStudentUser(data) {
+  deleteUser(data, role) {
 
-    // console.log("User delete data: ",data);
-
-    // this.confirmDeleteAlert()
-    // console.log('confirm: ', this.confirmDelete);
-    var deletedId = data.user.id
+    var deletedId = 0;
+    if (role === 'student') deletedId = data.user.id
+    if (role === 'teacher') deletedId = data.id
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -424,16 +441,11 @@ export class UsersManagementComponent implements OnInit {
         this.identityService.userDelete(deletedId)
           .subscribe(
             data => {
-
-              console.log('successfully deleted');
               this.openSweetAlertToast('success', 'successfully deleted')
-
-              this.usersRoleStudent = []
               this.getAllUsers();
 
             },
             error => {
-              console.log("error DELETE:", error);
               this.openSweetAlert('error', 'Please check your connection')
             }
           )
@@ -484,7 +496,7 @@ export class UsersManagementComponent implements OnInit {
     if (idReletedTeacherGroup != null && this.postCountryId != 0) {
 
       console.log("country ID:", this.postCountryId)
-      this.identityService.userCreate(
+      this.identityService.studentUserCreate(
         {
           firstname: firstname,
           lastname: lastname,
@@ -498,16 +510,13 @@ export class UsersManagementComponent implements OnInit {
         .pipe(delay(800))
         .subscribe(
           data => {
-            console.log("student is created successfully!!");
-            this.usersRoleStudent = []
-            this.getAllUsers();
             this.openSweetAlertToast('success', 'User is successfully created');
+            this.getAllUsers();
           },
           error => {
             this.error = error;
             //this.loading = false;
             //this.alert = new BehaviorSubject<boolean>(true);
-            console.log("error trying to subscribe user: ", error)
             this.openSweetAlertToast('error', error);
           });
 
@@ -518,19 +527,347 @@ export class UsersManagementComponent implements OnInit {
 
   }
 
-  // foreing rest api used to gett all countries 
-  getApiCountries() {
-    this.apiCountries = new Array();
-    let index_ = new Array();
-    this.allApiCountries.forEach((el, index) => {
 
-      var country = { name: el.name, language: el.languages[0].name, region: el.region }
-      this.apiCountries.push(country);
-      index_.push(index)
-    });
+  /*
+    TEACHER: (CREATE,UPDATE,DELETE)
+  */
+
+  userTeacherCreateDialog() {
+
+    const dialogRef = this.dialog.open(DialogUserTeacherComponent, {
+      width: '750px',
+      data: {
+        createUser: true
+      }
+    })
+
+    dialogRef.afterClosed()
+      .pipe(debounceTime(300))
+      .pipe(distinctUntilChanged())
+      .subscribe(result => {
+        console.log("dialog responde: ", result);
+        if (result !== null) {
+          this.userTeacherCreate(
+            result.firstname,
+            result.lastname,
+            result.username,
+            result.subject,
+            result.password
+          )
+        }
+
+
+      })
 
   }
 
+  //post the teacher user to the db
+  userTeacherCreate(firstname, lastname, username, subject, password) {
+    this.identityService.teacherUserCreate(
+      {
+        firstname: firstname,
+        lastname: lastname,
+        username: username,
+        password: password,
+        subject: subject,
+        role: this.studentRole,
+        created: new Date(),
+      })
+      .pipe(delay(800))
+      .subscribe(
+        data => {
+          this.openSweetAlertToast('success', 'User is successfully created');
+          this.getAllUsers();
+        },
+        error => {
+          this.error = error;
+          this.openSweetAlertToast('error', error);
+        });
+  }
+
+
+  // update student dialog
+  userTeacherUpdateDialog(data) {
+
+    const dialogRef = this.dialog.open(DialogUserTeacherComponent, {
+      width: '750px',
+      data: {
+        item: data,
+        updateUser: true
+      }
+    })
+
+    dialogRef.afterClosed()
+      .pipe(debounceTime(300))
+      .pipe(distinctUntilChanged())
+      .subscribe(result => {
+
+        console.log("dialog responde: ", result);
+        if (result !== null) {
+
+          this.identityService.userUpdate(result.userId,
+            {
+              firstname: result.firstname,
+              lastname: result.lastname,
+              username: result.username,
+              password: result.password,
+              //teacherGroupId: idReletedTeacherGroup
+            }
+          ).pipe(debounceTime(500))
+            .pipe(distinctUntilChanged())
+            .subscribe(
+              data => {
+                this.openSweetAlertToast('success', 'updated sucessfully');
+                this.getAllUsers();
+
+              },
+              error => {
+                console.log("error: ", error)
+                this.openSweetAlert('error', 'Please check your connection')
+              }
+            )
+
+        }
+
+
+      })
+    //}
+    //}
+
+
+
+  }
+
+
+  /*
+    GROUP: (CREATE,UPDATE,DELETE)
+  */
+
+  teacherFilterCount(array, teacher) {
+    var count = 0;
+    for (let index = 0; index < array.length; index++) {
+      if (array[index].teacherId === teacher.id) {
+        count += 1
+      }
+
+    }
+    return count;
+  }
+
+  userGroupCreateDialog() {
+    var count = 0
+    var teachers = []
+
+    this.teacherUsers.forEach(item => {
+      count = this.teacherFilterCount(this.teacherGroups, item)
+      if (count < 2) {
+        teachers.push(item)
+        count = 0
+      }
+    })
+
+
+    const dialogRef = this.dialog.open(DialogUserGroupComponent, {
+      width: '750px',
+      data: {
+        teachers: teachers,
+        createGroup: true
+      }
+    })
+
+    dialogRef.afterClosed()
+      .pipe(debounceTime(300))
+      .pipe(distinctUntilChanged())
+      .subscribe(result => {
+        console.log("dialog responde: ", result);
+
+        var str = ""
+        str.substring
+        var observable = new Observable(observer => {
+          observer.next(3);
+          if (result !== null) {
+            let teachTime = result.teachingtime.substring(0, 5)
+
+            //CREATE GROUP
+            this.identityService.createGroup({
+              name: result.groupname,
+              creationDate: new Date()
+            })
+              .subscribe(
+                data => {
+                  console.log("group is sucessfuly created", data);
+                  this.createdGroupId = data.id;
+                },
+                error => {
+                  this.openSweetAlertToast('error', error);
+                })
+
+            //CREATE TEACHER -> GROUP
+            setTimeout(() => {
+              observer.next(4);
+
+              this.createTeacherGroup(this.createdGroupId, result.teacher.id, teachTime);
+              observer.complete();
+            }, 800)
+
+          }
+        });
+
+        observable.subscribe({
+          next: x => console.log('got value ' + x),
+          error: err => console.error('something wrong occurred: ' + err),
+          complete: () => console.log('done'),
+        });
+
+
+      })
+
+  }
+
+  createTeacherGroup(groupId, teacherId, time) {
+    this.identityService.createTeacherGroup({
+      teacherId: teacherId,
+      groupId: groupId,
+      teaching_time: time
+    })
+      .subscribe(
+        data => {
+          this.openSweetAlertToast('success', 'Group is successfully created');
+          this.getAllUsers()
+        },
+        error => {
+          this.openSweetAlertToast('error', error);
+          console.log(error)
+        }
+      )
+  }
+
+
+  userGroupUpdateDialog(data) {
+    var count = 0
+    var teachers = []
+
+    this.teacherUsers.forEach(item => {
+      count = this.teacherFilterCount(this.teacherGroups, item)
+      if (count < 2) {
+        teachers.push(item)
+        count = 0
+      }
+    })
+
+
+    const dialogRef = this.dialog.open(DialogUserGroupComponent, {
+      width: '750px',
+      data: {
+        item: data,
+        teachers: teachers,
+        updateGroup: true
+      }
+    })
+
+    dialogRef.afterClosed()
+      .pipe(debounceTime(300))
+      .pipe(distinctUntilChanged())
+      .subscribe(result => {
+        console.log("dialog responde: ", result);
+
+
+        var observable = new Observable(observer => {
+          observer.next(3);
+          if (result !== null) {
+
+            //Update GROUP
+            this.identityService.updateGroup({
+              id: data.group.id,
+              name: result.groupname,
+              creationDate: data.group.creationDate
+            })
+              .subscribe(
+                data => {
+                  console.log("group is sucessfuly updated", data);
+
+                },
+                error => {
+                  this.openSweetAlertToast('error', error);
+                })
+
+            //UPDATE TEACHER -> GROUP
+            setTimeout(() => {
+              observer.next(4);
+              this.identityService.updateTeacherGroup({
+                id: data.teacherGroupId,
+                teacherId: result.teacherid,
+                groupId: data.group.id,
+                teaching_time: result.teachingtime
+              })
+                .subscribe(
+                  data => {
+                    this.openSweetAlertToast('success', 'Group is successfully created');
+                    this.getAllUsers()
+
+                  },
+                  error => {
+                    this.openSweetAlertToast('error', error);
+                  })
+
+              observer.complete();
+            }, 800)
+
+          }
+        });
+
+        observable.subscribe({
+          next: x => console.log('got value ' + x),
+          error: err => console.error('something wrong occurred: ' + err),
+          complete: () => console.log('done'),
+        });
+
+
+      })
+
+  }
+
+  deleteTeacherGroup(data) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+
+      if (result.value) {
+        this.identityService.deleteGroup(data.group.id)
+          .subscribe(
+            data => {
+              // this.openSweetAlertToast('success', 'successfully deleted')
+              // this.getAllUsers();
+              console.log('success: ', 'successfully deleted')
+            },
+            error => {
+              console.log(error)
+              this.openSweetAlert('error', 'Please check your connection')
+            }
+          )
+
+        this.identityService.deleteTeacherGroup(data.teacherGroupId)
+          .subscribe(
+            data => {
+              this.openSweetAlertToast('success', 'successfully deleted')
+
+              this.getAllUsers();
+            },
+            error => {
+              this.openSweetAlert('error', 'Please check your connection')
+            }
+          )
+
+
+      }
+    })
+  }
 
   //filter user
   // applyFilter(user) {
@@ -584,28 +921,43 @@ export class UsersManagementComponent implements OnInit {
     })
   }
 
-  confirmDeleteAlert() {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
+  // confirmDeleteAlert() {
+  //   Swal.fire({
+  //     title: 'Are you sure?',
+  //     text: "You won't be able to revert this!",
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Yes, delete it!'
+  //   }).then((result) => {
 
-      if (result.value) {
-        // Swal.fire(
-        //   'Deleted!',
-        //   'Your file has been deleted.',
-        //   'success',
+  //     if (result.value) {
+  //       // Swal.fire(
+  //       //   'Deleted!',
+  //       //   'Your file has been deleted.',
+  //       //   'success',
 
-        // )
+  //       // )
 
-      }
-    })
+  //     }
+  //   })
 
+
+  // }
+
+
+  // foreing rest api used to gett all countries 
+  getApiCountries() {
+    this.apiCountries = new Array();
+    let index_ = new Array();
+    this.allApiCountries.forEach((el, index) => {
+
+      var country = { name: el.name, language: el.languages[0].name, region: el.region }
+      this.apiCountries.push(country);
+      index_.push(index)
+    });
 
   }
+
 }

@@ -39,9 +39,8 @@ export class DialogUserTeacherComponent implements OnInit {
         firstname: ['',[Validators.required]],
         lastname: ['',[Validators.required]],
         username: ['', [Validators.required]],
+        subject: ['', [Validators.required]],
         password: ['', [Validators.required,Validators.minLength(8)]],
-        country: [null,[Validators.required]],
-        group: [null,[Validators.required]],
       });
     }
     
@@ -50,10 +49,9 @@ export class DialogUserTeacherComponent implements OnInit {
 
     if(this.data.updateUser){
       this.updateUserForm = this.formBuilder.group({
-        firstname: [this.data.item.user.firstName],
-        lastname: [this.data.item.user.lastName],
-        username: [this.data.item.user.username],
-        group: [null],
+        firstname: [this.data.item.firstName],
+        lastname: [this.data.item.lastName],
+        username: [this.data.item.username],
         oldpassword: ['', [Validators.required, Validators.minLength(8)]],
         newpassword: ['', [Validators.minLength(8)]]
   
@@ -77,9 +75,8 @@ export class DialogUserTeacherComponent implements OnInit {
           firstname: this.createform.firstname.value,
           lastname: this.createform.lastname.value,
           username:this.createform.username.value,
+          subject: this.createform.subject.value,
           password: this.createform.password.value,
-          country: this.createform.country.value,
-          groupId: this.createform.group.value.id
         })
       }
     }
@@ -88,8 +85,7 @@ export class DialogUserTeacherComponent implements OnInit {
       if(!this.updateUserForm.invalid){
 
         var password = '';
-        var groupId = 0;
-        if(this.data.item.user.password !== this.updateform.oldpassword.value){
+        if(this.data.item.password !== this.updateform.oldpassword.value){
           this.wrongPassword = true;
           this.alert = new BehaviorSubject<boolean>(true);
             
@@ -105,16 +101,12 @@ export class DialogUserTeacherComponent implements OnInit {
 
         
         if(!this.wrongPassword ){
-          if(this.updateform.group.value !== null){
-            groupId = this.updateform.group.value.id
-          }
+       
           this.dialogRef.close({
-            userId: this.data.item.user.id,
+            userId: this.data.item.id,
             firstname: this.updateform.firstname.value,
             lastname: this.updateform.lastname.value,
             username:this.updateform.username.value,
-            groupId: groupId,
-            oldGroupId: this.data.item.user.teacherGroupId,
             password: password,
           })
         }

@@ -6,8 +6,8 @@ export interface User{
     firstName: string;
     lastName: string;
     username: string;
-    countryId: Number;
-    teacherGroupId: Number;
+    countryId?: Number;
+    teacherGroupId?: Number;
     subject?:string;
     password: string;
     role: Role;

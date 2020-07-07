@@ -160,7 +160,7 @@ export class UserRegisterComponent implements OnInit {
     if(idgroup != null && this.countryId != 0){
 
         console.log("country ID:",this.countryId)
-        this.identityService.userCreate(
+        this.identityService.studentUserCreate(
             {
                 firstname: this.f.firstname.value, 
                 lastname: this.f.lastname.value,

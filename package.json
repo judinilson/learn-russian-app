@@ -46,6 +46,7 @@
     "lorem-ipsum": "^2.0.3",
     "mat-video": "^2.8.1",
     "ng2-charts": "^2.3.2",
+    "ngx-material-timepicker": "^5.5.3",
     "ngx-owl-carousel-o": "^2.1.1",
     "run": "^1.4.0",
     "rxjs": "~6.4.0",

@@ -6,7 +6,7 @@
 
     <div class="row">
       <div class="row mt-5 justify-content-center">
-        <div class="col-xl-8 mb-5 mb-xl-0">
+        <div class="col-xl-8 mb-5 mb-xl-0 ">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
@@ -21,7 +21,9 @@
                 <!-- btns -->
                 
                 <div class="col text-right">
-                  <button mat-raised-button class="btn btn-sm btn-primary " (click)="userStudentCreateDialog()">Create</button>
+                  <button mat-icon-button class="btn btn-sm btn-primary " (click)="userStudentCreateDialog()">
+                    <i  class="fas fa-plus"></i>
+                  </button>
                   <!-- <!-- <button mat-raised-button class="btn btn-sm ml-2" color="primary" >Update</button> -->
                   <button mat-icon-button class="btn ml-3 "  (click)="collapse('student')">
                     <i *ngIf="collapsetableStudent" class="fas fa-angle-down"></i>
@@ -65,7 +67,7 @@
                     <button mat-icon-button class="btn  " color="primary" (click)="userStudentUpdateDialog(student)">
                       <i class="fas fa-edit" aria-hidden="true"></i>
                     </button>
-                    <button mat-icon-button class="btn  " color="accent" (click)="deleteStudentUser(student)">
+                    <button mat-icon-button class="btn  " color="accent" (click)="deleteUser(student,'student')">
                       <i class="fas fa-trash"></i>
                     </button>
                     </td>
@@ -188,7 +190,8 @@
       </div>
     </div>
   </div>
-
+<br>
+<hr>
   <!-- Teacher and group -->
   <div class="container-fluid mt--7" *ngIf="!isQuery">
 
@@ -209,8 +212,9 @@
                 <!-- btns -->
                 
                 <div class="col text-right">
-                  <button mat-raised-button class="btn btn-sm btn-primary " (click)="userStudentCreateDialog()">Create</button>
-                  <!-- <!-- <button mat-raised-button class="btn btn-sm ml-2" color="primary" >Update</button> -->
+                  <button mat-icon-button class="btn btn-sm btn-primary " (click)="userTeacherCreateDialog()">
+                    <i  class="fas fa-plus"></i>
+                  </button>
                   <button mat-icon-button class="btn ml-3 "  (click)="collapse('teacher')">
                     <i *ngIf="collapsetableTeacher" class="fas fa-angle-down"></i>
                     <i *ngIf="!collapsetableTeacher" class="fas fa-angle-up"></i>
@@ -249,10 +253,10 @@
                       {{student.group.name}}
                     </td> -->
                     <td>
-                      <button mat-icon-button class="btn  " color="primary" (click)="userStudentUpdateDialog(teacher)">
+                      <button mat-icon-button class="btn  " color="primary" (click)="userTeacherUpdateDialog(teacher)">
                         <i class="fas fa-edit" aria-hidden="true"></i>
                       </button>
-                      <button mat-icon-button class="btn  " color="accent" (click)="deleteStudentUser(teacher)">
+                      <button mat-icon-button class="btn  " color="accent" (click)="deleteUser(teacher,'teacher')">
                         <i class="fas fa-trash"></i>
                       </button>
                     </td>
@@ -271,7 +275,9 @@
                     <h3 class="mb-0">Teacher and Groups </h3>
                   </div>
                   <div class="col text-right">
-                    <button mat-raised-button class="btn btn-sm btn-primary " (click)="userStudentCreateDialog()">Create</button>
+                    <button mat-icon-button class="btn btn-sm btn-primary " (click)="userGroupCreateDialog()">
+                      <i  class="fas fa-plus"></i>
+                    </button>
 
                     <button mat-icon-button class="btn ml-3 "  (click)="collapse('group')">
                       <i *ngIf="collapsetablegroups" class="fas fa-angle-up"></i>
@@ -306,10 +312,10 @@
                       </th>
 
                       <td>
-                        <button mat-icon-button class="btn  " color="primary" (click)="userStudentUpdateDialog(teacher)">
+                        <button mat-icon-button class="btn  " color="primary" (click)="userGroupUpdateDialog(item)">
                           <i class="fas fa-edit" aria-hidden="true"></i>
                         </button>
-                        <button mat-icon-button class="btn  " color="accent" (click)="deleteStudentUser(teacher)">
+                        <button mat-icon-button class="btn  " color="accent" (click)="deleteTeacherGroup(item)">
                           <i class="fas fa-trash"></i>
                         </button>
                       </td>

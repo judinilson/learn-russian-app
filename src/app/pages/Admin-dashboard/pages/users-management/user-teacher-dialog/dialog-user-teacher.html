@@ -2,7 +2,7 @@
     <div class="container-fluid pb-8">
         <div class="header-body">
             <div class="row">
-                <div class="col-xl-3">
+                <div class="col-xl-12">
                     <div class="card card-stats mb-4">
                         <div class="card-body">
                             <div class="col">
@@ -40,7 +40,7 @@
                                         <span class="ml-2 font-weight-normal">{{data.group.name}}</span>
                                     </div>
                                 </li>
-                              
+
                                 <li class="list-group-item">
                                     <div class="row">
                                         <span class="text-muted text-sm">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-                
+
             </div>
         </div>
 
@@ -68,7 +68,7 @@
 <div *ngIf="data.createUser">
 
     <div class="text-center">
-        <h1 mat-dialog-title>Create new student User</h1>
+        <h1 mat-dialog-title>Create new Teacher User</h1>
 
     </div>
     <div class="container mt--8 pb-5">
@@ -137,6 +137,8 @@
                             </mat-form-field>
                         </div>
 
+
+
                         <div class="col-md-4 ml-md-5">
                             <mat-form-field>
                                 <!-- password -->
@@ -161,50 +163,30 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-8 mr-5">
+                            <mat-form-field>
+                                <!-- Subject -->
 
+                                <input matInput type="text"
+                                    formControlName="subject"
+                                    placeholder="Subject" required>
+                                <span matSuffix class="text-muted">
+                                    <i class='fas fa-book'></i>
+                                </span>
 
-                    <!-- country -->
-                    <div>
+                                <mat-error
+                                    *ngIf="createform.subject.errors?.required">
+                                    Subject is required
+                                </mat-error>
 
-                        <ng-select
-                            [items]="data.countries"
-                            formControlName="country"
-                            dropdownPosition="auto"
-                            appendTo="body"
-                            bindLabel="name"
-                            placeholder="select Country"
-                            [virtualScroll]="true">
-                        </ng-select>
-                        <!-- <span matPrefix class="text-muted">
-                            <i class='fas fa-house-user'></i>
-                        </span> -->
-                        <mat-error class="select-error" *ngIf="submited &&
-                            createform.country.errors?.required">
-                            Country is required
-                        </mat-error>
+                            </mat-form-field>
+                        </div>
                     </div>
 
-
-                    <!-- groups -->
-                    <div>
-                        <ng-select
-                            [items]="data.groups"
-                            formControlName="group"
-                            dropdownPosition="auto"
-                            appendTo="body"
-                            bindLabel="name"
-                            placeholder="select Group"
-                            [virtualScroll]="true">
-                        </ng-select>
-                        <!-- <span matPrefix class="text-muted">
-                            <i class='fas fa-users'></i>
-                        </span> -->
-                        <mat-error class="select-error" *ngIf="submited &&
-                            createform.group.errors?.required">
-                            Group is required
-                        </mat-error>
-                    </div>
                 </div>
+
+
 
             </div>
         </div>
@@ -236,8 +218,7 @@
                                 <!-- first Name  -->
 
                                 <input matInput type="text"
-                                    formControlName="firstname"
-                                     >
+                                    formControlName="firstname">
                                 <span matSuffix class="text-muted">
                                     <i class='fas fa-user-graduate'></i>
                                 </span>
@@ -255,7 +236,7 @@
 
                                 <input matInput type="text"
                                     formControlName="lastname"
-                                    placeholder="Last name" >
+                                    placeholder="Last name">
                                 <span matSuffix class="text-muted">
                                     <i class='fa fa-user-plus'></i>
                                 </span>
@@ -290,29 +271,7 @@
                             </mat-form-field>
                         </div>
 
-                        <!-- groups -->
-                        <div class="col-md-5 ml-5">
-                            <ng-select
-                                [items]="data.groups"
-                                formControlName="group"
-                                dropdownPosition="auto"
-                                appendTo="body"
-                                bindLabel="name"
-                                placeholder="select Group"
-                                [virtualScroll]="true">
-                            </ng-select>
-
-                            <!-- <mat-error class="select-error" *ngIf="submited &&
-                                form.group.errors?.required">
-                                Group is required
-                            </mat-error> -->
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-
-                        <div class="col-md-4 mr-md-5">
+                        <div class="col-md-4 ml-md-5">
                             <mat-form-field>
                                 <!--old password -->
 
@@ -335,13 +294,20 @@
                             </mat-form-field>
                         </div>
 
-                        <div class="col-md-4 ml-md-5">
+
+                    </div>
+
+
+                    <div class="row">
+
+
+                        <div class="col-md-4 mr-md-5">
                             <mat-form-field>
                                 <!-- new password -->
 
                                 <input matInput type="password"
                                     formControlName="newpassword"
-                                    placeholder=" New Password">
+                                    placeholder="New Password">
 
                                 <span matSuffix class="text-muted">
                                     <i class='fas fa-user-lock'></i>
@@ -360,24 +326,7 @@
                     </div>
 
 
-                    <!-- country -->
-                    <!-- <div>
 
-                        <ng-select
-                            [items]="data.countries"
-                            formControlName="country"
-                            dropdownPosition="auto"
-                            appendTo="body"
-                            bindLabel="name"
-                            placeholder="select Country"
-                            [virtualScroll]="true">
-                        </ng-select>
-                     
-                        <mat-error class="select-error" *ngIf="submited &&
-                            form.country.errors?.required">
-                            Country is required
-                        </mat-error>
-                    </div> -->
                 </div>
 
             </div>
@@ -391,27 +340,32 @@
         </div>
     </div>
 
-    
-        <!-- alert -->
-        <div *ngIf="(alert | async)"  class="col-md-7 ">
-            <div *ngIf=" wrongPassword"  class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Update Failed: </strong> 
-                 User password do not match <strong>!</strong>
-                <button  type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="closeAlert()">
+
+    <!-- alert -->
+    <div *ngIf="(alert | async)" class="col-md-7">
+        <div *ngIf="wrongPassword" class="alert alert-danger alert-dismissible
+            fade show" role="alert">
+            <strong>Update Failed: </strong>
+            User password do not match <strong>!</strong>
+            <button type="button" class="close" data-dismiss="alert"
+                aria-label="Close" (click)="closeAlert()">
                 <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-       
-    
-            <div *ngIf="invalidUpdateForm" class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>Update info</strong><br> 
-                For update you need to Edit one/more text-box and enter user password
-                <strong>!</strong>
-                <button  type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="closeAlert()">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-    
+            </button>
         </div>
+
+
+        <div *ngIf="invalidUpdateForm" class="alert alert-info alert-dismissible
+            fade show" role="alert">
+            <strong>Update info</strong><br>
+            For update you need to Edit one/more text-box and enter user
+            password
+            <strong>!</strong>
+            <button type="button" class="close" data-dismiss="alert"
+                aria-label="Close" (click)="closeAlert()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+    </div>
 
 </div>

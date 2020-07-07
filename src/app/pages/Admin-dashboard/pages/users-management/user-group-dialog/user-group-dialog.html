@@ -1,0 +1,197 @@
+
+<div *ngIf="data.createGroup">
+
+    <div class="text-center">
+        <h1 mat-dialog-title>Create new Group</h1>
+
+    </div>
+    <div class="container mt--8 pb-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 col-md-10">
+
+                <div [formGroup]="createGroupForm" mat-dialog-content>
+
+                   <div class="row">
+                        <div class="col-md-4 mr-5">
+                            <mat-form-field>
+                                <!-- group Name  -->
+
+                                <input matInput type="text"
+                                    formControlName="groupname"
+                                    placeholder="Group name" required>
+                                <span matSuffix class="text-muted">
+                                    <i class='fas fa-users'></i>
+                                </span>
+                                <mat-error
+                                    *ngIf="createform.groupname.errors?.required">
+                                    Group name is required
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+
+
+                        <!-- teaching time -->
+                        <div class="col-md-4 ml-5">
+                            <mat-form-field>
+
+                                <input matInput
+                                    formControlName="teachingtime"
+                                    placeholder="teaching time"
+                                     required
+                                     [ngxTimepicker]="editableDial" readonly>
+                                <span matSuffix class="text-muted">
+                                    <i class='fas fa-clock'></i>
+                                </span>
+                                <ngx-material-timepicker  #editableDial [enableKeyboardInput]="true"></ngx-material-timepicker>
+                                <mat-error
+                                    *ngIf="createform.teachingtime.errors?.required">
+                                    Time is required
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    
+
+                    <!-- teachers -->
+                    <div>
+
+                        <ng-select
+                            [items]="data.teachers"
+                            formControlName="teacher"
+                            dropdownPosition="auto"
+                            appendTo="body"
+                            bindLabel="username"
+                            placeholder="select teacher"
+                            [virtualScroll]="true">
+                        </ng-select>
+                     
+                        <mat-error class="select-error" *ngIf="submited &&
+                            createform.teacher.errors?.required">
+                            Teacher is required
+                        </mat-error>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        <div mat-dialog-actions class="d-flex justify-content-center mt-4">
+            <button mat-stroked-button [mat-dialog-close]="null" class="btn">
+                Cancel</button>
+            <button mat-stroked-button (click)="submit()"
+                [attr.disable]="form-invalid" cdkFocusInitial class="btn">
+                Create</button>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="data.updateGroup">
+    <div class="text-center">
+        <h1 mat-dialog-title>Update Group</h1>
+
+    </div>
+    <div class="container mt--8 pb-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 col-md-10">
+
+                <div [formGroup]="updateGroupForm" mat-dialog-content>
+
+                    <div class="row">
+                        <div class="col-md-4 mr-5">
+                            <mat-form-field>
+                                <!-- group Name  -->
+
+                                <input matInput type="text"
+                                    formControlName="groupname"
+                                    placeholder="Group name">
+                                <span matSuffix class="text-muted">
+                                    <i class='fas fa-users'></i>
+                                </span>
+                                <!-- <mat-error
+                                    *ngIf="updateform.groupname.errors?.required">
+                                    Group name is required
+                                </mat-error> -->
+
+                            </mat-form-field>
+                        </div>
+
+
+                        <!-- teaching time -->
+                        <div class="col-md-4 ml-5">
+                            <mat-form-field>
+
+                                <input matInput
+                                    formControlName="teachingtime"
+                                    placeholder="{{defaultTime}}"
+                                     [ngxTimepicker]="editableDial" readonly>
+                                <span matSuffix class="text-muted">
+                                    <i class='fas fa-clock'></i>
+                                </span>
+                                <ngx-material-timepicker  #editableDial [enableKeyboardInput]="true"></ngx-material-timepicker>
+                                <!-- <mat-error
+                                    *ngIf="createform.teachingtime.errors?.required">
+                                    Time is required
+                                </mat-error> -->
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    
+
+                    <!-- teachers -->
+                    <div>
+
+                        <ng-select
+                            [items]="data.teachers"
+                            formControlName="teacher"
+                            dropdownPosition="auto"
+                            appendTo="body"
+                            bindLabel="username"
+                            placeholder="{{defaultTeacher}}"
+                            [virtualScroll]="true">
+                        </ng-select>
+                     
+                        <!-- <mat-error class="select-error" *ngIf="submited &&
+                            createform.teacher.errors?.required">
+                            Teacher is required
+                        </mat-error> -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div mat-dialog-actions class="d-flex justify-content-center mt-4">
+            <button mat-stroked-button [mat-dialog-close]="null" class="btn">
+                Cancel</button>
+            <button mat-stroked-button (click)="submit()"
+                [attr.disable]="form-invalid" cdkFocusInitial class="btn">
+                Update</button>
+        </div>
+    </div>
+
+
+    <!-- alert -->
+    <!-- <div *ngIf="(alert | async)" class="col-md-7">
+       
+
+        <div *ngIf="invalidUpdateForm" class="alert alert-info alert-dismissible
+            fade show" role="alert">
+            <strong>Update info</strong><br>
+            For update you need to Edit one/more text-box and enter user
+            password
+            <strong>!</strong>
+            <button type="button" class="close" data-dismiss="alert"
+                aria-label="Close" (click)="closeAlert()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+    </div> -->
+
+</div>

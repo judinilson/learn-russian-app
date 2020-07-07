@@ -7,14 +7,15 @@ export const environment = {
     apiUrl: 'http://localhost:5000/api',
 
     usersUrl: `${apiUrl.url}/User/`,
-    userCreateUrl: `${apiUrl.url}/User/register-Student`,
-    //userUpdateUrl: `${apiUrl.url}/User/`,
-    //getUserByIdUrl: `${apiUrl.url}/User/`,
+    studentUserCreateUrl: `${apiUrl.url}/User/register-Student`,
+    teacherUserCreateUrl: `${apiUrl.url}/User/register-Teacher`,
+
 
     countryUrl: `${apiUrl.url}/Country`,
     
-    teacherGroupGetUrl: `${apiUrl.url}/TeacherGroup`,
-    userGroupGetUrl: `${apiUrl.url}/Group`,
+    teacherGroupUrl: `${apiUrl.url}/TeacherGroup/`,
+    groupUrl: `${apiUrl.url}/Group/`,
+
 
     demoContentGetUrl: `${apiUrl.url}/Content/Demonstration-Content`,
     articleContentGetUrl: `${apiUrl.url}/Content/Article-Content`,
