@@ -50,6 +50,8 @@ import { DialogUserStudentComponent } from './pages/users-management/user-studen
 import { DialogUserTeacherComponent } from './pages/users-management/user-teacher-dialog/dialog-user-teacher';
 import { DialogUserGroupComponent } from './pages/users-management/user-group-dialog/user-group-dialog';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { DropzoneDirective } from './pages/demonstrations-management/directive/dropzone.directive';
+import { UploadTaskComponent } from './pages/demonstrations-management/upload/upload-task.component';
 
 
 @NgModule({
@@ -75,7 +77,6 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
         ScrollingModule,
         NgSelectModule,
         NgxMaterialTimepickerModule,
- 
         
         //mat
         MatIconModule,
@@ -93,7 +94,9 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
         MatDialogModule,
         MatSelectModule,
         MatCheckboxModule,
-        MatDialogModule
+        MatDialogModule,
+
+  
     ],
     exports: [],
     declarations: [
@@ -104,22 +107,27 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
         TrainingManagementComponent,
         SideBarComponent,
         AdminLayoutComponent,
+        UploadTaskComponent,
 
         //dialogs
         DialogUserStudentComponent,
         DialogUserTeacherComponent,
-        DialogUserGroupComponent
+        DialogUserGroupComponent,
+
+
+          //directive 
+        DropzoneDirective
     ],
     providers: [
         AdminDashboardService,
         IdentityService,
          ContentService,
-         TrainingTestService
+         TrainingTestService,
     ],
     entryComponents: [
         DialogUserStudentComponent,
         DialogUserTeacherComponent,
-        DialogUserGroupComponent
+        DialogUserGroupComponent,
     ]
 
 })

@@ -305,12 +305,14 @@ export class UsersManagementComponent implements OnInit {
 
   //create new student dialog
   userStudentCreateDialog() {
+    var groups = []
+    this.groupAndTeacher.forEach(x=>{groups.push(x.group)})
 
     const dialogRef = this.dialog.open(DialogUserStudentComponent, {
       width: '750px',
       data: {
         countries: this.apiCountries,
-        groups: this.groups,
+        groups:  groups,
         createUser: true
       }
     })
@@ -338,7 +340,7 @@ export class UsersManagementComponent implements OnInit {
                 result.password
               )
               observer.complete();
-            }, 6000)
+            }, 600)
           }
 
         });
@@ -355,7 +357,6 @@ export class UsersManagementComponent implements OnInit {
 
   // update student dialog
   userStudentUpdateDialog(data) {
-
     const dialogRef = this.dialog.open(DialogUserStudentComponent, {
       width: '750px',
       data: {
@@ -488,6 +489,7 @@ export class UsersManagementComponent implements OnInit {
     var idReletedTeacherGroup = null;
     if (this.teacherGroups != undefined) {
       reletedTeacherGroup = this.teacherGroups.filter(tg => tg.groupId == groupId); //filter the groups tha have teachers releted to that group id
+      console.log(this.teacherGroups)
       idReletedTeacherGroup = reletedTeacherGroup[0].id; //id selected teacher group
     } else {
       console.log('group is unselected');
@@ -658,6 +660,7 @@ export class UsersManagementComponent implements OnInit {
     var count = 0
     var teachers = []
 
+    //if teacher does not repeat twice
     this.teacherUsers.forEach(item => {
       count = this.teacherFilterCount(this.teacherGroups, item)
       if (count < 2) {
@@ -689,26 +692,27 @@ export class UsersManagementComponent implements OnInit {
             let teachTime = result.teachingtime.substring(0, 5)
 
             //CREATE GROUP
-            this.identityService.createGroup({
-              name: result.groupname,
-              creationDate: new Date()
-            })
-              .subscribe(
-                data => {
-                  console.log("group is sucessfuly created", data);
-                  this.createdGroupId = data.id;
-                },
-                error => {
-                  this.openSweetAlertToast('error', error);
-                })
+            this.createGroup(result.groupname)
+            // this.identityService.createGroup({
+            //   name: result.groupname,
+            //   creationDate: new Date()
+            // })
+            //   .subscribe(
+            //     data => {
+            //       console.log("group is sucessfuly created", data);
+            //       this.createdGroupId = data.id;
+            //     },
+            //     error => {
+            //       this.openSweetAlertToast('error', error);
+            //     })
 
             //CREATE TEACHER -> GROUP
             setTimeout(() => {
               observer.next(4);
-
+              console.log('groupId',this.createdGroupId)
               this.createTeacherGroup(this.createdGroupId, result.teacher.id, teachTime);
               observer.complete();
-            }, 800)
+            }, 500)
 
           }
         });
@@ -724,6 +728,21 @@ export class UsersManagementComponent implements OnInit {
 
   }
 
+  createGroup(groupname){
+    this.identityService.createGroup({
+      name: groupname,
+      creationDate: new Date()
+    })
+      .subscribe(
+        data => {
+          console.log("group is sucessfuly created", data);
+          this.createdGroupId = data.id;
+        },
+        error => {
+          this.openSweetAlertToast('error', error);
+        })
+
+  }
   createTeacherGroup(groupId, teacherId, time) {
     this.identityService.createTeacherGroup({
       teacherId: teacherId,
@@ -736,6 +755,8 @@ export class UsersManagementComponent implements OnInit {
           this.getAllUsers()
         },
         error => {
+          this.identityService.deleteGroup(groupId)
+          .subscribe( )
           this.openSweetAlertToast('error', error);
           console.log(error)
         }

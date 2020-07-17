@@ -12,12 +12,15 @@ import { TrainingTestModule } from './pages/test/training-test.module';
 import {StatisticModule} from './pages/statistic/statistic.component';
 import {  OAuthModule } from './shared/Aouth/Aouth.module';
 import { AdminDashboardModule } from './pages/Admin-dashboard/admin-dashboard.Module';
+import { environment, firebaseConfig } from './shared/environment';
+import { AngularFirestoreModule} from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
     AppComponent,
     HelpComponent,
-
     
   ],
   imports: [
@@ -29,9 +32,11 @@ import { AdminDashboardModule } from './pages/Admin-dashboard/admin-dashboard.Mo
     ContentModule,
     TrainingTestModule,
     StatisticModule,
-    AdminDashboardModule
+    AdminDashboardModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule
     ],
-  providers: [],
+  providers: [AngularFireStorage],
   bootstrap: [AppComponent],
   
   
