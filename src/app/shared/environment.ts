@@ -20,7 +20,7 @@ export const environment = {
     demoContentGetUrl: `${apiUrl.url}/Content/Demonstration-Content`,
     articleContentGetUrl: `${apiUrl.url}/Content/Article-Content`,
 
-    categoryGetUrl: `${apiUrl.url}/Category`,
+    categoryUrl: `${apiUrl.url}/Category/`,
 
     trainingDataUrl: `${apiUrl.url}/TrainingContent`,
 

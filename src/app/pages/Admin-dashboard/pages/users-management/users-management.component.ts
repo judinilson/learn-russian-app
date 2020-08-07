@@ -1,6 +1,5 @@
 import { Component, OnInit, ErrorHandler } from '@angular/core';
 import { IdentityService } from 'src/app/shared/service/identity.service';
-import { until } from 'protractor';
 import { first, debounceTime, distinctUntilChanged, delay } from 'rxjs/operators';
 import { TrainingTestService } from 'src/app/shared/service/training-test.service';
 import { MatDialog, MatTableDataSource } from '@angular/material';
@@ -11,6 +10,7 @@ import { Injectable, PipeTransform } from '@angular/core';
 import Swal from 'sweetalert2/dist/sweetalert2.all'
 import { DialogUserTeacherComponent } from './user-teacher-dialog/dialog-user-teacher';
 import { DialogUserGroupComponent } from './user-group-dialog/user-group-dialog';
+import { AlertService } from 'src/app/shared/service/alert.service';
 
 @Component({
   selector: 'app-users-management',
@@ -50,6 +50,7 @@ export class UsersManagementComponent implements OnInit {
   constructor(
     private identityService: IdentityService,
     private trainingService: TrainingTestService,
+    private alertService: AlertService,
     public dialog: MatDialog
   ) { }
 
@@ -401,13 +402,13 @@ export class UsersManagementComponent implements OnInit {
             .pipe(distinctUntilChanged())
             .subscribe(
               data => {
-                this.openSweetAlertToast('success', 'updated sucessfully');
+                this.alertService.openSweetAlertToast('success', 'updated sucessfully');
                 this.getAllUsers();
 
               },
               error => {
                 console.log("error: ", error)
-                this.openSweetAlert('error', 'Please check your connection')
+                this.alertService.openSweetAlert('error', 'Please check your connection')
               }
             )
 
@@ -442,12 +443,12 @@ export class UsersManagementComponent implements OnInit {
         this.identityService.userDelete(deletedId)
           .subscribe(
             data => {
-              this.openSweetAlertToast('success', 'successfully deleted')
+              this.alertService.openSweetAlertToast('success', 'successfully deleted')
               this.getAllUsers();
 
             },
             error => {
-              this.openSweetAlert('error', 'Please check your connection')
+              this.alertService.openSweetAlert('error', 'Please check your connection')
             }
           )
 
@@ -512,14 +513,14 @@ export class UsersManagementComponent implements OnInit {
         .pipe(delay(800))
         .subscribe(
           data => {
-            this.openSweetAlertToast('success', 'User is successfully created');
+            this.alertService.openSweetAlertToast('success', 'User is successfully created');
             this.getAllUsers();
           },
           error => {
             this.error = error;
             //this.loading = false;
             //this.alert = new BehaviorSubject<boolean>(true);
-            this.openSweetAlertToast('error', error);
+            this.alertService.openSweetAlertToast('error', error);
           });
 
     } else {
@@ -578,12 +579,12 @@ export class UsersManagementComponent implements OnInit {
       .pipe(delay(800))
       .subscribe(
         data => {
-          this.openSweetAlertToast('success', 'User is successfully created');
+          this.alertService.openSweetAlertToast('success', 'User is successfully created');
           this.getAllUsers();
         },
         error => {
           this.error = error;
-          this.openSweetAlertToast('error', error);
+          this.alertService.openSweetAlertToast('error', error);
         });
   }
 
@@ -619,13 +620,13 @@ export class UsersManagementComponent implements OnInit {
             .pipe(distinctUntilChanged())
             .subscribe(
               data => {
-                this.openSweetAlertToast('success', 'updated sucessfully');
+                this.alertService.openSweetAlertToast('success', 'updated sucessfully');
                 this.getAllUsers();
 
               },
               error => {
                 console.log("error: ", error)
-                this.openSweetAlert('error', 'Please check your connection')
+                this.alertService.openSweetAlert('error', 'Please check your connection')
               }
             )
 
@@ -739,7 +740,7 @@ export class UsersManagementComponent implements OnInit {
           this.createdGroupId = data.id;
         },
         error => {
-          this.openSweetAlertToast('error', error);
+          this.alertService.openSweetAlertToast('error', error);
         })
 
   }
@@ -751,13 +752,13 @@ export class UsersManagementComponent implements OnInit {
     })
       .subscribe(
         data => {
-          this.openSweetAlertToast('success', 'Group is successfully created');
+          this.alertService.openSweetAlertToast('success', 'Group is successfully created');
           this.getAllUsers()
         },
         error => {
           this.identityService.deleteGroup(groupId)
           .subscribe( )
-          this.openSweetAlertToast('error', error);
+          this.alertService.openSweetAlertToast('error', error);
           console.log(error)
         }
       )
@@ -809,7 +810,7 @@ export class UsersManagementComponent implements OnInit {
 
                 },
                 error => {
-                  this.openSweetAlertToast('error', error);
+                  this.alertService.openSweetAlertToast('error', error);
                 })
 
             //UPDATE TEACHER -> GROUP
@@ -823,12 +824,12 @@ export class UsersManagementComponent implements OnInit {
               })
                 .subscribe(
                   data => {
-                    this.openSweetAlertToast('success', 'Group is successfully created');
+                    this.alertService.openSweetAlertToast('success', 'Group is successfully created');
                     this.getAllUsers()
 
                   },
                   error => {
-                    this.openSweetAlertToast('error', error);
+                    this.alertService.openSweetAlertToast('error', error);
                   })
 
               observer.complete();
@@ -869,19 +870,19 @@ export class UsersManagementComponent implements OnInit {
             },
             error => {
               console.log(error)
-              this.openSweetAlert('error', 'Please check your connection')
+              this.alertService.openSweetAlert('error', 'Please check your connection')
             }
           )
 
         this.identityService.deleteTeacherGroup(data.teacherGroupId)
           .subscribe(
             data => {
-              this.openSweetAlertToast('success', 'successfully deleted')
+              this.alertService.openSweetAlertToast('success', 'successfully deleted')
 
               this.getAllUsers();
             },
             error => {
-              this.openSweetAlert('error', 'Please check your connection')
+              this.alertService.openSweetAlert('error', 'Please check your connection')
             }
           )
 
@@ -909,38 +910,7 @@ export class UsersManagementComponent implements OnInit {
   }
 
 
-  /*
-    SWEET ALERT DIALOGS: 
-  */
-  openSweetAlertToast(icon: string, message: string) {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      onOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-
-    Toast.fire({
-      icon: icon,
-      title: message//'User is successfully created'
-    })
-
-  }
-
-  openSweetAlert(icon: string, title: string) {
-    Swal.fire({
-      position: 'top-end',
-      icon: icon,
-      title: title,
-      showConfirmButton: false,
-      timer: 2000
-    })
-  }
+ 
 
   // confirmDeleteAlert() {
   //   Swal.fire({

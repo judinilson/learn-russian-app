@@ -55,7 +55,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase
-                                            text-muted mb-0">все статьи 
+                                            text-muted mb-0">все статьи
                                         </h5>
                                         <span class="h2 font-weight-bold mb-0">{{totalArticleContent}}</span>
                                     </div>
@@ -78,7 +78,8 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase
-                                            text-muted mb-0">весь демонстрационный контент</h5>
+                                            text-muted mb-0">весь
+                                            демонстрационный контент</h5>
                                         <span class="h2 font-weight-bold mb-0">{{totalDemoContent}}</span>
                                     </div>
                                     <div class="col-auto">
@@ -103,76 +104,175 @@
 
     <div class="container-fluid mt--7">
         <div class="row">
-          <div class="col-xl-8 mb-5 mt-2 mb-xl-0">
-            <div class="card bg-gradient-default shadow">
-              <div class="card-header bg-transparent">
-                <div class="row align-items-center">
-                  <div class="col">
-                    <h6 class="text-uppercase text-light ls-1 mb-1">Обзор</h6>
-                    <h4 class="text-white mb-0">Статистика пользователей</h4>
-                    <h6 class="text-uppercase text-light ls-1 mb-1">С прошлой недели</h6>
-                  </div>
-                   <div class="col">
-                    <ul class="nav nav-pills justify-content-end">
-                      <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-statistics"  (click)="updateOptions()">
-                        <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}" data-toggle="tab" (click)="clicked=true;clicked1=false">
-                          <span class="d-none d-md-block">Обновить</span>
-                        </a>
-                      </li>
-                    
-                    </ul>
-                  </div> 
-                </div>
-              </div>
-              <div class="card-body">
-                <!-- Chart -->
-                <div class="chart">
-                  <!-- Chart wrapper -->
-                  <!-- <canvas id="chart-statistics" class="chart-canvas"></canvas> -->
-                  <canvas 
-                  class="chart-canvas" 
-                  baseChart 
-                  [datasets]="barChartData" 
-                  [labels]="barChartLabels" 
-                  [options]="barChartOptions"
-                  [legend]="barChartLegend" 
-                  [chartType]="lineChartType" 
-                  [legend]=true></canvas> 
-                  <!-- (chartHover)="chartHovered($event)"
+            <div class="col-xl-8 mb-5 mt-2 mb-xl-0">
+                <div class="card bg-gradient-default shadow">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="text-uppercase text-light ls-1 mb-1">Обзор</h6>
+                                <h4 class="text-white mb-0">Статистика
+                                    пользователей</h4>
+                                <h6 class="text-uppercase text-light ls-1 mb-1">С
+                                    прошлой недели</h6>
+                            </div>
+                            <div class="col">
+                                <ul class="nav nav-pills justify-content-end">
+                                    <li class="nav-item mr-2 mr-md-0"
+                                        data-toggle="chart"
+                                        data-target="#chart-statistics"
+                                        (click)="updateOptions()">
+                                        <a href="javascript:void(0)"
+                                            class="nav-link py-2 px-3"
+                                            [ngClass]="{'active':clicked===true}"
+                                            data-toggle="tab"
+                                            (click)="clicked=true;clicked1=false">
+                                            <span class="d-none d-md-block">Обновить</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Chart -->
+                        <div class="chart">
+                            <!-- Chart wrapper -->
+                            <!-- <canvas id="chart-statistics" class="chart-canvas"></canvas> -->
+                            <canvas
+                                class="chart-canvas"
+                                baseChart
+                                [datasets]="barChartData"
+                                [labels]="barChartLabels"
+                                [options]="barChartOptions"
+                                [legend]="barChartLegend"
+                                [chartType]="lineChartType"
+                                [legend]=true></canvas>
+                            <!-- (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)" -->
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-          <div class="col-xl-4 mt-2">
-            <div class="card shadow">
-              <div class="card-header bg-transparent">
-                <div class="row align-items-center">
-                  <div class="col">
-                    <h6 class="text-uppercase text-muted ls-1 mb-1">перформанс</h6>
-                    <h4 class="mb-0">Производительность пользователей</h4>
-                    <h6 class="text-uppercase text-muted ls-1 mb-1">С прошлой недели</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <!-- Chart -->
-                <div class="chart">
-                  <!-- <canvas id="chart-orders" class="chart-canvas"></canvas> -->
-                  <canvas 
-                  class="chart-canvas" 
-                  baseChart 
-                  [datasets]="barChartData" 
-                  [labels]="barChartLabels"
-                  [options]="barChartOptions"
-                  [legend]="barChartLegend" 
-                  [chartType]="barChartType" ></canvas>
-                  <!-- (chartHover)="chartHovered($event)"
+            <div class="col-xl-4 mt-2">
+                <div class="card shadow">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="text-uppercase text-muted ls-1 mb-1">перформанс</h6>
+                                <h4 class="mb-0">Производительность
+                                    пользователей</h4>
+                                <h6 class="text-uppercase text-muted ls-1 mb-1">С
+                                    прошлой недели</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Chart -->
+                        <div class="chart">
+                            <!-- <canvas id="chart-orders" class="chart-canvas"></canvas> -->
+                            <canvas
+                                class="chart-canvas"
+                                baseChart
+                                [datasets]="barChartData"
+                                [labels]="barChartLabels"
+                                [options]="barChartOptions"
+                                [legend]="barChartLegend"
+                                [chartType]="barChartType"></canvas>
+                            <!-- (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)" -->
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
+    </div>
+
+
+    <hr>
+
+    <!--Categories (CREATE , UPDATE , DELETE)-->
+    <div class="container-fluid" *ngIf="!isQuery">
+
+        <div class="">
+            <div class="row mt-5">
+                <div class="col-12 mb-5 mb-xl-0">
+                    <div class="card shadow">
+                        <div class="card-header border-0">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h3 class="mb-0">Categories</h3>
+                                    <!-- <mat-form-field class="ml-5">
+                        <mat-label>Filter</mat-label>
+                        <input matInput (keyup)="applyFilter($event)" placeholder="name" #input>
+                      </mat-form-field> -->
+                                </div>
+
+                                <!-- btns -->
+                                <div class="col text-right">
+                                    <button mat-icon-button class="btn btn-sm
+                                        btn-primary"
+                                        (click)="categoryCreateDialog()">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                    <button mat-icon-button class="btn ml-3"
+                                        (click)="collapse()">
+                                        <i *ngIf="collapseTable"
+                                            class="fas fa-angle-down"></i>
+                                        <i *ngIf="!collapseTable"
+                                            class="fas fa-angle-up"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive" style="max-height: 230px;"
+                            *ngIf="!collapseTable">
+                            <!-- Categories table -->
+                            <table class="table align-items-center table-flush"
+                                id="table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="button" class="ripple"
+                                        *ngFor="let category of categories; let
+                                        i= index">
+                                        <th scope="row">
+                                            {{i+1}}
+                                        </th>
+                                        <td>
+                                            {{category.name}}
+                                        </td>
+
+                                        <td>
+                                            <div style="text-align: end;">
+                                                <button mat-icon-button
+                                                    class="btn" color="primary"
+                                                    (click)="categoryUpdateDialog(category)">
+                                                    <i class="fas fa-edit"
+                                                        aria-hidden="true"></i>
+                                                </button>
+                                                <button mat-icon-button
+                                                    class="btn" color="accent"
+                                                    (click)="categoryDelete(category.id)">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

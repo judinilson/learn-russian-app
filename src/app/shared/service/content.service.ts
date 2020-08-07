@@ -35,7 +35,16 @@ export class ContentService {
     }
 
     getCategory(){
-      return this.http.get<Category>(environment.categoryGetUrl)
+      return this.http.get<Category>(environment.categoryUrl)
+    }
+    createCategory(data){
+      return this.http.post<Category>(environment.categoryUrl,data)
+    }
+    updateCategory(id,data){
+      return this.http.put<Category>(environment.categoryUrl + id,data)
+    }
+    deleteCategory(id){
+      return this.http.delete<Category>(environment.categoryUrl + id)
     }
 
 

@@ -5,9 +5,12 @@ import { AdminDashboardService } from 'src/app/shared/service/admin-dashboard.se
 import { IdentityService } from 'src/app/shared/service/identity.service';
 import { ContentService } from 'src/app/shared/service/content.service';
 import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
-import { DateAdapter, MAT_DATEPICKER_SCROLL_STRATEGY_FACTORY } from '@angular/material';
 import { TrainingTestService } from 'src/app/shared/service/training-test.service';
-import { DeprecatedDatePipe } from '@angular/common';
+import { DialogCategoryComponent } from './category-dialog/category-dialog';
+import { MatDialog } from '@angular/material';
+import { AlertService } from 'src/app/shared/service/alert.service';
+import Swal from 'sweetalert2/dist/sweetalert2.all'
+
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -54,12 +57,16 @@ export class AdminDashboardComponent implements OnInit {
   lastWeek = new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() - 7);
   lastWeekUsersStatistics = []
 
+  categories: any;
+  collapseTable: boolean;
 
   constructor(
     private admindashboardservice: AdminDashboardService,
     private identityService: IdentityService,
     private contentService: ContentService,
     private trainingTestService: TrainingTestService,
+    private alertService: AlertService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -67,6 +74,7 @@ export class AdminDashboardComponent implements OnInit {
     this.getAllDemoContent()
     this.getAllUsers();
     this.getAllStatistic();
+    this.getAllCategories();
   }
 
   // events
@@ -83,6 +91,114 @@ export class AdminDashboardComponent implements OnInit {
   // }
 
 
+
+  getAllCategories() {
+    var _data: any;
+    this.contentService.getCategory()
+      .pipe(debounceTime(500))
+      .pipe(distinctUntilChanged())
+      .subscribe(
+        data => {
+          _data = data
+          this.categories = _data;
+        },
+
+        error => {
+          console.log("error trying to get categories", error);
+        })
+  }
+
+  categoryCreateDialog() {
+    const dialogRef = this.dialog.open(DialogCategoryComponent, {
+      width: '450px',
+      data: {
+        create: true
+      }
+    })
+
+    dialogRef.afterClosed()
+      .pipe(debounceTime(300))
+      .pipe(distinctUntilChanged())
+      .subscribe(result => {
+        console.log('category: ', result);
+        if (result != null) {
+          var data = result.name
+          this.contentService.createCategory({ name: data })
+            .pipe(debounceTime(300))
+            .pipe(distinctUntilChanged())
+            .subscribe(
+              response => {
+                this.alertService.openSweetAlertToast('success', 'Created sucessfully');
+                this.getAllCategories()
+              },
+              error => {
+                this.alertService.openSweetAlert('error', 'Please check your connection')
+              }
+            )
+        }
+      })
+  }
+
+  categoryUpdateDialog(category) {
+    const dialogRef = this.dialog.open(DialogCategoryComponent, {
+      width: '450px',
+      data: {
+        update: true,
+        category: category
+      }
+    })
+
+    dialogRef.afterClosed()
+      .pipe(debounceTime(300))
+      .pipe(distinctUntilChanged())
+      .subscribe(result => {
+        console.log('category: ', result);
+        if (result != null) {
+          var data = result
+          this.contentService.updateCategory(data.id, { name: data.name })
+            .pipe(debounceTime(300))
+            .pipe(distinctUntilChanged())
+            .subscribe(
+              response => {
+                this.alertService.openSweetAlertToast('success', 'updated sucessfully');
+                this.getAllCategories()
+              },
+              error => {
+                this.alertService.openSweetAlert('error', 'Please check your connection')
+              }
+            )
+        }
+      })
+  }
+
+  categoryDelete(id) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+
+      if (result.value) {
+        this.contentService.deleteCategory(id)
+          .pipe(debounceTime(300))
+          .pipe(distinctUntilChanged())
+          .subscribe(
+            response => {
+              this.alertService.openSweetAlertToast('success', 'Deleted sucessfully');
+              this.getAllCategories()
+            },
+            error => {
+              console.log('ERROR: trying to delete Category ', error)
+              this.alertService.openSweetAlert('error', 'Please check your connection')
+            }
+          )
+      }
+    })
+  }
 
 
 
@@ -183,7 +299,7 @@ export class AdminDashboardComponent implements OnInit {
       )
   }
 
-lastWeekStatisticsPercentages(lastWeekUsersStatistics) {
+  lastWeekStatisticsPercentages(lastWeekUsersStatistics) {
     var correctPercentagemonday = 0
     var incorrectPercentagemoday = 0
     var correctPercentagetuesday = 0
@@ -204,29 +320,29 @@ lastWeekStatisticsPercentages(lastWeekUsersStatistics) {
     var fridayCount = 0
     var saturdayCount = 0
     var st = []
-    
+
     lastWeekUsersStatistics.forEach((l, i) => {
 
       st.push({
-        date: (new Date(l.trainingDate)), 
-        cpercentage:l.percentageCorrectAnswers,
-        ipercentage:l.percentageIncorrectAnswers
+        date: (new Date(l.trainingDate)),
+        cpercentage: l.percentageCorrectAnswers,
+        ipercentage: l.percentageIncorrectAnswers
       })
-    })  
- 
+    })
+
 
     st.forEach((s, i) => {
 
       if (s.date.getDay() === 1) {//monday
         incorrectPercentagemoday = s.ipercentage + incorrectPercentagemoday
         correctPercentagemonday = s.cpercentage + correctPercentagemonday
-        mondayCount += 1 
+        mondayCount += 1
       }
 
       if (s.date.getDay() === 2) {//tuesday
         incorrectPercentagetuesday = s.ipercentage + incorrectPercentagetuesday
         correctPercentagetuesday = s.cpercentage + correctPercentagetuesday
-        tuesdayCount +=1;
+        tuesdayCount += 1;
       }
 
       if (s.date.getDay() === 3) {//wednesday
@@ -250,22 +366,22 @@ lastWeekStatisticsPercentages(lastWeekUsersStatistics) {
       if (s.date.getDay() === 6) {//saturday
         incorrectPercentagesaturday = s.ipercentage + incorrectPercentagesaturday
         correctPercentagesaturday = s.cpercentage + correctPercentagesaturday
-        saturdayCount+=1
+        saturdayCount += 1
       }
 
     })
 
 
-    this.barChartData[0].data[0] = Math.round(incorrectPercentagemoday  / mondayCount)
+    this.barChartData[0].data[0] = Math.round(incorrectPercentagemoday / mondayCount)
     this.barChartData[1].data[0] = Math.round(correctPercentagemonday / mondayCount)
 
-    this.barChartData[0].data[1] =  Math.round(incorrectPercentagetuesday / tuesdayCount)
+    this.barChartData[0].data[1] = Math.round(incorrectPercentagetuesday / tuesdayCount)
     this.barChartData[1].data[1] = Math.round(correctPercentagetuesday / tuesdayCount)
 
-    this.barChartData[0].data[2] =  Math.round(incorrectPercentagewednesday / wednesdayCount)
+    this.barChartData[0].data[2] = Math.round(incorrectPercentagewednesday / wednesdayCount)
     this.barChartData[1].data[2] = Math.round(correctPercentagewednesday / wednesdayCount)
 
-    this.barChartData[0].data[3] = Math.round(incorrectPercentagethursday/ thursdayCount)
+    this.barChartData[0].data[3] = Math.round(incorrectPercentagethursday / thursdayCount)
     this.barChartData[1].data[3] = Math.round(correctPercentagethursday / thursdayCount)
 
     this.barChartData[0].data[4] = Math.round(incorrectPercentagefriday / fridayCount)
@@ -274,12 +390,16 @@ lastWeekStatisticsPercentages(lastWeekUsersStatistics) {
     this.barChartData[0].data[5] = Math.round(incorrectPercentagesaturday / saturdayCount)
     this.barChartData[1].data[5] = Math.round(correctPercentagesaturday / saturdayCount)
 
-   }
+  }
 
 
 
-   updateOptions(){
-     this.getAllStatistic()
-   }
+  updateOptions() {
+    this.getAllStatistic()
+  }
 
+
+  collapse() {
+    this.collapseTable = !this.collapseTable;
+  }
 }

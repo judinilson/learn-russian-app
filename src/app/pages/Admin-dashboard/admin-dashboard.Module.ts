@@ -52,6 +52,8 @@ import { DialogUserGroupComponent } from './pages/users-management/user-group-di
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DropzoneDirective } from './pages/demonstrations-management/directive/dropzone.directive';
 import { UploadTaskComponent } from './pages/demonstrations-management/upload/upload-task.component';
+import { DialogCategoryComponent } from './pages/admin-dashboard/category-dialog/category-dialog';
+import { AlertService } from 'src/app/shared/service/alert.service';
 
 
 @NgModule({
@@ -113,6 +115,7 @@ import { UploadTaskComponent } from './pages/demonstrations-management/upload/up
         DialogUserStudentComponent,
         DialogUserTeacherComponent,
         DialogUserGroupComponent,
+        DialogCategoryComponent ,
 
 
           //directive 
@@ -123,11 +126,13 @@ import { UploadTaskComponent } from './pages/demonstrations-management/upload/up
         IdentityService,
          ContentService,
          TrainingTestService,
+         AlertService,
     ],
     entryComponents: [
         DialogUserStudentComponent,
         DialogUserTeacherComponent,
         DialogUserGroupComponent,
+        DialogCategoryComponent
     ]
 
 })
