@@ -1,5 +1,6 @@
 
-<div class="dropzone"
+<!-- <div class="dropzone"
+
   dropzone
   (hovered)="toggleHover($event)"
   (dropped)="onDrop($event)"
@@ -28,4 +29,18 @@
 
 <div *ngFor="let file of files">
   <upload-task [file]="file"></upload-task>
+</div> -->
+
+
+<div (onUploadFinished)="uploadFinished($event)">
+  <h1>File Upload Using Angular and Asp.net Core </h1>
+  <input #file type="file" multiple (change)="upload(file.files)"/>
+   <br>
+   <span style="font-weight: bold; color:green; " *ngIf="progress > 0 && progress < 100">
+     {{progress}}%
+   </span>
+  
+   <span style="font-weight: bold; color: green;" *ngIf="message">
+     {{message}}
+   </span>
 </div>

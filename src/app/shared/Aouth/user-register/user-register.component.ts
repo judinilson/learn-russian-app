@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { first, debounceTime, distinctUntilChanged, delay } from 'rxjs/operators';
 import { AuthenticationService } from '../../service/authentication.service';
 import {IdentityService} from '../../service/identity.service'
@@ -32,6 +32,53 @@ export class UserRegisterComponent implements OnInit {
   footer_td: Date = new Date();
   alert = new Observable<boolean>();
 
+  showDetails:boolean
+  //strength type (weak , normal, strong)
+  strengthType:string;
+
+  // hide password
+  hide = true
+
+  // password polices 
+  @Input()
+  password: string; // the provided password to be processed as string
+
+  /* Object.Keys()
+  Object that contains the properties and methods. 
+  This can be an object that you created or 
+  an existing (DOM) object.
+    Returns the names of the enumerable
+    string properties and methods of an object.
+  */
+  @Input()
+  validators: Criteria[] = Object.keys(Criteria).map(key => Criteria[key]) // array of criteria
+
+  @Input()
+  externalError:boolean; // trigger to change the state of the password strength if an external error occurs
+
+  //@Output()
+  // event emiter that will  be fired every time the state of the password strength changes (0 to 100%)
+  //onStrengthChanged: EventEmitter<number>= new EventEmitter<number>() 
+
+  //map the criteria and Regex 
+  criteriaMap = new Map<Criteria, RegExp>()
+
+  //the criteria with type
+  containAtLeastEightChars:boolean;
+  containAtLeastOneLowerCaseLetter:boolean;
+  containAtLeastOneUpperCaseLetter:boolean;
+  containAtLeastOneDigit:boolean;
+  containALeastOneSpecialChar:boolean;
+
+  //abstract control
+//   passwordFormControl:AbstractControl;
+
+  //password strength
+  private _strength: number;
+
+  //color of animation 
+  private _color: string;
+
   
   constructor(
       private formBuilder: FormBuilder,
@@ -45,6 +92,14 @@ export class UserRegisterComponent implements OnInit {
           this.router.navigate(['/']);
       }
 
+
+      //set criteries and regex to MapCriteria
+      // for every criteria, test the password against a regular expression
+      this.criteriaMap.set(Criteria.at_least_eight_chars,RegExp(/^.{8,63}$/))
+      this.criteriaMap.set(Criteria.at_least_one_lowerCase_char,RegExp(/^(?=.*?[a-z])/))
+      this.criteriaMap.set(Criteria.at_least_one_upperCase_char,RegExp(/^(?=.*?[A-Z])/))
+      this.criteriaMap.set(Criteria.at_least_one_upperCase_char,RegExp(/^(?=.*?[0-9])/))
+      this.criteriaMap.set(Criteria.at_least_one_upperCase_char,RegExp(/^(?=.*?[ " !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~" ])/))
     
   }
 
@@ -68,7 +123,7 @@ export class UserRegisterComponent implements OnInit {
           firstname: ['',[Validators.required]],
           lastname: ['',[Validators.required]],
           username: ['', [Validators.required]],
-          password: ['', [Validators.required,Validators.minLength(8)]],
+          password: ['', [...this.validators.map(criteria => Validators.pattern(this.criteriaMap.get(criteria)))]],
           country: [null,[Validators.required]],
           groupteacher: [null,[Validators.required]],
       });
@@ -79,13 +134,63 @@ export class UserRegisterComponent implements OnInit {
       
   }
 
+
+  // every time the password changes, the strength will be calculated and emitted 
+  ngOnChanges(changes: SimpleChanges): void {
+      //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+      //Add '${implements OnChanges}' to the class.
+      if(changes.externalError && changes.externalError.firstChange){
+          this._color = Colors.primary;
+          return;
+      }
+      if(changes.externalError && changes.externalError.currentValue){
+          this._color = Colors.accent;
+          return;
+      }
+      
+      this.password && this.password.length > 0 ? this.calculatePasswordStrength(): this.reset();
+  }
+
+
+  // getting strength if exist or not null (if isn't then set to 0 else get strength)
+  get strength(): number{
+      return this._strength ? this._strength : 0;
+  }
+
+
+  // getting the color for each strength 
+  // using the value of strength to pick right color 
+  get color():string{
+
+      if(this._strength <= 20){
+          this.strengthType = 'Weak'
+          return Colors.warn;
+      }else if(this._strength <= 80){
+        this.strengthType = 'Normal'
+         return Colors.accent;
+      }else{
+        this.strengthType = 'Strong'
+          return Colors.primary
+      }
+  }
+
+
+
+
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
 
+
+  //icon
   private userGetIcon(){
     this.lock_user_icon = "https://img.icons8.com/bubbles/100/000000/lock-male-user.png";
   }
 
+
+
+
+  
+  // create new user on submiting the user data
   onSubmit() {
       this.submitted = true;
 
@@ -119,6 +224,7 @@ export class UserRegisterComponent implements OnInit {
 
   }
 
+  //register new user country
   private createCountry(){
     this.identityService.countryCreate(
         {
@@ -145,6 +251,7 @@ export class UserRegisterComponent implements OnInit {
 
   }
 
+  //register new user
  private createUser(){
 
     let idgroup = null;
@@ -195,6 +302,7 @@ export class UserRegisterComponent implements OnInit {
     }
   }
 
+  //get countries from api
   getCountries(){
         this.countries = new Array();
       let index_ = new Array();
@@ -207,21 +315,130 @@ export class UserRegisterComponent implements OnInit {
       
   }
 
+  //get the school group in api
   getUserGroup(data:any){
     this.groups = data
   }
 
+  // get the teachers with groups from api
   getTeacherGroup(data:any){
      this.teacherGroups = data;
      console.log(this.teacherGroups);
   }
 
   
+  //alert
   alertClose() {
     this.alert = new BehaviorSubject<boolean>(false);;
       
   }
 
+
+  // password police criteria methods 
+  private _containAtLeastEightChars(): boolean{
+      // checking if the criteria of 8 char is true in password
+      this.containAtLeastEightChars = this.password.length >= 8;
+      // if the password is >= 8 then return true else return false 
+      return this.containAtLeastEightChars 
+  }
+
+  private _containAtLeastLowerCaseLetter(): boolean{
+      this.containAtLeastOneLowerCaseLetter = 
+      // geting the enum (Criteria.at_least_one_lowerCase_char) from the map,that map it with [a-z] RegexExp 
+       //and test it with password. 
+      //if password have at least lower case
+            this.criteriaMap
+                .get(Criteria.at_least_one_lowerCase_char) 
+                .test(this.password)
+
+    return this.containAtLeastOneLowerCaseLetter //if exist or contain return true else false 
+  }
+
+  private _containAtLeastUpperCaseLetter():boolean{
+    // geting the enum (Criteria.at_least_one_upperCase_char) from the map,that map it with [A-Z] RegexExp 
+       //and test it with password. 
+      //if password have at least upper case
+
+      this.containAtLeastOneUpperCaseLetter = 
+            this.criteriaMap
+                .get(Criteria.at_least_one_upperCase_char) 
+                .test(this.password)
+
+    return this.containAtLeastOneUpperCaseLetter //if exist or contain return true else false 
+  }
+
+  private _containAtLeastOneDigit():boolean{
+    // geting the enum (Criteria.at_least_one_digit_char) from the map,that map it with [0-9] RegexExp 
+       //and test it with password. 
+      //if password have at least one digit
+
+      this.containAtLeastOneDigit = 
+            this.criteriaMap
+                .get(Criteria.at_least_one_digit_char) 
+                .test(this.password)
+
+    return this.containAtLeastOneDigit //if exist or contain return true else false 
+  }
+
+  private _containAtLeastOneSpecialChar():boolean{
+    // geting the enum (Criteria.at_least_one_special_car) from the map,that map it with [!@#$%^&*()_+=-] RegexExp 
+       //and test it with password. 
+      //if password have at least one special char
+
+      this.containALeastOneSpecialChar = 
+            this.criteriaMap
+                .get(Criteria.at_least_one_special_car) 
+                .test(this.password)
+
+    return this.containALeastOneSpecialChar //if exist or contain return true else false 
+  }
+
+  // calculating password strength
+  calculatePasswordStrength(){
+      const requirements: Array<boolean>=[];
+      const unit = 100/5 // 100% div by 5 requirements
+
+      // creating boolean array of requirements methods that return if is contain or not (true or false)
+      requirements.push(
+          this._containAtLeastEightChars(),
+          this._containAtLeastLowerCaseLetter(),
+          this._containAtLeastUpperCaseLetter(),
+          this._containAtLeastOneDigit(),
+          this._containAtLeastOneSpecialChar(),
+      )
+
+      // filtering requirement that will return the trues requirement length and mult with unit
+      // that mean if filter 2 or 3 or 4 requirement that is true it will be multiplied by unit Ex(4 * 20)
+      this._strength = requirements.filter(v => v).length * unit;
+      // watching if the strength change and to emit the change to strength method that will get _strength
+      //this.onStrengthChanged.emit(this.strength) 
+
+  }
+
+  onStrengthChanged(strength: number) {
+    console.log('password strength = ', strength);
+
+    if(strength <= 20){
+        this.strengthType = 'Weak'
+        this.showDetails = true
+    }else if(strength <= 80){
+      this.strengthType = 'Normal'
+    }else{
+      this.strengthType = 'Strong'
+    }
+  }
+
+  // reset all requirement and strength by equalizing to zero
+  reset(){
+      this._strength = 0
+      this.containAtLeastOneLowerCaseLetter = 
+        this.containAtLeastOneUpperCaseLetter = 
+            this.containALeastOneSpecialChar = 
+                this.containAtLeastEightChars = 
+                    this.containAtLeastOneDigit = false;
+  }
+
+  
 
 }
 
@@ -230,4 +447,19 @@ export interface CountryApi{
     name: string ;
     language: string;
     region: string;
+}
+
+// represent the state of the password's strength
+export enum Colors{
+    primary = 'primary', // is strong enough
+    accent = 'accent', // is ok
+    warn = 'warn' // not strong enough
+}
+
+export enum Criteria{
+    at_least_eight_chars,
+    at_least_one_lowerCase_char,
+    at_least_one_upperCase_char,
+    at_least_one_digit_char,
+    at_least_one_special_car,
 }

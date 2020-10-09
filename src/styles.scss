@@ -1,19 +1,52 @@
-$mdc-theme-primary: #1565c0; // primary color
-$mdc-theme-secondary: #388e3c; // secondary color
+@import '~@angular/material/theming';
+
+
+
 
 @import "~@angular-mdc/theme/material";
-
 @import "@material/elevation/mdc-elevation";
 
 
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/theming';
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+// @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+// @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+ 
+
+/*
+Defining palettes available in palette.scss
+*/
+$candy-app-primary: mat-palette($mat-green);
+$candy-app-accent:  mat-palette($mat-deep-purple, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$candy-app-warn:    mat-palette($mat-red);
+
+// the theme object (a Sass map containing all of the palettes)
+// Create the theme object. A theme consists of configurations for individual
+ $candy-app-theme: mat-light-theme(
+  $candy-app-primary,
+  $candy-app-accent,
+  $candy-app-warn
+  );
+
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+// including theme styles for core and each component 
+@include angular-material-theme($candy-app-theme);
 
 
 
+// mat mdc theme
+$mdc-theme-primary: #1565c0; // primary color
+$mdc-theme-secondary: #388e3c; // secondary color
 
 body {
   font-family: Roboto, Arial, sans-serif;

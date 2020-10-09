@@ -9,11 +9,12 @@
                     <mdc-icon style="font-size: 30px;">menu</mdc-icon>
                     <!-- <span class="navbar-toggler-icon"></span> -->
                 </button>
-    
-                <div class="collapse navbar-collapse"[ngbCollapse]="!isCollapsed"
+
+                <div class="collapse navbar-collapse"
+                    [ngbCollapse]="!isCollapsed"
                     id="sidenav-collapse-main">
-    
-    
+
+
                     <!-- Navbar items -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
@@ -34,19 +35,20 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav-link-icon nav-link-c"
-                                routerLinkActive="active" [routerLink]="['/login']">
+                                routerLinkActive="active"
+                                [routerLink]="['/login']">
                                 <mdc-icon>vpn_key</mdc-icon>
                                 <span class="nav-link-inner--text">Login</span>
                             </a>
                         </li>
-    
+
                     </ul>
                 </div>
             </div>
         </nav>
         <router-outlet></router-outlet>
-    
-        <div class="container" >
+
+        <div class="container">
             <div class="header-body text-center mb-7">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-4" style="margin-top: 3rem;">
@@ -57,65 +59,70 @@
                 </div>
             </div>
         </div>
-    
+
     </div>
 
-    <div  *ngIf="(alert | async)" class="col-md-4 offset-md-7">
-        <div  class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Network Error</strong><br> 
+    <div *ngIf="(alert | async)" class="col-md-4 offset-md-7">
+        <div class="alert alert-danger alert-dismissible fade show"
+            role="alert">
+            <strong>Network Error</strong><br>
             the network connection is lost please reload page<strong>!</strong>
-            <button  type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <button type="button" class="close" data-dismiss="alert"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
             </button>
         </div>
     </div>
-    
+
     <div class="container mt--8 pb-5">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
-    
+
                 <mdc-card class="card-mdc mdc-elevation--z12">
                     <div class="card-header-mdc">
                         <!-- <h4> войдите, чтобы продолжить</h4> -->
                         <img src={{lock_user_icon}}/>
                     </div>
-    
+
                     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    
-    
-    
                         <div class="form-row">
                             <!-- first Name  -->
                             <div class="col-md-6 mb-4">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class='fas
+                                        <span class="input-group-text"><i
+                                                class='fas
                                                 fa-user-graduate'></i></span>
                                     </div>
-                                    <input type="text" formControlName="firstname"
+                                    <input type="text"
+                                        formControlName="firstname"
                                         class="form-control" placeholder="First
                                         name"
                                         [ngClass]="{ 'is-invalid': submitted &&
                                         f.firstname.errors }" />
                                     <div *ngIf="submitted && f.firstname.errors"
                                         class="invalid-feedback">
-                                        <div *ngIf="f.firstname.errors.required">
+                                        <div
+                                            *ngIf="f.firstname.errors.required">
                                             First name is required
                                         </div>
                                     </div>
                                 </div>
                             </div>
-    
+
                             <!-- Last Name  -->
-    
+
                             <div class="col-md-6 mb-4">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class='fa
+                                        <span class="input-group-text"><i
+                                                class='fa
                                                 fa-user-plus'></i></span>
                                     </div>
-                                    <input type="text" formControlName="lastname"
-                                        class="form-control" placeholder="Last name"
+                                    <input type="text"
+                                        formControlName="lastname"
+                                        class="form-control" placeholder="Last
+                                        name"
                                         [ngClass]="{ 'is-invalid': submitted &&
                                         f.lastname.errors }" />
                                     <div *ngIf="submitted && f.lastname.errors"
@@ -126,11 +133,11 @@
                                     </div>
                                 </div>
                             </div>
-    
+
                         </div>
-    
-    
-    
+
+
+
                         <!-- Username -->
                         <div class="form-group">
                             <div class="input-group">
@@ -149,25 +156,24 @@
                                 </div>
                             </div>
                         </div>
-    
-    
+
+
                         <!-- Country -->
-    
-    
+
+
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class='fas
                                             fa-house-user'></i></span>
                                 </div>
-    
+
                                 <select class="custom-select form-control"
                                     formControlName="country"
                                     [ngClass]="{ 'is-invalid': submitted &&
-                                    f.country.errors }"
-                                    
-                                    >
-                                    <option [ngValue]="null" [disabled]="disabled" selected>
+                                    f.country.errors }">
+                                    <option [ngValue]="null"
+                                        [disabled]="disabled" selected>
                                         Please select country
                                     </option>
                                     <option
@@ -175,36 +181,37 @@
                                         [ngValue]="country">
                                         {{country.name}}
                                     </option>
-    
+
                                     <div *ngIf="submitted && f.country.errors"
                                         class="invalid-feedback">
                                         <div *ngIf="f.country.errors.required">Country
                                             is required
                                         </div>
-    
+
                                     </div>
                                 </select>
-    
+
                                 <!-- <input type="password" formControlName="password"
                                         class="form-control" placeholder="Password"
                                         [ngClass]="{ 'is-invalid': submitted &&
                                         f.password.errors }" /> -->
                             </div>
                         </div>
-    
-    
+
+                        <!-- to select the group -->
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class='fas
                                             fa-users'></i></span>
                                 </div>
-    
+
                                 <select class="custom-select form-control"
                                     formControlName="groupteacher"
                                     [ngClass]="{ 'is-invalid': submitted &&
                                     f.groupteacher.errors }">
-                                    <option [ngValue]="null" [disabled]="disabled" selected>
+                                    <option [ngValue]="null"
+                                        [disabled]="disabled" selected>
                                         Select Group
                                     </option>
                                     <option
@@ -212,18 +219,20 @@
                                         [ngValue]="group">
                                         {{group.name}}
                                     </option>
-    
-                                    <div *ngIf="submitted && f.groupteacher.errors"
+
+                                    <div *ngIf="submitted &&
+                                        f.groupteacher.errors"
                                         class="invalid-feedback">
-                                        <div *ngIf="f.groupteacher.errors.required">Group
+                                        <div
+                                            *ngIf="f.groupteacher.errors.required">Group
                                             is required
                                         </div>
                                     </div>
                                 </select>
                             </div>
                         </div>
-    
-    
+
+
                         <!-- password -->
                         <div class="form-group">
                             <div class="input-group">
@@ -232,10 +241,24 @@
                                             fa-user-lock
                                             '></i></span>
                                 </div>
-                                <input type="password" formControlName="password"
-                                    class="form-control" placeholder="Password"
+                                <!-- <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility> -->
+                                <input
+                                    #passwordWithValidation
+                                    [type]="hide ? 'password' : 'text'"
+                                    formControlName="password"
+                                    class="form-control"
+                                    placeholder="Password"
                                     [ngClass]="{ 'is-invalid': submitted &&
                                     f.password.errors }" />
+                                <!-- <span class="form-control-feedback" matSuffix
+                                    (click)="hide=
+                                    !hide" [attr.aria-label]="'Hide password'"
+                                    [attr.aria-pressed]="hide">
+                                    
+                                    <mat-icon>{{hide ? 'visibility_off' :
+                                        'visibility'}}</mat-icon>
+                                </span> -->
+
                                 <div *ngIf="submitted && f.password.errors"
                                     class="invalid-feedback">
                                     <div *ngIf="f.password.errors.required">Password
@@ -244,32 +267,51 @@
                                     <div *ngIf="f.password.errors.minlength">Password
                                         must be at least 8 characters ********
                                     </div>
-    
+
                                 </div>
-    
+
                             </div>
+                            <div></div>
+                            <!--@angular-material-extensions/password-strength's main component-->
+                            <mat-password-strength
+                                #UserRegisterComponent
+                                (onStrengthChanged)="onStrengthChanged($event)"
+                                [password]="passwordWithValidation.value">
+                            </mat-password-strength>
+
+
+                            <mat-password-strength-info
+                                *ngIf="showDetails"
+                                [passwordComponent]="UserRegisterComponent">
+                            </mat-password-strength-info>
                         </div>
-    
-    
-    
+
+
+
                         <div class="text-muted font-italic"><small>password
-                                strength: <span class="text-success
-                                    font-weight-700">strong</span></small></div>
+                                strength:
+                                <span class="text-success font-weight-700">
+                                    {{strengthType}}
+                                </span></small>
+                        </div>
+
                         <div class="row my-4">
                             <div class="col-12">
                                 <div class="custom-control
                                     custom-control-alternative custom-checkbox">
                                     <input class="custom-control-input"
-                                        id="customCheckRegister" type="checkbox">
+                                        id="customCheckRegister"
+                                        type="checkbox">
                                     <label class="custom-control-label"
                                         for="customCheckRegister">
-                                        <span class="text-muted">I agree with the <a
+                                        <span class="text-muted">I agree with
+                                            the <a
                                                 href="#!">Privacy Policy</a></span>
                                     </label>
                                 </div>
                             </div>
                         </div>
-    
+
                         <div class="sign-in-btn">
                             <button mdc-button raised [disabled]="loading"
                                 class="btn-primary sign-button">
@@ -282,7 +324,7 @@
                         <!-- <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div> -->
                     </form>
                 </mdc-card>
-    
+
                 <!-- <div class="row mt-3">
                     <div class="col-6">
                         <a href="javascript:void(0)" class="text-light"><small>Forgot
@@ -293,12 +335,11 @@
                             [routerLink]="['/login']"><small>Sign in</small></a>
                     </div>
                 </div> -->
-    
             </div>
         </div>
-    
+
     </div>
-    
+
     <footer class="py-5">
         <div class="container">
             <div class="row align-items-center justify-content-xl-between">
