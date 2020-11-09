@@ -1,46 +1,50 @@
+<div class="bg-gradient-secondary">
+  <!-- <mat-progress-bar *ngIf="isQuery" mode="query" style="margin-top: 5px;"></mat-progress-bar> -->
+  <div>
+    <div class="container-fluid mt--7">
+      <div class="row" style="display: flow-root;">
+        <div class=" mt-5 justify-content-center" >
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col ">
+                  <h3 class="mb-0">
+                    Demonstration contents
+                  </h3>
+                </div>
+              </div>
+            </div>
 
-<!-- <div class="dropzone"
-
-  dropzone
-  (hovered)="toggleHover($event)"
-  (dropped)="onDrop($event)"
-  [class.hovering]="isHovering">
-
-  <h3>AngularFire Drop Zone</h3>
-  <p>Drag and Drop a File</p>
-  <div class="file">
-    <label class="file-label">
-      <input class="file-input" type="file"
-        (change)="onDrop($event.target.files)">
-
-      <span class="file-cta">
-        <span class="file-icon">
-          <i class="fa fa-upload"></i>
-        </span>
-        <span class="file-label">
-          or choose a file…
-        </span>
-      </span>
-    </label>
+            <div class="table-responsive">
+              <!-- content table -->
+              <table class="table align-items-center table-flush" id="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col"> Title</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Demo contents</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr role="button" class="ripple">
+                    <th scope="row">hey</th>
+                    <td>ola</td>
+                    <td>ola</td>
+                    <td>ola</td>
+                    <td>ola</td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="add-btn">
+      <button mat-icon-button class="btn btn-primary"><i class="fas fa-plus"></i></button>
+    </div>
   </div>
-</div>
-
-<h3>Uploads</h3>
-
-<div *ngFor="let file of files">
-  <upload-task [file]="file"></upload-task>
-</div> -->
-
-
-<div (onUploadFinished)="uploadFinished($event)">
-  <h1>File Upload Using Angular and Asp.net Core </h1>
-  <input #file type="file" multiple (change)="upload(file.files)"/>
-   <br>
-   <span style="font-weight: bold; color:green; " *ngIf="progress > 0 && progress < 100">
-     {{progress}}%
-   </span>
-  
-   <span style="font-weight: bold; color: green;" *ngIf="message">
-     {{message}}
-   </span>
 </div>
