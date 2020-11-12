@@ -5,6 +5,7 @@ import { UsersManagementComponent } from '../../pages/users-management/users-man
 import { DemonstrationsManagementComponent } from '../../pages/demonstrations-management/demonstrations-management.component';
 import { ArticlesManagementComponent } from '../../pages/articles-management/articles-management.component';
 import { TrainingManagementComponent } from '../../pages/training-management/training-management.component';
+import { UploadTaskComponent } from '../../pages/demonstrations-management/upload/upload-task.component';
 
 
 export const AdminLayoutRoutes: Routes  = [
@@ -14,5 +15,6 @@ export const AdminLayoutRoutes: Routes  = [
    { path:'admin-demonstrations', component: DemonstrationsManagementComponent,canActivate: [AuthGuard]},
    { path:'admin-articles', component: ArticlesManagementComponent,canActivate: [AuthGuard]},
    { path:'admin-training', component: TrainingManagementComponent,canActivate: [AuthGuard]},
-
+   {path:'admin-uploadTask',component:UploadTaskComponent,canActivate:[AuthGuard]},
+   
   ];

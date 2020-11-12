@@ -1,0 +1,45 @@
+
+
+.profile-picture {
+  position: relative;
+  z-index: 1;
+  width: 190px;
+  height:190px;
+  //background-image:url(/src/assets/icons/upload-image-icon.png);
+  background-size: contain;
+  border-radius: 1em;
+}
+
+.profile-picture img {
+  width: 190px;
+  height: 190px;
+  position: absolute;
+  z-index: 2;
+  border-radius: 1em;
+}
+
+.profile-picture label {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  z-index: 3;
+}
+
+.profile-picture .drag-over .infotext {
+  color: white;
+  border: dashed 5px white;
+}
+
+.profile-picture .infotext {
+  //margin-left: 5px;
+  //margin-top: 5px;
+  height: 150px;
+  width: 150px;
+  vertical-align: middle;
+  text-align: center;
+  color: rgba(172, 167, 167, 0.8);
+  border: dashed 3px rgba(26, 25, 25, 0.8);
+  border-radius: 10px;
+  padding-top: 60px;
+  font-size: 120%;
+}

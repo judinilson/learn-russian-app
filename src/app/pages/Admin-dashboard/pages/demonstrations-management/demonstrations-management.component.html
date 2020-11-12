@@ -44,7 +44,14 @@
       </div>
     </div>
     <div class="add-btn">
-      <button mat-icon-button class="btn btn-primary"><i class="fas fa-plus"></i></button>
+      <a 
+      role="button" 
+      [routerLink]="['/admin-uploadTask']" 
+      routerLinkActive="active"  
+      mat-icon-button class="btn btn-primary"
+      id="btn-add">
+        <i class="fas fa-plus"></i>
+      </a>
     </div>
   </div>
 </div>
