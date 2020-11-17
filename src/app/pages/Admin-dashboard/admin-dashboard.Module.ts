@@ -54,6 +54,8 @@ import { DropzoneDirective } from './pages/demonstrations-management/directive/d
 import { UploadTaskComponent } from './pages/demonstrations-management/upload/upload-task.component';
 import { DialogCategoryComponent } from './pages/admin-dashboard/category-dialog/category-dialog';
 import { AlertService } from 'src/app/shared/service/alert.service';
+import { DialogUploadComponent } from './pages/demonstrations-management/upload/upload-dialog/upload-dialog';
+import { ProgressComponent } from './pages/demonstrations-management/upload/upload-dialog/progress/progress';
 
 
 @NgModule({
@@ -116,6 +118,8 @@ import { AlertService } from 'src/app/shared/service/alert.service';
         DialogUserTeacherComponent,
         DialogUserGroupComponent,
         DialogCategoryComponent ,
+        DialogUploadComponent,
+        ProgressComponent,
 
 
           //directive 
@@ -132,7 +136,9 @@ import { AlertService } from 'src/app/shared/service/alert.service';
         DialogUserStudentComponent,
         DialogUserTeacherComponent,
         DialogUserGroupComponent,
-        DialogCategoryComponent
+        DialogCategoryComponent,
+        DialogUploadComponent,
+        ProgressComponent,
     ]
 
 })

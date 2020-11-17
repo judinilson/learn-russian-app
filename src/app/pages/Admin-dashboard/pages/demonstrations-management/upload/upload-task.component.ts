@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, finalize, tap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContentService } from 'src/app/shared/service/content.service';
+import { MatDialog } from '@angular/material';
+import { DialogUploadComponent } from './upload-dialog/upload-dialog';
 
 @Component({
   selector: 'upload-task',
@@ -22,6 +24,8 @@ export class UploadTaskComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private contentService: ContentService,
+    public dialog: MatDialog
+
     
   ){
 
@@ -59,6 +63,26 @@ export class UploadTaskComponent implements OnInit {
       this.imgURL = reader.result; 
     }
   }
+
+  uploadContent(){
+    const dialogRef = this.dialog.open(DialogUploadComponent, {
+      width: '750px',
+      // data: {
+      //   countries: this.apiCountries,
+      //   groups:  groups,
+      //   createUser: true
+      // }
+    })
+
+    dialogRef.afterClosed()
+      .pipe(debounceTime(300))
+      .pipe(distinctUntilChanged())
+      .subscribe(result => {
+        console.log(result)
+      })
+  }
+
+
   // @Input() file: File;
 
   // task: AngularFireUploadTask;

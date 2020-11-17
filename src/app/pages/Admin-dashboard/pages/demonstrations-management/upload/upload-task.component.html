@@ -52,7 +52,7 @@
             </div>
 
             <!-- SUBTITLE -->
-            <div class="col-md-4 mr-2">
+            <div class="col-md-4 mr-5">
               <mat-form-field>
                 <input matInput type="text"
                   formControlName="subtitle"
@@ -94,6 +94,43 @@
         </div>
       </div>
 
+      <!-- upload btn dialog and list of uploaded videos -->
+      <div>
+        <button mat-stroked-button 
+        class="btn" color="primary" (click)="  uploadContent()">
+          <i class="fas fa-plus"></i> Upload videos
+        </button>
+
+        <div class="mt-5 justify-content-center">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <div class="mb-0 text-muted">
+                    Contents
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- list -->
+            
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <i class="far fa-file-video"></i>
+                item 1
+              </li>
+              <li class="list-group-item">
+                <i class="far fa-file-video"></i>
+                item 2
+              </li>
+              <li class="list-group-item">
+                <i class="far fa-file-video"> </i>
+                item 3
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
     </div>
 
