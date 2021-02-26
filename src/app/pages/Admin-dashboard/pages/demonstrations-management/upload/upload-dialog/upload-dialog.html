@@ -1,15 +1,15 @@
-<div class="text-center">
+<div *ngIf="isPost" class="text-center">
     <h5 mat-dialog-title>Upload Content</h5>
 
 </div>
-<div class="container mt--8 pb-5">
+<div *ngIf="isPost" class="container mt--8 pb-5">
     <div class="row justify-content-center">
         <div class="row align-items-center">
 
 
             <div class="col-sm-4 col-md-6">
 
-                <div [formGroup]="uploadForm" mat-dialog-content>
+                <div [formGroup]="formGroup" mat-dialog-content>
 
                     <div class="row align-self-center">
                         <div class="col">
@@ -23,29 +23,12 @@
                                     <i class=' fas fa-file-video'></i>
                                 </span>
                                 <mat-error
-                                    *ngIf="UploadForm.name.errors?.required">
+                                    *ngIf="_formGroup.name.errors?.required">
                                     title is required
                                 </mat-error>
 
                             </mat-form-field>
                         </div>
-
-                        <!-- <div class="col-md-6">
-                        <mat-form-field>
-
-                            <input matInput type="text"
-                                formControlName="uploadcontent"
-                                placeholder="video content" required>
-                            <span matSuffix class="text-muted">
-                                <i class='fa fa-user-plus'></i>
-                            </span>
-                            <mat-error
-                                *ngIf="UploadForm.uploadcontent.errors?.required">
-                                video content is required
-                            </mat-error>
-
-                        </mat-form-field>
-                    </div> -->
                     </div>
 
 
@@ -142,6 +125,72 @@
                         Create
                     </button>
                 </div>
+            </div>
 
 
+
+            <!-- UPDATE -->
+            <div *ngIf="isPut" class="text-center">
+                <h5 mat-dialog-title>Update Content</h5>
+
+            </div>
+
+            <div *ngIf="isPut" class="container mt--8 pb-5">
+                <div class="row justify-content-center">
+                    <div class="row align-items-center">
+
+
+                        <div class="col-12">
+
+                            <div [formGroup]="formGroup" mat-dialog-content
+                                class="d-flex justify-content-center">
+
+                                <div class="row align-self-center">
+                                    <div class="col">
+                                        <mat-form-field>
+                                            <!-- video title  -->
+
+                                            <input matInput type="text"
+                                                formControlName="name"
+                                                placeholder="Title" required>
+                                            <span matSuffix class="text-muted">
+                                                <i class=' fas fa-file-video'></i>
+                                            </span>
+                                            <mat-error
+                                                *ngIf="_formGroup.name.errors?.required">
+                                                title is required
+                                            </mat-error>
+
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-12">
+                            <div mat-dialog-actions class="d-flex
+                                justify-content-center
+                                mt-4">
+                                <button mat-stroked-button
+                                    [mat-dialog-close]="null"
+                                    class="btn">
+                                    Cancel
+                                </button>
+                                <button mat-stroked-button (click)="submit()"
+                                    [attr.disable]="form-invalid"
+                                    cdkFocusInitial
+                                    class="btn">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
             </div>

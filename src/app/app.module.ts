@@ -34,7 +34,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
     StatisticModule,
     AdminDashboardModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    
     ],
   providers: [AngularFireStorage],
   bootstrap: [AppComponent],

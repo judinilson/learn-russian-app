@@ -18,7 +18,17 @@ export const environment = {
 
 
     demoContentGetUrl: `${apiUrl.url}/Content/Demonstration-Content`,
+    demoContentCreateUrl:`${apiUrl.url}/Content/Content-Demo-Create`,
+    demoContentUpdateUrl:`${apiUrl.url}/Content/Content-Demo`,
     articleContentGetUrl: `${apiUrl.url}/Content/Article-Content`,
+    contentDeleteUrl: `${apiUrl.url}/Content/Content`,
+    uploadCoverImg: `${apiUrl.url}/Content/upload-coverimg`,
+    uploadfiles: `${apiUrl.url}/Content/upload-files`,
+    demoSrc:`${apiUrl.url}/DemonstrationContents`,
+    demosrcUpdateAndDelete:`${apiUrl.url}/DemonstrationContents/Demosource`,
+    sourceUpdateAndDelete: `${apiUrl.url}/DemonstrationContents/source `,
+
+
 
     categoryUrl: `${apiUrl.url}/Category/`,
 

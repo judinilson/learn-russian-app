@@ -1,13 +1,17 @@
-<div class="bg-gradient-secondary">
+
+
+<mat-progress-bar *ngIf="isQuery" mode="query" style="margin-top: 5px;"></mat-progress-bar>
+
+<div *ngIf="!isQuery" class="bg-gradient-secondary">
   <!-- <mat-progress-bar *ngIf="isQuery" mode="query" style="margin-top: 5px;"></mat-progress-bar> -->
   <div>
     <div class="container-fluid mt--7">
       <div class="row" style="display: flow-root;">
-        <div class=" mt-5 justify-content-center" >
+        <div class="mt-5 justify-content-center">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
-                <div class="col ">
+                <div class="col">
                   <h3 class="mb-0">
                     Demonstration contents
                   </h3>
@@ -15,7 +19,7 @@
               </div>
             </div>
 
-            <div class="table-responsive">
+            <div class="table-responsive overflow">
               <!-- content table -->
               <table class="table align-items-center table-flush" id="table">
                 <thead class="thead-light">
@@ -28,14 +32,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr role="button" class="ripple">
-                    <th scope="row">hey</th>
-                    <td>ola</td>
-                    <td>ola</td>
-                    <td>ola</td>
-                    <td>ola</td>
+                  <tr role="button" class="ripple" *ngFor="let content of
+                    ContentArr" (click)="selectedContentFunc(content)">
+                    <th scope="row">{{content.title}}</th>
+                    <td>{{content.category.name}}</td>
+                    <td>{{content.demosourcelength}}</td>
+                    <td>{{content.author}}</td>
+                    <td>{{content.created}}</td>
+                    
                   </tr>
-                 
+
                 </tbody>
               </table>
             </div>
@@ -44,13 +50,15 @@
       </div>
     </div>
     <div class="add-btn">
-      <a 
-      role="button" 
-      [routerLink]="['/admin-uploadTask']" 
-      routerLinkActive="active"  
-      mat-icon-button class="btn btn-primary"
-      id="btn-add">
+      <a
+        (click)="clear()"
+        role="button"
+        [routerLink]="['/admin-uploadTaskDemoContent']"
+        routerLinkActive="active"
+        mat-icon-button class="btn btn-primary"
+        id="btn-add">
         <i class="fas fa-plus"></i>
+
       </a>
     </div>
   </div>

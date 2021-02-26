@@ -52,6 +52,7 @@
     "mat-video": "^2.8.1",
     "ng2-charts": "^2.3.2",
     "ng2-file-upload": "^1.4.0",
+    "ngx-editor": "^8.0.0",
     "ngx-material-timepicker": "^5.5.3",
     "ngx-owl-carousel-o": "^2.1.1",
     "node-sass": "^4.14.1",

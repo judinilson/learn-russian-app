@@ -1,7 +1,24 @@
+<mat-progress-bar *ngIf="isQuery" mode="query" style="margin-top: 5px;"></mat-progress-bar>
+
+ <!-- alert -->
+<div *ngIf="(alert | async)" class="col-md-6 mt-2 ">
+
+  <div class="alert alert-danger alert-dismissible
+      fade show" role="alert">
+      <strong>Info</strong><br>
+      Form invalid please fill all forms 
+      <strong>!</strong>
+      <button type="button" class="close" data-dismiss="alert"
+          aria-label="Close" (click)="closeAlert()">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+
+</div>
 
 
 <!-- upload form (create) -->
-<div>
+<div *ngIf="!isQuery">
   <div class="text-center">
     <h3>Upload new demonstration contents</h3>
   </div>
@@ -10,15 +27,15 @@
 
 
   <div class="container-fluid mt--8 pb-5 pt-5">
-    <div class="d-flex justify-content-center">
-      <div [formGroup]="uploadForm">
+    <div class="d-flex justify-content-start row">
+      <div [formGroup]="uploadForm" class="col-md-8">
         <div class="align-self-center">
           <div class="row">
 
             <!-- upload image  -->
-            <div class="col-4">
+            <div class="col-md-4">
               <div class="profile-picture">
-                <img *ngIf="imgURL" width=190 height=190 src="{{imgURL}}" />
+                <img *ngIf="imgURL" width=130 height=130 src="{{imgURL}}" />
                 <!-- <label *ngIf="editmode" for="uploader-input" ng2FileDrop [ngClass]="{'drag-over': hasDragOver}" (fileOver)="fileOver($event)" [uploader]="uploader">
         <div class="infotext"><span *ngIf="!url" >Drop your picture<br>or click to upload</span></div>
       </label> -->
@@ -54,15 +71,21 @@
             <!-- SUBTITLE -->
             <div class="col-md-4 mr-5">
               <mat-form-field>
-                <input matInput type="text"
-                  formControlName="subtitle"
-                  placeholder="Sub-Title" required>
-                <span matSuffix class="text-muted">
+                <textarea
+                  matInput
+                  cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                  formControlName="description"
+                  placeholder="Description"
+                  required></textarea>
+                <!-- <span matSuffix class="text-muted">
                   <i class=' fas fa-stream'></i>
-                </span>
+                </span> -->
                 <mat-error
-                  *ngIf="_uploadForm.subtitle.errors?.required">
-                  subtitle is required
+                  *ngIf="_uploadForm.description.errors?.required">
+                  Description is required
                 </mat-error>
               </mat-form-field>
             </div>
@@ -90,18 +113,18 @@
             </div>
           </div>
 
-
         </div>
       </div>
 
       <!-- upload btn dialog and list of uploaded videos -->
-      <div>
-        <button mat-stroked-button 
-        class="btn" color="primary" (click)="  uploadContent()">
+      <div class="col-4">
+        <button mat-stroked-button
+          class="btn" color="primary" (click)="uploadContent(true,false)">
           <i class="fas fa-plus"></i> Upload videos
         </button>
 
-        <div class="mt-5 justify-content-center">
+        <div class="mt-5 justify-content-center content-items-list"
+          *ngIf="demoContentsrc.length != 0">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
@@ -113,20 +136,32 @@
               </div>
             </div>
             <!-- list -->
-            
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <i class="far fa-file-video"></i>
-                item 1
+
+            <ul class="list-group list-group-flush" *ngFor="let demosrc of
+              demoContentsrc">
+              <li class="d-flex list-group-item" *ngIf="demoContentsrc">
+                <span class="pr-1"><i class="far fa-file-video"></i></span>
+                {{demosrc.title}}
+                <span class="ml-auto">
+                  <span (click)="getsourceToUpdate(demosrc)" type="button"
+                    class="btn btn-sm pr-3">
+                    <i class="fas fa-edit text-primary"></i>
+                  </span>
+                  <span (click)="deleteSource(demosrc)" type="button" class="btn
+                    btn-sm">
+                    <i class="fas fa-trash text-danger"></i>
+                  </span>
+                </span>
+
               </li>
-              <li class="list-group-item">
+              <!-- <li class="list-group-item">
                 <i class="far fa-file-video"></i>
                 item 2
               </li>
               <li class="list-group-item">
                 <i class="far fa-file-video"> </i>
                 item 3
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -135,6 +170,40 @@
     </div>
 
   </div>
+  <!-- save btn -->
+  <div style="display:flex;" class="row justify-content-center">
+
+    <button  class="mr-2" style="width: 10%;
+    border-radius: 20px;"
+    mat-raised-button color="primary"
+    (click)="backwardbtn()">
+    <!-- <i class="far fa-save"></i>  -->
+    BACK
+  </button>
+
+  <button *ngIf="isUpdate" class="mr-2" style="width: 10%;
+      border-radius: 20px;"
+      mat-stroked-button color="warn"
+      (click)=" deleteContent()">
+      <!-- <i class="far fa-save"></i>  -->
+      DELETE
+    </button>
+
+    <button class="mr-2" style="width: 10%;
+      border-radius: 20px;"
+      mat-raised-button color="primary"
+      (click)="uploadData()">
+      <!-- <i class="far fa-save"></i>  -->
+      {{uploadbtn}}
+    </button>
+    
+  
+
+  </div>
+
+
+ 
+
 
 </div>
 
