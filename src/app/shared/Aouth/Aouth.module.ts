@@ -21,7 +21,10 @@ import {NgbCollapseModule} from '@ng-bootstrap/ng-bootstrap';
 import { OauthComponent } from './Auth/oauth.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { UserProfilComponent } from './user-profil/user-profil.component';
-import { MatButtonModule, MatFormFieldModule, MatIconModule, MatProgressBarModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 

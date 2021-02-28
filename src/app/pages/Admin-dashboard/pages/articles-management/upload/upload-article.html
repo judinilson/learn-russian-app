@@ -92,23 +92,23 @@
                                 placeholder="select category"
                                 [virtualScroll]="true">
                             </ng-select>
-                            <mat-error class="select-error" *ngIf="submited &&
+                            <mat-error class="select-error" *ngIf="
                                 uploadform.category.errors?.required">
                                 Category is required
                             </mat-error>
                         </div>
 
-                        <div class="col-md-4">                        
+                        <div class="col-md-8">                        
                             <ngx-editor-menu 
                             [editor]="editor" 
-                            [toolbar]="toolbar">
+                            [toolbar]="toolbar"> 
                             </ngx-editor-menu>
                             <ngx-editor 
                             [editor]="editor" 
                             formControlName="article">
                             </ngx-editor>
                            
-                            <mat-error class="select-error" *ngIf="submited &&
+                            <mat-error class="select-error" *ngIf="
                                 uploadform.article.errors?.required">
                                 Category is required
                             </mat-error>

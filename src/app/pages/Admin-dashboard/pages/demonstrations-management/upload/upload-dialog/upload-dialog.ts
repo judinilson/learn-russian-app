@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { ContentService } from 'src/app/shared/service/content.service';
@@ -145,7 +145,7 @@ export class DialogUploadComponent implements OnInit {
    * @param bytes (File size in bytes)
    * @param decimals (Decimals point)
    */
-  formatBytes(bytes, decimals) {
+  formatBytes(bytes, decimals?) {
     if (bytes === 0) {
       return '0 Bytes';
     }

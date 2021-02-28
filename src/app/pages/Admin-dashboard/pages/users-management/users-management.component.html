@@ -176,7 +176,7 @@
                       <td style="text-align: center;">
                         <span *ngIf="!item.statistic">--</span>
                         <span *ngIf="item.statistic" >
-                          {{item.statistic[item.laststatistic].trainingDate | date : format : timezone}}
+                          {{item.statistic[item.laststatistic].trainingDate | date [ : format [ : timezone [ : locale ] ] ]}}
                         </span>
   
                       </td>

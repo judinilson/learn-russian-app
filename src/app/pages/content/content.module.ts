@@ -8,34 +8,37 @@ import { MatVideoModule } from 'mat-video';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 // tslint:disable-next-line:max-line-length
-import { 
-    MatAutocompleteModule,
-    MatButtonModule,
-    MatCardModule,
-    MatRippleModule, 
-    MatOptionModule ,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatSidenavModule
-
-} from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatRippleModule, MatOptionModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 // videogular
-import {VgCoreModule} from 'videogular2/compiled/core';
-import {VgControlsModule} from 'videogular2/compiled/controls';
-import {VgOverlayPlayModule} from 'videogular2/compiled/overlay-play';
-import {VgBufferingModule} from 'videogular2/compiled/buffering';
+// import {VgCoreModule} from 'videogular2/compiled/core';
+// import {VgControlsModule} from 'videogular2/compiled/controls';
+// import {VgOverlayPlayModule} from 'videogular2/compiled/overlay-play';
+// import {VgBufferingModule} from 'videogular2/compiled/buffering';
+
+import {VgCoreModule} from '@videogular/ngx-videogular/core';
+import {VgControlsModule} from '@videogular/ngx-videogular/controls';
+import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+// import {SingleMediaPlayer} from './single-media-player';
+
 
 import {
-        MdcButtonModule,
+        MdcButtonModule, 
         MdcFabModule,
         MdcIconModule,
         MdcDrawerModule,

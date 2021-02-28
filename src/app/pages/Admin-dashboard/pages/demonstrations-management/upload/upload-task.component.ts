@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, finalize, take, tap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContentService } from 'src/app/shared/service/content.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogUploadComponent } from './upload-dialog/upload-dialog';
 import { Location } from '@angular/common';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';

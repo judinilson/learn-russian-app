@@ -182,6 +182,9 @@ export class UploadArticleTaskComponent implements OnInit {
 
 
 
+    //UPLOAD DATA 
+    uploadData(){}
+
 
 
     //DELETE CONTENT 

@@ -31,6 +31,7 @@ export class UserRegisterComponent implements OnInit {
   lock_user_icon:string;
   footer_td: Date = new Date();
   alert = new Observable<boolean>();
+  disabled = true
 
   showDetails:boolean
   //strength type (weak , normal, strong)

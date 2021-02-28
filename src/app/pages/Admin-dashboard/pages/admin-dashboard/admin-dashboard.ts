@@ -7,7 +7,7 @@ import { ContentService } from 'src/app/shared/service/content.service';
 import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
 import { TrainingTestService } from 'src/app/shared/service/training-test.service';
 import { DialogCategoryComponent } from './category-dialog/category-dialog';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { AlertService } from 'src/app/shared/service/alert.service';
 import Swal from 'sweetalert2/dist/sweetalert2.all'
 

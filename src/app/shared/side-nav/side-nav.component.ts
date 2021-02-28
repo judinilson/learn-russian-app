@@ -20,8 +20,8 @@ import {
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { RouterService } from '../service/router.service';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { MatSlideToggleChange } from '@angular/material';
-import {MatSlideToggleModule} from '@angular/material';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
 
 @Component({

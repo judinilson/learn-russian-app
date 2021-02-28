@@ -38,7 +38,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './pages/Admin-dashboard/admin-dashboard.Module#AdminDashboardModule'
+        loadChildren: () => import('./pages/Admin-dashboard/admin-dashboard.Module').then(m => m.AdminDashboardModule)
       }
     ]
   }

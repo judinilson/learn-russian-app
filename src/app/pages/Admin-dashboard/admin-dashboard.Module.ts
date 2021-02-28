@@ -1,27 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-    MatSlideToggleModule,
-    MatIconModule,
-    MatListModule,
-    MatFormFieldModule,
-    MatPaginatorModule,
-    MatRippleModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
-    MatMenuModule,
-    MatAutocompleteModule,
-    MatProgressBarModule,
-    MatOptionModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatCheckboxModule
-} from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRippleModule, MatOptionModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ChartsModule } from 'ng2-charts';
 import {
     MdcButtonModule,
@@ -34,7 +30,7 @@ import {
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SideBarComponent } from './components/sidebar/sidebar.component';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard';
 import { AdminLayoutRoutes } from './components/layouts/admin-layout.routing';
 import { AdminLayoutComponent } from './components/layouts/admin-layout.component';
@@ -78,7 +74,7 @@ import { NgxEditorModule, schema } from 'ngx-editor';
         FormsModule,
         ChartsModule,
         ReactiveFormsModule,
-        FormsModule,
+        FormsModule, 
         ScrollingModule,
         NgSelectModule,
         NgxMaterialTimepickerModule,
@@ -108,16 +104,16 @@ import { NgxEditorModule, schema } from 'ngx-editor';
               background_color: 'Background Color',
       
               // popups, forms, others...
-              url: 'URL',
-              text: 'Text',
-              openInNewTab: 'Open in new tab',
-              insert: 'Insert',
-              altText: 'Alt Text',
-              title: 'Title',
-              remove: 'Remove',
+            //   url: 'URL',
+            //   text: 'Text',
+            //   openInNewTab: 'Open in new tab',
+            //   insert: 'Insert',
+            //   altText: 'Alt Text',
+            //   title: 'Title',
+            //   remove: 'Remove',
             },
           }),
-        
+         
         //mat
         MatIconModule,
         MatListModule,
