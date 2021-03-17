@@ -171,10 +171,10 @@
                                 {{item.backToArticleCount}}
                             </span>
 
-                        </td>
+                        </td> 
                         <td style="text-align: center;">
                             <span *ngIf="item">
-                                {{item.trainingDate | date : format : timezone}}
+                                {{item.trainingDate | date:'medium' }}
                             </span>
 
                         </td>
@@ -336,7 +336,7 @@
             <button mat-stroked-button [mat-dialog-close]="null" class="btn">
                 Cancel</button>
             <button mat-stroked-button (click)="submit()"
-                [attr.disable]="form-invalid" cdkFocusInitial class="btn">
+                 cdkFocusInitial class="btn">
                 Create</button>
         </div>
     </div>
@@ -510,7 +510,7 @@
             <button mat-stroked-button [mat-dialog-close]="null" class="btn">
                 Cancel</button>
             <button mat-stroked-button (click)="submit()"
-                [attr.disable]="form-invalid" cdkFocusInitial class="btn">
+                 cdkFocusInitial class="btn">
                 Update</button>
         </div>
     </div>

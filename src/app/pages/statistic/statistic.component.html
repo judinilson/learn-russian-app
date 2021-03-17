@@ -1,4 +1,4 @@
-<app-side-nav fxFlex></app-side-nav>
+<app-side-nav  fxFlex></app-side-nav>
 <div class="container" style="width: 100%;  display: contents;" *ngIf="statistics">
     <div class="row" style="width: 100%;">
         <div class="col-12"  >
@@ -125,7 +125,7 @@
                             </canvas>
                         </div>
                     </div>
-                    <button mdc-button outlined (click)="randomize()">Обнавить</button>
+                    <button mat-stroked-button class="btn btn-outline-primary " (click)="randomize()">Обнавить</button>
                 </div>
                 <div  class="rating-container row ">
                     <div class="each-time-back-content" fxLayout="column">

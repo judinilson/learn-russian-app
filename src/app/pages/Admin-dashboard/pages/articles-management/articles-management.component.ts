@@ -11,8 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ArticlesManagementComponent implements OnInit {
   categories: any;
   articleContent: any;
-  isQuery: boolean;
-  articleContentArr: any;
+  isQuery = true;
+  articleContentArr:any = []
 
   constructor(
     private contentService: ContentService,
@@ -20,6 +20,7 @@ export class ArticlesManagementComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getAllCategories()
     this.getAllArticleContent()
   }
 
@@ -45,6 +46,7 @@ export class ArticlesManagementComponent implements OnInit {
           title: x.title,
           description:x.subtitle,
           category: category[0],
+          thumb: x.coverImage,
           article: x.article,
           author: x.author,
           created: this.getDate(x.created)
@@ -66,9 +68,9 @@ export class ArticlesManagementComponent implements OnInit {
           this.articleContent = _data;
           console.log(this.articleContent)
           /* CUSTOMAZE LIST FOR THE CONTENT TABLE */
-          // setTimeout(() => {
-          //   this.customContentList()
-          // }, 800);
+          setTimeout(() => {
+            this.customContentList()
+          }, 500);
         },
 
         error => {

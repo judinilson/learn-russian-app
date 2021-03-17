@@ -5,6 +5,8 @@ import { ContentService } from 'src/app/shared/service/content.service';
 import { DataService } from 'src/app/shared/service/dataService';
 import { AuthenticationService } from 'src/app/shared/service/authentication.service';
 import { Category } from 'src/app/shared/Model/Content';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-content-texts',
@@ -13,6 +15,10 @@ import { Category } from 'src/app/shared/Model/Content';
 })
 export class ContentTextsComponent implements OnInit {
 
+  mode = 'side'
+  opened = false;
+  layoutGap = '64';
+  fixedInViewport = true;
   selectedCategory: any;
   login = false;
   user = null;
@@ -25,6 +31,7 @@ export class ContentTextsComponent implements OnInit {
   notnework = false;
 
   constructor(
+    private bpo: BreakpointObserver,
     private routerService: RouterService,
     private router: Router,
     private contentService: ContentService,
@@ -42,6 +49,7 @@ export class ContentTextsComponent implements OnInit {
 
 
   ngOnInit() {
+    this.sidnav()
 
     // this.dataSource.forEach((el,i) => {
     //   el.article = this.lorem.getLineEnding()
@@ -142,6 +150,55 @@ export class ContentTextsComponent implements OnInit {
   public logOut() {
     this.authservice.logout();
     this.login = false;
+  }
+
+
+
+   //mat -side nav
+   sidnav() {
+    const breakpoints = Object.keys(Breakpoints).map(key => Breakpoints[key])
+    this.bpo.observe(breakpoints)
+    .pipe(map(bst => bst.matches))
+    .subscribe(matched => {
+      
+
+      console.log('matched');
+
+      this.determineSidenavMode();
+      this.determineLayoutGap();
+    });
+  }
+
+  private determineSidenavMode(): void {
+    if (
+      this.isExtraSmallDevice() ||
+      this.isSmallDevice()
+    ) {
+      this.fixedInViewport = false;
+      this.mode = 'over';
+      this.opened = false;
+      return;
+    }
+
+    this.fixedInViewport = true;
+    this.mode = 'side';
+  }
+
+  private determineLayoutGap(): void {
+    if (this.isExtraSmallDevice() || this.isSmallDevice()) {
+      this.layoutGap = '0';
+      return;
+    }
+
+    this.layoutGap = '64';
+  }
+
+  public isExtraSmallDevice(): boolean {
+    return this.bpo.isMatched(Breakpoints.XSmall);
+  }
+
+  public isSmallDevice(): boolean {
+    return this.bpo.isMatched(Breakpoints.Small)
   }
 }
 

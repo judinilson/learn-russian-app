@@ -44,6 +44,7 @@ export class UploadTaskComponent implements OnInit {
   demosourceIsUpdated: boolean;
   selectedSourceToUpdate: any;
   upSource: boolean;
+  loading = false;
 
   constructor(
     private _ngZone: NgZone,
@@ -215,9 +216,10 @@ export class UploadTaskComponent implements OnInit {
 
       })
   }
-
+ 
   //ADD CONTENT
   uploadData() {
+    this.loading = true;
 
     //POST
     if (!this.isUpdate) {
@@ -239,6 +241,7 @@ export class UploadTaskComponent implements OnInit {
 
               },
               error => {
+                this.loading = false
                 console.log("Error trying to upload content image cover : ", error);
                 this.alertService.openSweetAlert('error', 'Please check your connection')
               }
@@ -253,7 +256,7 @@ export class UploadTaskComponent implements OnInit {
 
     //PUT
 
-    if (this.isUpdate) {
+    if (this.isUpdate) { 
       if (!this.uploadForm.invalid) {
         var imageUpdate: any;
         var _data: any;
@@ -428,7 +431,7 @@ export class UploadTaskComponent implements OnInit {
                               },
                               error => {
                                 //this.error = error;
-                                //this.loading = false;
+                                this.loading = false;
                                 //this.alert = new BehaviorSubject<boolean>(true);
                                 console.log("Error trying to upload content : ", error);
                                 observer.error(error);
@@ -444,7 +447,7 @@ export class UploadTaskComponent implements OnInit {
                       },
                       error => {
                         //this.error = error;
-                        //this.loading = false;
+                        this.loading = false;
                         //this.alert = new BehaviorSubject<boolean>(true);
                         console.log("Error trying to upload content : ", error);
                         observer.error(error);
@@ -472,6 +475,7 @@ export class UploadTaskComponent implements OnInit {
                         this.backwardbtn();
                       },
                       error => {
+                        this.loading = false;
                         console.log("Error trying to update Demo source: ", error)
                         observer.error(error);
                         this.alertService.openSweetAlert('error', 'Please check your connection')
@@ -483,6 +487,7 @@ export class UploadTaskComponent implements OnInit {
 
           },
           error => {
+            this.loading = false;
             console.log("Error trying to upload content video src : ", error);
             observer.error(error);
           }

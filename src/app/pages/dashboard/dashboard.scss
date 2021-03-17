@@ -1,4 +1,5 @@
 
+
 .sidenav-container {
   position: absolute;
   top: 0;
@@ -26,6 +27,7 @@ mat-sidenav{
 
  html, body {
   height: 100%;
+  overflow: hidden;
 }
 
 
@@ -49,7 +51,8 @@ mat-sidenav{
 
 @keyframes bgfade{
   0%{
-    background-image: url('../../../assets/Images/carousel/russiaFlag.jpg');
+    //background-image: url('../../../assets/Images/carousel/russiaFlag.jpg');
+    background-image: url('../../../assets/Images/carousel/Astrakhan-K.jpg');
   }
 
   25%{
@@ -103,7 +106,7 @@ mat-sidenav{
   }
 
   
-   .mdc-fab{
+   .mat-mini-fab{
       background-color: #343a40;
    }
 

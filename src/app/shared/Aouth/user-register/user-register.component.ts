@@ -40,6 +40,8 @@ export class UserRegisterComponent implements OnInit {
   // hide password
   hide = true
 
+  isCollapsed = true;
+
   // password polices 
   @Input()
   password: string; // the provided password to be processed as string
@@ -105,6 +107,7 @@ export class UserRegisterComponent implements OnInit {
   }
 
    ngOnInit() {
+     this.isCollapsed = true; 
       this.identityService.teacherGroupGet().subscribe(teachersdt => {
           this.getTeacherGroup(teachersdt)
       });

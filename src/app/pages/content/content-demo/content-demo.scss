@@ -1,13 +1,13 @@
 @import "~@angular-mdc/theme/material";
 
-::ng-deep body{
-  background-color: #B0D0EA;
-}
+
 
 
 //top-bar
 //navegation 
 @import '../../../shared/custom/topbar-side-navbar';
+
+
 
 .mdc-drawer{
   top: 3.5rem !important;
@@ -39,13 +39,13 @@
   }
   
   .card__subtitle {
-    @include mdc-theme-prop(color, text-secondary-on-background);
+    //@include mdc-theme-prop(color, text-secondary-on-background);
   
     margin: 0;
   }
   
   .card__secondary {
-    @include mdc-theme-prop(color, text-secondary-on-background);
+    //@include mdc-theme-prop(color, text-secondary-on-background);
   
     padding: 0 .5rem 6px .5rem;
 

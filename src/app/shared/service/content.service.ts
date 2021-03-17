@@ -39,6 +39,22 @@ export class ContentService {
       return this.http.get<ArticleContent>(environment.articleContentGetUrl)
     }
 
+    uploadArticleContent(data){
+      return this.http.post<ArticleContent>(environment.articleContentGetUrl,data)
+    }
+
+    updateArticleContent(id,data){
+      return this.http.put<ArticleContent>(`${environment.articleContentGetUrl} ${id}`,data)
+    }
+
+    deleteArticleContent(id){
+      return this.http.delete(`${environment.contentDeleteUrl} ${id}`)
+    }
+
+  
+
+
+
     // CATEGORY
     getCategory(){
       return this.http.get<Category>(environment.categoryUrl)

@@ -16,7 +16,7 @@ import {
   MdcDrawerModule,
   MdcMenuModule,
   MdcListModule
-} from '@angular-mdc/web';
+} from '@angular-mdc/web'; 
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { AdminSwitchUserModule } from 'src/app/shared/admin-switch-user/admin-switch-user';
 

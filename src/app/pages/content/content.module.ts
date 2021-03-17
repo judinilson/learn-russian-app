@@ -22,6 +22,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 // videogular
@@ -56,6 +57,7 @@ import { NotNetwork, NotNetworkModule } from 'src/app/shared/not-network/not-net
 
 @NgModule({
     imports: [
+        MatToolbarModule,
         MatIconModule,
         MatListModule,
         MatFormFieldModule,
@@ -73,6 +75,7 @@ import { NotNetwork, NotNetworkModule } from 'src/app/shared/not-network/not-net
         MatVideoModule,
         MatSelectModule,
         MatSidenavModule,
+        
 
         CommonModule,
         FlexLayoutModule,

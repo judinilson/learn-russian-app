@@ -45,7 +45,7 @@ export class AdminDashboardComponent implements OnInit {
     { data: [], label: 'Неправильный' },
     { data: [], label: 'Правильный' }
   ];
-
+ 
 
   totalDemoContent = 0;
   totalArticleContent = 0;
@@ -59,6 +59,8 @@ export class AdminDashboardComponent implements OnInit {
 
   categories: any;
   collapseTable: boolean;
+  clicked:boolean;
+  clicked1:boolean; 
 
   constructor(
     private admindashboardservice: AdminDashboardService,

@@ -8,14 +8,7 @@ import { AuthenticationService } from '../../shared/service/authentication.servi
 
 
 
-import {
-  MdcButtonModule,
-  MdcFabModule,
-  MdcIconModule,
-  MdcDrawerModule,
-  MdcMenuModule,
-  MdcListModule
-} from '@angular-mdc/web';
+
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { RouterService } from '../service/router.service';
@@ -23,6 +16,14 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
+import { MdcButtonModule, 
+  MdcFabModule, 
+  MdcIconModule, 
+  MdcDrawerModule, 
+  MdcMenuModule, 
+  MdcListModule } from '@angular-mdc/web';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-side-nav',
@@ -72,18 +73,27 @@ export class SideNavComponent implements OnInit {
 
 @NgModule({
   imports: [
+    //mat
+    MatSidenavModule,
+    MatButtonModule,
+
+
+
+//mdc
     MdcButtonModule,
     MdcFabModule,
     MdcIconModule,
     MdcDrawerModule,
     MdcMenuModule,
     MdcListModule,
+    
     FlexLayoutModule,
     CommonModule,
     RouterModule,
     NgbCollapseModule,
     MatSlideToggleModule,
     FormsModule
+
   ],
   exports: [SideNavComponent],
   declarations: [SideNavComponent],

@@ -44,7 +44,7 @@ export class ArticleContent {
   title: string;
   subtitle: string;
   coverImage: string;
-  article: string; 
+  article: any; 
   categoryID: number;
   isArticle: boolean;
   author: string;

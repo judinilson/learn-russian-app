@@ -27,6 +27,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -65,6 +67,8 @@ import { NotNetworkModule } from 'src/app/shared/not-network/not-network';
       MatSnackBarModule ,
       MatCheckboxModule,
       MatBottomSheetModule,
+      MatSidenavModule,
+      MatToolbarModule,
   
       CommonModule,
       FlexLayoutModule,

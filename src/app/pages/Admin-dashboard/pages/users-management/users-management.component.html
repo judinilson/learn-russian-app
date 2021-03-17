@@ -50,7 +50,7 @@
                    *ngFor="let student of usersRoleStudent; let i = index" 
                    
                     >
-                    <th scope="row" (click)="userinfo(student,i)">
+                    <th scope="row" (click)="userinfo(student)">
                       {{student.user.firstName}}
                     </th>
                     <td (click)="userinfo(student)">
@@ -176,7 +176,7 @@
                       <td style="text-align: center;">
                         <span *ngIf="!item.statistic">--</span>
                         <span *ngIf="item.statistic" >
-                          {{item.statistic[item.laststatistic].trainingDate | date [ : format [ : timezone [ : locale ] ] ]}}
+                          {{item.statistic[item.laststatistic].trainingDate | date:'medium'}}
                         </span>
   
                       </td>

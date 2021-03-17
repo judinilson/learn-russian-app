@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-@Component({
+@Component({  
     selector: 'app-dialog-user-teacher',
     templateUrl: './category-dialog.html',
     // styleUrls: ['./category-dialog.scss']

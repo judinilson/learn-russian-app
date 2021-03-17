@@ -9,9 +9,9 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 
 @Component({
-  selector: 'app-oauth',
+  selector: 'app-oauth', 
   templateUrl: './oauth.component.html',
-  styleUrls: ['./oauth.component.scss']
+  styleUrls: ['./oauth.component.scss']  
 })
 
 export class OauthComponent implements OnInit {
@@ -28,6 +28,7 @@ export class OauthComponent implements OnInit {
   footer_td: Date = new Date();
   alert = new Observable<boolean>();
   alerts = null;
+  isCollapsed = true;
 
 
   constructor(
@@ -46,7 +47,8 @@ export class OauthComponent implements OnInit {
 
   ngOnInit() {
 
-
+    this.isCollapsed = true;
+    
       this.loginForm = this.formBuilder.group({
           username: ['', [Validators.required]],
           password: ['', [Validators.required,Validators.minLength(8)]]

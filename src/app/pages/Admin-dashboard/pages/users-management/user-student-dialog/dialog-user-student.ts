@@ -10,7 +10,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class DialogUserStudentComponent implements OnInit {
 
-    userdata: any;
+    userdata: any; 
     createUserForm:  FormGroup;
     submited = false;
     updateUserForm: FormGroup;

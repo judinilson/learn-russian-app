@@ -1,10 +1,16 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 @import '~@angular/material/theming';
 
 
+// Angular MDC
+// @import "~@angular-mdc/theme/material"; 
 
-
-@import "~@angular-mdc/theme/material";
+// Angular MDC
+//@use '@angular-mdc/theme/material';
 @import "@material/elevation/mdc-elevation";
+@use './assets/scss/mdc/mdc.scss';
+
 
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -41,7 +47,6 @@ $candy-app-warn:    mat-palette($mat-red);
 // that you are using.
 // including theme styles for core and each component 
 @include angular-material-theme($candy-app-theme);
-
 
 
 // mat mdc theme

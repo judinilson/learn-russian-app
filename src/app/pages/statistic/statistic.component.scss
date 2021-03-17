@@ -1,5 +1,6 @@
 ::ng-deep body{
     background-color: #B0D0EA;
+   
   }
 
 
@@ -84,8 +85,9 @@ background-color: #28a745;
   margin-top: 2%;
   margin-left: 2%;
   .chart{
+    height: 230px;
     canvas{
-      height: 220px !important;
+    height: 220px !important;
     width: 370px !important;
     }
   }
@@ -130,3 +132,7 @@ background-color: #28a745;
   border-left-width: .25rem;
   border-radius: .25rem;
 }
+
+
+// side nav menu btn 
+//

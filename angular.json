@@ -17,6 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lodash"
+           ],
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -30,7 +33,7 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./src/styles",
-                "./node_modules"
+                "node_modules/"
               ]
             },
             "styles": [
@@ -44,7 +47,9 @@
               "node_modules/videogular2/fonts/videogular.css",
               "node_modules/sweetalert2/src/sweetalert2.scss",
               "src/styles.scss",
-              "src/assets/scss/custom.scss"
+              "src/assets/scss/custom.scss" 
+         
+              
             ],
             "scripts": [
               "node_modules/chart.js/dist/Chart.js",

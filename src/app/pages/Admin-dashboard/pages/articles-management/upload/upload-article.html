@@ -21,7 +21,7 @@
         <h3>Upload new Article content</h3>
     </div>
 
-    <div class="container mt--8 pb-5 pt-5">
+    <div class="container mt--8 p-5">
         <div class="d-flex justify-content-center row">
             <div [formGroup]="uploadArticleForm" class="col">
                 <div class="align-self-center">
@@ -62,7 +62,7 @@
                         </div>
 
                         <!-- SUBTITLE -->
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <mat-form-field>
                                 <textarea
                                     matInput
@@ -93,12 +93,13 @@
                                 [virtualScroll]="true">
                             </ng-select>
                             <mat-error class="select-error" *ngIf="
-                                uploadform.category.errors?.required">
+                                !uploadform.category.valid && submit">
                                 Category is required
                             </mat-error>
                         </div>
 
-                        <div class="col-md-8">                        
+                        <!-- article -->
+                        <div class="col-md-12 editor">                        
                             <ngx-editor-menu 
                             [editor]="editor" 
                             [toolbar]="toolbar"> 
@@ -109,8 +110,8 @@
                             </ngx-editor>
                            
                             <mat-error class="select-error" *ngIf="
-                                uploadform.article.errors?.required">
-                                Category is required
+                                !uploadform.article.valid && submit">
+                                Article is required
                             </mat-error>
                         </div>
 
@@ -133,18 +134,21 @@
             BACK
         </button>
 
-        <!-- <button *ngIf="isUpdate" class="mr-2" style="width: 10%;
+        <button *ngIf="isUpdate" class="mr-2" style="width: 10%;
           border-radius: 20px;"
-          mat-stroked-button color="warn"
+          mat-stroked-button [disabled]="dloading" color="warn"
           (click)=" deleteContent()">
-          <!-- <i class="far fa-save"></i>  --
+          <span *ngIf="dloading" class="spinner-border
+          spinner-border-sm mr-1"></span>
           DELETE
-        </button> -->
+        </button>
+
         <button class="mr-2" style="width: 10%;
             border-radius: 20px;"
-            mat-raised-button color="primary"
+            mat-raised-button [disabled]="loading" color="primary"
             (click)="uploadData()">
-            <!-- <i class="far fa-save"></i>  -->
+            <span *ngIf="loading" class="spinner-border
+            spinner-border-sm mr-1"></span>
             {{uploadbtn}}
         </button>
 

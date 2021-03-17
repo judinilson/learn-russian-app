@@ -127,7 +127,7 @@ export class StatisticComponent implements OnInit {
       this.totalCorrectAnswers = this.trainingDataResult.totalCorrectAnswers,
         this.totalIncorrectAnswers = this.trainingDataResult.totalIncorrectAnswers,
         this.totalAnswers = this.trainingDataResult.totalAnswers
-      this.statistics = !this.statistics
+      this.statistics = true
     }
 
 

@@ -11,7 +11,8 @@ import { SnackbarAlertComponent } from './snackbar-alert/snackbar-alert';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ContentService } from 'src/app/shared/service/content.service';
 import { Category } from 'src/app/shared/Model/Content';
-
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -22,6 +23,10 @@ import { Category } from 'src/app/shared/Model/Content';
 export class TestComponent implements OnInit {
 
 
+  mode = 'side'
+  opened = false;
+  layoutGap = '64';
+  fixedInViewport = true;
   login = false;
   user = null;
   username = 'none';
@@ -35,6 +40,7 @@ export class TestComponent implements OnInit {
   notnework = false;
 
   constructor(
+    private bpo: BreakpointObserver,
     private routerService: RouterService,
     private router: Router,
     private dataService: DataService,
@@ -54,11 +60,12 @@ export class TestComponent implements OnInit {
 
   ngOnInit() {
 
-    if(localStorage.getItem('currentUser') !== null){
+    this.sidnav()
+    if (localStorage.getItem('currentUser') !== null) {
       this.login = true;
-      this.user = JSON.parse(window.localStorage.getItem('currentUser')); 
+      this.user = JSON.parse(window.localStorage.getItem('currentUser'));
       this.username = this.user.username;
-     console.log(this.username);
+      console.log(this.username);
     }
     this.getTestIndex()
 
@@ -94,21 +101,21 @@ export class TestComponent implements OnInit {
   }
 
 
-  getTrainingData(){
-    this.querryProgressBar  = true;
+  getTrainingData() {
+    this.querryProgressBar = true;
     this.trainingService.getTrainingContent()
-    .pipe(debounceTime(500))
-    .pipe(distinctUntilChanged())
-    .subscribe(
-      data => {
-        this.trainingData = data;
-        this.trainingCategory(data)
-        this.querryProgressBar = false;
-      },
-      error => {
-        console.log("error trying to get training Data: ",error);
-        this.notnework = true;
-      })
+      .pipe(debounceTime(500))
+      .pipe(distinctUntilChanged())
+      .subscribe(
+        data => {
+          this.trainingData = data;
+          this.trainingCategory(data)
+          this.querryProgressBar = false;
+        },
+        error => {
+          console.log("error trying to get training Data: ", error);
+          this.notnework = true;
+        })
   }
 
   //map article categories
@@ -130,44 +137,44 @@ export class TestComponent implements OnInit {
     console.log("Categories: ", this.allTrainingCategory);
   }
 
-  onSelectedCard(content:any,index){
+  onSelectedCard(content: any, index?) {
     index += 1;
-    if(this.testIndex === 0 || this.testIndex === index){
-      this.setTestIndex(index,content)
+    if (this.testIndex === 0 || this.testIndex === index) {
+      this.setTestIndex(index, content)
       this.trainingService.newTraining(content);
       this.router.navigateByUrl('/training');
     }
-    else{
-      var message = content.title 
-      this._userAlertTraining(message,content,index)
+    else {
+      var message = content.title
+      this._userAlertTraining(message, content, index)
     }
-    
-   
+
+
   };
 
 
-  setTestIndex(index,content){
+  setTestIndex(index, content) {
     var newIndex = {
       'index': index,
       'content': content
     }
     localStorage.removeItem('currentTestIndex');
-    localStorage.setItem('currentTestIndex',JSON.stringify(newIndex));
+    localStorage.setItem('currentTestIndex', JSON.stringify(newIndex));
   }
 
-  getTestIndex(){
+  getTestIndex() {
     this.getIndex = JSON.parse(localStorage.getItem('currentTestIndex'))
-    if(this.getIndex != null) this.testIndex = this.getIndex.index
+    if (this.getIndex != null) this.testIndex = this.getIndex.index
   }
 
- 
-  
 
-  _userAlertTraining(message,content=null,index){
 
-    const dialogRef = this.dialog.open(SnackbarAlertComponent,{
+
+  _userAlertTraining(message, content = null, index) {
+
+    const dialogRef = this.dialog.open(SnackbarAlertComponent, {
       width: '450px',
-      data:{
+      data: {
         message
       }
     })
@@ -175,39 +182,88 @@ export class TestComponent implements OnInit {
     dialogRef.afterClosed()
       .pipe(debounceTime(300))
       .pipe(distinctUntilChanged())
-      .subscribe(result =>{
-        if(result != null){
+      .subscribe(result => {
+        if (result != null) {
 
           var _content: any;
-          console.log("dialog result: ",result);
-          if(result.continue){
+          console.log("dialog result: ", result);
+          if (result.continue) {
             this.trainingService._continue = true;
             this.getIndex = JSON.parse(localStorage.getItem('currentTestIndex'))
             console.log('current test index: ', this.getIndex);
-            if(this.getIndex != null) {
+            if (this.getIndex != null) {
               this.testIndex = this.getIndex.index
               _content = this.getIndex.content
               this.router.navigateByUrl('/training');
               this.trainingService.newTraining(_content);
             }
-           
+
           }
-          if(result.new){
+          if (result.new) {
             this.trainingService._start = true
-            this.setTestIndex(index,content)
+            this.setTestIndex(index, content)
             this.router.navigateByUrl('/training');
             this.trainingService.newTraining(content);
           }
         }
-       
+
       })
   }
 
-  public logOut(){
+  public logOut() {
     this.authservice.logout();
-    this.login = false ;
+    this.login = false;
   }
 
+
+
+
+  //mat -side nav
+  sidnav() {
+    const breakpoints = Object.keys(Breakpoints).map(key => Breakpoints[key])
+    this.bpo.observe(breakpoints)
+      .pipe(map(bst => bst.matches))
+      .subscribe(matched => {
+
+
+        console.log('matched');
+
+        this.determineSidenavMode();
+        this.determineLayoutGap();
+      });
+  }
+
+  private determineSidenavMode(): void {
+    if (
+      this.isExtraSmallDevice() ||
+      this.isSmallDevice()
+    ) {
+      this.fixedInViewport = false;
+      this.mode = 'over';
+      this.opened = false;
+      return;
+    }
+
+    this.fixedInViewport = true;
+    this.mode = 'side';
+  }
+
+  private determineLayoutGap(): void {
+    if (this.isExtraSmallDevice() || this.isSmallDevice()) {
+      this.layoutGap = '0';
+      return;
+    }
+
+    this.layoutGap = '64';
+  }
+
+  public isExtraSmallDevice(): boolean {
+    return this.bpo.isMatched(Breakpoints.XSmall);
+  }
+
+  public isSmallDevice(): boolean {
+    return this.bpo.isMatched(Breakpoints.Small)
+  }
 }
 
 

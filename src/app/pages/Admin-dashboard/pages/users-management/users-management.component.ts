@@ -245,7 +245,7 @@ export class UsersManagementComponent implements OnInit {
   }
 
   // get user info 
-  userinfo(data) {
+  userinfo(data) {  
 
     console.log("info: ", data)
     if (data.country) {
