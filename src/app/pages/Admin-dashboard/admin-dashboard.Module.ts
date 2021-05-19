@@ -54,6 +54,8 @@ import { DialogUploadComponent } from './pages/demonstrations-management/upload/
 import { ProgressComponent } from './pages/demonstrations-management/upload/upload-dialog/progress/progress';
 import { UploadArticleTaskComponent } from './pages/articles-management/upload/upload-article';
 import { NgxEditorModule, schema } from 'ngx-editor';
+import { UploadTrainingTaskComponent } from './pages/training-management/upload/upload-training';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
     imports: [
@@ -65,6 +67,7 @@ import { NgxEditorModule, schema } from 'ngx-editor';
         MdcDrawerModule,
         MdcMenuModule,
         MdcListModule,
+
 
         FlexLayoutModule,
         CommonModule,
@@ -131,6 +134,8 @@ import { NgxEditorModule, schema } from 'ngx-editor';
         MatSelectModule,
         MatCheckboxModule,
         MatDialogModule,
+        MatExpansionModule,
+        MatSlideToggleModule
 
   
     ],
@@ -145,6 +150,7 @@ import { NgxEditorModule, schema } from 'ngx-editor';
         AdminLayoutComponent,
         UploadTaskComponent,
         UploadArticleTaskComponent,
+        UploadTrainingTaskComponent,
 
         //dialogs
         DialogUserStudentComponent,

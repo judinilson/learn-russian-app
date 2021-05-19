@@ -189,11 +189,11 @@ export class UploadArticleTaskComponent implements OnInit {
 
     //ADD CONTENT
     //UPLOAD DATA 
-    uploadData() {
+    uploadData() { 
         this.submit = true;
         this.loading = true;
 
-        //POST
+        //POST 
         if (!this.isUpdate) {
             if (!this.uploadArticleForm.invalid) {
                 var imgurl: any;

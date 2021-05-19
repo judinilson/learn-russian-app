@@ -33,6 +33,8 @@ export const environment = {
     categoryUrl: `${apiUrl.url}/Category/`,
 
     trainingDataUrl: `${apiUrl.url}/TrainingContent`,
+    trainingDataPostUrl: `${apiUrl.url}/TrainingContent/Create-Trainig`,
+    
 
     statisticUrl: `${apiUrl.url}/Statistic`,
     statisticPostUrl: `${apiUrl.url}/Statistic/Create-Statistics`

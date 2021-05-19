@@ -1,1 +1,59 @@
-<p>training-management works!</p>
+
+
+<mat-progress-bar *ngIf="isQuery" mode="query" style="margin-top: 5px;"></mat-progress-bar>
+
+<div *ngIf="!isQuery" class="bg-gradient-secondary">
+  <!-- <mat-progress-bar *ngIf="isQuery" mode="query" style="margin-top: 5px;"></mat-progress-bar> -->
+  <div>
+    <div class="container-fluid mt--7">
+      <div class="row" style="display: flow-root;">
+        <div class="mt-5 justify-content-center">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">
+                    Training contents
+                  </h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive overflow">
+              <!-- content table -->
+              <table class="table align-items-center table-flush" id="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col"> Title</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Author</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr role="button" class="ripple" *ngFor="let training of
+                  trainingContentArr" (click)="selectedContentFunc(training)">
+                    <th scope="row">{{training.title}}</th>
+                    <td>{{training.category.name}}</td>
+                    <td>{{training.author}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="add-btn">
+      <a
+        (click)="clear()"
+        role="button"
+        [routerLink]="['/admin-uploadTaskTrainingContent']"
+        routerLinkActive="active"
+        mat-icon-button class="btn btn-primary"
+        id="btn-add">
+        <i class="fas fa-plus"></i>
+
+      </a>
+    </div>
+  </div>
+</div>

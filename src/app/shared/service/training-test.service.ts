@@ -16,6 +16,10 @@ export class TrainingTestService {
   private trainingTestData = new BehaviorSubject<any>(null);
   currrentest = this.trainingTestData.asObservable();
 
+   /* PASS SELECTED TRAINING FROM A (component) to B (component)*/
+   private trainingSelectedData = new BehaviorSubject<any>(null);
+   currenttrainingSelectedData = this.trainingSelectedData.asObservable();
+
   totalCorrectAnswer = null;
   totalIncorrectAnswer = null;
   totalQestions = null;
@@ -60,8 +64,18 @@ export class TrainingTestService {
   //   { key: "гостей", value: "Принимать" },
   // )
 
+  //selected data 
+  newSelectedData(data:any){
+    this.trainingSelectedData.next(data)
+  }
+
   getTrainingContent(){
     return this.http.get<TrainingContent>(environment.trainingDataUrl)
+  }
+
+  // post training content 
+  upploadTrainingContent(data){
+    return this.http.post<TrainingContent>(environment.trainingDataPostUrl,data)
   }
 
   // statistic http client 

@@ -12,7 +12,7 @@ export class ArticlesManagementComponent implements OnInit {
   categories: any;
   articleContent: any;
   isQuery = true;
-  articleContentArr:any = []
+  articleContentArr:any = [] 
 
   constructor(
     private contentService: ContentService,

@@ -9,7 +9,7 @@ export class Answer{
     Answesrs: string;
 }
 
-export class Trainings{
+export class Trainings{ 
     Id:number;
     Questions: string[];
     Answers: Answer[];

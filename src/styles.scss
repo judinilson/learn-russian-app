@@ -1,15 +1,15 @@
+@use './assets/scss/mdc/mdc.scss';
+
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 @import '~@angular/material/theming';
 
 
-// Angular MDC
-// @import "~@angular-mdc/theme/material"; 
 
 // Angular MDC
 //@use '@angular-mdc/theme/material';
-@import "@material/elevation/mdc-elevation";
-@use './assets/scss/mdc/mdc.scss';
+//@import "@material/elevation/mdc-elevation";
+//@use './assets/scss/mdc/mdc.scss';
 
 
 
@@ -22,24 +22,22 @@
 // @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 // @import '~@angular/material/prebuilt-themes/indigo-pink.css';
- 
+
 
 /*
 Defining palettes available in palette.scss
 */
 $candy-app-primary: mat-palette($mat-indigo);
-$candy-app-accent:  mat-palette($mat-deep-purple, A200, A100, A400);
+$candy-app-accent: mat-palette($mat-deep-purple, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$candy-app-warn:    mat-palette($mat-red);
+$candy-app-warn: mat-palette($mat-red);
 
 // the theme object (a Sass map containing all of the palettes)
 // Create the theme object. A theme consists of configurations for individual
- $candy-app-theme: mat-light-theme(
-  $candy-app-primary,
+$candy-app-theme: mat-light-theme($candy-app-primary,
   $candy-app-accent,
-  $candy-app-warn
-  );
+  $candy-app-warn);
 
 
 // Include theme styles for core and each component used in your app.
@@ -56,4 +54,4 @@ $mdc-theme-secondary: #388e3c; // secondary color
 body {
   font-family: Roboto, Arial, sans-serif;
   margin: 0;
- }
+}
