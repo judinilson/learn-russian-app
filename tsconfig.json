@@ -1,6 +1,9 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "tslib" : ["path/to/node_modules/tslib/tslib.d.ts"]
+    },
     "skipLibCheck": true,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
@@ -16,7 +19,7 @@
       "node_modules/@types"
     ],
     "lib": [
-      "es2018",
+      "es2018", 
       "dom"
     ],
   },
