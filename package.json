@@ -49,6 +49,7 @@
     "cloudinary-core": "^2.11.3",
     "electron-reload": "^1.5.0",
     "firebase": "^8.2.9",
+    "idle-timer-manager": "^0.0.5",
     "jquery": "^3.5.1",
     "lorem-ipsum": "^2.0.3",
     "mat-video": "^2.8.1",

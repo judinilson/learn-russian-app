@@ -1,31 +1,49 @@
 <div fxLayout="row" fxLayoutAlign="start">
   <div fxFlex="30%">
-
-
-    <mat-drawer-container autosize> 
+    <mat-drawer-container autosize>
       <mat-drawer #drawer mode="side">
         <div class="side-bar">
           <div class="sidebar-header">
+            <div class="row mt-2" *ngIf="!login">
+              <div class="col align-items-center d-none d-md-flex">
+                <div class="mb-5" placement="bottom-right">
+                  Вы не вошли в систему
+                  <a
+                    role="button"
+                    routerLinkActive="active"
+                    [routerLink]="['/login']"
+                  >
+                    <div class="p-2">
+                      <button class="btn btn-light">
+                        <i class="pr-1 fas fa-running"></i>
+                        <span>(Вход)</span>
+                      </button>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
             <div class="row mt-2" *ngIf="login">
               <div class="col align-items-center d-none d-md-flex">
                 <div class="mb-5" placement="bottom-right">
-
-                  <a role="button" routerLinkActive="active"
-                    [routerLink]="['/user-profile']">
+                  <a
+                    role="button"
+                    routerLinkActive="active"
+                    [routerLink]="['/user-profile']"
+                  >
                     <div class="media align-items-center">
                       <span class="avatar avatar-sm rounded-circle p-2">
-                        <img alt="Image placeholder"
-                          src="../../../assets/icons/user.png" style="width:
-                          50px;"
-                          />
+                        <img
+                          alt="Image placeholder"
+                          src="../../../assets/icons/user.png"
+                          style="width: 50px"
+                        />
                       </span>
                       <div class="p-2 media-body ml-2 d-lg-block">
                         <span class="mb-0 text-sm font-weight-bold">
-                          {{username}}
+                          {{ username }}
                         </span>
                       </div>
-
-
                     </div>
                   </a>
 
@@ -36,10 +54,8 @@
                     </button>
                   </div>
                 </div>
-
               </div>
             </div>
-
           </div>
 
           <div>
@@ -47,67 +63,76 @@
               <ul class="mdc-list">
                 <div *ngFor="let key of route.navSection">
                   <li class="matt-list-item">
-                    <a [routerLink]="route.navLinks[key].location"
-                      (click)="route.navLinks[key].name
-                      == 'Россия' ? route._isDroped() : ''">
-
+                    <a
+                      [routerLink]="route.navLinks[key].location"
+                      (click)="
+                        route.navLinks[key].name == 'Россия'
+                          ? route._isDroped()
+                          : ''
+                      "
+                    >
                       <!-- <mdc-icon mdcListItemGraphic *ngIf="route.navLinks[key].icon">{{route.navLinks[key].icon}}</mdc-icon> -->
                       <span *ngIf="route.navLinks[key].icon">
-                        <img class="icon-img" src={{route.navLinks[key].icon}}>
-                        {{route.navLinks[key].name}}
+                        <img
+                          class="icon-img"
+                          src="{{ route.navLinks[key].icon }}"
+                        />
+                        {{ route.navLinks[key].name }}
                       </span>
 
-                      <mat-icon mdcListItemGraphic matSuffix
-                        *ngIf="route.navLinks[key].name == 'Россия'">
+                      <mat-icon
+                        mdcListItemGraphic
+                        matSuffix
+                        *ngIf="route.navLinks[key].name == 'Россия'"
+                      >
                         <!-- {{route.icon}} -->
                         <i *ngIf="!route.isDroped" class="fa fa-sort-down"></i>
                         <i *ngIf="route.isDroped" class="fa fa-sort-up"></i>
                       </mat-icon>
-
-
                     </a>
-
                   </li>
 
                   <ul class="sub-list" *ngIf="route.isDroped == true">
-                    <li class="matt-list-item" *ngFor="let subPage of
-                      route.navLinks[key].subPages">
+                    <li
+                      class="matt-list-item"
+                      *ngFor="let subPage of route.navLinks[key].subPages"
+                    >
                       <a [routerLink]="subPage.location">
-                        <img class="icon-img" mdcListItemGraphic
+                        <img
+                          class="icon-img"
+                          mdcListItemGraphic
                           *ngIf="subPage.icon"
-                          src={{subPage.icon}}>
+                          src="{{ subPage.icon }}"
+                        />
                         <!-- <mdc-icon mdcListItemGraphic *ngIf="subPage.icon">{{subPage.icon}}</mdc-icon> -->
-                        {{subPage.name}}
+                        {{ subPage.name }}
                       </a>
                     </li>
                   </ul>
-
                 </div>
-
-              </ul> <!-- </mdc-list> -->
-
+              </ul>
+              <!-- </mdc-list> -->
             </nav>
 
-
-            <p class="footer">
-              Copy@right АСОИУ
-            </p>
-
+            <p class="footer">Copy@right АСОИУ</p>
           </div>
         </div>
-
       </mat-drawer>
-
     </mat-drawer-container>
     <!-- <div mdcDrawerAppContent>
 
     </div> -->
 
     <div class="layout__row" fxFlex="40%">
-      <button class="menu-btn" mat-mini-fab (click)="drawer.toggle();_isOpen()">
-        <i class="fas fa-bars" *ngIf="!isOpen" style="color: #fff;"></i>
-        <i class="fas fa-times" *ngIf="isOpen" style="color: #fff;"></i>
+      <button
+        class="menu-btn"
+        mat-mini-fab
+        (click)="drawer.toggle(); _isOpen()"
+      >
+        <i class="fas fa-bars" *ngIf="!isOpen" style="color: #fff"></i>
+        <i class="fas fa-times" *ngIf="isOpen" style="color: #fff"></i>
         <!-- <mdc-icon>{{icon}}</mdc-icon> -->
       </button>
     </div>
   </div>
+</div>

@@ -1,24 +1,22 @@
-import { Injectable, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import {HttpClient} from '@angular/common/http'
-import { BehaviorSubject } from 'rxjs';
-import { DragDropQuestion } from 'src/app/pages/test/questions-answers/questions-answers.component';
-import { environment } from '../environment';
-import { TrainingContent } from '../Model/Training-Content';
-import { Statistic } from '../Model/Statistic';
-
+import { Injectable, OnInit, OnDestroy } from "@angular/core";
+import { Router } from "@angular/router";
+import { HttpClient } from "@angular/common/http";
+import { BehaviorSubject } from "rxjs";
+import { DragDropQuestion } from "src/app/pages/test/questions-answers/questions-answers.component";
+import { environment } from "../environment";
+import { TrainingContent } from "../Model/Training-Content";
+import { Statistic } from "../Model/Statistic";
 
 @Injectable()
 export class TrainingTestService {
-
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {}
 
   private trainingTestData = new BehaviorSubject<any>(null);
   currrentest = this.trainingTestData.asObservable();
 
-   /* PASS SELECTED TRAINING FROM A (component) to B (component)*/
-   private trainingSelectedData = new BehaviorSubject<any>(null);
-   currenttrainingSelectedData = this.trainingSelectedData.asObservable();
+  /* PASS SELECTED TRAINING FROM A (component) to B (component)*/
+  private trainingSelectedData = new BehaviorSubject<any>(null);
+  currenttrainingSelectedData = this.trainingSelectedData.asObservable();
 
   totalCorrectAnswer = null;
   totalIncorrectAnswer = null;
@@ -43,8 +41,8 @@ export class TrainingTestService {
     { key: "праздник", value: "Отмечать" },
     { key: "блины", value: "Печь" },
     { key: "конкурсы", value: "Разыгрывать" },
-    { key: "гостей", value: "Принимать" },
-  )
+    { key: "гостей", value: "Принимать" }
+  );
 
   // itemsDragSecond = [
   //   '',
@@ -64,36 +62,44 @@ export class TrainingTestService {
   //   { key: "гостей", value: "Принимать" },
   // )
 
-  //selected data 
-  newSelectedData(data:any){
-    this.trainingSelectedData.next(data)
+  //selected data
+  newSelectedData(data: any) {
+    this.trainingSelectedData.next(data);
   }
 
-  getTrainingContent(){
-    return this.http.get<TrainingContent>(environment.trainingDataUrl)
+  getTrainingContent() {
+    return this.http.get<TrainingContent>(environment.trainingDataUrl);
   }
 
-  // post training content 
-  upploadTrainingContent(data){
-    return this.http.post<TrainingContent>(environment.trainingDataPostUrl,data)
+  // post training content
+  upploadTrainingContent(data) {
+    return this.http.post<TrainingContent>(
+      environment.trainingDataPostUrl,
+      data
+    );
   }
 
-  // statistic http client 
-  getStatistic(){
-    return this.http.get<Statistic>(environment.statisticUrl)
+  // update training content
+  updateTrainingContent(id, data) {
+    return this.http.put(`${environment.trainingDataPutUrl} ${id} `, data);
   }
 
-  createStatistic(data){
-    return this.http.post<Statistic>(environment.statisticPostUrl,data)
+  // Delete training content
+  deleteTrainingContent(id) {
+    return this.http.delete(`${environment.trainingDataDeleteUrl} ${id} `);
   }
 
+  // statistic http client
+  getStatistic() {
+    return this.http.get<Statistic>(environment.statisticUrl);
+  }
 
-  //new training test 
-    newTraining(test:any){
-        this.trainingTestData.next(test);
-    }
+  createStatistic(data) {
+    return this.http.post<Statistic>(environment.statisticPostUrl, data);
+  }
 
-
-  
-    
+  //new training test
+  newTraining(test: any) {
+    this.trainingTestData.next(test);
+  }
 }
