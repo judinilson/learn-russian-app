@@ -1,46 +1,44 @@
-<div style="overflow: hidden;">
-
-
+<div style="overflow: hidden">
   <!-- top bar  -->
 
   <mat-toolbar class="mat-elevation-z6">
-
-    <button mat-icon-button class="btn" (click)="opened= !opened">
-
-      <i class="fas fa-bars" style="color: #fff; display: flex;"></i>
+    <button mat-icon-button class="btn" (click)="opened = !opened">
+      <i class="fas fa-bars" style="color: #fff; display: flex"></i>
     </button>
-
   </mat-toolbar>
-
-
-
 
   <!-- drawer -->
   <div class="drawer-app-content">
-    <mat-sidenav-container class="main-sidenav-container"
-      (backdropClick)="opened= !opened">
-      <mat-sidenav [mode]="mode"
+    <mat-sidenav-container
+      class="main-sidenav-container"
+      (backdropClick)="opened = !opened"
+    >
+      <mat-sidenav
+        [mode]="mode"
         [opened]="opened"
         [fixedInViewport]="true"
-        [fixedTopGap]="layoutGap">
+        [fixedTopGap]="layoutGap"
+      >
         <div class="col align-items-center d-none d-md-flex">
           <div class="mb-5 mt-3" placement="bottom-right">
-
-            <a role="button" routerLinkActive="active"
-              [routerLink]="['/user-profile']">
+            <a
+              role="button"
+              routerLinkActive="active"
+              [routerLink]="['/user-profile']"
+            >
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle p-2">
-                  <img alt="Image placeholder"
+                  <img
+                    alt="Image placeholder"
                     src="../../../../assets/icons/user.png"
-                    style="width: 50px;" />
+                    style="width: 50px"
+                  />
                 </span>
                 <div class="p-2 media-body ml-2 d-lg-block">
                   <span class="mb-0 text-sm font-weight-bold">
-                    {{username}}
+                    {{ username }}
                   </span>
                 </div>
-
-
               </div>
             </a>
 
@@ -51,10 +49,7 @@
               </button>
             </div>
           </div>
-
         </div>
-
-
 
         <!-- list menu -->
         <div>
@@ -62,202 +57,166 @@
             <ul class="mat-list">
               <div *ngFor="let key of route.navSection">
                 <li class="matt-list-item">
-                  <a [routerLink]="route.navLinks[key].location"
-                    (click)="route.navLinks[key].name
-                    == 'Россия' ? route._isDroped() : ''">
-
+                  <a
+                    [routerLink]="route.navLinks[key].location"
+                    (click)="
+                      route.navLinks[key].name == 'Россия'
+                        ? route._isDroped()
+                        : ''
+                    "
+                  >
                     <!-- <mdc-icon mdcListItemGraphic *ngIf="route.navLinks[key].icon">{{route.navLinks[key].icon}}</mdc-icon>
                           {{route.navLinks[key].name}} -->
                     <span *ngIf="route.navLinks[key].icon">
-                      <img class="icon-img" src={{route.navLinks[key].icon}}>
-                      {{route.navLinks[key].name}}
+                      <img
+                        class="icon-img"
+                        src="{{ route.navLinks[key].icon }}"
+                      />
+                      {{ route.navLinks[key].name }}
                     </span>
-                    <mat-icon mdcListItemGraphic mdcSuffix
-                      *ngIf="route.navLinks[key].name == 'Россия'">
+                    <mat-icon
+                      mdcListItemGraphic
+                      mdcSuffix
+                      *ngIf="route.navLinks[key].name == 'Россия'"
+                    >
                       <i *ngIf="!route.isDroped" class="fa fa-sort-down"></i>
                       <i *ngIf="route.isDroped" class="fa fa-sort-up"></i>
                     </mat-icon>
                   </a>
-
                 </li>
 
                 <ul class="sub-list" *ngIf="route.isDroped == true">
-                  <li class="matt-list-item" *ngFor="let subPage of
-                    route.navLinks[key].subPages">
+                  <li
+                    class="matt-list-item"
+                    *ngFor="let subPage of route.navLinks[key].subPages"
+                  >
                     <a [routerLink]="subPage.location">
                       <!-- <mdc-icon mdcListItemGraphic *ngIf="subPage.icon">{{subPage.icon}}</mdc-icon> -->
-                      <img style="width: 30px;" *ngIf="subPage.icon"
-                        src={{subPage.icon}}>
-                      {{subPage.name}}
+                      <img
+                        style="width: 30px"
+                        *ngIf="subPage.icon"
+                        src="{{ subPage.icon }}"
+                      />
+                      {{ subPage.name }}
                     </a>
                   </li>
                 </ul>
-
               </div>
-
-            </ul> <!-- </mdc-list> -->
-
+            </ul>
+            <!-- </mdc-list> -->
           </nav>
 
-          <p class="footer">
-            Copy@right АСОИУ
-          </p>
-
+          <p class="footer">Copy@right АСОИУ</p>
         </div>
-
       </mat-sidenav>
 
-
-
-
-
-      <div class="mt-md-5 p-0">
-        <div class="row">
+      <div class="rows p-0">
+        <div class="row hight-of-content">
           <!-- content -->
-          <div class="order-md-1 mb-md-0 pr-0"
-            [ngClass]="(showDemoItems)?'col-md-8 ':'col-md-12'">
-            <!--<mat-video class="embed-responsive-item"
-              [@inOutAnimation]
-              title="My Tutorial Title"
-              [autoplay]="true"
-              [preload]="true"
-              [fullscreen]="true"
-              [download]="false"
-              showFrameByFrame="true"
-              color="accent"
-              spinner="spin"
-              poster="{{demoContent?.coverImg}}">
-              <source matVideoSource src="{{currentVideo}}" type="video/mp4">
-              <!-- <source src="tutorial.webm" type="video/webm"> -->
-            <!-- <track matVideoTrack src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English"> -->
-            <!-- <track src="subtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian"> --
-            </mat-video>-->
-            <button *ngIf="!showDemoItems" class="btn-mouse" mat-icon-button
+          <div
+            class="order-md-1 mb-md-0 pr-0"
+            [ngClass]="showDemoItems ? 'col-md-8 ' : 'col-md-12'"
+          >
+            <button
+              *ngIf="!showDemoItems"
+              class="btn-mouse"
+              mat-icon-button
               aria-label="close button"
-              (click)="showDemoItems= !showDemoItems">
+              (click)="showDemoItems = !showDemoItems"
+            >
               <mat-icon>arrow_back</mat-icon>
-              <span class="content-toglle-label">
-                Contents
-              </span>
+              <span class="content-toglle-label"> Contents </span>
             </button>
 
             <vg-player>
-
-              <video [vgMedia]="media" #media id="singleVideo" preload="auto"
-                controls>
-                <source src="{{currentVideo}}" type="video/mp4">
+              <video
+                [vgMedia]="media"
+                #media
+                id="singleVideo"
+                preload="auto"
+                controls
+              >
+                <source src="{{ currentVideo }}" type="video/mp4" />
               </video>
             </vg-player>
-
-
           </div>
 
-
           <div class="col-md-4 order-md-2 pl-md-0" *ngIf="showDemoItems">
-
-            <div class="card" style="height: 100%;">
+            <div class="card" style="height: 100%">
               <div class="card-header row justify-content-between">
-                <span class="mt-1" style="font-weight: 700;">Demonstration
-                  Content</span>
-                <button mat-icon-button aria-label="close button"
-                  (click)="showDemoItems= !showDemoItems">
+                <span class="mt-1" style="font-weight: 700"
+                  >Demonstration Content</span
+                >
+                <button
+                  mat-icon-button
+                  aria-label="close button"
+                  (click)="showDemoItems = !showDemoItems"
+                >
                   <mat-icon>close</mat-icon>
                 </button>
               </div>
-              <mat-selection-list #shoes
-                [ngClass]="(currentDemontrationsContentses.length>
-                10)?'scrolbar':'none'">
-                <mat-list-option *ngFor="let video of
-                  currentDemontrationsContentses"
-                  (click)="onVideoClick(video.src)">
-
-                  <h3 style="font-size: 14px; font-weight: 400; line-height:
-                    1.43em;">
-                    {{video.title}}
-                  </h3>
-                  <div class="row" style="display: flex;
-                    justify-content: flex-start;
-                    font-size: 12px;
-                    font-weight: 400;
-                    line-height: 1.33em;
-                    opacity: .7;
-                    padding-top: 4px;">
-                    <i class="fa fa-play-circle" style="padding-right:
-                      .2rem;">
+              <mat-selection-list
+                #shoes
+                [ngClass]="
+                  currentDemontrationsContentses.length > 10
+                    ? 'scrolbar'
+                    : 'none'
+                "
+              >
+                <mat-list-option
+                  *ngFor="let video of currentDemontrationsContentses"
+                  (click)="onVideoClick(video.src)"
+                >
+                  <div
+                    class="row"
+                    style="
+                      display: flex;
+                      justify-content: flex-start;
+                      font-size: 12px;
+                      font-weight: 400;
+                      line-height: 1.33em;
+                      opacity: 0.7;
+                      padding-top: 4px;
+                    "
+                  >
+                    <h3
+                      style="
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 1.43em;
+                      "
+                    >
+                      {{ video.title }}
+                    </h3>
+                    <!-- <i class="fa fa-play-circle" style="padding-right: 0.2rem">
                     </i>
-                    <p>10min</p>
+                    <p>10min</p> -->
                   </div>
-
                 </mat-list-option>
               </mat-selection-list>
             </div>
-
-
-          </div> 
+          </div>
         </div>
       </div>
       <!-- footer -->
-      <footer class="d-lg-none" [ngClass]="(showDemoItems)?'footer-p
-        ':'pt-5'">
+      <footer
+        class="d-lg-none"
+        [ngClass]="showDemoItems ? 'footer-p
+        ' : 'pt-5'"
+      >
         <div class="container">
           <div class="row align-items-center justify-content-xl-between">
             <div class="col-xl-6">
               <div class="copyright text-center text-xl-left text-muted">
-                &copy; {{ footer_td | date: "yyyy" }} <a href="#"
-                  class="font-weight-bold ml-1" target="_blank">АСОИУ</a>
+                &copy; {{ footer_td | date: "yyyy" }}
+                <a href="#" class="font-weight-bold ml-1" target="_blank"
+                  >АСОИУ</a
+                >
               </div>
             </div>
           </div>
         </div>
       </footer>
-
-
-
     </mat-sidenav-container>
-
-
-
-
-
-    <!-- <div mdcDrawerAppContent fxLayout="row" fxLayoutAlign="space-around center">
-    <!-- content --
-    <div class="content-video">
-      <mat-video
-        [@inOutAnimation]
-        title="My Tutorial Title"
-        [autoplay]="true"
-        [preload]="true"
-        [fullscreen]="true"
-        [download]="false"
-        showFrameByFrame="true"
-        color="accent"
-        spinner="spin"
-        poster="{{demoContent?.coverImg}}">
-        <source matVideoSource src="{{currentVideo}}" type="video/mp4">
-        <!-- <source src="tutorial.webm" type="video/webm"> -->
-    <!-- <track matVideoTrack src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English"> -->
-    <!-- <track src="subtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian"> --
-      </mat-video>
-
-
-    </div>
-
-    <div class="content-video-list" *ngIf="demoContent?.src.length> 1" fxFlex>
-      <ul>
-        <li matRipple [matRippleColor]="matRiplecolor"
-          [matRippleCentered]="matRipleCentered"
-          *ngFor="let video of demoContent?.src">
-          <img class="img-cover"
-            [src]="demoContent?.coverImg"
-            [alt]="demoContent.name"
-            (click)="onVideoClick(video)">
-
-        </li>
-      </ul>
-    </div>-->
   </div>
-
-
-
-
 </div>

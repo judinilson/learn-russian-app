@@ -1,117 +1,152 @@
-<mdc-top-app-bar fixed  >
-    <mdc-top-app-bar-row>
-        <mdc-top-app-bar-section align="start" title="App">
-            <button mdcTopAppBarNavIcon (click)="drawer.open = !drawer.open">
-              <i class="fas fa-bars" style="color: #fff; display: flex;"></i>
-            </button>
-        </mdc-top-app-bar-section>
-    </mdc-top-app-bar-row>
-</mdc-top-app-bar>
+<div style="overflow: hidden">
+  <!-- top bar  -->
 
-<!-- drawer -->
-<div class="drawer-app-content">
-    <mdc-drawer drawer="dismissible" #drawer>
-        <mdc-drawer-header >
+  <mat-toolbar class="mat-elevation-z6">
+    <button mat-icon-button class="btn" (click)="opened = !opened">
+      <i class="fas fa-bars" style="color: #fff; display: flex"></i>
+    </button>
+  </mat-toolbar>
 
-          <div class="row mt-2" *ngIf="login">
-            <div class="col align-items-center d-none d-md-flex">
-              <div class="mb-5"  placement="bottom-right">
-  
-                <a role="button"  routerLinkActive="active" [routerLink]="['/user-profile']">
-                  <div class="media align-items-center">
-                    <span class="avatar avatar-sm rounded-circle">
-                      <img alt="Image placeholder" src="https://img.icons8.com/cotton/64/000000/user-male-circle.png" style="width: 50px;"/>
-                    </span>
-                    <div class="media-body ml-2 d-lg-block">
-                      <span class="mb-0 text-sm  font-weight-bold">
-                        {{username}}
-                      </span>
-                    </div>
-                    
-                  
-                  </div>
-                </a>
-  
-                <div class="p-2">
-                  <button  class="btn btn-light"  (click)="logOut()" >
-                    <i class=" pr-1 fas fa-running"></i>
-                    <span>Выйти</span>
-                  </button>
+  <!-- drawer -->
+  <div class="drawer-app-content">
+    <mat-sidenav-container
+      class="main-sidenav-container"
+      (backdropClick)="opened = !opened"
+    >
+      <mat-sidenav
+        [mode]="mode"
+        [opened]="opened"
+        [fixedInViewport]="true"
+        [fixedTopGap]="layoutGap"
+      >
+        <div class="col align-items-center d-none d-md-flex">
+          <div class="mb-5 mt-3" placement="bottom-right">
+            <a
+              role="button"
+              routerLinkActive="active"
+              [routerLink]="['/user-profile']"
+            >
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle p-2">
+                  <img
+                    alt="Image placeholder"
+                    src="../../../../assets/icons/user.png"
+                    style="width: 50px"
+                  />
+                </span>
+                <div class="p-2 media-body ml-2 d-lg-block">
+                  <span class="mb-0 text-sm font-weight-bold">
+                    {{ username }}
+                  </span>
                 </div>
               </div>
-            
+            </a>
+
+            <div class="p-2">
+              <button class="btn btn-light" (click)="logOut()">
+                <i class="pr-1 fas fa-running"></i>
+                <span>Выйти</span>
+              </button>
             </div>
           </div>
+        </div>
 
-        </mdc-drawer-header>
-        <mdc-drawer-content>
-          <nav class="navegations ">
-              <ul class="mdc-list" >
-                <div *ngFor="let key of route.navSection">
-                  <li class="mdc-list-item " >
-                    <a [routerLink]="route.navLinks[key].location " (click)="route.navLinks[key].name == 'Россия' ? route._isDroped() : ''">
-        
-                      <!-- <mdc-icon mdcListItemGraphic *ngIf="route.navLinks[key].icon">{{route.navLinks[key].icon}}</mdc-icon>
-                      {{route.navLinks[key].name}} -->
-                      <span  *ngIf="route.navLinks[key].icon">
-                        <img class="icon-img" src={{route.navLinks[key].icon}} >
-                        {{route.navLinks[key].name}}
-                      </span>
-                      <mdc-icon  mdcListItemGraphic  mdcSuffix *ngIf="route.navLinks[key].name == 'Россия'" >
-                        <i *ngIf="!route.isDroped" class="fa fa-sort-down"></i>
-                        <i *ngIf="route.isDroped" class="fa fa-sort-up"></i>
-                      </mdc-icon>
+        <!-- list menu -->
+        <div>
+          <nav class="navegations">
+            <ul class="mat-list">
+              <div *ngFor="let key of route.navSection">
+                <li class="matt-list-item">
+                  <a
+                    [routerLink]="route.navLinks[key].location"
+                    (click)="
+                      route.navLinks[key].name == 'Россия'
+                        ? route._isDroped()
+                        : ''
+                    "
+                  >
+                    <!-- <mdc-icon mdcListItemGraphic *ngIf="route.navLinks[key].icon">{{route.navLinks[key].icon}}</mdc-icon>
+                          {{route.navLinks[key].name}} -->
+                    <span *ngIf="route.navLinks[key].icon">
+                      <img
+                        class="icon-img"
+                        src="{{ route.navLinks[key].icon }}"
+                      />
+                      {{ route.navLinks[key].name }}
+                    </span>
+                    <mat-icon
+                      mdcListItemGraphic
+                      mdcSuffix
+                      *ngIf="route.navLinks[key].name == 'Россия'"
+                    >
+                      <i *ngIf="!route.isDroped" class="fa fa-sort-down"></i>
+                      <i *ngIf="route.isDroped" class="fa fa-sort-up"></i>
+                    </mat-icon>
+                  </a>
+                </li>
+
+                <ul class="sub-list" *ngIf="route.isDroped == true">
+                  <li
+                    class="matt-list-item"
+                    *ngFor="let subPage of route.navLinks[key].subPages"
+                  >
+                    <a [routerLink]="subPage.location">
+                      <!-- <mdc-icon mdcListItemGraphic *ngIf="subPage.icon">{{subPage.icon}}</mdc-icon> -->
+                      <img
+                        style="width: 30px"
+                        *ngIf="subPage.icon"
+                        src="{{ subPage.icon }}"
+                      />
+                      {{ subPage.name }}
                     </a>
-  
-                </li> 
-  
-                  <ul class="mdc-list mdc-sub-list" *ngIf="route.isDroped == true" >
-                      <li class="mdc-list-item" *ngFor="let subPage of route.navLinks[key].subPages">
-                        <a [routerLink]="subPage.location">
-                          <!-- <mdc-icon mdcListItemGraphic *ngIf="subPage.icon">{{subPage.icon}}</mdc-icon> -->
-                          <img style="width: 30px;" *ngIf="subPage.icon" src={{subPage.icon}} >
-                          {{subPage.name}}
-                        </a>
-                      </li> 
-                  </ul>  
-      
-                </div>
-                 
-                </ul> <!-- </mdc-list> -->
-    
+                  </li>
+                </ul>
+              </div>
+            </ul>
+            <!-- </mdc-list> -->
           </nav>
-    
-          <p class="footer">
-              Copy@right АСОИУ
-          </p>
-         
-        </mdc-drawer-content>
-      </mdc-drawer>
-      <div mdcDrawerAppContent>
-    
-       <!-- content -->
-        <section>
-            <div class="article-cover-image">
-                <img [src]="articleContent?.coverImage" alt="cover image">
-            </div>
-        </section>
 
-        <div class="article-container">
-           <mdc-card class="card mdc-elevation--z16">
-            <div class="card-primary">
-                <h2 class="card__title" mdcHeadline6>{{articleContent?.title}}</h2>
-                <h3 class="card__subtitle" mdcSubtitle2>{{articleContent?.subtitle}}</h3>
+          <p class="footer">Copy@right АСОИУ</p>
+        </div>
+      </mat-sidenav>
+
+      <div class="rows p-0">
+        <div class="row hight-of-content">
+          <!-- content -->
+          <div class="article-container">
+            <mdc-card class="card">
+              <div class="card-primary">
+                <h2 class="card__title" mdcHeadline6>
+                  {{ articleContent?.title }}
+                </h2>
+                <h3 class="card__subtitle" mdcSubtitle2>
+                  {{ articleContent?.subtitle }}
+                </h3>
               </div>
               <div class="card__secondary" mdcBody2>
-                  <!-- <p >{{ articleContent?.article}}</p> -->
-                  <p >{{articleContent?.article}}</p>
-               
+                <!-- <p >{{ articleContent?.article}}</p> -->
+                <!-- {{ articleContent?.article }} -->
+                <div [innerHtml]="articleContent?.article"></div>
               </div>
-           </mdc-card>
+            </mdc-card>
+          </div>
         </div>
-       </div>
-
+      </div>
+      <!-- footer -->
+      <footer class="d-lg-none">
+        <div class="container">
+          <div class="row align-items-center justify-content-xl-between">
+            <div class="col-xl-6">
+              <div class="copyright text-center text-xl-left text-muted">
+                &copy; {{ footer_td | date: "yyyy" }}
+                <a href="#" class="font-weight-bold ml-1" target="_blank"
+                  >АСОИУ</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </mat-sidenav-container>
+  </div>
 </div>
-
-
-

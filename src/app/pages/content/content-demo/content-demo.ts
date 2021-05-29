@@ -6,7 +6,7 @@ import { DataService } from "src/app/shared/service/dataService";
 import { AuthenticationService } from "src/app/shared/service/authentication.service";
 import { Category } from "src/app/shared/Model/Content";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { map } from "rxjs/operators";
+import { debounceTime, distinctUntilChanged, map } from "rxjs/operators";
 
 @Component({
   selector: "app-content-demo",
@@ -30,6 +30,8 @@ export class ContentDemoComponent implements OnInit {
   opened = false;
   layoutGap = "64";
   fixedInViewport = true;
+  demoSrc: any;
+  ContentArr = [];
 
   constructor(
     private bpo: BreakpointObserver,
@@ -46,6 +48,11 @@ export class ContentDemoComponent implements OnInit {
   route = this.routerService;
 
   ngOnInit() {
+    setTimeout(() => {
+      this.categories();
+      this.getAllDemoSrc();
+      this.getDemostrationContent();
+    }, 200);
     this.sidnav();
 
     //current user storage
@@ -63,8 +70,8 @@ export class ContentDemoComponent implements OnInit {
     )
       this.continueTestAlert = true;
 
-    this.categories(); //get all categories
-    this.getDemostrationContent(); //get demonstration content
+    //this.categories(); //get all categories
+    //this.getDemostrationContent(); //get demonstration content
   }
 
   categories() {
@@ -82,9 +89,34 @@ export class ContentDemoComponent implements OnInit {
   }
 
   filteredCategory() {
-    return this.demoData.filter(
-      (x) => x.categoryID == this.selectedCategory.id
+    return this.ContentArr.filter(
+      (x) => x.category.id == this.selectedCategory.id
     );
+  }
+
+  customContentList() {
+    var category: any;
+    var demosource: any;
+    if (this._categories != undefined && this.demoSrc !== undefined)
+      this.demoData.forEach((x) => {
+        category = this._categories.filter((y) => {
+          return y.id === x.categoryID;
+        });
+        demosource = this.demoSrc.filter((y) => {
+          return y.id === x.demonstrationContentID;
+        });
+        this.ContentArr.push({
+          id: x.id,
+          title: x.title,
+          description: x.subtitle,
+          category: category[0],
+          demosource: demosource[0].demostrationContentses,
+          demosourcelength: demosource[0].demostrationContentses.length,
+          demosourceID: x.demonstrationContentID,
+          thumb: x.coverImage,
+        });
+      });
+    console.log(this.ContentArr);
   }
 
   getDemostrationContent() {
@@ -94,6 +126,9 @@ export class ContentDemoComponent implements OnInit {
         console.log(data);
         this.demoData = data;
         this.demonCategory(data);
+        setTimeout(() => {
+          this.customContentList();
+        }, 800);
         this.querryProgressBar = false;
       },
       (error) => {
@@ -103,14 +138,33 @@ export class ContentDemoComponent implements OnInit {
     );
   }
 
+  // get demostration src
+  getAllDemoSrc() {
+    var _data: any;
+    this.contentService
+      .getDemoSrc()
+      .pipe(debounceTime(500))
+      .pipe(distinctUntilChanged())
+      .subscribe(
+        (data) => {
+          _data = data;
+          this.demoSrc = _data;
+          console.log(data);
+        },
+        (error) => {
+          console.log("error trying to get demo source", error);
+        }
+      );
+  }
+
   // show cover image
   imgurl(item) {
     var imageUrl = "";
-    if (item.coverImage !== null) {
+    if (item.thumb !== null) {
       var https = "https://";
-      var thumburl = item.coverImage.includes(https)
-        ? item.coverImage
-        : https + item.coverImage;
+      var thumburl = item.thumb.includes(https)
+        ? item.thumb
+        : https + item.thumb;
       imageUrl = thumburl;
     }
     return imageUrl;

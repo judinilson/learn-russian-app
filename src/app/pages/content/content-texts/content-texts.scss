@@ -2,7 +2,7 @@
 
 
 
-::ng-deep body{
+::ng-deep body {
   background-color: #B0D0EA;
 }
 
@@ -10,68 +10,71 @@
 //side nav 
 @import '../../../shared/custom/topbar-side-navbar';
 
-.mdc-drawer{
+.mdc-drawer {
   top: 3.5rem !important;
 }
 
 
-  //content
+//content
 .card {
-    width: 450px;
-    margin-top: 2rem;
-    margin-left: 3rem;
-    position: relative;
-    float: left;
-    max-height: 160px;
-    //top: 56px;
-   //margin-top: 15%;
+  cursor: pointer;
+  width: 400px;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  position: relative;
+  float: left;
+  max-height: 140px;
+  //top: 56px;
+  //margin-top: 15%;
 
-   mdc-card-media{
+  mdc-card-media {
     max-width: 200px;
   }
-  
-  }
 
-  .card-row{
-    display: flex;
-  }
-  .card-cover-image{
-    width: 550px;
-    height: auto;
-  }
+}
 
-  .card-info{
-    display: flex;
-    flex-direction: column;
-    padding: 8px 10px;
-  }
-  
-  .card__primary {
-    padding: .5rem;
-  }
-  
-  .card__title {
-    margin: 0;
-    font-size: 1.5rem;
-  }
-  
-  .card__subtitle {
+.card:hover {
+  background-color: #b0d0ea;
+}
+
+.card-row {
+  display: flex;
+}
+
+.card-cover-image {
+  width: 550px;
+  height: auto;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+}
+
+.card__primary {
+  padding: .5rem;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.card__subtitle {
   //@include mdc-theme-prop(color, text-secondary-on-background);
-  
-    margin: 0;
-  }
-  
-  .card__secondary {
-    //s@include mdc-theme-prop(color, text-secondary-on-background);
-  
-    padding: 0 .3rem 6px .3rem;
 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-  }
-  
+  margin: 0;
+}
 
+.card__secondary {
+  //s@include mdc-theme-prop(color, text-secondary-on-background);
 
+  padding: 0 .3rem 6px 1rem;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
