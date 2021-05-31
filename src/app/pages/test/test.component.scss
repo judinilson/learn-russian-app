@@ -1,12 +1,12 @@
 @import '~@angular-mdc/theme/material';
 
 
-.mdc-drawer{
+.mdc-drawer {
   top: 3.5rem !important;
 }
 
 
-::ng-deep body{
+::ng-deep body {
   background-color: #B0D0EA;
 }
 
@@ -15,42 +15,46 @@
 //side nav 
 @import '../../shared/custom/topbar-side-navbar';
 
-    //content
+//content
 .card {
-    width: 250px;
-    margin: 20px;
-    position: relative;
-    float: left;
-    //top: 56px;
-    height: 260px;
-   //margin-top: 15%;
-  }
-  
-  .card__primary {
-    padding: 1rem;
-  }
-  
-  .card__title {
-    margin: 0;
-    font-size: 1.5rem;
+  cursor: pointer;
+  width: 200px;
+  margin: 10px;
+  position: relative;
+  float: left;
+  //top: 56px;
+  height: 210px;
+  //margin-top: 15%;
+}
 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-  }
-  
+.card:hover {
+  background-color: #b0d0ea;
+}
+
+
+.card__primary {
+  // padding: 1rem;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 1.2rem;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
 //   .card__subtitle {
 //     @include mdc-theme-prop(color, text-secondary-on-background);
-  
+
 //     margin: 0;
 //   }
-  
+
 //   .card__secondary {
 //     @include mdc-theme-prop(color, text-secondary-on-background);
-  
+
 //     padding: 0 1rem 6px 1rem;
 //   }
-  
-

@@ -1,132 +1,155 @@
-<div fxLayout="row" style="overflow: hidden;">
-    <app-side-nav fxFlex></app-side-nav>
-    <!-- <app-side-nav ></app-side-nav> -->
-    <div fxLayout="column" style="width: 100%;">
-        <div *ngIf="!isDragDropQuestionfirst && !isDragDropQuestionsecond">
-            <div class="questions-container" >
-                <span>
-                    {{currentQuestion}}
-                </span>
-            </div>
-            <form [formGroup]="answerform" (ngSubmit)="onConfirm()">
-                <section class="row justify-content-center answer-container">
-                
-                    <div class="col-md-4 mb-4 mr-4 column-dv" formArrayName="currentanswers"
-                        *ngFor="let ans of currentAnswers; let i = index" >
-                        
-                            <mdc-card  class="mdc-elevation--z10 " [ngStyle]="confirm && {'box-shadow' : ans.state ? '0px 0px 10px 2px green;': '0px 0px 10px 2px red;'}" >
-                                <mdc-card-primary-action  class="card-primary"> <!--(click)="getUserAnswers(ans.state)"-->
-                                    <!-- <p  [ngClass]="(userChoiceIndex == i)?'choosen-index-answer': 'index-answer'">{{i+1}}</p> -->
-                                    <!-- <mat-checkbox >
+<div fxLayout="row" style="overflow: hidden">
+  <app-side-nav fxFlex></app-side-nav>
+  <!-- <app-side-nav ></app-side-nav> -->
+  <div fxLayout="column" style="width: 100%">
+    <div *ngIf="!isDragDropQuestionfirst && !isDragDropQuestionsecond">
+      <div class="questions-container">
+        <div [innerHtml]="currentQuestion"></div>
+      </div>
+      <form [formGroup]="answerform" (ngSubmit)="onConfirm()">
+        <section class="row justify-content-center answer-container">
+          <div
+            class="col-md-4 mb-4 mr-4 column-dv"
+            formArrayName="currentanswers"
+            *ngFor="let ans of currentAnswers; let i = index"
+          >
+            <mat-card
+              class="card mdc-elevation--z10"
+              [ngStyle]="
+                confirm && {
+                  'box-shadow': ans.state
+                    ? '0px 0px 10px 2px green;'
+                    : '0px 0px 10px 2px red;'
+                }
+              "
+            >
+              <mat-card-content class="card-primary">
+                <!--(click)="getUserAnswers(ans.state)"-->
+                <!-- <p  [ngClass]="(userChoiceIndex == i)?'choosen-index-answer': 'index-answer'">{{i+1}}</p> -->
+                <!-- <mat-checkbox >
                                     </mat-checkbox> -->
-                                    <input type="checkbox" [formControlName]="i" />
-                                    <div style="border-left: 1px solid gray; height: auto; margin: 0 10px 0 5px;"></div> 
-                                    <p class="answer"> {{ans.answers}}</p>
-                                </mdc-card-primary-action>
-                                <!-- <div *ngIf="confirm" class="card-primary">
+                <input
+                  class="check-input"
+                  type="checkbox"
+                  [formControlName]="i"
+                />
+                <div
+                  style="
+                    border-left: 1px solid gray;
+                    height: auto;
+                    margin: 0 10px 0 5px;
+                  "
+                ></div>
+                <p class="answer">{{ ans.answers }}</p>
+              </mat-card-content>
+              <!-- <div *ngIf="confirm" class="card-primary">
                                     <!-- <p class="index-answer">{{i+1}}</p> --
                                     <mat-checkbox  >
                                     </mat-checkbox>
                                     <div style="border-left: 1px solid gray; height: auto; margin: 0 10px 0 5px;"></div> 
                                     <p class="answer"> {{ans.answer}}</p>
                                 </div> -->
-                                
-                            </mdc-card>
-                    
-                    </div>
-                
-                
-                </section>
-            </form>
-        </div>
-
-        <section *ngIf="isDragDropQuestionfirst || isDragDropQuestionfirst">
-            <!-- drag and drop list 1 -->
-
-            <div class="questions-container">
-                 - Найдите продолжние в правой калонке
-                 <br>
-                - Перетащите его с левой стороны и поместите в правую
-            </div>
-      
-            <div cdkDropListGroup style="text-align: center;">
-                <div class="example-container">
-                    <h5>Available items</h5>
-
-                    <div
-                        cdkDropList
-                        [cdkDropListData]="items"
-                        class="example-list"
-                        (cdkDropListDropped)="drop($event)">
-                        <div class="example-box" *ngFor="let item of items"
-                            cdkDrag>{{item}}</div>
-                    </div>
-                </div>
-
-                <div class="example-container">
-                    <h5>Drop in order</h5>
-
-                    <div class="container">
-                        <div class="row">
-                            <div
-                                cdkDropList
-                                [cdkDropListData]="basket"
-                                class="example-list col"
-                                (cdkDropListDropped)="drop($event)">
-                                <div class="example-box"*ngFor="let item of
-                                    basket" cdkDrag>
-                                    {{item}}
-                                </div>
-                            </div>
-                            <div class="example-list col">
-                                <div class="example-box"*ngFor="let listans of
-                                    droplistAns">
-                                    {{listans.key}}
-                                </div>
-                            </div>
-                            <div class="col-2" *ngIf="_correctincorrectDragDropAns" >
-                                <div *ngFor="let ans of _correctincorrectDragDropAns" style="padding: 10px 5px; font-size:14px;">
-                                   <mat-icon *ngIf="ans" style="color: green; font-weight: 600; font-size: 20px;">done</mat-icon>
-                                   <mat-icon *ngIf="!ans" style="color:red;  font-weight: 600; font-size: 20px;">close</mat-icon>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
- 
-            
+            </mat-card>
+          </div>
         </section>
-
-
-        <section class="progres-container">
-            <button mat-stroked-button color="primary" class="confirm-btn"
-                (click)="onConfirm()">
-                confirm
-                <!-- <mdc-icon>
-                    done_all
-                </mdc-icon> -->
-                <i class="fas fa-check-double"></i> 
-            </button>
-            <button mat-mini-fab color="accent" class="next-btn" (click)="onNext()">
-                <i class="fas fa-angle-right"></i> 
-                <!-- <mdc-icon>
-                    keyboard_arrow_right
-                </mdc-icon> -->
-            </button>
-            <mat-progress-bar mode="determinate" [value]="countPercent"
-                color="accent" class="progress-bar">
-                <span>{{countPercent}} + %</span>
-            </mat-progress-bar>
-            <p>
-                {{index}}/{{totalQestions}}
-            </p>
-        </section>
+      </form>
     </div>
 
+    <!-- <section *ngIf="isDragDropQuestionfirst || isDragDropQuestionfirst">
 
+      <div class="questions-container">
+        - Найдите продолжние в правой калонке
+        <br />
+        - Перетащите его с левой стороны и поместите в правую
+      </div>
 
+      <div cdkDropListGroup style="text-align: center">
+        <div class="example-container">
+          <h5>Available items</h5>
+
+          <div
+            cdkDropList
+            [cdkDropListData]="items"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="example-box" *ngFor="let item of items" cdkDrag>
+              {{ item }}
+            </div>
+          </div>
+        </div>
+
+        <div class="example-container">
+          <h5>Drop in order</h5>
+
+          <div class="container">
+            <div class="row">
+              <div
+                cdkDropList
+                [cdkDropListData]="basket"
+                class="example-list col"
+                (cdkDropListDropped)="drop($event)"
+              >
+                <div class="example-box" *ngFor="let item of basket" cdkDrag>
+                  {{ item }}
+                </div>
+              </div>
+              <div class="example-list col">
+                <div class="example-box" *ngFor="let listans of droplistAns">
+                  {{ listans.key }}
+                </div>
+              </div>
+              <div class="col-2" *ngIf="_correctincorrectDragDropAns">
+                <div
+                  *ngFor="let ans of _correctincorrectDragDropAns"
+                  style="padding: 10px 5px; font-size: 14px"
+                >
+                  <mat-icon
+                    *ngIf="ans"
+                    style="color: green; font-weight: 600; font-size: 20px"
+                    >done</mat-icon
+                  >
+                  <mat-icon
+                    *ngIf="!ans"
+                    style="color: red; font-weight: 600; font-size: 20px"
+                    >close</mat-icon
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <section class="progres-container">
+      <button
+        mat-stroked-button
+        color="primary"
+        class="confirm-btn"
+        (click)="onConfirm()"
+      >
+        confirm
+        <!-- <mdc-icon>
+                    done_all
+                </mdc-icon> -->
+        <i class="fas fa-check-double"></i>
+      </button>
+      <button mat-mini-fab color="accent" class="next-btn" (click)="onNext()">
+        <i class="fas fa-angle-right"></i>
+        <!-- <mdc-icon>
+                    keyboard_arrow_right
+                </mdc-icon> -->
+      </button>
+      <mat-progress-bar
+        mode="determinate"
+        [value]="countPercent"
+        color="accent"
+        class="progress-bar"
+      >
+        <span>{{ countPercent }} + %</span>
+      </mat-progress-bar>
+      <p>{{ index }}/{{ totalQestions }}</p>
+    </section>
+  </div>
 </div>
