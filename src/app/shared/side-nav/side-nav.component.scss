@@ -1,12 +1,9 @@
-
-
-
-
-.sidebar-header{
+.sidebar-header {
   margin-left: 30px;
   margin-top: 20px;
 }
-.side-bar{
+
+.side-bar {
   margin-top: 90px;
 
 }
@@ -16,98 +13,123 @@
 // }
 
 
-.layout__row{
-    .menu-btn{
-      position: relative;
-      bottom: 80% !important;
-      top: 50%;
-      left: 55%;
-      z-index: 2;
-    }
-  
-  
-    .mat-mini-fab{
-      background-color: #343a40;
-   }
-  
-     .mat-icon{
-      color:#fff;
-      //font-size:35px;
-      font-weight: 500;
-     }
-
-     
+.layout__row {
+  .menu-btn {
+    position: relative;
+    bottom: 80% !important;
+    top: 50%;
+    left: 55%;
+    z-index: 2;
   }
 
-  .icon-img{
-    width: 35px;
+
+  .mat-mini-fab {
+    background-color: #343a40;
   }
 
-  a{
-    text-decoration: none;
-    //color: #6610f2;
+  .mat-icon {
+    color: #fff;
+    //font-size:35px;
+    font-weight: 500;
   }
 
-  .navegations{
-    font-family: Roboto, Arial, sans-serif;
-  }
+
+}
+
+.icon-img {
+  width: 35px;
+  color: #f3291a;
+}
+
+a {
+  text-decoration: none;
+  //color: #6610f2;
+}
+
+.navegations {
+  font-family: Roboto, Arial, sans-serif;
+
+}
 
 //   .mdc-sub-list{
 //     display:none;
 //   }
 
-.mdc-list-item__graphic{
-  margin-right:0px;
+.mdc-list-item__graphic {
+  margin-right: 0px;
 }
-  .sub-list .sub-list-item{
-    padding: 8px 0px;
+
+.sub-list .sub-list-item {
+  padding: 8px 0px;
 
 }
 
 
 
 .dropdown-toggle::after {
-  display:none;
+  display: none;
 }
 
 
 
 
-.mat-drawer{
+.mat-drawer {
   overflow: hidden;
   width: 250px;
   //top: 78  !important;
   // bottom: 0;
   position: fixed;
+
   //background-color: #f9f9f9;
-  li{
+  li {
     list-style-type: none;
-     padding: 5px; 
+    padding: 5px;
   }
-  a{
+
+  a {
+    color: black;
     text-decoration: none;
-    font-weight: 500;
     font-size: 1rem;
-    color: #000;
-    mat-icon{
+
+
+    mat-icon {
       font-size: 18px;
     }
   }
+
+
+}
+
+.nav-a {
+  font-size: 0.9rem !important;
+  color: rgba(0, 0, 0, 0.5) !important;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
 
-.admin-toggle{
+.nav-a:active {
+  color: #000000c4 !important;
+}
+
+.nav-a:hover {
+  color: #000000c4 !important;
+}
+
+
+.admin-toggle {
   display: flex;
   justify-content: center;
   margin-top: 5rem;
   margin-bottom: 1rem;
 }
-  .footer{
-    position: fixed;
-    bottom: 1%;
-    height: 20px;
-    text-align: center;
-    margin-left: 40px;
-    font-size: 12px;
-    background: white;
-  }
+
+.footer {
+  position: fixed;
+  bottom: 1%;
+  height: 20px;
+  text-align: center;
+  margin-left: 40px;
+  font-size: 12px;
+  background: white;
+}

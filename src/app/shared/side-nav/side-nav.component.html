@@ -72,11 +72,8 @@
                       "
                     >
                       <!-- <mdc-icon mdcListItemGraphic *ngIf="route.navLinks[key].icon">{{route.navLinks[key].icon}}</mdc-icon> -->
-                      <span *ngIf="route.navLinks[key].icon">
-                        <img
-                          class="icon-img"
-                          src="{{ route.navLinks[key].icon }}"
-                        />
+                      <span class="nav-a" *ngIf="route.navLinks[key].icon">
+                        <i class="icon-img {{ route.navLinks[key].icon }}"></i>
                         {{ route.navLinks[key].name }}
                       </span>
 
@@ -86,8 +83,8 @@
                         *ngIf="route.navLinks[key].name == 'Россия'"
                       >
                         <!-- {{route.icon}} -->
-                        <i *ngIf="!route.isDroped" class="fa fa-sort-down"></i>
-                        <i *ngIf="route.isDroped" class="fa fa-sort-up"></i>
+                        <i *ngIf="!route.isDroped" class="nav-a fa fa-sort-down"></i>
+                        <i *ngIf="route.isDroped" class="nav-a fa fa-sort-up"></i>
                       </mat-icon>
                     </a>
                   </li>
@@ -97,13 +94,12 @@
                       class="matt-list-item"
                       *ngFor="let subPage of route.navLinks[key].subPages"
                     >
-                      <a [routerLink]="subPage.location">
-                        <img
-                          class="icon-img"
+                      <a class="nav-a" [routerLink]="subPage.location">
+                        <i
+                          class="icon-img {{ subPage.icon }}"
                           mdcListItemGraphic
                           *ngIf="subPage.icon"
-                          src="{{ subPage.icon }}"
-                        />
+                        ></i>
                         <!-- <mdc-icon mdcListItemGraphic *ngIf="subPage.icon">{{subPage.icon}}</mdc-icon> -->
                         {{ subPage.name }}
                       </a>
