@@ -1,10 +1,8 @@
-
-
 .profile-picture {
   position: relative;
   z-index: 1;
   width: 190px;
-  height:190px;
+  height: 190px;
   //background-image:url(/src/assets/icons/upload-image-icon.png);
   background-size: contain;
   border-radius: 1em;
@@ -40,11 +38,11 @@
   color: rgba(172, 167, 167, 0.8);
   border: dashed 3px rgba(26, 25, 25, 0.8);
   border-radius: 10px;
-  padding-top: 60px;
-  font-size: 120%;
+  padding-top: 40px;
+  font-size: 100%;
 }
 
-.content-items-list{
+.content-items-list {
   overflow: auto;
   max-height: 300px;
 }

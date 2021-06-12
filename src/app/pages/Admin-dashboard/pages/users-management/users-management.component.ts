@@ -400,7 +400,7 @@ export class UsersManagementComponent implements OnInit {
               (data) => {
                 this.alertService.openSweetAlertToast(
                   "success",
-                  "updated sucessfully"
+                  "успешно обновлено"
                 );
                 this.getAllUsers();
               },
@@ -408,7 +408,7 @@ export class UsersManagementComponent implements OnInit {
                 console.log("error: ", error);
                 this.alertService.openSweetAlert(
                   "error",
-                  "Please check your connection"
+                  "Пожалуйста, проверьте подключение к Интернету"
                 );
               }
             );
@@ -424,27 +424,24 @@ export class UsersManagementComponent implements OnInit {
     if (role === "student") deletedId = data.user.id;
     if (role === "teacher") deletedId = data.id;
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Вы уверены?",
+      text: "Вы не сможете отменить эту команду!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Да, удалите его!",
     }).then((result) => {
       if (result.value) {
         this.identityService.userDelete(deletedId).subscribe(
           (data) => {
-            this.alertService.openSweetAlertToast(
-              "success",
-              "successfully deleted"
-            );
+            this.alertService.openSweetAlertToast("success", "успешно удалено");
             this.getAllUsers();
           },
           (error) => {
             this.alertService.openSweetAlert(
               "error",
-              "Please check your connection"
+              "Пожалуйста, проверьте подключение к Интернету"
             );
           }
         );
@@ -507,7 +504,7 @@ export class UsersManagementComponent implements OnInit {
           (data) => {
             this.alertService.openSweetAlertToast(
               "success",
-              "User is successfully created"
+              "Пользователь успешно создан"
             );
             this.getAllUsers();
           },
@@ -570,7 +567,7 @@ export class UsersManagementComponent implements OnInit {
         (data) => {
           this.alertService.openSweetAlertToast(
             "success",
-            "User is successfully created"
+            "Пользователь успешно создан"
           );
           this.getAllUsers();
         },
@@ -612,7 +609,7 @@ export class UsersManagementComponent implements OnInit {
               (data) => {
                 this.alertService.openSweetAlertToast(
                   "success",
-                  "updated sucessfully"
+                  "обновлено успешно"
                 );
                 this.getAllUsers();
               },
@@ -620,7 +617,7 @@ export class UsersManagementComponent implements OnInit {
                 console.log("error: ", error);
                 this.alertService.openSweetAlert(
                   "error",
-                  "Please check your connection"
+                  "Пожалуйста, проверьте подключение к Интернету"
                 );
               }
             );
@@ -743,7 +740,7 @@ export class UsersManagementComponent implements OnInit {
         (data) => {
           this.alertService.openSweetAlertToast(
             "success",
-            "Group is successfully created"
+            "Группа успешно создана"
           );
           this.getAllUsers();
         },
@@ -816,7 +813,7 @@ export class UsersManagementComponent implements OnInit {
                   (data) => {
                     this.alertService.openSweetAlertToast(
                       "success",
-                      "Group is successfully created"
+                      "Группа успешно создана"
                     );
                     this.getAllUsers();
                   },
@@ -840,43 +837,40 @@ export class UsersManagementComponent implements OnInit {
 
   deleteTeacherGroup(data) {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Вы уверены?",
+      text: "Вы не сможете отменить эту команду!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Да, удалите его!",
     }).then((result) => {
       if (result.value) {
         this.identityService.deleteGroup(data.group.id).subscribe(
           (data) => {
             // this.openSweetAlertToast('success', 'successfully deleted')
             // this.getAllUsers();
-            console.log("success: ", "successfully deleted");
+            console.log("success: ", "успешно удалено");
           },
           (error) => {
             console.log(error);
             this.alertService.openSweetAlert(
               "error",
-              "Please check your connection"
+              "Пожалуйста, проверьте подключение к Интернету"
             );
           }
         );
 
         this.identityService.deleteTeacherGroup(data.teacherGroupId).subscribe(
           (data) => {
-            this.alertService.openSweetAlertToast(
-              "success",
-              "successfully deleted"
-            );
+            this.alertService.openSweetAlertToast("success", "успешно удалено");
 
             this.getAllUsers();
           },
           (error) => {
             this.alertService.openSweetAlert(
               "error",
-              "Please check your connection"
+              "Пожалуйста, проверьте подключение к Интернету"
             );
           }
         );

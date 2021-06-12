@@ -100,7 +100,7 @@ export class UploadTrainingTaskComponent implements OnInit {
         category: new FormControl(null),
         questionFormArray: new FormArray([this.initQuestionForm()]),
       });
-      this.uploadbtn = "SAVE";
+      this.uploadbtn = "СОХРАНИТЬ";
     }
   }
 
@@ -117,7 +117,7 @@ export class UploadTrainingTaskComponent implements OnInit {
         observer.next(2);
 
         this.isUpdate = true;
-        this.uploadbtn = "UPDATE";
+        this.uploadbtn = "ОБНОВИТЬ";
 
         console.log(this.receiveSelectedData);
         if (
@@ -382,7 +382,7 @@ export class UploadTrainingTaskComponent implements OnInit {
         (res) => {
           this.alertService.openSweetAlertToast(
             "success",
-            "Uploaded sucessfully"
+            "успешно Загружено "
           );
           this.backwardbtn();
         },
@@ -440,7 +440,7 @@ export class UploadTrainingTaskComponent implements OnInit {
           (res) => {
             this.alertService.openSweetAlertToast(
               "success",
-              "Uploaded sucessfully"
+              "Успешно загружено"
             );
             this.backwardbtn();
           },
@@ -476,14 +476,14 @@ export class UploadTrainingTaskComponent implements OnInit {
               (res) => {
                 this.alertService.openSweetAlertToast(
                   "success",
-                  "Uploaded sucessfully"
+                  "Успешно загружено"
                 );
                 this.backwardbtn();
               },
               (error) => {
                 this.alertService.openSweetAlert(
                   "error",
-                  "Please check your connection"
+                  "Пожалуйста, проверьте ваше соединение"
                 );
                 console.log("Error trying to update content : ", error);
                 this.dloading = false;

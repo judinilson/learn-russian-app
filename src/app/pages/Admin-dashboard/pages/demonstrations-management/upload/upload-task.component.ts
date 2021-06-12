@@ -95,12 +95,12 @@ export class UploadTaskComponent implements OnInit {
           description: ["", [Validators.required]],
           category: [null, [Validators.required]],
         });
-        this.uploadbtn = "SAVE";
+        this.uploadbtn = "СОХРАНИТЬ";
       } else {
         observer.next(2);
 
         this.isUpdate = true;
-        this.uploadbtn = "UPDATE";
+        this.uploadbtn = "ОБНОВИТЬ";
         console.log(this.receiveSelectedData);
         if (
           this.receiveSelectedData !== null ||
@@ -251,7 +251,7 @@ export class UploadTaskComponent implements OnInit {
                 );
                 this.alertService.openSweetAlert(
                   "error",
-                  "Please check your connection"
+                  "Пожалуйста, проверьте подключение к Интернету"
                 );
                 this.loading = false;
               }
@@ -287,7 +287,7 @@ export class UploadTaskComponent implements OnInit {
                 this.updateContentFunc(imageUpdate, catg);
                 this.alertService.openSweetAlertToast(
                   "success",
-                  "Image updated sucessfully"
+                  "Изображение успешно обновлено"
                 );
               },
               (error) => {
@@ -297,7 +297,7 @@ export class UploadTaskComponent implements OnInit {
                 );
                 this.alertService.openSweetAlert(
                   "error",
-                  "Please check your connection"
+                  "Пожалуйста, проверьте подключение к Интернету"
                 );
                 this.loading = false;
               }
@@ -343,7 +343,7 @@ export class UploadTaskComponent implements OnInit {
             this.backwardbtn();
             this.alertService.openSweetAlertToast(
               "success",
-              "updated sucessfully"
+              "успешно обновлено"
             );
           }
         },
@@ -354,7 +354,7 @@ export class UploadTaskComponent implements OnInit {
           console.log("Error trying to update content : ", error);
           this.alertService.openSweetAlert(
             "error",
-            "Please check your connection"
+            "Пожалуйста, проверьте подключение к Интернету"
           );
         }
       );
@@ -447,7 +447,7 @@ export class UploadTaskComponent implements OnInit {
                                 //console.log("Successfully uploaded : ", res);
                                 this.alertService.openSweetAlertToast(
                                   "success",
-                                  "Uploaded sucessfully"
+                                  "Успешно добавлен"
                                 );
                                 this.backwardbtn();
                               },
@@ -496,7 +496,7 @@ export class UploadTaskComponent implements OnInit {
                         console.log(" Demosource Successfully updated : ", res);
                         this.alertService.openSweetAlertToast(
                           "success",
-                          "updated sucessfully"
+                          "успешно обновлено"
                         );
                         observer.complete();
                         this.backwardbtn();
@@ -510,7 +510,7 @@ export class UploadTaskComponent implements OnInit {
                         observer.error(error);
                         this.alertService.openSweetAlert(
                           "error",
-                          "Please check your connection"
+                          "Пожалуйста, проверьте подключение к Интернету"
                         );
                       }
                     );
@@ -543,13 +543,13 @@ export class UploadTaskComponent implements OnInit {
   //DELETE SOURCE
   deleteSource(source) {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Вы уверены?",
+      text: "Вы не сможете отменить эту команду!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Да, удалите его!",
     }).then((result) => {
       if (result.value) {
         this.contentService
@@ -565,14 +565,14 @@ export class UploadTaskComponent implements OnInit {
               }
               this.alertService.openSweetAlertToast(
                 "success",
-                "Deleted sucessfully"
+                "успешно удалено"
               );
             },
 
             (error) => {
               this.alertService.openSweetAlert(
                 "error",
-                "Please check your connection"
+                "Пожалуйста, проверьте подключение к Интернету"
               );
               console.log("error trying to DELETE source", error);
             }
@@ -584,13 +584,13 @@ export class UploadTaskComponent implements OnInit {
   //DELETE CONTENT
   deleteContent() {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Вы уверены?",
+      text: "Вы не сможете отменить эту команду!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Да, удалите его!",
     }).then((result) => {
       if (result.value) {
         var demosourceId = this.receiveSelectedData.demosourceID;
@@ -640,7 +640,7 @@ export class UploadTaskComponent implements OnInit {
               (data) => {
                 this.alertService.openSweetAlertToast(
                   "success",
-                  "sucessfully Deleted"
+                  "успешно удалено"
                 );
                 this.backwardbtn();
               },

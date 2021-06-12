@@ -1,371 +1,365 @@
 <div class="info" *ngIf="data.userInfo">
-    <div class="container-fluid pb-8">
-        <div class="header-body">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="card card-stats mb-4">
-                        <div class="card-body">
-                            <div class="col">
-                                <h5 class="card-title text-uppercase
-                                    text-muted mb-0 text-center">Teacher</h5>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <span class="text-muted text-sm">
-                                            Username:</span>
-                                        <span class="ml-2 font-weight-normal">{{data.user.username}}</span>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <span class="text-muted text-sm"> First
-                                            Name: </span>
-                                        <span class="ml-2 font-weight-normal">{{data.user.firstName}}</span>
-                                    </div>
+  <div class="container-fluid pb-8">
+    <div class="header-body">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="card card-stats mb-4">
+            <div class="card-body">
+              <div class="col">
+                <h5
+                  class="card-title text-uppercase text-muted mb-0 text-center"
+                >
+                  преподаватель
+                </h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div class="row">
+                    <span class="text-muted text-sm"> Имя пользователя:</span>
+                    <span class="ml-2 font-weight-normal"
+                      >{{data.user.username}}</span
+                    >
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="row">
+                    <span class="text-muted text-sm"> Имя: </span>
+                    <span class="ml-2 font-weight-normal"
+                      >{{data.user.firstName}}</span
+                    >
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="row">
+                    <span class="text-muted text-sm"> Фамилия: </span>
+                    <span class="ml-2 font-weight-normal"
+                      >{{data.user.lastName}}</span
+                    >
+                  </div>
+                </li>
+                <li *ngIf="data.group" class="list-group-item">
+                  <div class="row">
+                    <span class="text-muted text-sm"> Группа: </span>
+                    <span class="ml-2 font-weight-normal"
+                      >{{data.group.name}}</span
+                    >
+                  </div>
+                </li>
 
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <span class="text-muted text-sm"> Last
-                                            Name: </span>
-                                        <span class="ml-2 font-weight-normal">{{data.user.lastName}}</span>
-                                    </div>
-
-                                </li>
-                                <li *ngIf="data.group" class="list-group-item">
-                                    <div class="row">
-                                        <span class="text-muted text-sm"> Group:
-                                        </span>
-                                        <span class="ml-2 font-weight-normal">{{data.group.name}}</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <span class="text-muted text-sm">
-                                            Password: </span>
-                                        <span class="ml-2 font-weight-normal">{{data.user.password}}</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-
-
-                    </div>
-                </div>
-
-
+                <li class="list-group-item">
+                  <div class="row">
+                    <span class="text-muted text-sm"> Пароль: </span>
+                    <span class="ml-2 font-weight-normal"
+                      >{{data.user.password}}</span
+                    >
+                  </div>
+                </li>
+              </ul>
             </div>
+          </div>
         </div>
-
+      </div>
     </div>
-
-
+  </div>
 </div>
 
 <div *ngIf="data.createUser">
+  <div class="text-center">
+    <h1 mat-dialog-title>Создать нового пользователя преподавателя</h1>
+  </div>
+  <div class="container mt--8 pb-5">
+    <div class="row justify-content-center">
+      <div class="col-sm-8 col-md-10">
+        <div [formGroup]="createUserForm" mat-dialog-content>
+          <div class="row">
+            <div class="col-md-4 mr-5">
+              <mat-form-field>
+                <!-- first Name  -->
 
-    <div class="text-center">
-        <h1 mat-dialog-title>Create new Teacher User</h1>
-
-    </div>
-    <div class="container mt--8 pb-5">
-        <div class="row justify-content-center">
-            <div class="col-sm-8 col-md-10">
-
-                <div [formGroup]="createUserForm" mat-dialog-content>
-
-                    <div class="row">
-                        <div class="col-md-4 mr-5">
-                            <mat-form-field>
-                                <!-- first Name  -->
-
-                                <input matInput type="text"
-                                    formControlName="firstname"
-                                    placeholder="First name" required>
-                                <span matSuffix class="text-muted">
-                                    <i class='fas fa-user-graduate'></i>
-                                </span>
-                                <mat-error
-                                    *ngIf="createform.firstname.errors?.required">
-                                    First name is required
-                                </mat-error>
-
-                            </mat-form-field>
-                        </div>
-
-                        <div class="col-md-4 ml-md-5">
-                            <mat-form-field>
-                                <!-- last name -->
-
-                                <input matInput type="text"
-                                    formControlName="lastname"
-                                    placeholder="Last name" required>
-                                <span matSuffix class="text-muted">
-                                    <i class='fa fa-user-plus'></i>
-                                </span>
-                                <mat-error
-                                    *ngIf="createform.lastname.errors?.required">
-                                    Last name is required
-                                </mat-error>
-
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-
-                        <div class="col-md-4 mr-5">
-                            <mat-form-field>
-                                <!-- Username -->
-
-                                <input matInput type="text"
-                                    formControlName="username"
-                                    placeholder="Username" required>
-                                <span matSuffix class="text-muted">
-                                    <i class='fas fa-user'></i>
-                                </span>
-
-                                <mat-error
-                                    *ngIf="createform.username.errors?.required">
-                                    Username is required
-                                </mat-error>
-
-                            </mat-form-field>
-                        </div>
-
-
-
-                        <div class="col-md-4 ml-md-5">
-                            <mat-form-field>
-                                <!-- password -->
-
-                                <input matInput type="password"
-                                    formControlName="password"
-                                    placeholder="Password" required>
-
-                                <span matSuffix class="text-muted">
-                                    <i class='fas fa-user-lock'></i>
-                                </span>
-                                <mat-error
-                                    *ngIf="createform.password.errors?.required">Password
-                                    is required
-                                </mat-error>
-                                <mat-error
-                                    *ngIf="createform.password.errors?.minlength">Password
-                                    must be at least 8 characters ********
-                                </mat-error>
-
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-8 mr-5">
-                            <mat-form-field>
-                                <!-- Subject -->
-
-                                <input matInput type="text"
-                                    formControlName="subject"
-                                    placeholder="Subject" required>
-                                <span matSuffix class="text-muted">
-                                    <i class='fas fa-book'></i>
-                                </span>
-
-                                <mat-error
-                                    *ngIf="createform.subject.errors?.required">
-                                    Subject is required
-                                </mat-error>
-
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                </div>
-
-
-
+                <input
+                  matInput
+                  type="text"
+                  formControlName="firstname"
+                  placeholder="Имя"
+                  required
+                />
+                <span matSuffix class="text-muted">
+                  <i class="fas fa-user-graduate"></i>
+                </span>
+                <mat-error *ngIf="createform.firstname.errors?.required">
+                  Требуется имя
+                </mat-error>
+              </mat-form-field>
             </div>
-        </div>
-        <div mat-dialog-actions class="d-flex justify-content-center mt-4">
-            <button mat-stroked-button [mat-dialog-close]="null" class="btn">
-                Cancel</button>
-            <button mat-stroked-button (click)="submit()"
-                cdkFocusInitial class="btn">
-                Create</button>
-        </div>
-    </div>
 
+            <div class="col-md-4 ml-md-5">
+              <mat-form-field>
+                <!-- last name -->
+
+                <input
+                  matInput
+                  type="text"
+                  formControlName="lastname"
+                  placeholder="Фамилия"
+                  required
+                />
+                <span matSuffix class="text-muted">
+                  <i class="fa fa-user-plus"></i>
+                </span>
+                <mat-error *ngIf="createform.lastname.errors?.required">
+                  Требуется Фамилия
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mr-5">
+              <mat-form-field>
+                <!-- Username -->
+
+                <input
+                  matInput
+                  type="text"
+                  formControlName="username"
+                  placeholder=" Имя пользователя"
+                  required
+                />
+                <span matSuffix class="text-muted">
+                  <i class="fas fa-user"></i>
+                </span>
+
+                <mat-error *ngIf="createform.username.errors?.required">
+                  Требуется имя пользователя
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-4 ml-md-5">
+              <mat-form-field>
+                <!-- password -->
+
+                <input
+                  matInput
+                  type="password"
+                  formControlName="password"
+                  placeholder="Пароль"
+                  required
+                />
+
+                <span matSuffix class="text-muted">
+                  <i class="fas fa-user-lock"></i>
+                </span>
+                <mat-error *ngIf="createform.password.errors?.required"
+                  >Пароль требуется
+                </mat-error>
+                <mat-error *ngIf="createform.password.errors?.minlength"
+                  >Пароль должно быть не менее 8 символов ********
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-8 mr-5">
+              <mat-form-field>
+                <!-- Subject -->
+
+                <input
+                  matInput
+                  type="text"
+                  formControlName="subject"
+                  placeholder="Название предмета"
+                  required
+                />
+                <span matSuffix class="text-muted">
+                  <i class="fas fa-book"></i>
+                </span>
+
+                <mat-error *ngIf="createform.subject.errors?.required">
+                  Требуется Название предмета
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div mat-dialog-actions class="d-flex justify-content-center mt-4">
+      <button mat-stroked-button [mat-dialog-close]="null" class="btn">
+        Отменить
+      </button>
+      <button mat-stroked-button (click)="submit()" cdkFocusInitial class="btn">
+        Создавать
+      </button>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="data.updateUser">
-    <div class="text-center">
-        <h1 mat-dialog-title>Update student User</h1>
+  <div class="text-center">
+    <h1 mat-dialog-title>Обновление пользователя преподавателя</h1>
+  </div>
+  <div class="container mt--8 pb-5">
+    <div class="row justify-content-center">
+      <div class="col-sm-8 col-md-10">
+        <div [formGroup]="updateUserForm" mat-dialog-content>
+          <div class="row">
+            <div class="col-md-4 mr-5">
+              <mat-form-field>
+                <!-- first Name  -->
 
-    </div>
-    <div class="container mt--8 pb-5">
-        <div class="row justify-content-center">
-            <div class="col-sm-8 col-md-10">
-
-                <div [formGroup]="updateUserForm" mat-dialog-content>
-
-                    <div class="row">
-                        <div class="col-md-4 mr-5">
-                            <mat-form-field>
-                                <!-- first Name  -->
-
-                                <input matInput type="text"
-                                    formControlName="firstname">
-                                <span matSuffix class="text-muted">
-                                    <i class='fas fa-user-graduate'></i>
-                                </span>
-                                <mat-error
-                                    *ngIf="updateform.firstname.errors?.required">
-                                    First name is required
-                                </mat-error>
-
-                            </mat-form-field>
-                        </div>
-
-                        <div class="col-md-4 ml-md-5">
-                            <mat-form-field>
-                                <!-- last name -->
-
-                                <input matInput type="text"
-                                    formControlName="lastname"
-                                    placeholder="Last name">
-                                <span matSuffix class="text-muted">
-                                    <i class='fa fa-user-plus'></i>
-                                </span>
-                                <mat-error
-                                    *ngIf="updateform.lastname.errors?.required">
-                                    Last name is required
-                                </mat-error>
-
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-
-                        <div class="col-md-4 mr-5">
-                            <mat-form-field>
-                                <!-- Username -->
-
-                                <input matInput type="text"
-                                    formControlName="username"
-                                    placeholder="username">
-                                <span matSuffix class="text-muted">
-                                    <i class='fas fa-user'></i>
-                                </span>
-
-                                <mat-error
-                                    *ngIf="updateform.username.errors?.required">
-                                    Username is required
-                                </mat-error>
-
-                            </mat-form-field>
-                        </div>
-
-                        <div class="col-md-4 ml-md-5">
-                            <mat-form-field>
-                                <!--old password -->
-
-                                <input matInput type="password"
-                                    formControlName="oldpassword"
-                                    placeholder="*******" required>
-
-                                <span matSuffix class="text-muted">
-                                    <i class='fas fa-user-lock'></i>
-                                </span>
-                                <mat-error
-                                    *ngIf="updateform.oldpassword.errors?.required">Password
-                                    is required
-                                </mat-error>
-                                <mat-error
-                                    *ngIf="updateform.oldpassword.errors?.minlength">Password
-                                    must be at least 8 characters ********
-                                </mat-error>
-
-                            </mat-form-field>
-                        </div>
-
-
-                    </div>
-
-
-                    <div class="row">
-
-
-                        <div class="col-md-4 mr-md-5">
-                            <mat-form-field>
-                                <!-- new password -->
-
-                                <input matInput type="password"
-                                    formControlName="newpassword"
-                                    placeholder="New Password">
-
-                                <span matSuffix class="text-muted">
-                                    <i class='fas fa-user-lock'></i>
-                                </span>
-                                <mat-error
-                                    *ngIf="updateform.newpassword.errors?.required">Password
-                                    is required
-                                </mat-error>
-                                <mat-error
-                                    *ngIf="updateform.newpassword.errors?.minlength">Password
-                                    must be at least 8 characters ********
-                                </mat-error>
-
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-
-
-                </div>
-
+                <input matInput type="text" formControlName="firstname" />
+                <span matSuffix class="text-muted">
+                  <i class="fas fa-user-graduate"></i>
+                </span>
+                <mat-error *ngIf="updateform.firstname.errors?.required">
+                  Требуется имя
+                </mat-error>
+              </mat-form-field>
             </div>
+
+            <div class="col-md-4 ml-md-5">
+              <mat-form-field>
+                <!-- last name -->
+
+                <input
+                  matInput
+                  type="text"
+                  formControlName="lastname"
+                  placeholder=" Фамилия "
+                />
+                <span matSuffix class="text-muted">
+                  <i class="fa fa-user-plus"></i>
+                </span>
+                <mat-error *ngIf="updateform.lastname.errors?.required">
+                  Требуется Фамилия
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mr-5">
+              <mat-form-field>
+                <!-- Username -->
+
+                <input
+                  matInput
+                  type="text"
+                  formControlName="username"
+                  placeholder="Имя пользователя"
+                />
+                <span matSuffix class="text-muted">
+                  <i class="fas fa-user"></i>
+                </span>
+
+                <mat-error *ngIf="updateform.username.errors?.required">
+                  Требуется имя пользователя
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-4 ml-md-5">
+              <mat-form-field>
+                <!--old password -->
+
+                <input
+                  matInput
+                  type="password"
+                  formControlName="oldpassword"
+                  placeholder="*******"
+                  required
+                />
+
+                <span matSuffix class="text-muted">
+                  <i class="fas fa-user-lock"></i>
+                </span>
+                <mat-error *ngIf="updateform.oldpassword.errors?.required"
+                  >Пароль требуется
+                </mat-error>
+                <mat-error *ngIf="updateform.oldpassword.errors?.minlength"
+                  >Пароль должно быть не менее 8 символов ********
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mr-md-5">
+              <mat-form-field>
+                <!-- new password -->
+
+                <input
+                  matInput
+                  type="password"
+                  formControlName="newpassword"
+                  placeholder="Новый пароль"
+                />
+
+                <span matSuffix class="text-muted">
+                  <i class="fas fa-user-lock"></i>
+                </span>
+                <mat-error *ngIf="updateform.newpassword.errors?.required"
+                  >Пароль требуется
+                </mat-error>
+                <mat-error *ngIf="updateform.newpassword.errors?.minlength"
+                  >Пароль должно быть не менее 8 символов ********
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
         </div>
-        <div mat-dialog-actions class="d-flex justify-content-center mt-4">
-            <button mat-stroked-button [mat-dialog-close]="null" class="btn">
-                Cancel</button>
-            <button mat-stroked-button (click)="submit()"
-                cdkFocusInitial class="btn">
-                Update</button>
-        </div>
+      </div>
+    </div>
+    <div mat-dialog-actions class="d-flex justify-content-center mt-4">
+      <button mat-stroked-button [mat-dialog-close]="null" class="btn">
+        Отменить
+      </button>
+      <button mat-stroked-button (click)="submit()" cdkFocusInitial class="btn">
+        Обновить
+      </button>
+    </div>
+  </div>
+
+  <!-- alert -->
+  <div *ngIf="(alert | async)" class="col-md-7">
+    <div
+      *ngIf="wrongPassword"
+      class="alert alert-danger alert-dismissible fade show"
+      role="alert"
+    >
+      <strong>Update Failed: </strong>
+      Пароль пользователя не совпадает <strong>!</strong>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+        (click)="closeAlert()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
 
-
-    <!-- alert -->
-    <div *ngIf="(alert | async)" class="col-md-7">
-        <div *ngIf="wrongPassword" class="alert alert-danger alert-dismissible
-            fade show" role="alert">
-            <strong>Update Failed: </strong>
-            User password do not match <strong>!</strong>
-            <button type="button" class="close" data-dismiss="alert"
-                aria-label="Close" (click)="closeAlert()">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-
-
-        <div *ngIf="invalidUpdateForm" class="alert alert-info alert-dismissible
-            fade show" role="alert">
-            <strong>Update info</strong><br>
-            For update you need to Edit one/more text-box and enter user
-            password
-            <strong>!</strong>
-            <button type="button" class="close" data-dismiss="alert"
-                aria-label="Close" (click)="closeAlert()">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-
+    <div
+      *ngIf="invalidUpdateForm"
+      class="alert alert-info alert-dismissible fade show"
+      role="alert"
+    >
+      <strong>Update info</strong><br />
+      Для обновления вам необходимо отредактировать одно/несколько текстовых
+      полей и ввести имя пользователя пароль
+      <strong>!</strong>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+        (click)="closeAlert()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-
+  </div>
 </div>
