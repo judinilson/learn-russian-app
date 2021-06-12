@@ -7,20 +7,10 @@ const path = require("path")
 
 
 let mainWindow
+let splash
 
-// Enable live reload for all the files inside your project directory
-// require('electron-reload')(__dirname);
 
-// Enable live reload for Electron to0
-// require('electron-reload')(__dirname, {
-//     // Note that the path to electron may vary according to the main file
-//     electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
-//     hardResetMethod: 'exit'
-// });
 
-// require('electron-reload')(__dirname, {
-//     electron: require("${__dirname}/node_modules/electron")
-// });
 
 function createWindow() {
     mainWindow = new BrowserWindow({
@@ -28,8 +18,20 @@ function createWindow() {
         height: 910,
         webPreferences:{
             nodeIntegration:true
-        }
+        },
+        show: false // don't show the main window
     })
+
+    // create a new `splash`-Window 
+  splash = new BrowserWindow({width: 810, height: 610, transparent: true, frame: false, alwaysOnTop: true});
+  splash.loadURL(`file://${__dirname}/splash.html`);
+  mainWindow.loadURL(`file://${__dirname}/index.html`);
+
+  // if main window is ready to show, then destroy the splash window and show up the main window
+  mainWindow.once('ready-to-show', () => {
+    splash.destroy();
+    mainWindow.show();
+  });
 
     mainWindow.loadURL(
         url.format({
@@ -38,6 +40,7 @@ function createWindow() {
             slashes: true 
         })
     )
+
 
     //open the DevTools
     mainWindow.webContents.openDevTools();
@@ -59,3 +62,8 @@ app.on('window-all-closed',function () {
 app.on('activate',function(){
     if(mainWindow === null ) createWindow()
 })
+
+// Enable live reload for all the files inside your project directory
+try {
+  require('electron-reloader')(module)
+} catch (_) {}

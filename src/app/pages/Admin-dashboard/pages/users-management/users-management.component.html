@@ -1,12 +1,15 @@
 <div class="bg-gradient-secondary">
-  <mat-progress-bar *ngIf="isQuery" mode="query" style="margin-top: 5px;"></mat-progress-bar>
+  <mat-progress-bar
+    *ngIf="isQuery"
+    mode="query"
+    style="margin-top: 5px"
+  ></mat-progress-bar>
 
   <!-- student  -->
   <div class="container-fluid mt--7" *ngIf="!isQuery">
-
     <div class="row">
       <div class="row mt-5 justify-content-center">
-        <div class="col-xl-8 mb-5 mb-xl-0 ">
+        <div class="col-xl-8 mb-5 mb-xl-0">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
@@ -16,19 +19,32 @@
                     <mat-label>Filter</mat-label>
                     <input matInput (keyup)="applyFilter($event)" placeholder="name" #input>
                   </mat-form-field> -->
-
                 </div>
                 <!-- btns -->
-                
+
                 <div class="col text-right">
-                  <button mat-icon-button class="btn btn-sm btn-primary " (click)="userStudentCreateDialog()">
-                    <i  class="fas fa-plus"></i>
+                  <button
+                    mat-icon-button
+                    class="btn btn-sm btn-primary"
+                    (click)="userStudentCreateDialog()"
+                  >
+                    <i class="fas fa-plus"></i>
                   </button>
                   <!-- <!-- <button mat-raised-button class="btn btn-sm ml-2" color="primary" >Update</button> -->
-                  <button mat-icon-button class="btn ml-3 "  (click)="collapse('student')">
-                    <i *ngIf="collapsetableStudent" class="fas fa-angle-down"></i>
-                    <i *ngIf="!collapsetableStudent" class="fas fa-angle-up"></i>
-                  </button>                  
+                  <button
+                    mat-icon-button
+                    class="btn ml-3"
+                    (click)="collapse('student')"
+                  >
+                    <i
+                      *ngIf="collapsetableStudent"
+                      class="fas fa-angle-down"
+                    ></i>
+                    <i
+                      *ngIf="!collapsetableStudent"
+                      class="fas fa-angle-up"
+                    ></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -37,226 +53,47 @@
               <table class="table align-items-center table-flush" id="table">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">First name</th>
-                    <th scope="col">Last name</th>
-                    <th scope="col">Country</th>
-                    <th scope="col">Group</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Фамилия</th>
+                    <th scope="col">Страна</th>
+                    <th scope="col">Группа</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
-
-                  <tr role="button" class="ripple"
-                   *ngFor="let student of usersRoleStudent; let i = index" 
-                   
-                    >
+                  <tr
+                    role="button"
+                    class="ripple"
+                    *ngFor="let student of usersRoleStudent; let i = index"
+                  >
                     <th scope="row" (click)="userinfo(student)">
-                      {{student.user.firstName}}
+                      {{ student.user.firstName }}
                     </th>
                     <td (click)="userinfo(student)">
-                      {{student.user.lastName}}
+                      {{ student.user.lastName }}
                     </td>
                     <td (click)="userinfo(student)">
-                      {{student.country.name}}
+                      {{ student.country.name }}
                     </td>
                     <td (click)="userinfo(student)">
                       <!-- <i class="fas fa-arrow-up text-success mr-3"></i> 46,53% -->
-                      {{student.group.name}}
+                      {{ student.group.name }}
                     </td>
                     <td>
-                    <button mat-icon-button class="btn  " color="primary" (click)="userStudentUpdateDialog(student)">
-                      <i class="fas fa-edit" aria-hidden="true"></i>
-                    </button>
-                    <button mat-icon-button class="btn  " color="accent" (click)="deleteUser(student,'student')">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                    </td>
-                    <!-- <td><mat-checkbox [(ngModel)]="selected[i]" (click)="getselecteduserData(student,i)"></mat-checkbox></td> -->
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4">
-          <div class="card shadow">
-              <div class="card-header border-0">
-                <div class="row align-items-center">
-                  <div class="col">
-                    <h3 class="mb-0">User Statistics</h3>
-                  </div>
-                  <div class="col text-right">
-                    <!-- <a href="#!" class="btn btn-sm btn-primary">See all</a> -->
-                    <button mat-icon-button class="btn ml-3 "  (click)="collapse('statistic')">
-                      <i *ngIf="collapsetableStudentStatistic" class="fas fa-angle-up"></i>
-                      <i *ngIf="!collapsetableStudentStatistic" class="fas fa-angle-down"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="table-responsive" *ngIf="collapsetableStudentStatistic">
-                <!-- user student table -->
-                <table class="table align-items-center table-flush">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Username</th>
-                      <th scope="col">Correct Answers</th>
-                      <th scope="col">Incorrect Answers</th>
-                      <th scope="col">Back to articles</th>
-                      <th scope="col">Date</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let item of usersRoleStudent">
-                      <th scope="row">
-                        {{item.user.username}}
-                      </th>
-                      <td>
-  
-  
-                        <div *ngIf="!item.statistic">
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-danger"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-  
-                        <div class="d-flex align-items-center"
-                          *ngIf="item.statistic">
-                          <span class="mr-2">{{item.statistic[item.laststatistic].percentageCorrectAnswers}}%</span>
-                          <div>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-success"
-                                role="progressbar"
-                                [attr.aria-valuenow]="item.statistic[item.laststatistic].percentageCorrectAnswers"
-                                aria-valuemin="0" aria-valuemax="100"
-                                [style.width.%]="item.statistic[item.laststatistic].percentageCorrectAnswers"></div>
-                            </div>
-                          </div>
-                        </div>
-
-                      </td>
-                      <td>
-                        <div *ngIf="!item.statistic">
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-danger"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-  
-                        <div class="d-flex align-items-center"
-                          *ngIf="item.statistic">
-                          <span class="mr-2">{{item.statistic[item.laststatistic].percentageIncorrectAnswers}}%</span>
-                          <div>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-danger"
-                                role="progressbar"
-                                [attr.aria-valuenow]="item.statistic[item.laststatistic].percentageIncorrectAnswers"
-                                aria-valuemin="0" aria-valuemax="100"
-                                [style.width.%]="item.statistic[item.laststatistic].percentageIncorrectAnswers"></div>
-                            </div>
-                          </div>
-                        </div>
-  
-  
-                      </td>
-  
-                      <td style="text-align: center;">
-                        <span *ngIf="!item.statistic">--</span>
-                        <span *ngIf="item.statistic" >
-                          {{item.statistic[item.laststatistic].backToArticleCount}}
-                        </span>
-  
-                      </td>
-
-                      <td style="text-align: center;">
-                        <span *ngIf="!item.statistic">--</span>
-                        <span *ngIf="item.statistic" >
-                          {{item.statistic[item.laststatistic].trainingDate | date:'medium'}}
-                        </span>
-  
-                      </td>
-                    </tr>
-  
-                  </tbody>
-                </table>
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<br>
-<hr>
-  <!-- Teacher and group -->
-  <div class="container-fluid mt--7" *ngIf="!isQuery">
-
-    <div class="row">
-      <div class="row mt-5">
-        <div class="col-xl-8 mb-5 mb-xl-0">
-          <div class="card shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">Teacher Users</h3>
-                  <!-- <mat-form-field class="ml-5">
-                    <mat-label>Filter</mat-label>
-                    <input matInput (keyup)="applyFilter($event)" placeholder="name" #input>
-                  </mat-form-field> -->
-
-                </div>
-                <!-- btns -->
-                
-                <div class="col text-right">
-                  <button mat-icon-button class="btn btn-sm btn-primary " (click)="userTeacherCreateDialog()">
-                    <i  class="fas fa-plus"></i>
-                  </button>
-                  <button mat-icon-button class="btn ml-3 "  (click)="collapse('teacher')">
-                    <i *ngIf="collapsetableTeacher" class="fas fa-angle-down"></i>
-                    <i *ngIf="!collapsetableTeacher" class="fas fa-angle-up"></i>
-                  </button>                  
-                </div>
-              </div>
-            </div>
-            <div class="table-responsive" *ngIf="!collapsetableTeacher">
-              <!-- Projects table -->
-              <table class="table align-items-center table-flush" id="table">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">First name</th>
-                    <th scope="col">Last name</th>
-                    <th scope="col">Subject</th>
-                    <!-- <th scope="col"></th> -->
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                  <tr role="button" class="ripple"
-                   *ngFor="let teacher of teacherUsers; let i = index" 
-                   
-                    >
-                    <th scope="row" (click)="userinfo(teacher)">
-                      {{teacher.firstName}}
-                    </th>
-                    <td (click)="userinfo(teacher)">
-                      {{teacher.lastName}}
-                    </td>
-                    <td (click)="userinfo(teacher)">
-                      {{teacher.subject}}
-                    </td>
-                    <!-- <td (click)="userinfo(student,i)">
-                      {{student.group.name}}
-                    </td> -->
-                    <td>
-                      <button mat-icon-button class="btn  " color="primary" (click)="userTeacherUpdateDialog(teacher)">
+                      <button
+                        mat-icon-button
+                        class="btn"
+                        color="primary"
+                        (click)="userStudentUpdateDialog(student)"
+                      >
                         <i class="fas fa-edit" aria-hidden="true"></i>
                       </button>
-                      <button mat-icon-button class="btn  " color="accent" (click)="deleteUser(teacher,'teacher')">
+                      <button
+                        mat-icon-button
+                        class="btn"
+                        color="accent"
+                        (click)="deleteUser(student, 'student')"
+                      >
                         <i class="fas fa-trash"></i>
                       </button>
                     </td>
@@ -269,57 +106,334 @@
         </div>
         <div class="col-xl-4">
           <div class="card shadow">
-              <div class="card-header border-0">
-                <div class="row align-items-center">
-                  <div class="col">
-                    <h3 class="mb-0">Teacher and Groups </h3>
-                  </div>
-                  <div class="col text-right">
-                    <button mat-icon-button class="btn btn-sm btn-primary " (click)="userGroupCreateDialog()">
-                      <i  class="fas fa-plus"></i>
-                    </button>
-
-                    <button mat-icon-button class="btn ml-3 "  (click)="collapse('group')">
-                      <i *ngIf="collapsetablegroups" class="fas fa-angle-up"></i>
-                      <i *ngIf="!collapsetablegroups" class="fas fa-angle-down"></i>
-                    </button>
-                  </div>
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">Статистика пользователей</h3>
+                </div>
+                <div class="col text-right">
+                  <!-- <a href="#!" class="btn btn-sm btn-primary">See all</a> -->
+                  <button
+                    mat-icon-button
+                    class="btn ml-3"
+                    (click)="collapse('statistic')"
+                  >
+                    <i
+                      *ngIf="collapsetableStudentStatistic"
+                      class="fas fa-angle-up"
+                    ></i>
+                    <i
+                      *ngIf="!collapsetableStudentStatistic"
+                      class="fas fa-angle-down"
+                    ></i>
+                  </button>
                 </div>
               </div>
-              <div class="table-responsive" *ngIf="collapsetablegroups">
-                <!-- Projects table -->
-                <table class="table align-items-center table-flush">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Teacher</th>
-                      <th scope="col">Group</th>
-                      <th scope="col">Teaching_time</th>
-                      <th scope="col"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let item of groupAndTeacher">
-                      <th scope="row">
-                        {{item.teacher.username}}
-                      </th>
+            </div>
+            <div class="table-responsive" *ngIf="collapsetableStudentStatistic">
+              <!-- user student table -->
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Имя пользователя</th>
+                    <th scope="col">Правильные ответы</th>
+                    <th scope="col">Неправильные ответы</th>
+                    <th scope="col">Вернуться к статьям</th>
+                    <th scope="col">Дата</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of usersRoleStudent">
+                    <th scope="row">
+                      {{ item.user.username }}
+                    </th>
+                    <td>
+                      <div *ngIf="!item.statistic">
+                        <div class="progress">
+                          <div
+                            class="progress-bar bg-gradient-danger"
+                            role="progressbar"
+                            aria-valuenow="0"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                          ></div>
+                        </div>
+                      </div>
 
-                      <th scope="row">
-                        {{item.group.name}}
-                      </th>
+                      <div
+                        class="d-flex align-items-center"
+                        *ngIf="item.statistic"
+                      >
+                        <span class="mr-2"
+                          >{{
+                            item.statistic[item.laststatistic]
+                              .percentageCorrectAnswers
+                          }}%</span
+                        >
+                        <div>
+                          <div class="progress">
+                            <div
+                              class="progress-bar bg-gradient-success"
+                              role="progressbar"
+                              [attr.aria-valuenow]="
+                                item.statistic[item.laststatistic]
+                                  .percentageCorrectAnswers
+                              "
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              [style.width.%]="
+                                item.statistic[item.laststatistic]
+                                  .percentageCorrectAnswers
+                              "
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div *ngIf="!item.statistic">
+                        <div class="progress">
+                          <div
+                            class="progress-bar bg-gradient-danger"
+                            role="progressbar"
+                            aria-valuenow="0"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                          ></div>
+                        </div>
+                      </div>
 
-                      <th >
-                        {{item.teachingTime}}
-                      </th>
+                      <div
+                        class="d-flex align-items-center"
+                        *ngIf="item.statistic"
+                      >
+                        <span class="mr-2"
+                          >{{
+                            item.statistic[item.laststatistic]
+                              .percentageIncorrectAnswers
+                          }}%</span
+                        >
+                        <div>
+                          <div class="progress">
+                            <div
+                              class="progress-bar bg-gradient-danger"
+                              role="progressbar"
+                              [attr.aria-valuenow]="
+                                item.statistic[item.laststatistic]
+                                  .percentageIncorrectAnswers
+                              "
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              [style.width.%]="
+                                item.statistic[item.laststatistic]
+                                  .percentageIncorrectAnswers
+                              "
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
 
-                      <td>
-                        <button mat-icon-button class="btn  " color="primary" (click)="userGroupUpdateDialog(item)">
-                          <i class="fas fa-edit" aria-hidden="true"></i>
-                        </button>
-                        <button mat-icon-button class="btn  " color="accent" (click)="deleteTeacherGroup(item)">
-                          <i class="fas fa-trash"></i>
-                        </button>
-                      </td>
-                      <!-- <td>
+                    <td style="text-align: center">
+                      <span *ngIf="!item.statistic">--</span>
+                      <span *ngIf="item.statistic">
+                        {{
+                          item.statistic[item.laststatistic].backToArticleCount
+                        }}
+                      </span>
+                    </td>
+
+                    <td style="text-align: center">
+                      <span *ngIf="!item.statistic">--</span>
+                      <span *ngIf="item.statistic">
+                        {{
+                          item.statistic[item.laststatistic].trainingDate
+                            | date: "medium"
+                        }}
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <hr />
+  <!-- Teacher and group -->
+  <div class="container-fluid mt--7" *ngIf="!isQuery">
+    <div class="row">
+      <div class="row mt-5">
+        <div class="col-xl-8 mb-5 mb-xl-0">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">Пользователи Преподавателей</h3>
+                  <!-- <mat-form-field class="ml-5">
+                    <mat-label>Filter</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="name" #input>
+                  </mat-form-field> -->
+                </div>
+                <!-- btns -->
+
+                <div class="col text-right">
+                  <button
+                    mat-icon-button
+                    class="btn btn-sm btn-primary"
+                    (click)="userTeacherCreateDialog()"
+                  >
+                    <i class="fas fa-plus"></i>
+                  </button>
+                  <button
+                    mat-icon-button
+                    class="btn ml-3"
+                    (click)="collapse('teacher')"
+                  >
+                    <i
+                      *ngIf="collapsetableTeacher"
+                      class="fas fa-angle-down"
+                    ></i>
+                    <i
+                      *ngIf="!collapsetableTeacher"
+                      class="fas fa-angle-up"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive" *ngIf="!collapsetableTeacher">
+              <!-- Projects table -->
+              <table class="table align-items-center table-flush" id="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Фамилия</th>
+                    <th scope="col">предмет</th>
+                    <!-- <th scope="col"></th> -->
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    role="button"
+                    class="ripple"
+                    *ngFor="let teacher of teacherUsers; let i = index"
+                  >
+                    <th scope="row" (click)="userinfo(teacher)">
+                      {{ teacher.firstName }}
+                    </th>
+                    <td (click)="userinfo(teacher)">
+                      {{ teacher.lastName }}
+                    </td>
+                    <td (click)="userinfo(teacher)">
+                      {{ teacher.subject }}
+                    </td>
+                    <!-- <td (click)="userinfo(student,i)">
+                      {{student.group.name}}
+                    </td> -->
+                    <td>
+                      <button
+                        mat-icon-button
+                        class="btn"
+                        color="primary"
+                        (click)="userTeacherUpdateDialog(teacher)"
+                      >
+                        <i class="fas fa-edit" aria-hidden="true"></i>
+                      </button>
+                      <button
+                        mat-icon-button
+                        class="btn"
+                        color="accent"
+                        (click)="deleteUser(teacher, 'teacher')"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                    <!-- <td><mat-checkbox [(ngModel)]="selected[i]" (click)="getselecteduserData(student,i)"></mat-checkbox></td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">Преподаватель и Группы</h3>
+                </div>
+                <div class="col text-right">
+                  <button
+                    mat-icon-button
+                    class="btn btn-sm btn-primary"
+                    (click)="userGroupCreateDialog()"
+                  >
+                    <i class="fas fa-plus"></i>
+                  </button>
+
+                  <button
+                    mat-icon-button
+                    class="btn ml-3"
+                    (click)="collapse('group')"
+                  >
+                    <i *ngIf="collapsetablegroups" class="fas fa-angle-up"></i>
+                    <i
+                      *ngIf="!collapsetablegroups"
+                      class="fas fa-angle-down"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive" *ngIf="collapsetablegroups">
+              <!-- Projects table -->
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Преподаватель</th>
+                    <th scope="col">Группа</th>
+                    <th scope="col">Время</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of groupAndTeacher">
+                    <th scope="row">
+                      {{ item.teacher.username }}
+                    </th>
+
+                    <th scope="row">
+                      {{ item.group.name }}
+                    </th>
+
+                    <th>
+                      {{ item.teachingTime }}
+                    </th>
+
+                    <td>
+                      <button
+                        mat-icon-button
+                        class="btn"
+                        color="primary"
+                        (click)="userGroupUpdateDialog(item)"
+                      >
+                        <i class="fas fa-edit" aria-hidden="true"></i>
+                      </button>
+                      <button
+                        mat-icon-button
+                        class="btn"
+                        color="accent"
+                        (click)="deleteTeacherGroup(item)"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                    <!-- <td>
   
   
                         <div *ngIf="!item.statistic">
@@ -388,11 +502,10 @@
                         </span>
   
                       </td> -->
-                    </tr>
-  
-                  </tbody>
-                </table>
-              </div>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

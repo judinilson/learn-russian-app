@@ -5,25 +5,19 @@
   <mat-progress-bar *ngIf="querryProgressBar" mode="query"></mat-progress-bar>
 </div>
 <mat-toolbar class="mat-elevation-z6">
-  <!-- <mdc-top-app-bar-row> -->
-  <!-- <mdc-top-app-bar-section align="start" title="App"> -->
   <button mat-icon-button class="btn" (click)="opened = !opened">
-    <!-- <mat-icon>menu</mat-icon> -->
     <i class="fas fa-bars" style="color: #fff; display: flex"></i>
   </button>
-  <!-- </mdc-top-app-bar-section> -->
-  <!-- <mdc-top-app-bar-section align="end"> -->
+
   <span class="bar-spacer"></span>
   <mat-form-field mdcTopAppBarTitle>
-    <mat-label>Categories</mat-label>
+    <mat-label>Категории</mat-label>
     <mat-select [(ngModel)]="selectedCategory">
       <mat-option *ngFor="let item of allDemoCategory" [value]="item">
         {{item.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <!-- </mdc-top-app-bar-section> -->
-  <!-- </mdc-top-app-bar-row> -->
 </mat-toolbar>
 
 <!-- drawer -->
@@ -38,7 +32,7 @@
       [fixedInViewport]="true"
       [fixedTopGap]="layoutGap"
     >
-      <div class="row mt-2" *ngIf="!login">
+      <div class="row mt-2 side-bar" *ngIf="!login">
         <div class="col align-items-center d-none d-md-flex">
           <div class="mb-5" placement="bottom-right">
             Вы не вошли в систему
@@ -57,7 +51,7 @@
           </div>
         </div>
       </div>
-      <div class="row m-3" *ngIf="login">
+      <div class="row m-3 side-bar" *ngIf="login">
         <div class="col align-items-center d-none d-md-flex">
           <div class="mb-5" placement="bottom-right">
             <a
@@ -67,11 +61,7 @@
             >
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle p-2">
-                  <img
-                    alt="Image placeholder"
-                    src="../../../../assets/icons/user.png"
-                    style="width: 50px"
-                  />
+                  <i class="fas fa-user-circle" style="font-size: 45px"></i>
                 </span>
                 <div class="p-2 media-body ml-2 d-lg-block">
                   <span class="mb-0 text-sm font-weight-bold">
@@ -178,7 +168,7 @@
         <mat-card class="card" *ngFor="let item of ContentArr">
           <span (click)="onSelectedCard(item)">
             <span>
-              <mdc-icon class="play-icon">play_circle_outline</mdc-icon>
+              <i class="play-icon far fa-play-circle"></i>
               <img mat-card-image src="{{imgurl(item)}}" alt="cover image" />
             </span>
 

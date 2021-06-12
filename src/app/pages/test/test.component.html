@@ -12,7 +12,7 @@
 
   <span class="bar-spacer"></span>
   <mat-form-field mdcTopAppBarTitle>
-    <mat-label>Categories</mat-label>
+    <mat-label>Категории</mat-label>
     <mat-select [(ngModel)]="selectedCategory">
       <mat-option *ngFor="let item of allTrainingCategory" [value]="item">
         {{ item.name }}
@@ -33,7 +33,7 @@
       [fixedInViewport]="true"
       [fixedTopGap]="layoutGap"
     >
-      <div class="row m-3" *ngIf="login">
+      <div class="row m-3 side-bar" *ngIf="login">
         <div class="col align-items-center d-none d-md-flex">
           <div class="mb-5" placement="bottom-right">
             <a
@@ -43,11 +43,7 @@
             >
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle p-2">
-                  <img
-                    alt="Image placeholder"
-                    src="../../../../assets/icons/user.png"
-                    style="width: 50px"
-                  />
+                  <i class="fas fa-user-circle" style="font-size: 45px"></i>
                 </span>
                 <div class="p-2 media-body ml-2 d-lg-block">
                   <span class="mb-0 text-sm font-weight-bold">

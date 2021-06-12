@@ -33,11 +33,10 @@
                   >
                     <div class="media align-items-center">
                       <span class="avatar avatar-sm rounded-circle p-2">
-                        <img
-                          alt="Image placeholder"
-                          src="../../../assets/icons/user.png"
-                          style="width: 50px"
-                        />
+                        <i
+                          class="fas fa-user-circle"
+                          style="font-size: 45px"
+                        ></i>
                       </span>
                       <div class="p-2 media-body ml-2 d-lg-block">
                         <span class="mb-0 text-sm font-weight-bold">
@@ -83,8 +82,14 @@
                         *ngIf="route.navLinks[key].name == 'Россия'"
                       >
                         <!-- {{route.icon}} -->
-                        <i *ngIf="!route.isDroped" class="nav-a fa fa-sort-down"></i>
-                        <i *ngIf="route.isDroped" class="nav-a fa fa-sort-up"></i>
+                        <i
+                          *ngIf="!route.isDroped"
+                          class="nav-a fa fa-sort-down"
+                        ></i>
+                        <i
+                          *ngIf="route.isDroped"
+                          class="nav-a fa fa-sort-up"
+                        ></i>
                       </mat-icon>
                     </a>
                   </li>

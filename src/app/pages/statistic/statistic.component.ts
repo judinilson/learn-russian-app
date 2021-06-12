@@ -240,14 +240,14 @@ export class StatisticComponent implements OnInit {
 
   userRating() {
     if (this.rating <= 2) {
-      this.emoji = "../../../assets/emojis/emoji-1.png";
+      this.emoji = "assets/emojis/emoji-1.png";
     } else if (this.rating === 3) {
-      this.emoji = "../../../assets/emojis/emoji-2.png";
+      this.emoji = "assets/emojis/emoji-2.png";
     } else if (this.rating === 4) {
-      this.emoji = "../../../assets/emojis/emoji-3.png";
+      this.emoji = "assets/emojis/emoji-3.png";
     } else {
-      this.emoji = "../../../assets/emojis/emoji-4.png";
-    }
+      this.emoji = "assets/emojis/emoji-4.png";
+    }          
   }
 
   getNewDate() {

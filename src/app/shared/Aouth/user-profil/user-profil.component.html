@@ -1,280 +1,307 @@
-
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center 
-    bg-gradient-danger">
-    <!-- Mask
+<div
+  class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center bg-gradient-danger"
+>
+  <!-- Mask
     <span class="mask bg-gradient-danger"></span> -->
-    <!-- Header container -->
-    <div class="container-fluid d-flex align-items-center">
-        <div class="row">
-            <div class="col-lg-7 col-md-10">
-                <h1 class="display-2 text-white">Hello {{username}}</h1>
-                <p class="text-white mt-0 mb-5">
-                    This is your profile page. You
-                    can see the progress you've made with your work and manage
-                    your projects or assigned tasks
-                </p>
-                <button mdc-button raised
-                 (click)="onSubmit()"
-                    type="submit" form="update-form"
-                    [disabled]="loading"
-                    class="btn-primary update-button">
-                    <span *ngIf="loading" class="spinner-border
-                        spinner-border-sm mr-1"></span>
-                    Update profile
-                </button>
-            </div>
-        </div>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">здравствуйте {{ username }}</h1>
+        <p class="text-white mt-0 mb-5">Это страница вашего профиля.</p>
+        <button
+          mat-raised-button
+          (click)="onSubmit()"
+          type="submit"
+          form="update-form"
+          [disabled]="loading"
+          class="btn-primary update-button"
+        >
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm mr-1"
+          ></span>
+          Обновить профиль
+        </button>
+      </div>
     </div>
-
+  </div>
 </div>
 
 <div style="background: #f7fafc !important">
-    <div class="container-fluid mt--7">
-        <div class="row">
-            <div class="col-md-4 order-md-2 mb-5 mb-md-0">
-                <div class="card card-profile shadow">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-3 order-lg-2">
-                            <div class="card-profile-image">
-                                <a href="javascript:void(0)">
-                                    <img
-                                        src="https://img.icons8.com/dusk/64/000000/user-male-circle--v1.png"
-                                        class="rounded-circle">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-header text-center border-0 pt-8 pt-md-4
-                        pb-0
-                        pb-md-4">
-                        <div class="d-flex justify-content-between">
-                            <button mdc-button raised  [routerLink]="['/']" class=" btn-sm
-                                btn-primary mr-4">Dashboard</button>
-                            <button mdc-button [routerLink]="['/statistic']" class=" btn-sm
-                                btn-default float-right">Statistic</button>
-                        </div>
-                    </div>
-                    <div class="card-body pt-0 pt-md-4">
-                       
-                        <div class="text-center">
-                            <h3 style="font-size: 1.0625rem;">
-                                {{firstname}} {{lastname}}
-                                <!-- <span class="font-weight-light">,
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-5 mb-md-0">
+        <div class="card card-profile shadow">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 order-lg-2">
+              <div class="card-profile-image">
+                <a href="javascript:void(0)">
+                  <img
+                    src="https://img.icons8.com/dusk/64/000000/user-male-circle--v1.png"
+                    class="rounded-circle"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"
+          >
+            <div class="d-flex justify-content-between btn">
+              <button
+                mat-raised-button
+                [routerLink]="['/']"
+                class="btn-sm btn-primary mr-4"
+              >
+                Dashboard
+              </button>
+              <button
+                mat-button
+                [routerLink]="['/statistic']"
+                class="btn-sm btn-default float-right"
+              >
+                Статистика
+              </button>
+            </div>
+          </div>
+          <div class="card-body pt-0 pt-md-4">
+            <div class="text-center">
+              <h3 style="font-size: 1.0625rem">
+                {{ firstname }} {{ lastname }}
+                <!-- <span class="font-weight-light">,
                                     27</span> -->
-                            </h3>
-                            <div class="h6 font-weight-300">
-                                <i class="fas fa-user mr-2"></i>
-                                {{username}}
-                            </div>
-                            <div class="h5 mt-4" style="font-size: 1.0625rem;">
-                                <i class="fas fa-book-reader mr-2"></i>
-                                <span *ngIf="isStudent">Student </span>
-                                <span *ngIf="isTeacher">Teacher </span>
-                                <span *ngIf="isAdmin">Admin </span>
-                            </div>
-                            <div>
-                                <i class="fas fa-school mr-2"></i>
-                                Подготовительный факультет для иностранных граждан
-                            </div>
-                            <hr class="my-4" />
-                            <p>
-                                For more information on your recent 
-                                activities and subsequent weeks, 
-                                visit the statistics page
-                            </p>
-                            <hr class="my-4" />
-                            <button  class="btn btn-outline-info"  (click)="logOut()" >
-                                <i class=" pr-1 fas fa-running"></i>
-                                <span>Выйти</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+              </h3>
+              <div class="h6 font-weight-300">
+                <i class="fas fa-user mr-2"></i>
+                {{ username }}
+              </div>
+              <div class="h5 mt-4" style="font-size: 1.0625rem">
+                <i class="fas fa-book-reader mr-2"></i>
+                <span *ngIf="isStudent">Студент </span>
+                <span *ngIf="isTeacher">Преподаватель </span>
+                <span *ngIf="isAdmin">Администратор </span>
+              </div>
+              <div>
+                <i class="fas fa-school mr-2"></i>
+                Подготовительный факультет для иностранных граждан
+              </div>
+              <hr class="my-4" />
+              <p>
+                Для получения дополнительной информации о ваших недавних
+                действиях и последующих недели, посетите страницу статистики.
+              </p>
+              <hr class="my-4" />
+              <button class="btn btn-outline-info" (click)="logOut()">
+                <i class="pr-1 fas fa-running"></i>
+                <span>Выйти</span>
+              </button>
             </div>
-            <div class="col-md-8 order-md-1">
-                <div class="card shadow" style="background: #f7fafc !important">
-                    <div class="card-header bg-white">
-                        <div class="row align-items-center">
-                            <div class="col-8">
-                                <h3 class="mb-0">My account</h3>
-                            </div>
-                            <div class="col-4 text-right">
-                                <!-- <a href="#!" class="btn btn-sm btn-primary"></a> -->
-                                <button mdc-button raised class="btn btn-primary">
-                                    Help
-                                </button>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <form [formGroup]="updateForm" id="update-form">
-                            <h6 class="heading-small text-muted mb-4">User
-                                information</h6>
-                            <div class="pl-lg-4">
-
-                                <div class="row">
-
-                                    <div class="col-lg-8">
-                                        <div class="form-group">
-                                            <label class="form-control-label"
-                                                for="input-firstname">Username</label>
-                                            <input type="text"
-                                                formControlName="username"
-                                                class="form-control"
-                                                id="input-firstname"
-                                                class="form-control
-                                                form-control-alternative"
-                                                placeholder={{username}}>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label"
-                                                for="input-first-name">First
-                                                name</label>
-                                            <input type="text"
-                                                formControlName="firstname"
-                                                class="form-control"
-                                                id="input-first-name"
-                                                class="form-control
-                                                form-control-alternative"
-                                                placeholder={{firstname}}>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label"
-                                                for="input-last-name">Last name</label>
-                                            <input type="text"
-                                                id="input-last-name"
-                                                formControlName="lastname"
-                                                class="form-control"
-                                                class="form-control
-                                                form-control-alternative"
-                                                placeholder={{lastname}}>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-
-
-
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label"
-                                                for="input-password">
-                                                Password</label>
-                                            <input type="password"
-                                                formControlName="oldpassword"
-                                                id="input-old-password"
-                                                class="form-control"
-                                                placeholder="********"
-                                                [ngClass]="{ 'is-invalid': submitted &&
-                                                f.oldpassword.errors }"
-                                                >
-                                            <div *ngIf="submitted && f.oldpassword.errors"
-                                                class="invalid-feedback">
-                                                <div *ngIf="f.oldpassword.errors.required">password
-                                                    is required</div>
-                                                <div
-                                                    *ngIf="f.oldpassword.errors.minlength">Password
-                                                    must be at least 8
-                                                    characters ********
-                                                </div>
-
-                                            </div>
-                                        
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label"
-                                                for="input-password">New
-                                                Password</label>
-                                            <input type="password"
-                                                formControlName="newpassword"
-                                                id="input-new-password"
-                                                class="form-control"
-                                                placeholder=""
-                                                [ngClass]="{ 'is-invalid': submitted &&
-                                                f.newpassword.errors }"
-                                                >
-                                            <div *ngIf="submitted && f.newpassword.errors"
-                                                class="invalid-feedback">
-                                                
-                                                <div *ngIf="f.newpassword.errors.minlength">
-                                                    New password
-                                                    must be at least 8
-                                                    characters ********
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </form>
-
-                       
-                    </div>
-
-                </div>
-            </div>
-
-            
-
-            <div  *ngIf="(alert | async)" class="col-md-8">
-                <div *ngIf="wrongPassword" class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Update Failed</strong><br> 
-                    Your password do not match <strong>!</strong>
-                    <button  type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-        
-                <div *ngIf="unknowneror" class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Network Error</strong><br> 
-                    the network connection is lost please reload page<strong>!</strong>
-                    <button  type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-
-
-                <div *ngIf="invalidForm" class="alert alert-info alert-dismissible fade show" role="alert">
-                    <strong>Update info</strong><br> 
-                    For update you need to Edit one/more text-box and enter your password
-                    <strong>!</strong>
-                    <button  type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-        
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="col-md-8 order-md-1">
+        <div class="card shadow" style="background: #f7fafc !important">
+          <div class="card-header bg-white">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Мой аккаунт</h3>
+              </div>
+              <div class="col-4 text-right">
+                <!-- <a href="#!" class="btn btn-sm btn-primary"></a> -->
+                <button mdc-button raised class="btn btn-primary">
+                  Помощь
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="updateForm" id="update-form">
+              <h6 class="heading-small text-muted mb-4">
+                Информация о пользователе
+              </h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-8">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-firstname"
+                        >Имя пользователя</label
+                      >
+                      <input
+                        type="text"
+                        formControlName="username"
+                        class="form-control"
+                        id="input-firstname"
+                        class="form-control form-control-alternative"
+                        placeholder="{{ username }}"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-first-name"
+                        >Имя</label
+                      >
+                      <input
+                        type="text"
+                        formControlName="firstname"
+                        class="form-control"
+                        id="input-first-name"
+                        class="form-control form-control-alternative"
+                        placeholder="{{ firstname }}"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-last-name"
+                        >Фамилия</label
+                      >
+                      <input
+                        type="text"
+                        id="input-last-name"
+                        formControlName="lastname"
+                        class="form-control"
+                        class="form-control form-control-alternative"
+                        placeholder="{{ lastname }}"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-password">
+                        Пароль</label
+                      >
+                      <input
+                        type="password"
+                        formControlName="oldpassword"
+                        id="input-old-password"
+                        class="form-control"
+                        placeholder="********"
+                        [ngClass]="{
+                          'is-invalid': submitted && f.oldpassword.errors
+                        }"
+                      />
+                      <div
+                        *ngIf="submitted && f.oldpassword.errors"
+                        class="invalid-feedback"
+                      >
+                        <div *ngIf="f.oldpassword.errors.required">
+                          требуется пароль
+                        </div>
+                        <div *ngIf="f.oldpassword.errors.minlength">
+                          Пароль должен содержать не менее 8 символов ********
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-password"
+                        >Новый пароль</label
+                      >
+                      <input
+                        type="password"
+                        formControlName="newpassword"
+                        id="input-new-password"
+                        class="form-control"
+                        placeholder=""
+                        [ngClass]="{
+                          'is-invalid': submitted && f.newpassword.errors
+                        }"
+                      />
+                      <div
+                        *ngIf="submitted && f.newpassword.errors"
+                        class="invalid-feedback"
+                      >
+                        <div *ngIf="f.newpassword.errors.minlength">
+                          Пароль должен содержать не менее 8 символов ********
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="alert | async" class="col-md-8">
+        <div
+          *ngIf="wrongPassword"
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>Ошибка Обновления</strong><br />
+          Ваш пароль не совпадает <strong>!</strong>
+          <button
+            type="button"
+            class="close btn"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div
+          *ngIf="unknowneror"
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>Network Error</strong><br />
+          the network connection is lost please reload page<strong>!</strong>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div
+          *ngIf="invalidForm"
+          class="alert alert-info alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>Update info</strong><br />
+          Для обновления вам нужно отредактировать одно/несколько текстовых
+          полей и ввести свой пароль
+          <strong>!</strong>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <footer class="py-5">
-        <div class="container">
-            <div class="row align-items-center justify-content-xl-between">
-                <div class="col-xl-6">
-                    <div class="copyright text-center text-xl-left text-muted">
-                        &copy; {{ footer_td | date: "yyyy" }} <a href="#"
-                            class="font-weight-bold ml-1" target="_blank">АСОИУ</a>
-                    </div>
-                </div>
-            </div>
+  <footer class="py-5">
+    <div class="container">
+      <div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6">
+          <div class="copyright text-center text-xl-left text-muted">
+            &copy; {{ footer_td | date: "yyyy" }}
+            <a href="#" class="font-weight-bold ml-1" target="_blank">АСОИУ</a>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </footer>
 </div>
