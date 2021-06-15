@@ -1,130 +1,149 @@
-::ng-deep body{
-    background-color: #B0D0EA;
-   
-  }
+::ng-deep body {
+  background-color: #B0D0EA;
 
-
-  .result-container{
-    //width: 100%;
-    //margin: 4% 2% 4% 2%;
-    p{
-      display: flex;
-      justify-content: center;
-      font-size: x-large;
-      font-weight: 500;
-    }
-    .progress-container{
-      position: relative;
-      .progress-bar{
-          margin: 2%;
-          float: right;
-          height: 15px;
-          border-radius: 10px;
-          width: 100%;
-          
-      }
-      
-  }
-  }
-  
-
-
-::ng-deep .first .mat-progress-bar-buffer{
-    background-color: #f1f0f0;
 }
 
-::ng-deep .first .mat-progress-bar-fill::after{
+
+.result-container {
+
+  //width: 100%;
+  //margin: 4% 2% 4% 2%;
+  p {
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    font-weight: 500;
+  }
+
+  .progress-container {
+    position: relative;
+
+    .progress-bar {
+      margin: 2%;
+      float: right;
+      height: 15px;
+      border-radius: 10px;
+      width: 100%;
+
+    }
+
+  }
+}
+
+
+
+::ng-deep .first .mat-progress-bar-buffer {
+  background-color: #f1f0f0;
+}
+
+::ng-deep .first .mat-progress-bar-fill::after {
   background-color: #dc3545;
 }
 
-::ng-deep .second .mat-progress-bar-buffer{
+::ng-deep .second .mat-progress-bar-buffer {
   background-color: #ebf3ee;
 }
 
-::ng-deep .second .mat-progress-bar-fill::after{
-background-color: #28a745;
+::ng-deep .second .mat-progress-bar-fill::after {
+  background-color: #28a745;
 }
 
 //percentages
 
-.percentages{
+.percentages {
   justify-content: center;
+
   .correct-answers {
+
     //margin-right: 10%;
-    text{
+    text {
       font-weight: 500;
     }
-    span{
+
+    span {
       margin-top: 2.2rem;
       font-size: 20px;
       font-weight: 500;
     }
-    p{
+
+    p {
       font-size: 2.5em;
       font-weight: bold;
     }
   }
-  .incorrect-answers{
+
+  .incorrect-answers {
+
     //margin-left: 10%;
-    text{
+    text {
       font-weight: 500;
     }
-    span{
-     margin-top: 2.2rem;
-     font-size: 20px;
-     font-weight: 500;
+
+    span {
+      margin-top: 2.2rem;
+      font-size: 20px;
+      font-weight: 500;
     }
-    p{
+
+    p {
       font-size: 2.5em;
       font-weight: bold;
     }
   }
 }
 
-.chart-container{
+.chart-container {
   margin-top: 2%;
   margin-left: 2%;
-  .chart{
+
+  .chart {
     height: 230px;
-    canvas{
-    height: 220px !important;
-    width: 370px !important;
+
+    canvas {
+      height: 220px !important;
+      width: 370px !important;
     }
   }
 }
 
-.rating-container{
- // width: 100%;
-    margin-right: 40px;
-    padding: 0 10px;
-    text-align: center;
+.rating-container {
+  // width: 100%;
+  margin-right: 40px;
+  padding: 0 10px;
+  text-align: center;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 500;
+  justify-content: space-around;
+
+  .each-time-back-content {
+    //margin-right: 5%;
     align-self: center;
-    font-size: 1rem;
-    font-weight: 500;
-    justify-content: space-around;
-    .each-time-back-content{
-      //margin-right: 5%;
-      align-self: center;
-      p{
-        font-size: 2em;
-        font-weight: bold;
-      }
+
+    p {
+      font-size: 2em;
+      font-weight: bold;
     }
-    .rating{
-     // margin-right: 5%;
-      p{
-        font-size: 2em;
-        font-weight: bold;
-        margin-bottom: unset;
-      };
+  }
+
+  .rating {
+
+    // margin-right: 5%;
+    p {
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: unset;
     }
-    
+
+    ;
+  }
+
 }
 
 
-.no-statistics{
+.no-statistics {
   width: 100%;
-  margin: 5rem;
+  margin: 3rem;
   border-left-color: #f0ad4e;
   padding: 1.25rem;
   margin-bottom: 1.25rem;

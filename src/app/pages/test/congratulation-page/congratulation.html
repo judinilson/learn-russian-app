@@ -1,40 +1,89 @@
 <div>
-    <app-side-nav fxFlex></app-side-nav>
-    <div fxLayout="column">
-        <mdc-card class="mdc-elevation--z8">
-            <div class="rate-container" fxLayout="column" fxLayoutAlign="space-evenly center">
-                <span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo ad, 
-                    distinctio consectetur officia voluptas sunt cum voluptatibus praesentium laborum.
-                     Culpa ratione rerum iusto dicta commodi? Ipsa distinctio enim non et!
-                </span>
-
-                <div class="row">
-                    <div>
-                       <ul class="list-inline rating-list" *ngFor="let star of stars">
-                           <li (click)="countStar(star)"
-                                [ngClass]="{'selected': (star <= selectedValue)}">
-                                   <mdc-icon>star</mdc-icon>
-                           </li> 
-                       </ul>
-                       <p>How was your exprience?</p>
-                    </div>
-                </div>
-             </div>
-
-            
-        </mdc-card>
-        
-
-        <div class="progress-container">
-            <mat-progress-bar mode="determinate" [value]="100"
-                color="accent" class="progress-bar">
-                <span>{{countPercent}} + %</span>
-            </mat-progress-bar>
-            <p>
-                {{totalCorrectAnswer}}/{{totalQuestions}}
-            </p>
+  <app-side-nav fxFlex></app-side-nav>
+  <div fxLayout="column">
+    <mat-card style="margin: 40px 40px 20px 40px; background: #22b9ff">
+      <div
+        class="rate-container"
+        fxLayout="column"
+        fxLayoutAlign="space-evenly center"
+      >
+        <h1 class="header">Поздравляю !!</h1>
+        <div class="done">
+          <svg
+            version="1.1"
+            id="tick"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 37 37"
+            style="enable-background: new 0 0 37 37"
+            xml:space="preserve"
+          >
+            <path
+              class="circ path"
+              style="
+                fill: #0cdcc7;
+                stroke: #7c4dff;
+                stroke-width: 1;
+                stroke-linejoin: round;
+                stroke-miterlimit: 10;
+              "
+              d="
+	M30.5,6.5L30.5,6.5c6.6,6.6,6.6,17.4,0,24l0,0c-6.6,6.6-17.4,6.6-24,0l0,0c-6.6-6.6-6.6-17.4,0-24l0,0C13.1-0.2,23.9-0.2,30.5,6.5z"
+            />
+            <polyline
+              class="tick path"
+              style="
+                fill: none;
+                stroke: #fff;
+                stroke-width: 3;
+                stroke-linejoin: round;
+                stroke-miterlimit: 10;
+              "
+              points="
+	11.6,20 15.9,24.2 26.4,13.8 "
+            />
+          </svg>
         </div>
+        <div>
+          Для получения дополнительной информации о тесте посетите следующую
+          страницу. Ваши результаты хранятся на странице статистики.
+        </div>
+        <div style="font-size: 1rem; margin-top: 20px">
+          Пожалуйста, оцените свой опыт работы с нашей системой.
+        </div>
+        <div class="row">
+          <div>
+            <ul class="list-inline rating-list" *ngFor="let star of stars">
+              <li
+                (click)="countStar(star)"
+                [ngClass]="{'selected': (star <= selectedValue)}"
+              >
+                <mdc-icon>star</mdc-icon>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="padding: 10px; display: flex; align-self: flex-end">
+          <button mat-mini-fab class="btn">
+            <i class="fas fa-angle-right" style="font-size: 20px"></i>
+          </button>
+        </div>
+      </div>
+    </mat-card>
+
+    <div class="progress-container">
+      <mat-progress-bar
+        mode="determinate"
+        [value]="100"
+        color="accent"
+        class="progress-bar"
+      >
+        <span>{{countPercent}} + %</span>
+      </mat-progress-bar>
+      <p>{{totalCorrectAnswer}}/{{totalQuestions}}</p>
     </div>
-   
+  </div>
 </div>

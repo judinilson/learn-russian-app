@@ -1,79 +1,91 @@
 @import "~@angular-mdc/theme/material";
 
 
-.container{
-    flex-direction: column;
+.container {
+  flex-direction: column;
 }
 
-mdc-card{
-    margin: 5%;
+mdc-card {
+  margin: 5%;
 }
 
-.rate-container{
-    display: flex;
-    justify-content: center;
-    position: relative;
-    font-size: 25px;
-    border: 2px solid #828282;
-    background-color: #3399ff70;
-    line-height: 1.8;
-    text-align: left;
-    text-indent: 4%;
-    height: 600px !important;
+.rate-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  font-size: 20px;
+  border: 2px solid #828282;
+  background-color: #3399ff70;
+  line-height: 1.8;
+  text-align: center;
+  // text-indent: 4%;
+  //height: 600px !important;
 
-    span{
-        margin: 2%;
-    }
+  .header {
+    margin: 2%;
+
+  }
+}
+
+.done {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 
 
+.progress-container {
+  position: relative;
 
-.progress-container{
-    position: relative;
-    .progress-bar{
-        margin: 2%;
-        float: right;
-        height: 10px;
-        border-radius: 10px;
-        
-    }
-    p{
-        font-size: 18px;
-        font-weight: bolder;
-        position: absolute;
-        margin-top: 3%;
-    }
+  .progress-bar {
+    margin: 2%;
+    float: right;
+    height: 10px;
+    border-radius: 10px;
+
+  }
+
+  p {
+    font-size: 18px;
+    font-weight: bolder;
+    position: absolute;
+    margin-top: 3%;
+  }
 }
 
 ::ng-deep .mat-progress-bar.mat-accent .mat-progress-bar-buffer {
-    background-color: #f7f0f0;
+  background-color: #f7f0f0;
 }
 
 .rating-list li {
-    color: rgb(206, 191, 191);
-    padding: 10px 5px;
-  
-  }
-  
-  .rating-list li:hover,
-  .rating-list li:hover ~ li, .rating-list li.selected {
-    color: #E91E63;
-  }
-  
-  .rating-list {
-    display: inline-block;
-    list-style: none;
-    float: left;
-    cursor: pointer;
+  color: rgb(206, 191, 191);
+  padding: 10px 5px;
+
+}
+
+.rating-list li:hover,
+.rating-list li:hover~li,
+.rating-list li.selected {
+  color: #E91E63;
+}
+
+.rating-list {
+  display: inline-block;
+  list-style: none;
+  float: left;
+  cursor: pointer;
+}
+
+.row {
+  mdc-icon {
+    font-size: 34px;
   }
 
-  .row{
-      mdc-icon{
-          font-size: 34px;
-      }
-
-      p{
-        font-size: large;
-      }
+  p {
+    font-size: large;
   }
+}

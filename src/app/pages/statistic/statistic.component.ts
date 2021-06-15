@@ -49,7 +49,7 @@ export class StatisticComponent implements OnInit {
   totalAnswers = 0;
   trainingDataResult: any;
   tDate = "";
-  statistics = false;
+  statistics: boolean;
 
   incorrectCharData = [];
   correctCharData = [];
@@ -112,6 +112,7 @@ export class StatisticComponent implements OnInit {
   constructor(private trainingTestService: TrainingTestService) {}
 
   ngOnInit() {
+    this.statistics = false;
     this.trainingDataResult = JSON.parse(
       localStorage.getItem("trainingDataResult")
     );
@@ -150,10 +151,9 @@ export class StatisticComponent implements OnInit {
       .pipe(distinctUntilChanged())
       .subscribe(
         (data) => {
-          //this.statistics = true;
+          // this.statistics = true;
           this.statisticData = data;
           this.charData(data);
-          console.log(data);
           this.querryProgressBar = false;
         },
         (error) => {
@@ -174,52 +174,66 @@ export class StatisticComponent implements OnInit {
       var currentUserStatistic = data
         .filter((x) => x.userId === this.currentUser.id)
         .slice(-6);
-      currentUserStatistic.forEach((item) => {
-        this.correctCharData.push(item.percentageCorrectAnswers);
-        this.incorrectCharData.push(item.percentageIncorrectAnswers);
-        this.dateTimeCharData.push(new Date(item.trainingDate));
-      });
 
-      //weekDay
-      this.dateTimeCharData.forEach((x, i) => {
-        if (x.getDay() === 1) {
-          //monday
-          this.barChartData[0].data[0] = this.correctCharData[i];
-          this.barChartData[1].data[0] = this.incorrectCharData[i];
-        }
+      if (currentUserStatistic !== null) {
+        currentUserStatistic.forEach((item) => {
+          this.correctCharData.push(item.percentageCorrectAnswers);
+          this.incorrectCharData.push(item.percentageIncorrectAnswers);
+          this.dateTimeCharData.push(new Date(item.trainingDate));
+        });
 
-        if (x.getDay() === 2) {
-          //tuesday
-          this.barChartData[0].data[1] = this.correctCharData[i];
-          this.barChartData[1].data[1] = this.incorrectCharData[i];
-        }
+        //get last statistic from the current user
+        var currentUserCurrentStatistic =
+          currentUserStatistic[currentUserStatistic.length - 1];
 
-        if (x.getDay() === 3) {
-          //wednesday
-          this.barChartData[0].data[2] = this.correctCharData[i];
-          this.barChartData[1].data[2] = this.incorrectCharData[i];
-        }
+        this.correctAnswerPercentage =
+          currentUserStatistic.percentageCorrectAnswers;
+        this.incorrectAnswerPercentage =
+          currentUserStatistic.percentageIncorrectAnswers;
 
-        if (x.getDay() === 4) {
-          //thursday
-          this.barChartData[0].data[3] = this.correctCharData[i];
-          this.barChartData[1].data[3] = this.incorrectCharData[i];
-        }
+        //weekDay
+        this.dateTimeCharData.forEach((x, i) => {
+          if (x.getDay() === 1) {
+            //monday
+            this.barChartData[0].data[0] = this.correctCharData[i];
+            this.barChartData[1].data[0] = this.incorrectCharData[i];
+          }
 
-        if (x.getDay() === 5) {
-          //friday
-          console.log(this.correctCharData[i], this.incorrectCharData[i]);
+          if (x.getDay() === 2) {
+            //tuesday
+            this.barChartData[0].data[1] = this.correctCharData[i];
+            this.barChartData[1].data[1] = this.incorrectCharData[i];
+          }
 
-          this.barChartData[0].data[4] = this.correctCharData[i];
-          this.barChartData[1].data[4] = this.incorrectCharData[i];
-        }
+          if (x.getDay() === 3) {
+            //wednesday
+            this.barChartData[0].data[2] = this.correctCharData[i];
+            this.barChartData[1].data[2] = this.incorrectCharData[i];
+          }
 
-        if (x.getDay() === 6) {
-          //saturday
-          this.barChartData[0].data[5] = this.correctCharData[i];
-          this.barChartData[1].data[5] = this.incorrectCharData[i];
-        }
-      });
+          if (x.getDay() === 4) {
+            //thursday
+            this.barChartData[0].data[3] = this.correctCharData[i];
+            this.barChartData[1].data[3] = this.incorrectCharData[i];
+          }
+
+          if (x.getDay() === 5) {
+            //friday
+            console.log(this.correctCharData[i], this.incorrectCharData[i]);
+
+            this.barChartData[0].data[4] = this.correctCharData[i];
+            this.barChartData[1].data[4] = this.incorrectCharData[i];
+          }
+
+          if (x.getDay() === 6) {
+            //saturday
+            this.barChartData[0].data[5] = this.correctCharData[i];
+            this.barChartData[1].data[5] = this.incorrectCharData[i];
+          }
+        });
+      } else {
+        this.statistics = false;
+      }
     }
   }
 
@@ -247,7 +261,7 @@ export class StatisticComponent implements OnInit {
       this.emoji = "assets/emojis/emoji-3.png";
     } else {
       this.emoji = "assets/emojis/emoji-4.png";
-    }          
+    }
   }
 
   getNewDate() {

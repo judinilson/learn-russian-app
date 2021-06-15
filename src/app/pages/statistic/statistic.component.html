@@ -11,6 +11,7 @@
         mode="query"
         style="margin-top: 5px"
       ></mat-progress-bar>
+      <!-- CONTINUE YOUR TEST -->
       <div
         class="alert alert-warning"
         role="alert"
@@ -27,6 +28,7 @@
         </a>
         . нажмите, чтобы продолжить.
       </div>
+      <!-- OTVETOV -->
       <div
         class="card shadow rounded"
         style="margin: 4% 2% 4% 2%; background-color: #98b9d4"
@@ -109,51 +111,8 @@
           </div>
         </div>
       </div>
-      <!-- <div class="result-container col" >
-               
-                <div class="progress-container col justify-content-center" >
-                    <p>ОТВЕТОВ</p>
-                                      
-                    <mat-progress-bar mode="determinate" [value]="correctAnswerPercentage"
-                         class="progress-bar second">
-                    </mat-progress-bar>
-                    <mat-progress-bar mode="determinate" [value]="incorrectAnswerPercentage"
-                         class="progress-bar first">
-                    </mat-progress-bar>
 
-                </div>
-                <div class="percentages row justify-content-center mb-5" >
-                    <div class="correct-answers col-4" >
-                        <div fxLayout="row" style="height: 75px;">
-                            <svg height="100" width="100">
-                                <circle cx="50" cy="50" r="18" stroke="white" stroke-width="2px" fill="green" />
-                                <text x="50%" y="50%" text-anchor="middle" class="medium"  dy=".3em">{{correctAnswerPercentage}}%</text>
-                            </svg> 
-                            <span>Правильный</span>
-                        </div>
-                       
-                        <div>
-                            <p>{{totalCorrectAnswers}}</p>
-                        </div>
-                        
-                    </div>
-                    <div class="incorrect-answers col-4" >
-                        <div fxLayout="row" style="height: 75px;">
-                            <svg height="100" width="100">
-                                <circle cx="50" cy="50" r="18" stroke="white" stroke-width="2px" fill="red" />
-                                <text x="50%" y="50%" text-anchor="middle" class="medium"  dy=".3em">{{incorrectAnswerPercentage}}%</text>
-                            </svg> 
-                            <span>Неправильный</span>
-                        </div>
-                        <div>
-                            <p>{{totalIncorrectAnswers}}</p>
-                        </div>
-                        
-                    </div>
-                </div>
-        
-            </div> -->
-
+      <!-- CHAR -->
       <div class="row d-flex justify-content-around">
         <div
           *ngIf="!notnetwork"
@@ -210,6 +169,7 @@
 </div>
 
 <div *ngIf="!statistics" class="no-statistics">
+  <!-- ALLERT TO THE USER FOR CONTINUE THE TEST  -->
   <div
     class="alert alert-warning"
     role="alert"
@@ -218,14 +178,52 @@
   >
     Пожалуйста, продолжите текущий начальный тест на
     <a routerLinkActive="active" [routerLink]="['/test']" class="alert-link">
-      странице тестирования
+      <strong> странице тестирования</strong>
     </a>
     . нажмите, чтобы продолжить.
   </div>
+
+  <!-- NOT CURRENT STATISTIC MESSAGE  -->
   <div>
     <span>
-      <h2>На данный момент нет статистики.</h2>
-      <p>Пожалуйста, начните тренировочные тесты.</p>
+      <h5>На данный момент нет текущей статистики.</h5>
+      <div>Пожалуйста, начните тест на странице тестирования.</div>
     </span>
+  </div>
+
+  <!-- CHAR IF THERES NOT CURRENT TEST  -->
+  <div>
+    <div
+      *ngIf="!notnetwork"
+      class="chart-container"
+      style="text-align: center; margin-top: 10% !important"
+    >
+      <span style="font-size: 18px; font-weight: 500">
+        Последние шесть дней
+      </span>
+      <div>
+        <div class="chart" style="display: inline-block">
+          <canvas
+            baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barCharOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            [colors]="chartColors"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+          >
+          </canvas>
+        </div>
+      </div>
+      <button
+        mat-stroked-button
+        class="btn btn-outline-primary"
+        (click)="randomize()"
+      >
+        Обнавить
+      </button>
+    </div>
   </div>
 </div>

@@ -32,8 +32,15 @@ export class AuthenticationService {
         map((user) => {
           // login successful if there's a jwt token in the response
           if (user && user.token) {
+            //check if is the user already in or is a new user log
+            var olduser = JSON.parse(localStorage.getItem("OldUser"));
+            if (user.id !== olduser.id) {
+              localStorage.clear();
+            }
+
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem("currentUser", JSON.stringify(user));
+            localStorage.removeItem("OldUser"); // removing old user
             this.currentUserSubject.next(user);
           }
 
@@ -44,8 +51,10 @@ export class AuthenticationService {
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem("currentUser");
-    localStorage.clear();
+    var currentUser = localStorage.getItem("currentUser"); //geting curent user
+    localStorage.removeItem("currentUser"); // delete it from the storage
+    localStorage.setItem("OldUser", currentUser); // store it as old user now
+    //localStorage.clear();
     this.currentUserSubject.next(null);
     window.location.reload();
   }
